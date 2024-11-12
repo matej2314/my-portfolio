@@ -5,7 +5,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "devDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
   "author": "",
   "license": "ISC",
   "description": ""
+
 }
+
