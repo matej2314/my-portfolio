@@ -20,7 +20,11 @@ export default {
         },
         fontFamily: {
           sans: ['Roboto', 'sans-serif'],
-        }
+        },
+        backgroundImage: {
+          'contact-image' : "url('src/assets/contact-bg.jpg')",
+        },
+       
       },
     },
     plugins: [],

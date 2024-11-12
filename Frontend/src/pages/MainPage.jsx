@@ -4,14 +4,13 @@ import MainRightContainer from "../components/MainRightContainer";
 
 
 export default function MainPage() {
-    const codeSign = "</>";
+    
     return (
-        <main className="w-screen h-dvh overflow-hidden flex justify-around flex-nowrap font-sans">
+        <main className="w-screen h-dvh overflow-hidden flex justify-around flex-nowrap font-sans mr-9">
            <LeftSidebar />
-            <div id="content" className='relative left-6 w-full h-content flex flex-row flex-nowrap mx-9 mt-5'>
+            <div id="content" className='relative w-full h-content flex flex-row flex-nowrap mt-5 mr-9'>
                 <MainLeftContainer />
                 <MainRightContainer />
-               
             </div>
         </main>
     );
