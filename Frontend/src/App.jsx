@@ -1,13 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+import MainPage from './pages/MainPage';
+import Contact from './pages/Contact';
+import Portfolio from './components/Portfolio';
+
+
+const router = createBrowserRouter([
+  {
+    path: '/', element: <MainPage />,
+    children: [
+      { index: true, element: <MainPage /> },
+      { path: 'portfolio', element: <Portfolio />},
+      { path: 'contact', element: <Contact /> },
+    ]
+  },
+ 
+]);
 
 function App() {
-  return <div>
-    <p className="text-2xl text-red-600">Portfolio webpage</p>
-    <p className="text-xl text-orange-500">Welcome</p>
-  </div>
+  return (
+    <RouterProvider router={router} />
+  )
 }
 
 export default App

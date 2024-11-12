@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 3
+    },
+    "auditLog": "C:\\Users\\matej\\Desktop\\projekt JS\\Portfolio\\Backend\\logs\\.01ec7e24abe9ef6a65622af16867b07c38696192-audit.json",
+    "files": [
+        {
+            "date": 1731350564980,
+            "name": "C:\\Users\\matej\\Desktop\\projekt JS\\Portfolio\\Backend\\logs\\error-2024-11-11.log",
+            "hash": "0c7b69f60d3e2781b8a8ec44438b96b65b96da4167eec11dafce72a413e21fe2"
+        },
+        {
+            "date": 1731401711087,
+            "name": "C:\\Users\\matej\\Desktop\\projekt JS\\Portfolio\\Backend\\logs\\error-2024-11-12.log",
+            "hash": "9c7b417e6f13235bbd4d3deadbe98563694a6272777a24d3bd20c965f4c278e8"
+        }
+    ],
+    "hashType": "sha256"
+}
