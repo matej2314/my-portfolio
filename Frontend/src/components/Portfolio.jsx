@@ -1,5 +1,6 @@
 import Footer from "./Footer"
 import portfolioImage from '../assets/portfolio-header-image.png';
+import { DataContext } from "../store/data-context";
 
 export default function Portfolio() {
     

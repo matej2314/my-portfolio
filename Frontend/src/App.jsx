@@ -10,7 +10,7 @@ import BlogPage from './pages/BlogPage';
 const router = createBrowserRouter([
       { path: '/', element: <MainPage /> },
       { path: 'portfolio', element: <PortfolioPage /> },
-      {path: 'blog', element: <BlogPage />},
+      { path: 'blog', element: <BlogPage />},
       { path: 'contact', element: <Contact /> },
   
 ]);
