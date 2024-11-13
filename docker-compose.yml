@@ -15,8 +15,8 @@ services:
 
   #  App:
   #   build:
-  #     context: ./app
-  #     contaner_name: appName-frontend
+  #     context: ./Frontend
+  #     contaner_name: myPortfolio-frontend
   #     restart: always
   #     networks:
   #         - main_network
