@@ -8,7 +8,7 @@ router.use(bodyParser.json());
 
 router.get('/all', (req, res) => {
 
-  const queryPosts = `SELECT 'posts' AS source, p.id, p.post_title AS title, p.post_content AS description, p.post_imageName AS details FROM posts p`;
+  const queryPosts = `SELECT * FROM posts ORDER BY id`;
   const queryProjects = `SELECT 'projects' AS source, pr.id, pr.project_name AS title, pr.project_category AS description, pr.project_URL AS details, pr.project_screenName FROM projects pr`;
   const queryServices = `SELECT 'services' AS source, s.id, s.serviceName AS title, s.serviceDescription AS description FROM services s`;
 
