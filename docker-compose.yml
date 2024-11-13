@@ -1,0 +1,36 @@
+services:
+  backend:
+    build:
+      context: ./Backend
+    container_name: myPortfolio-backend
+    restart: always
+    networks:
+      - main_network
+    ports:
+      - "5051:5051"
+    volumes:
+      - /root/main/portfolio/backend/logs:/app/logs
+    environment:
+      - DB_HOST=main_db
+
+  #  App:
+  #   build:
+  #     context: ./app
+  #     contaner_name: appName-frontend
+  #     restart: always
+  #     networks:
+  #         - main_network
+  #     ports:
+  #       # porty
+  #     logging:
+  #       driver: "json-file"
+  #       options:
+  #         max-size: "15m"
+  #         max-file: "5"
+  #       volumes:
+  #         # - wolumen logów aplikacji
+
+networks:
+  main_network:
+    external: true
+    name: main_network
