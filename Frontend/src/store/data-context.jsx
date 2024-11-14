@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import {backendUrl} from '../../url.js';
 
 export const DataContext = createContext({
     data: {},
@@ -6,34 +7,38 @@ export const DataContext = createContext({
     error: null,
 });
 
-export const DataProvider = () => {
+const DataProvider = ({children}) => {
 
-    const [fetchedData, setFetchedData] = useState();
+    const [fetchedData, setFetchedData] = useState({
+        data: []
+    });
+
     const [isLoading, setIsLoading] = useState();
     const [error, setError] = useState();
 
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setIsLoading(true);
-                const response = await fetch('');
-
-                if (!response.ok) {
-                    throw new Error('Błąd pobierania danych');
+            const fetchData = async () => {
+                try {
+                    setIsLoading(true);
+                    const response = await fetch(backendUrl);
+    
+                    if (!response.ok) {
+                        throw new Error('Błąd pobierania danych');
+                        
+                    }
+                    const data = await response.json();
+                    setFetchedData((prevdata) => data);
+    
+                } catch (error) {
+                    setError(error.message);
+                } finally {
+                    setIsLoading(false);
                 }
-                const data = await response.json();
-                setFetchedData(data);
-
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
+          };
         fetchData();
     }, []);
+    
 
     return (
         <DataContext.Provider value={{ fetchedData, isLoading, error }}>
@@ -42,3 +47,4 @@ export const DataProvider = () => {
     );
 };
 
+export default DataProvider;
