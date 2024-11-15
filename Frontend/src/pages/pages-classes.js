@@ -1,0 +1,5 @@
+pagesClasses = {
+
+}
+
+export default pagesClasses;
