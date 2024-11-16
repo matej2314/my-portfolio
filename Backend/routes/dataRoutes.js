@@ -8,9 +8,10 @@ router.use(bodyParser.json());
 
 router.get('/all', (req, res) => {
   const queryPosts = `
-    SELECT 'posts' AS source, id, post_title AS title, post_content AS description, post_date, COALESCE(post_imageName, '') AS post_imageName FROM posts ORDER BY id `;
-  const queryProjects = `SELECT 'projects' AS source, pr.id, pr.project_name AS title, pr.project_category AS description, pr.project_URL AS details, pr.project_screenName FROM projects pr `;
-  const queryServices = `SELECT 'services' AS source, s.id, s.serviceName AS title, s.serviceDescription AS description FROM services s`;
+    SELECT 'posts' AS source, id, post_title AS title, post_content AS description, post_date, COALESCE(post_imageName, '') AS post_imageName FROM posts ORDER BY id;`;
+  const queryProjects = `SELECT 'projects' AS source, pr.id, pr.project_name AS title, pr.project_category AS description, pr.project_URL AS details, pr.project_screenName FROM projects pr;`;
+  const queryServices = `SELECT 'services' AS source, s.id, s.serviceName AS title, s.serviceDescription AS description FROM services s;`;
+  const querySkills = `SELECT 'skills' AS source, s.id, s.skill_name AS title, s.skill_cat AS category, s.skill_level AS level FROM skills s;`;
 
   pool.query(queryPosts, (error, posts) => {
     if (error) {
@@ -30,23 +31,29 @@ router.get('/all', (req, res) => {
           return res.status(500).json({ message: 'Błąd serwera' });
         }
 
-        
-        const allData = {
-          posts: posts,
-          projects: projects,
-          services: services
-        };
+        pool.query(querySkills, (error, skills) => {
+          if (error) {
+            logger.error('Błąd pobierania danych z tabeli skills', error.message);
+            return res.status(500).json({ message: 'Błąd serwera' });
+          }
 
-        if (Object.values(allData).every(arr => arr.length === 0)) {
-          return res.status(204).json({ message: 'Brak danych' });
-        }
+          const allData = {
+            posts: posts,
+            projects: projects,
+            services: services,
+            skills: skills,
+          };
 
-        logger.info('Wszystkie dane pobrane');
-        return res.status(200).json({ data: allData });
+          if (Object.values(allData).every(arr => arr.length === 0)) {
+            return res.status(204).json({ message: 'Brak danych' });
+          }
+
+          logger.info('Wszystkie dane pobrane');
+          return res.status(200).json({ data: allData });
+        });
       });
     });
   });
 });
-
 
 module.exports = router;

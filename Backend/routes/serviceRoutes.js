@@ -25,7 +25,6 @@ router.get('/all', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-    console.log(req.body);
     const id = uuidv4();
     const service_name = req.body.serviceName;
     const service_description = req.body.serviceDesc;
