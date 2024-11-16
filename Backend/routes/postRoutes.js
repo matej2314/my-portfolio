@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db.js');
-const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
 const logger = require('../logger.js');
 
-
-router.use(bodyParser.json());
+router.use(express.json());
 
 router.post('/new', (req, res) => {
     const postTitle = req.body.postTitle;

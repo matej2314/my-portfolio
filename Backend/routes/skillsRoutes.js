@@ -5,6 +5,8 @@ const router = express.Router();
 const logger = require('../logger');
 const { v4: uuidv4 } = require('uuid');
 
+router.use(express.json());
+
 router.post('/new', (req, res) => {
     const id = uuidv4();
     const skillName = req.body.skillName;

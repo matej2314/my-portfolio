@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
 const pool = require('../db.js');
 const logger = require('../logger.js');
 
-router.use(bodyParser.json());
+router.use(express.json());
 
 router.get('/all', (req, res) => {
   const queryPosts = `
