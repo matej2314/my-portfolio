@@ -1,11 +1,11 @@
 import LeftSidebar from "../components/LeftSidebar";
-
+import { pagesClasses } from "./pages-classes";
 
 export default function BlogPage() {
     return (
-        <div className="w-screen h-dvh overflow-hidden flex justify-around flex-nowrap font-sans mr-9">
+        <div className={pagesClasses.blogPage.pageWrapper}>
             <LeftSidebar />
-            <div className="w-[95vw] h-content bg-neutral-600/30 mt-5 mr-9 flex flex-row items-center justify-center">
+            <div className={pagesClasses.blogPage.contentWrapper}>
                 <p className="text-gray-200 text-4xl">Work in progress</p>
             </div>
         </div>

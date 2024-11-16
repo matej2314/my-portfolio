@@ -1,9 +1,11 @@
-export default function Skill({skills, loading}) {
+import { sectionsClasses } from "./portSections-classes"
+
+export default function Skill({ skills, loading }) {
     return (
         <>
-        <li className="w-full flex justify-around pb-2">HTML, CSS, JS<span className="ml-6 text-lg  border-dotted border-b-2 border-[#6f963b]">advanced</span></li>
-        <li className="w-full flex justify-around pb-2">React.js<span className="ml-6 text-lg  border-dotted border-b-2 border-[#6f963b]">basic</span></li>
-        <li className="w-full flex justify-around pb-2">Node.js<span className="ml-6 text-lg  border-dotted border-b-2 border-[#6f963b]">pre intermediate</span></li>
+        <li className={sectionsClasses.skill.li}>HTML, CSS, JS<span className={sectionsClasses.skill.span}>advanced</span></li>
+        <li className={sectionsClasses.skill.li}>React.js<span className={sectionsClasses.skill.span}>basic</span></li>
+        <li className={sectionsClasses.skill.li}>Node.js<span className={sectionsClasses.skill.span}>pre intermediate</span></li>
         </>
     )
        

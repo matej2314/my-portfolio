@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 
 import { DataContext } from "../../store/data-context"
 import Service from "./Service.jsx"
+import { sectionsClasses } from "./portSections-classes.js";
 
 export default function ServicesSection() {
 
@@ -12,8 +13,8 @@ export default function ServicesSection() {
 
    return (
       <>
-         <h2 className="w-full flex justify-center text-2xl my-4">Services</h2>
-        <div className="grid grid-cols-2 gap-2 px-4 border-dotted border-b-2 border-[#6f963b] pb-4">
+         <h2 className={sectionsClasses.servicesSection.h2}>Services</h2>
+        <div className={sectionsClasses.servicesSection.servicesWrapper}>
            <Service services={services} loading={loading}/> 
         </div>
     </>

@@ -1,6 +1,8 @@
+import { compClasses } from "./components-classes"
+
 export default function MainLeftContainer() {
     return (
-        <div id='main-left-container' className='bg-neutral-600/30 w-full mr-5 rounded-md text-gray-300 overflow-scroll no-scrollbar'>
+        <div id='main-left-container' className={compClasses.mainLeftContainer.mainContainer}>
                     MAIN LEFT CONTAINER
                 </div>
     )

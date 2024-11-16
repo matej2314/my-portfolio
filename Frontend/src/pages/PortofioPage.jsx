@@ -1,12 +1,13 @@
 import LeftSidebar from "../components/LeftSidebar";
 import Portfolio from "../components/Portfolio";
+import { pagesClasses } from "./pages-classes";
 
 
 export default function PortfolioPage() {
     return (
-        <div className="relative w-full h-content flex flex-row flex-nowrap">
+        <div className={pagesClasses.portfolioPage.portfolioWrapper}>
             <LeftSidebar />
-            <div className="bg-neutral-600/30 text-gray-300 w-11/12 h-content rounded-md flex flex-col justify-between overflow-scroll no-scrollbar mr-9 my-5">
+            <div className={pagesClasses.portfolioPage.portfolioContentWrapper}>
                     <Portfolio/>
                     </div>
                 </div>

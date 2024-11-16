@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { DataContext } from "../../store/data-context"
 
 import Skill from "./Skill"
+import { sectionsClasses } from "./portSections-classes"
 
 export default function SkillsSection() {
 
@@ -9,9 +10,9 @@ export default function SkillsSection() {
 
 
     return (
-        <section id="skills-section" className=" w-full flex flex-col items-stretch mt-4 border-dotted border-b-2 border-[#6f963b]">
-            <h2 className="w-full flex justify-center text-2xl mb-4 font-sans">Skills</h2>
-            <ul className="w-full grid grid-cols-2 gap-7 pl-11 pr-3 mb-4 text-xl">
+        <section id="skills-section" className={sectionsClasses.skillsSection.sectionWrapper}>
+            <h2 className={sectionsClasses.skillsSection.h2}>Skills</h2>
+            <ul className={sectionsClasses.skillsSection.ul}>
                <Skill />
             </ul>
         </section>

@@ -1,14 +1,15 @@
 import LeftSidebar from "../components/LeftSidebar";
 import MainLeftContainer from "../components/MainLeftContainer";
 import MainRightContainer from "../components/MainRightContainer";
+import { pagesClasses } from "./pages-classes";
 
 
 export default function MainPage() {
     
     return (
-        <main className="w-screen h-dvh overflow-hidden flex justify-around flex-nowrap font-sans mr-9">
+        <main className={pagesClasses.mainPage.wrapper}>
            <LeftSidebar />
-            <div id="content" className='relative w-full h-content flex flex-row flex-nowrap mt-5 mr-9'>
+            <div id="content" className={pagesClasses.mainPage.contentWrapper}>
                 <MainLeftContainer />
                 <MainRightContainer />
             </div>

@@ -1,28 +1,29 @@
 import portfolioImage from '../../assets/portfolio-header-image.png';
 import portfolioPhoto from '../../assets/portfolio-photo.jpg';
+import { sectionsClasses } from './portSections-classes';
 
 
 export default function PortfolioHeader() {
 
     return (
-        <div id="portfolio-header" className="w-full flex justify-center">
-                    <div className="w-full h-56 bg-gradient-to-t from-bg-neutral-600/30 via-transparent to-transparent relative">
+        <div id="portfolio-header" className={sectionsClasses.portfolioHeader.wrapper}>
+                    <div className={sectionsClasses.portfolioHeader.innerWrapper}>
                         <img
                             id="portfolio-header-bgImage"
-                            className="h-56 w-full opacity-60 object-cover blur-[2px]"
+                            className={sectionsClasses.portfolioHeader.bgImage}
                             src={portfolioImage}
                             alt="portfolio header background image"
                         />
                         <img
                             id="portfolio-photo"
-                            className="w-24 h-24 z-10 relative bottom-[62%] justify-self-center items-center justify-center rounded-full border-4 border-slate-300 -translate-y-2/3 hover:scale-110"
+                            className={sectionsClasses.portfolioHeader.portfolioPhoto}
                             src={portfolioPhoto}
                             alt="my personal photo"
                         />
-                        <h2 className="absolute top-[57%] left-1/2 transform -translate-x-1/2 text-white text-lg font-semibold z-20">
+                        <h2 className={sectionsClasses.portfolioHeader.h2}>
                             Mateusz Śliwowski
                         </h2>
-                        <h3 className="absolute top-[70%] left-[40%] text-white text-sm z-20 hover:text-[#b8c785]">
+                        <h3 className={sectionsClasses.portfolioHeader.h3}>
                        Webdev. DevOps. SEO.
                         </h3>
                     </div>

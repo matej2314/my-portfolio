@@ -1,11 +1,12 @@
 import ContactForm from "../components/ContactForm";
 import LeftSidebar from "../components/LeftSidebar";
+import { pagesClasses } from "./pages-classes";
 
 export default function Contact() {
     return (
-        <main className="w-screen h-dvh overflow-hidden flex justify-around flex-nowrap">
+        <main className={pagesClasses.contactPage.pageWrapper}>
             <LeftSidebar />
-            <div className="w-full h-content flex justify-center mt-5 bg-contact-image bg-cover mr-9 bg-opacity-75">
+            <div className={pagesClasses.contactPage.formWrapper}>
                <ContactForm />
                 </div>
         </main>
