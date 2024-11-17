@@ -30,7 +30,7 @@ export const sectionsClasses = {
         ul: "w-full grid grid-rows-auto md:grid-cols-2 gap-7 pl-11 pr-3 mb-4 text-xl",
     },
     workSection: {
-        sectionWrapper: "w-full flex justify-center border-dotted border-b-2 border-[#6f963b] mb-4 border-opacity-40",
+        sectionWrapper: "w-full flex justify-center border-dotted border-b-2 border-[#6f963b] mb-4 border-opacity-15",
         workWrapper: "w-11/12 flex flex-col items-center justify-center pt-2 pb-4 px-4 mb-6 bg-gray-500/15 rounded",
     },
 

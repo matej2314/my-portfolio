@@ -5,6 +5,7 @@ import LanguagesSection from './portfolio-sections/LanguagesSection.jsx';
 import SkillsSection from "./portfolio-sections/SkillsSection.jsx";
 import WorkSection from "./portfolio-sections/WorkSection.jsx";
 import CoursesSection from "./portfolio-sections/CoursesSection.jsx";
+import PortfolioFooter from "./portfolio-sections/PortfolioFooter.jsx";
 import { compClasses } from "./components-classes.js";
 
 export default function Portfolio() {
@@ -17,6 +18,7 @@ export default function Portfolio() {
                 <SkillsSection />
                 <CoursesSection />
                 <WorkSection />
+                <PortfolioFooter />
                 <Footer />
             </div>
         </>
