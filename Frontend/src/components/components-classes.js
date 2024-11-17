@@ -24,11 +24,11 @@ export const compClasses = {
         mainContainer: 'bg-neutral-600/30 w-full mr-5 rounded-md text-gray-300 overflow-scroll no-scrollbar',
     },
     mainRightContainer: {
-        mainContainer: 'bg-neutral-600/30 text-gray-300 w-full h-full rounded-md flex flex-col justify-between overflow-scroll no-scrollbar',
+        mainContainer: 'bg-neutral-600/30 text-gray-300 w-full h-full rounded-md overflow-scroll no-scrollbar',
     },
     menu: {
-        menu: "w-4/5 h-full px-6 bg-neutral-600/30 flex flex-col justify-stretch mt-3 rounded-lg pt-28",
-        ul: "flex flex-col items-center gap-5 text-gray-300 text-xl",
+        menu: "w-4/5 h-full bg-neutral-600/30 flex flex-col justify-around items-center mt-3 rounded-lg",
+        ul: "flex flex-col items-center gap-8 text-gray-300 text-xl",
         link: "hover:text-2xl hover:text-[#b8c785]",
     },
     portfolio: {

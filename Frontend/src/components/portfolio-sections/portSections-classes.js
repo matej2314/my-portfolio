@@ -15,7 +15,6 @@ export const sectionsClasses = {
     },
     service: {
         serviceWrapper: "w-full flex flex-col items-center justify-start pt-2 pb-3 px-4 bg-gray-500/15 rounded",
-        h3: "text-lg w-full flex justify-center mx-auto",
         span: "text-[#6f963b] text-2xl",
         paragraph: "w-full flex flex-wrap mt-2",
     },
@@ -39,14 +38,18 @@ export const sectionsClasses = {
         h2: "w-full flex justify-center text-2xl mb-4 font-sans"
     },
 
+    h3: {
+        h3: "text-lg w-full flex justify-center mx-auto",
+    },
+
     li: {
         li: "w-full flex justify-around pb-2",
     },
     buttonsList: {
-        buttonsList: "w-11/12 flex justify-evenly items-center py-1 border-2 border-[#6f963b] mb-4 mx-auto border-opacity-15 rounded-full",
+        buttonsList: "w-11/12 flex justify-evenly items-center py-1 border-2 border-[#6f963b] mb-4 mx-auto border-opacity-15 rounded-full gap-3",
     },
     categoryButton: {
-        categoryButton: "hover:text-[#6f963b]",
+        categoryButton: "hover:text-[#6f963b] flex justify-start",
     }
 
 }

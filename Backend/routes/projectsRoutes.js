@@ -27,7 +27,6 @@ router.get('/all', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-    console.log(req.body);
 
     const projectId = uuidv4();
     const projectName = req.body.projectName;
@@ -35,13 +34,13 @@ router.post('/new', (req, res) => {
     const projectURL = req.body.prURL;
     const projectScrName = req.body.prScrName;
 
-    if (!projectId || projectName === '' || projectCat === '' || projectURL === undefined || projectScrName === '')
+    if (!projectId || projectName === '' || projectCat === '' || projectURL ==='' || projectScrName === '')
         {
         logger.error('Brak wymaganych danych do dodania projektu');
         return res.status(400).json({ message: 'Brak wymaganych danych do dodania projektu' });
     }
 
-    const query = 'INSERT INTO projects (id, project_name, project_category, project_URL, project_screenName) VALUES(?,?,?,?,?)';
+    const query = 'INSERT INTO projects (id, project_name, project_category, project_URL, project_screenName) VALUES(?,? ,? ,? ,?)';
 
     pool.query(query, [projectId, projectName, projectCat, projectURL, projectScrName], (error, result) => {
         if (error) {

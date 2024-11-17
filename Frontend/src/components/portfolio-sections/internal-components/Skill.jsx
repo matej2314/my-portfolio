@@ -9,7 +9,7 @@ export default function Skill({ skills, loading, selectedCategory }) {
             {!loading && filteredSkills && Array.isArray(filteredSkills) ? (
                 filteredSkills.map(skill => (
                     <li key={skill.id} className={sectionsClasses.li.li}>
-                        {skill.title}<span className={sectionsClasses.skill.span}>{skill.level}</span>
+                        {skill.title}
                     </li> 
                 ))
             ) : (
