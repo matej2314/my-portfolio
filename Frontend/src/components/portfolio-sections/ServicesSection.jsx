@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 
 import { DataContext } from "../../store/data-context"
-import Service from "./Service.jsx"
+import Service from "./internal-components/Service.jsx";
 import { sectionsClasses } from "./portSections-classes.js";
 
 export default function ServicesSection() {

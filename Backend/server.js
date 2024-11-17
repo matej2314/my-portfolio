@@ -20,12 +20,14 @@ const serviceRoutes = require('./routes/serviceRoutes.js');
 const projectsRoutes = require('./routes/projectsRoutes.js');
 const postsRoutes = require('./routes/postRoutes.js');
 const dataRoutes = require('./routes/dataRoutes.js');
-const skillsRoutes = require('./routes/skillsRoutes.js')
+const skillsRoutes = require('./routes/skillsRoutes.js');
+const coursesRoutes = require('./routes/coursesRoutes.js');
 
 app.use('/services', serviceRoutes);
 app.use('/projects', projectsRoutes);
 app.use('/posts', postsRoutes);
 app.use('/skills', skillsRoutes);
+app.use('/courses', coursesRoutes);
 app.use('/data', dataRoutes);
 
 app.get('/', (req, res) => {

@@ -4,7 +4,7 @@ export default function ContactForm() {
 
     return (
         <div id="contact-form-div" className={compClasses.contactForm.formDiv}>
-        <div id="contact-form" className={compClasses.contactForm.contactForm}>
+        <form id="contact-form" className={compClasses.contactForm.contactForm}>
         <h2 className={compClasses.contactForm.h2}>Contact</h2>
         <label className={compClasses.contactForm.firstLabel} htmlFor="user-name">Type your name:</label>
         <input className={compClasses.contactForm.input} type="text" name="Name" id="user-name" />
@@ -14,7 +14,7 @@ export default function ContactForm() {
         <input className={compClasses.contactForm.input}  type="text" name="mess-subject" id="mess-subject" />
         <label className={compClasses.contactForm.otherLabels} htmlFor="user-message">Your message:</label>
         <textarea className={compClasses.contactForm.textarea} name="user-message" id="user-message" />
-        </div>
+        </form>
     </div>
     )
 }

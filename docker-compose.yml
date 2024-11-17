@@ -10,6 +10,7 @@ services:
       - "5051:5051"
     volumes:
       - /root/main/portfolio/backend/logs:/app/logs
+      - /root/main/portfolio/backend/.env:/app/.env
     environment:
       - DB_HOST=main_db
 

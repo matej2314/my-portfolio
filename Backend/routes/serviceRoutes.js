@@ -1,6 +1,5 @@
 const express = require('express');
 const pool = require('../db.js');
-const bodyParser = require('body-parser');
 const router = express.Router();
 const logger = require('../logger.js');
 const { v4: uuidv4 } = require('uuid');

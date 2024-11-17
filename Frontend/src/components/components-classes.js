@@ -11,9 +11,9 @@ export const compClasses = {
         textarea: "w-5/12 h-32 text-stone-950 p-1 resize-none",
     },
     footer: {
-        footer: "w-full bg-neutral-600/30 h-10 text-lg rounded-md flex justify-around items-center py-4",
+        footer: "w-full bg-neutral-600/30 h-10 text-lg rounded-md flex justify-center md:justify-around items-center py-4",
         paragraph: "text-gray-300",
-        span: "ml-56 text-[#6f963b] text-xs",
+        span: "ml-56 text-[#6f963b] md:text-xs",
     },
     leftSidebar: {
         leftSidebar: "h-content w-fit ml-10 mt-3 flex flex-col justify-between",

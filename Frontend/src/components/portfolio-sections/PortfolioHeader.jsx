@@ -7,13 +7,14 @@ export default function PortfolioHeader() {
 
     return (
         <div id="portfolio-header" className={sectionsClasses.portfolioHeader.wrapper}>
-                    <div className={sectionsClasses.portfolioHeader.innerWrapper}>
+                <div className={sectionsClasses.portfolioHeader.innerWrapper}>
                         <img
                             id="portfolio-header-bgImage"
                             className={sectionsClasses.portfolioHeader.bgImage}
                             src={portfolioImage}
                             alt="portfolio header background image"
                         />
+                    <div className={sectionsClasses.portfolioHeader.photoTextWrapper}>
                         <img
                             id="portfolio-photo"
                             className={sectionsClasses.portfolioHeader.portfolioPhoto}
@@ -28,5 +29,6 @@ export default function PortfolioHeader() {
                         </h3>
                     </div>
                 </div>
+        </div>
     )
 }

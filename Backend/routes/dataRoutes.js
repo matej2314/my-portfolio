@@ -11,6 +11,7 @@ router.get('/all', (req, res) => {
   const queryProjects = `SELECT 'projects' AS source, pr.id, pr.project_name AS title, pr.project_category AS description, pr.project_URL AS details, pr.project_screenName FROM projects pr;`;
   const queryServices = `SELECT 'services' AS source, s.id, s.serviceName AS title, s.serviceDescription AS description FROM services s;`;
   const querySkills = `SELECT 'skills' AS source, s.id, s.skill_name AS title, s.skill_cat AS category, s.skill_level AS level FROM skills s;`;
+  const queryCourses = `Select 'courses' AS source, c.id, c.course_name AS title, c.course_date AS date, c.course_organizer AS organizer, c.course_category AS category FROM courses c;`;
 
   pool.query(queryPosts, (error, posts) => {
     if (error) {
@@ -36,11 +37,18 @@ router.get('/all', (req, res) => {
             return res.status(500).json({ message: 'Błąd serwera' });
           }
 
+          pool.query(queryCourses, (error, courses) => {
+            if (error) {
+              logger.error('Błąd pobierania danych z tabeli courses', error.message);
+              return res.status(500).json({ message: 'Błąd serwera' });
+            }
+         
           const allData = {
             posts: posts,
             projects: projects,
             services: services,
             skills: skills,
+            courses: courses,
           };
 
           if (Object.values(allData).every(arr => arr.length === 0)) {
@@ -49,6 +57,7 @@ router.get('/all', (req, res) => {
 
           logger.info('Wszystkie dane pobrane');
           return res.status(200).json({ data: allData });
+        });
         });
       });
     });
