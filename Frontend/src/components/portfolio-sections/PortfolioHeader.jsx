@@ -1,5 +1,6 @@
 import portfolioImage from '../../assets/portfolio-header-image.png';
 import portfolioPhoto from '../../assets/portfolio-photo.jpg';
+import SocialIcons from '../icons/SocialIcons';
 import { sectionsClasses } from './portSections-classes';
 
 
@@ -27,6 +28,7 @@ export default function PortfolioHeader() {
                     <h3 className={sectionsClasses.portfolioHeader.h3}>
                         Webdev. DevOps. SEO.
                     </h3>
+                    <SocialIcons mailSize={24} iconsSize={24} />
                 </div>
             </div>
         </div>

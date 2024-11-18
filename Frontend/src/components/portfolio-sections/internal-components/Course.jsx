@@ -1,17 +1,17 @@
 import { sectionsClasses } from "../portSections-classes"
 
 export default function Course({ courses, loading }) {
-    
+
     return (
         <>
             {!loading && courses && Array.isArray(courses) ? (
                 courses.map((course) => (
-                    <li key={course.id} className="w-full flex flex-row justify-around mb-4">
+                    <li key={course.id} className={sectionsClasses.course.li}>
                         {`${course.title} - ${course.organizer}`}
                     </li>
-))
-            ): (
-                    <p>Brak kursów do wyświetlenia</p>
+                ))
+            ) : (
+                <p>Brak kursów do wyświetlenia</p>
             )}
         </>
     )

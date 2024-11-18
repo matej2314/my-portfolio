@@ -4,16 +4,17 @@ export const compClasses = {
     contactForm: {
         formDiv: "w-full h-full text-gray-100 flex flex-col items-center rounded-md pt-24 overflow-hidden",
         contactForm: "w-3/4  flex flex-col items-center font-black",
-        h2: "text-5xl mb-8",
-        firstLabel: "text-lg mb-2",
+        h2: "text-5xl mb-4",
+        firstLabel: "text-lg mb-2 mt-4",
         otherLabels: "text-lg my-2",
         input: "w-5/12 text-stone-950 p-1",
         textarea: "w-5/12 h-32 text-stone-950 p-1 resize-none",
     },
     footer: {
-        footer: "w-full bg-neutral-600/30 h-10 text-lg rounded-md flex justify-center md:justify-around items-center py-4",
-        paragraph: "text-gray-300",
-        span: "ml-56 text-[#6f963b] md:text-xs",
+        wrapper: "w-[98%] flex flex-row justify-center items-center mx-auto",
+        footer: "w-full bg-neutral-600/30 h-10 text-md rounded-md flex flex-row justify-center items-center px-2",
+        paragraph: "w-full flex items-center justify-center md:justify-start text-gray-300",
+        span: "w-fit hidden md:inline text-[#6f963b]",
     },
     leftSidebar: {
         leftSidebar: "h-content w-fit ml-10 mt-3 flex flex-col justify-between",
@@ -21,7 +22,7 @@ export const compClasses = {
         span: "font-bold font-sans tracking-wider",
     },
     mainLeftContainer: {
-        mainContainer: 'bg-neutral-600/30 w-full mr-5 rounded-md text-gray-300 overflow-scroll no-scrollbar',
+        mainContainer: 'bg-neutral-600/30 w-full mr-5 flex flex-col items-center justify-between rounded-md text-gray-300 overflow-scroll no-scrollbar',
     },
     mainRightContainer: {
         mainContainer: 'bg-neutral-600/30 text-gray-300 w-full h-full rounded-md overflow-scroll no-scrollbar',
@@ -29,13 +30,11 @@ export const compClasses = {
     menu: {
         menu: "w-4/5 h-full bg-neutral-600/30 flex flex-col justify-around items-center mt-3 rounded-lg",
         ul: "flex flex-col items-center gap-8 text-gray-300 text-xl",
-        link: "hover:text-2xl hover:text-[#b8c785]",
+        li: "wi-fit h-fit",
+        link: "flex justify-center min-h-[1.5em]",
     },
     portfolio: {
         wrapper: "w-full h-[100%] flex flex-col gap-0",
     },
-    project: {
-        
-    }
 }
 

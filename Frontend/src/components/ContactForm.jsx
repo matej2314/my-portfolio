@@ -1,3 +1,4 @@
+import SocialIcons from "./icons/SocialIcons.jsx";
 import { compClasses } from "./components-classes.js";
 
 export default function ContactForm() {
@@ -6,6 +7,7 @@ export default function ContactForm() {
         <div id="contact-form-div" className={compClasses.contactForm.formDiv}>
             <form id="contact-form" className={compClasses.contactForm.contactForm}>
                 <h2 className={compClasses.contactForm.h2}>Contact</h2>
+                <SocialIcons mailSize={32} iconsSize={32} />
                 <label className={compClasses.contactForm.firstLabel} htmlFor="user-name">Type your name:</label>
                 <input className={compClasses.contactForm.input} type="text" name="Name" id="user-name" />
                 <label className={compClasses.contactForm.otherLabels} htmlFor="user-email">Type your email:</label>
