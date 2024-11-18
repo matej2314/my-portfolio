@@ -8,7 +8,7 @@ export default function PortfolioFooter() {
                 <p className="w-full flex justify-center">Thank you very much for your attention!</p>
                 <p className="w-full flex justify-center items-center flex-wrap">Check my <Link to="blog" className="mx-1 text-[#6f963b] hover:text-[#b8c785]">blog</Link> and Social Media profiles.</p>
             </div>
-           
+
         </>
     )
 };

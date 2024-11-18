@@ -9,7 +9,7 @@ export const sectionsClasses = {
         h3: "text-white text-sm z-10 hover:text-[#b8c785]"
     },
     languages: {
-        section: "w-full flex-col justify-between items-center mt-4 pb-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
+        section: "w-full flex flex-col justify-between items-center mt-4 pb-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
         ul: "w-full grid grid-rows-auto md:grid-cols-2 text-xl gap-4",
         span: "border-dotted border-b-2 border-[#6f963b]"
     },
@@ -35,7 +35,8 @@ export const sectionsClasses = {
     },
 
     h2: {
-        h2: "w-full flex justify-center text-2xl mb-4 font-sans"
+        titleWrapper: "w-full flex justify-center",
+        h2: "w-[fit-content] text-2xl mb-4 font-sans border-dotted border-b-2 border-[#6f963b] border-opacity-30"
     },
 
     h3: {

@@ -6,17 +6,21 @@ import { sectionsClasses } from "./portSections-classes.js";
 
 export default function ServicesSection() {
 
-    const dataCtx = useContext(DataContext);
-    const loading = dataCtx.isLoading;
-    const data = dataCtx.fetchedData.data;
-    const services = data.services
+   const dataCtx = useContext(DataContext);
+   const loading = dataCtx.isLoading;
+   const data = dataCtx.fetchedData.data;
+   const services = data.services
 
    return (
       <>
-         <h2 className={sectionsClasses.servicesSection.h2}>Services</h2>
-        <div className={sectionsClasses.servicesSection.servicesWrapper}>
-           <Service services={services} loading={loading}/> 
-        </div>
-    </>
-     )
+         <div className="mt-4">
+            <div className={sectionsClasses.h2.titleWrapper}>
+               <h2 className={sectionsClasses.h2.h2}>Services</h2>
+            </div>
+            <div className={sectionsClasses.servicesSection.servicesWrapper}>
+               <Service services={services} loading={loading} />
+            </div>
+         </div>
+      </>
+   )
 }

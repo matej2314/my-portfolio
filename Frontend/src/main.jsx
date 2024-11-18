@@ -6,5 +6,5 @@ import DataProvider from './store/data-context.jsx';
 createRoot(document.getElementById('root')).render(
   <DataProvider>
     <App />
-    // </DataProvider>
+  </DataProvider>
 )

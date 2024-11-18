@@ -8,9 +8,9 @@ export default function PortfolioPage() {
         <div className={pagesClasses.portfolioPage.portfolioWrapper}>
             <LeftSidebar />
             <div className={pagesClasses.portfolioPage.portfolioContentWrapper}>
-                    <Portfolio/>
-                    </div>
-                </div>
+                <Portfolio />
+            </div>
+        </div>
     )
 };
 

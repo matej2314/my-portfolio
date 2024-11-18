@@ -12,15 +12,15 @@ router.post('/new', (req, res) => {
     const skillCat = req.body.skillCat;
     const skillLvl = req.body.skillLvl;
 
-    if (!skillName || skillName === '' || skillCat === '' || !skillCat || skillLvl === '' || !skillLvl) {
+    if (!skillName || skillName === '' || skillCat === '' || !skillCat) {
         logger.error('Brak danych do dodania skilla');
 
         return res.status(400).json({ message: 'Brak danych do dodania nowego skilla' });
     };
 
-    const query = 'INSERT into skills (id, skill_name, skill_cat, skill_level) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT into skills (id, skill_name, skill_cat) VALUES (?, ?, ?)';
 
-    pool.query(query, [id, skillName, skillCat, skillLvl], (error, result) => {
+    pool.query(query, [id, skillName, skillCat], (error, result) => {
         if (error) {
             logger.error('Nie udało się dodać nowego skilla do bazy');
             return res.status(500).json({ message: 'Nie udało się dodać nowego skilla do bazy' });

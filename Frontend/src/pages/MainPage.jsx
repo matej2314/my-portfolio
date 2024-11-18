@@ -5,10 +5,10 @@ import { pagesClasses } from "./pages-classes";
 
 
 export default function MainPage() {
-    
+
     return (
         <main className={pagesClasses.mainPage.wrapper}>
-           <LeftSidebar />
+            <LeftSidebar />
             <div id="content" className={pagesClasses.mainPage.contentWrapper}>
                 <MainLeftContainer />
                 <MainRightContainer />

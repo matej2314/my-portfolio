@@ -12,7 +12,7 @@ export default function Portfolio() {
     return (
         <>
             <div id="portfolio-wrapper" className={compClasses.portfolio.wrapper}>
-               <PortfolioHeader />
+                <PortfolioHeader />
                 <ServicesSection />
                 <LanguagesSection />
                 <SkillsSection />

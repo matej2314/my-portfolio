@@ -7,8 +7,8 @@ export default function Contact() {
         <main className={pagesClasses.contactPage.pageWrapper}>
             <LeftSidebar />
             <div className={pagesClasses.contactPage.formWrapper}>
-               <ContactForm />
-                </div>
+                <ContactForm />
+            </div>
         </main>
     )
 }

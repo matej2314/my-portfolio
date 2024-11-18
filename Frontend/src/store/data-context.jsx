@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import {backendUrl} from '../../url.js';
+import { backendUrl } from '../../url.js';
 
 export const DataContext = createContext({
     data: {},
@@ -7,7 +7,7 @@ export const DataContext = createContext({
     error: null,
 });
 
-const DataProvider = ({children}) => {
+const DataProvider = ({ children }) => {
 
     const [fetchedData, setFetchedData] = useState({
         data: []
@@ -18,27 +18,27 @@ const DataProvider = ({children}) => {
 
 
     useEffect(() => {
-            const fetchData = async () => {
-                try {
-                    setIsLoading(true);
-                    const response = await fetch(backendUrl);
-    
-                    if (!response.ok) {
-                        throw new Error('Błąd pobierania danych');
-                        
-                    }
-                    const data = await response.json();
-                    setFetchedData((prevdata) => data);
-    
-                } catch (error) {
-                    setError(error.message);
-                } finally {
-                    setIsLoading(false);
+        const fetchData = async () => {
+            try {
+                setIsLoading(true);
+                const response = await fetch(backendUrl);
+
+                if (!response.ok) {
+                    throw new Error('Błąd pobierania danych');
+
                 }
-          };
+                const data = await response.json();
+                setFetchedData((prevdata) => data);
+
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setIsLoading(false);
+            }
+        };
         fetchData();
     }, []);
-    
+
 
     return (
         <DataContext.Provider value={{ fetchedData, isLoading, error }}>
