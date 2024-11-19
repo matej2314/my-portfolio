@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { backendUrl } from '../../url.js';
+import { backendUrl } from '../url.js';
 
 export const DataContext = createContext({
     data: {},

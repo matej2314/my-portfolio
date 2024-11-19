@@ -11,7 +11,7 @@ export default function Projects() {
     const projects = dataCtx.fetchedData.data.projects;
 
     return (
-        <div className="w-[98%] h-full flex flex-col justify-start">
+        <div className={projectsClasses.projects.wrapper}>
             <Project projects={projects} loading={loading} />
         </div>
     )

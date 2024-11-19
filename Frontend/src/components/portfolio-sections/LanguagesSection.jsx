@@ -1,4 +1,4 @@
-import { langs } from '../../../langs.js';
+import { langs } from '../../langs.js';
 import { sectionsClasses } from './portSections-classes.js';
 
 export default function LanguagesSection() {

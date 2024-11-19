@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaHome, FaDev, FaEnvelope, FaBlog, FaFileDownload } from "react-icons/fa";
+import { Icon } from '@iconify/react';
 import { NavLink, useLocation } from "react-router-dom";
 
 import { compClasses } from "./components-classes";
@@ -9,7 +9,7 @@ export default function Menu() {
     const [hoveredItem, setHoveredItem] = useState(null);
     const location = useLocation();
 
-    const transitionConfig = { duration: 0.0005, type: "spring", stiffness: 200, damping: 20 };
+    const transitionConfig = { duration: 0.3, type: "spring", stiffness: 200, damping: 20 };
     const iconColor = "#b8c785";
     const initialDiv = { opacity: 0, x: -10 };
     const initialSpan = { opacity: 0, x: 10 };
@@ -36,7 +36,7 @@ export default function Menu() {
                                         exit={initialDiv}
                                         transition={transitionConfig}
                                     >
-                                        <FaHome color={iconColor} size={iconSize} />
+                                        <Icon icon="carbon:home" color={iconColor} width={iconSize} height={iconSize} />
                                     </motion.div>
                                 ) : (
                                     <motion.span
@@ -52,6 +52,7 @@ export default function Menu() {
                             </AnimatePresence>
                         </NavLink>
                     </li>
+
                     <li
                         onMouseEnter={() => setHoveredItem("portfolio")}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -66,7 +67,7 @@ export default function Menu() {
                                         exit={initialDiv}
                                         transition={transitionConfig}
                                     >
-                                        <FaDev color={iconColor} size={iconSize} />
+                                        <Icon icon="bi:briefcase" color={iconColor} width={iconSize} height={iconSize} />
                                     </motion.div>
                                 ) : (
                                     <motion.span
@@ -82,6 +83,7 @@ export default function Menu() {
                             </AnimatePresence>
                         </NavLink>
                     </li>
+
                     <li
                         onMouseEnter={() => setHoveredItem("contact")}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -96,7 +98,7 @@ export default function Menu() {
                                         exit={initialDiv}
                                         transition={transitionConfig}
                                     >
-                                        <FaEnvelope color={iconColor} size={iconSize} />
+                                        <Icon icon="ic:baseline-email" color={iconColor} width={iconSize} height={iconSize} />
                                     </motion.div>
                                 ) : (
                                     <motion.span
@@ -112,6 +114,7 @@ export default function Menu() {
                             </AnimatePresence>
                         </NavLink>
                     </li>
+
                     <li
                         onMouseEnter={() => setHoveredItem("blog")}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -126,7 +129,7 @@ export default function Menu() {
                                         exit={initialDiv}
                                         transition={transitionConfig}
                                     >
-                                        <FaBlog color={iconColor} size={iconSize} />
+                                        <Icon icon="material-symbols:article" color={iconColor} width={iconSize} height={iconSize} />
                                     </motion.div>
                                 ) : (
                                     <motion.span
@@ -142,13 +145,14 @@ export default function Menu() {
                             </AnimatePresence>
                         </NavLink>
                     </li>
+
                     <li
                         onMouseEnter={() => setHoveredItem("download")}
                         onMouseLeave={() => setHoveredItem(null)}
                     >
                         <a href="#" className={compClasses.menu.link}>
                             <AnimatePresence mode="wait" initial={false}>
-                                {activeItem === 'download' || hoveredItem === 'download' ? (
+                                {activeItem === "download" || hoveredItem === "download" ? (
                                     <motion.div
                                         key="download-icon"
                                         initial={initialDiv}
@@ -156,7 +160,7 @@ export default function Menu() {
                                         exit={initialDiv}
                                         transition={transitionConfig}
                                     >
-                                        <FaFileDownload color={iconColor} size={iconSize} />
+                                        <Icon icon="material-symbols:download" color={iconColor} width={iconSize} height={iconSize} />
                                     </motion.div>
                                 ) : (
                                     <motion.span

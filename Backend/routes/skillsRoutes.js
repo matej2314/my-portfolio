@@ -11,6 +11,7 @@ router.post('/new', (req, res) => {
     const skillName = req.body.skillName;
     const skillCat = req.body.skillCat;
     const skillIcon = req.body.icon;
+    const iconColor = req.body.iconColor;
 
     if (!skillName || skillName === '' || skillCat === '' || !skillCat || !skillIcon) {
         logger.error('Brak danych do dodania skilla');
@@ -18,9 +19,9 @@ router.post('/new', (req, res) => {
         return res.status(400).json({ message: 'Brak danych do dodania nowego skilla' });
     };
 
-    const query = 'INSERT into skills (id, skill_name, skill_cat, icon_name) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT into skills (id, skill_name, skill_cat, icon_name, icon_color) VALUES (?, ?, ?, ?, ?)';
 
-    pool.query(query, [id, skillName, skillCat, skillIcon], (error, result) => {
+    pool.query(query, [id, skillName, skillCat, skillIcon, iconColor], (error, result) => {
         if (error) {
             logger.error('Nie udało się dodać nowego skilla do bazy');
             return res.status(500).json({ message: 'Nie udało się dodać nowego skilla do bazy' });

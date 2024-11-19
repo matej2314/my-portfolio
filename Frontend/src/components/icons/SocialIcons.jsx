@@ -1,23 +1,23 @@
-import { FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
-import { MdOutlineMail } from "react-icons/md";
+import { Icon } from '@iconify/react';
 import { Link } from "react-router-dom";
-import { socialURLS } from "../../../url";
+import { socialURLS } from "../../url";
 import { iconsClasses } from './iconsClasses';
-
 
 export default function SocialIcons({ mailSize, iconsSize }) {
     return (
         <div className={iconsClasses.socialIcons.iconsWrapper}>
             <a className={iconsClasses.socialIcons.hoverState} href={socialURLS.facebook} target="_blank" rel="noreferrer">
-                <FaFacebook color={iconsClasses.socialIcons.facebookColor} size={iconsSize} />
+                <Icon icon="ic:baseline-facebook" color={iconsClasses.socialIcons.facebookColor} width={iconsSize} height={iconsSize} />
             </a>
-            <a className={iconsClasses.socialIcons.hoverState} href={socialURLS.github} target="_blank" rel="noreferrer" >
-                <FaGithub color={iconsClasses.socialIcons.githubColor} size={iconsSize} />
+            <a className={iconsClasses.socialIcons.hoverState} href={socialURLS.github} target="_blank" rel="noreferrer">
+                <Icon icon="mdi:github" color={iconsClasses.socialIcons.githubColor} width={iconsSize} height={iconsSize} />
             </a>
             <a className={iconsClasses.socialIcons.hoverState} href={socialURLS.linkedIn} target="_blank" rel="noreferrer">
-                <FaLinkedin color={iconsClasses.socialIcons.linkedinColor} size={iconsSize} />
+                <Icon icon="mdi:linkedin" color={iconsClasses.socialIcons.linkedinColor} width={iconsSize} height={iconsSize} />
             </a>
-            <Link to="/contact" className={iconsClasses.socialIcons.mailIcon}><MdOutlineMail size={mailSize} /></Link>
+            <Link to="/contact" className={iconsClasses.socialIcons.mailIcon}>
+                <Icon icon="mdi:email-outline" width={mailSize} height={mailSize} />
+            </Link>
         </div>
-    )
+    );
 }

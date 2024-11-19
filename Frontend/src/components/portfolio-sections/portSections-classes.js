@@ -29,7 +29,8 @@ export const sectionsClasses = {
         servicesWrapper: "grid grid-rows-auto md:grid-cols-2 gap-2 px-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40 pb-4",
     },
     skill: {
-        span: "ml-6 text-lg border-dotted border-b-2 border-[#6f963b]",
+        span: "mr-3",
+        li: "w-full flex flex-row justify-center items-center mb-4"
     },
     skillsSection: {
         sectionWrapper: "w-full flex flex-col items-stretch justify-center my-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
