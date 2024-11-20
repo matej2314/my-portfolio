@@ -22,7 +22,7 @@ export const compClasses = {
         span: "font-bold font-sans tracking-wider",
     },
     mainLeftContainer: {
-        mainContainer: 'bg-neutral-600/30 w-full mr-5 flex flex-col items-center justify-between rounded-md text-gray-300 overflow-scroll no-scrollbar',
+        mainContainer: 'bg-transparent z-0 w-full h-full mr-5 flex flex-col items-center justify-between rounded-md text-gray-300',
     },
     mainRightContainer: {
         mainContainer: 'bg-neutral-600/30 text-gray-300 w-full h-full rounded-md overflow-scroll no-scrollbar',
