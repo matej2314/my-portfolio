@@ -5,7 +5,7 @@ import { imgUrl } from "../../url";
 
 export default function Project({ projects, loading, selectedCategory }) {
 
-    const filteredProjects = selectedCategory ? projects.filter(project => project.category === selectedCategory) : projects;
+    const filteredProjects = selectedCategory === "all" ? projects : projects.filter(project => project.category === selectedCategory);
 
     const divVariants = {
         hidden: { opacity: 0, y: 20 },
