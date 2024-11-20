@@ -33,6 +33,7 @@ router.post('/new', (req, res) => {
     const projectCat = req.body.projectCat;
     const projectURL = req.body.prURL;
     const projectScrName = req.body.prScrName;
+    const projectDesc = req.body.description;
 
     if (!projectId || projectName === '' || projectCat === '' || projectURL ==='' || projectScrName === '')
         {
@@ -40,9 +41,9 @@ router.post('/new', (req, res) => {
         return res.status(400).json({ message: 'Brak wymaganych danych do dodania projektu' });
     }
 
-    const query = 'INSERT INTO projects (id, project_name, project_category, project_URL, project_screenName) VALUES(?,? ,? ,? ,?)';
+    const query = 'INSERT INTO projects (id, project_name, project_category, project_URL, project_screenName, project_description) VALUES(?,? ,? ,? ,?, ?)';
 
-    pool.query(query, [projectId, projectName, projectCat, projectURL, projectScrName], (error, result) => {
+    pool.query(query, [projectId, projectName, projectCat, projectURL, projectScrName, projectDesc], (error, result) => {
         if (error) {
             logger.error('Nie udało się zapisać nowego projektu', error.stack);
             return res.status(500).json({ message: 'Nie udało się zapisać nowego projektu' });
@@ -54,7 +55,6 @@ router.post('/new', (req, res) => {
             projectName,
             projectCat,
             projectURL,
-            projectScrName
         })
     })
 });
