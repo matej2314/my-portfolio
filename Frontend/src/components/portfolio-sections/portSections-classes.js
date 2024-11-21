@@ -2,7 +2,7 @@ export const sectionsClasses = {
     portfolioHeader: {
         wrapper: "w-full h-fit flex flex-col items-center justify-center relative md:flex-row",
         innerWrapper: "w-full h-60 relative flex flex-col justify-center items-center",
-        photoTextWrapper: "w-full h-[50%] absolute flex flex-col justify-center items-center gap-2",
+        photoTextWrapper: "w-full h-[50%] absolute flex flex-col justify-center items-center gap",
         bgImage: "top-0 left-0 z-0 w-full h-60 opacity-60 blur-[2px] bg-gradient-to-t from-bg-neutral-600/30 via-transparent to-transparent",
         portfolioPhoto: "w-24 h-24 z-10 items-center justify-center rounded-full border-4 border-slate-300 hover:z-20 hover:scale-150",
         h2: "text-white text-lg font-semibold z-10",

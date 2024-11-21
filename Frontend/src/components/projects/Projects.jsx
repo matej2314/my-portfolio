@@ -6,7 +6,6 @@ import { imgUrl } from "../../url";
 import { projectsClasses } from "./projectsClasses";
 
 export default function Projects({ selectedCategory }) {
-
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
     const projects = dataCtx.fetchedData.data.projects || [];
@@ -57,7 +56,7 @@ export default function Projects({ selectedCategory }) {
                                         <div className={projectsClasses.project.contentWrapper}>
                                             <h3 className={projectsClasses.project.h3}>{project.title}</h3>
                                             <p className={projectsClasses.project.description}>{project.description}</p>
-                                            <Link className={projectsClasses.project.link}>View details</Link>
+                                            <Link to={`/project/details/${project.id}`}>View details</Link>
                                         </div>
                                     </motion.div>
                                 </motion.li>
