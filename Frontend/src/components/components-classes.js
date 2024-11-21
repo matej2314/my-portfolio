@@ -18,7 +18,7 @@ export const compClasses = {
     },
     leftSidebar: {
         leftSidebar: "h-content w-fit ml-10 mt-3 flex flex-col justify-between gap-3",
-        link: "bg-[#6f963b] w-10/12 rounded-lg flex justify-center items-center py-5 px-4 text-black hover:bg-[#374528] hover:text-slate-200",
+        link: "bg-[#97d93f] w-10/12 rounded-lg flex justify-center items-center py-5 px-4 text-black hover:bg-[#374528] hover:text-slate-200",
         span: "font-bold font-sans tracking-wider",
     },
     mainLeftContainer: {
