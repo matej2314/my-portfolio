@@ -39,7 +39,7 @@ const DataProvider = ({ children }) => {
         fetchData();
     }, []);
 
-
+    console.log(fetchedData)
     return (
         <DataContext.Provider value={{ fetchedData, isLoading, error }}>
             {children}

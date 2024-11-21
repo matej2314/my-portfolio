@@ -52,7 +52,6 @@ export default function Menu() {
                             </AnimatePresence>
                         </NavLink>
                     </li>
-
                     <li
                         onMouseEnter={() => setHoveredItem("portfolio")}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -83,7 +82,6 @@ export default function Menu() {
                             </AnimatePresence>
                         </NavLink>
                     </li>
-
                     <li
                         onMouseEnter={() => setHoveredItem("contact")}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -114,7 +112,6 @@ export default function Menu() {
                             </AnimatePresence>
                         </NavLink>
                     </li>
-
                     <li
                         onMouseEnter={() => setHoveredItem("blog")}
                         onMouseLeave={() => setHoveredItem(null)}
@@ -145,7 +142,6 @@ export default function Menu() {
                             </AnimatePresence>
                         </NavLink>
                     </li>
-
                     <li
                         onMouseEnter={() => setHoveredItem("download")}
                         onMouseLeave={() => setHoveredItem(null)}

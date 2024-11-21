@@ -16,5 +16,7 @@ export const projectsClasses = {
     },
     projectsCategories: {
         wrapper: "w-full h-fit flex items-center bg-neutral-600/30 rounded-md",
+        ul: "w-full flex flex-row justify-center items-center text-lg py-2 gap-16",
+        button: "hover:text-[#b8c785]",
     },
 }

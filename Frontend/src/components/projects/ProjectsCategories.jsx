@@ -3,7 +3,7 @@ import { DataContext } from '../../store/data-context';
 
 import { projectsClasses } from "./projectsClasses"
 
-export default function ProjectsCategories({ selectedProjectCat }) {
+export default function ProjectsCategories({ setProjectCat }) {
     const dataCtx = useContext(DataContext);
     const projects = dataCtx.fetchedData.data.projects || [];
 
@@ -14,10 +14,10 @@ export default function ProjectsCategories({ selectedProjectCat }) {
 
     return (
         <div className={projectsClasses.projectsCategories.wrapper}>
-            <ul className="w-full flex flex-row justify-center items-center text-lg py-2 gap-16">
+            <ul className={projectsClasses.projectsCategories.ul}>
                 {uniqueCategories.map((category) => (
                     <li>
-                        <button onClick={() => selectedProjectCat(category)} className="hover:text-[#b8c785]">
+                        <button onClick={() => setProjectCat(category)} className={projectsClasses.projectsCategories.button}>
                             {category}
                         </button>
                     </li>
