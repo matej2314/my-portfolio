@@ -8,7 +8,7 @@ router.use(express.json());
 router.get('/all', (req, res) => {
   const queryPosts = `
     SELECT 'posts' AS source, id, post_title AS title, post_content AS description, post_date, COALESCE(post_imageName, '') AS post_imageName FROM posts ORDER BY id;`;
-  const queryProjects = `SELECT 'projects' AS source, pr.id, pr.project_name AS title, pr.project_category AS category, pr.project_URL AS link, pr.project_screenName, pr.project_description AS description FROM projects pr;`;
+  const queryProjects = `SELECT 'projects' AS source, pr.id, pr.project_name AS title, pr.project_category AS category, pr.project_URL AS link, pr.project_screenName, pr.project_description AS description, pr.repo AS repo, pr.long_text AS logn_text FROM projects pr;`;
   const queryServices = `SELECT 'services' AS source, s.id, s.serviceName AS title, s.serviceDescription AS description FROM services s;`;
   const querySkills = `SELECT 'skills' AS source, s.id, s.skill_name AS title, s.skill_cat AS category, s.icon_name AS icon, s.icon_color as iconColor FROM skills s;`;
   const queryCourses = `Select 'courses' AS source, c.id, c.course_name AS title, c.course_date AS date, c.course_organizer AS organizer, c.course_category AS category FROM courses c;`;
