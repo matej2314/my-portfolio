@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom"
+import { motion } from "framer-motion"
+
 import { sectionsClasses } from "./portSections-classes"
 
-import { Link } from "react-router-dom"
+
 
 export default function PortfolioFooter() {
 

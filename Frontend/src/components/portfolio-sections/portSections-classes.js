@@ -15,9 +15,10 @@ export const sectionsClasses = {
         link:"mx-1 text-[#6f963b] hover:text-[#b8c785]",
     },
     languages: {
-        section: "w-full flex flex-col justify-between items-center mt-4 pb-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
-        ul: "w-full grid grid-rows-auto md:grid-cols-2 text-xl gap-4",
-        span: "border-dotted border-b-2 border-[#6f963b]"
+        section: "w-full flex flex-col justify-around items-center pb-2 border-dotted border-b-2 border-[#6f963b] border-opacity-40 gap-4",
+        ul: "w-full grid grid-rows-auto text-xl gap-4",
+        span: "border-dotted border-b-2 border-[#6f963b]",
+        li: "w-full flex flex-row justify-around pb-2"
     },
     service: {
         serviceWrapper: "w-full flex flex-col items-center justify-start pt-2 pb-3 px-4 bg-gray-500/15 rounded",
@@ -25,25 +26,25 @@ export const sectionsClasses = {
         paragraph: "w-full flex flex-wrap mt-2 whitespace-pre-line leading-relaxed",
     },
     servicesSection: {
-        h2: "w-full flex flex-row justify-center text-2xl my-4",
-        servicesWrapper: "grid grid-rows-auto md:grid-cols-2 gap-2 px-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40 pb-4",
+        h2: "w-full flex flex-row justify-center text-2xl mb-4",
+        servicesWrapper: "grid grid-rows-auto md:grid-cols-2 gap-2 pb-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40 ",
     },
     skill: {
-        span: "mr-3",
-        li: "w-full flex flex-row justify-center items-center mb-4"
-    },
+        span: "mr-3 min-w-[40px] flex justify-center",
+        li: "w-fit flex flex-row items-center justify-center gap-2 mx-auto", 
+    },    
     skillsSection: {
-        sectionWrapper: "w-full flex flex-col items-stretch justify-center my-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
-        ul: "w-full grid grid-rows-auto md:grid-cols-2 gap-7 pl-11 pr-3 mb-4 text-xl",
+        sectionWrapper: "w-full flex flex-col items-center justify-center border-dotted border-b-2 border-[#6f963b] border-opacity-40",
+        ul: "w-full grid grid-rows-auto md:grid-cols-2 gap-14 my-4 text-xl mx-auto justify-center",
     },
     workSection: {
-        sectionWrapper: "w-full flex justify-center border-dotted border-b-2 border-[#6f963b] mb-4 border-opacity-15",
-        workWrapper: "w-11/12 flex flex-col items-center justify-center pt-2 pb-4 px-4 mb-6 bg-gray-500/15 rounded",
+        sectionWrapper: "w-full flex justify-center border-dotted border-b-2 border-[#6f963b] mb-4 pb-4 border-opacity-15",
+        workWrapper: "w-11/12 flex flex-col items-center justify-center pt-2 px-4 pb-4 bg-gray-500/15 rounded",
     },
 
     h2: {
-        titleWrapper: "w-full flex justify-center",
-        h2: "w-fit text-2xl mb-4 font-sans border-dotted border-b-2 border-[#6f963b] border-opacity-30"
+        titleWrapper: "w-full flex flex-row justify-center",
+        h2: "w-fit text-2xl font-sans border-dotted border-b-2 border-[#6f963b] border-opacity-30"
     },
 
     h3: {
@@ -54,17 +55,17 @@ export const sectionsClasses = {
         li: "w-full flex justify-around pb-2",
     },
     buttonsList: {
-        buttonsList: "w-[98%] md:w-11/12 flex justify-evenly items-center py-1 px-2 md:px-0 border-2 border-[#6f963b] mb-4 mx-auto border-opacity-15 rounded-full gap-3",
+        buttonsList: "w-[98%] md:w-11/12 flex justify-evenly items-center py-2 px-2 md:px-0 border-2 border-[#6f963b] my-4 mx-auto border-opacity-15 rounded-full gap-3",
     },
     categoryButton: {
         categoryButton: "hover:text-[#6f963b] text-xs  md:text-base flex justify-start",
     },
     coursesSection: {
-        section: "w-full flex flex-col items-stretch justify-center mb-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
-        ul: "w-full flex flex-col justify-center items-center",
+        section: "w-full flex flex-col items-center justify-center border-dotted border-b-2 border-[#6f963b] border-opacity-40 gap-4",
+        ul: "w-full flex flex-col justify-center items-center gap-4 mb-4",
     },
     course: {
-        li: "w-full flex flex-row justify-around mb-4",
+        li: "w-full flex flex-row justify-around",
     }
 
 }

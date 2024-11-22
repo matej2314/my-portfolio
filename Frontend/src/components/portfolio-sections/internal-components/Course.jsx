@@ -1,3 +1,5 @@
+import { motion } from "framer-motion"
+
 import { sectionsClasses } from "../portSections-classes"
 
 export default function Course({ courses, loading }) {

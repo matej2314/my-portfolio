@@ -16,7 +16,7 @@ export default function ProjectDetails() {
     if (!selectedProject) {
         return <p>Wybierz projekt.</p>
     }
-
+    console.log(selectedProject.project_URL)
     return (
         <>
             <div className="w-screen h-dvh bg-black overflow-hidden flex justify-around flex-nowrap">
@@ -25,8 +25,9 @@ export default function ProjectDetails() {
                     <div id="projects-details" className="w-3/4 h-full flex flex-col items-center pt-1 px-2 pb-2 overflow-scroll no-scrollbar gap-4">
                         <h2 className="text-2xl font-bold">{selectedProject.title}</h2>
                         <img className="border-8 border-slate-200 rounded-sm" src={`${imgUrl}/${selectedProject.project_screenName}`} alt="" />
-                        <p className="w-full flex flex-row justify-stretch mt-2 text-xl px-4">{selectedProject.description}</p>
-                        <a className="text-xl underline underline-offset-1 hover:text-[#b8c785]" href="http://">Github repository</a>
+                        <p className="w-full flex justify-stretch mt-2 text-xl px-4 whitespace-pre-line leading-relaxed">{selectedProject.long_text}</p>
+                        {selectedProject.link === 'localhost' ? null : <div className="w-full flex flex-row justify-center gap-2 font-bold text-xl"><p className="underline underline-offset-2">Link to the demo:</p><a className="hover:text-[#b8c785]" href={selectedProject.link}>{selectedProject.title}</a></div>}
+                        <a className="text-xl underline underline-offset-1 hover:text-[#b8c785]" href={selectedProject.repo}>Github repository</a>
                     </div>
                 </div>
 

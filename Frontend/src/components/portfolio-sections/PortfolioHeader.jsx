@@ -1,3 +1,6 @@
+import { motion } from 'framer-motion';
+
+
 import portfolioImage from '../../assets/portfolio-header-image.png';
 import portfolioPhoto from '../../assets/portfolio-photo.jpg';
 import SocialIcons from '../icons/SocialIcons';
@@ -16,7 +19,11 @@ export default function PortfolioHeader() {
                     alt="portfolio header background image"
                 />
                 <div className={sectionsClasses.portfolioHeader.photoTextWrapper}>
-                    <img
+                    <motion.img
+                        initial={{ opacity: 0, y: -40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 1, y: 0 }}
+                        transition={{ type: "spring", duration: 1.6, damping: 10 }}
                         id="portfolio-photo"
                         className={sectionsClasses.portfolioHeader.portfolioPhoto}
                         src={portfolioPhoto}
@@ -25,9 +32,9 @@ export default function PortfolioHeader() {
                     <h2 className={sectionsClasses.portfolioHeader.h2}>
                         Mateusz Śliwowski
                     </h2>
-                    <h3 className={sectionsClasses.portfolioHeader.h3}>
+                    <motion.h3 className={sectionsClasses.portfolioHeader.h3}>
                         Webdev. DevOps. SEO.
-                    </h3>
+                    </motion.h3>
                     <SocialIcons mailSize={30} iconsSize={30} />
                 </div>
             </div>

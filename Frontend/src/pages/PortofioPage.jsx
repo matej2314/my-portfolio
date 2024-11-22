@@ -8,7 +8,7 @@ export default function PortfolioPage() {
         <div className={pagesClasses.portfolioPage.portfolioWrapper}>
             <LeftSidebar />
             <div className={pagesClasses.portfolioPage.portfolioContentWrapper}>
-                <Portfolio />
+                <Portfolio isNested={false} />
             </div>
         </div>
     )

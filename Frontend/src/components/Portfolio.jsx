@@ -8,11 +8,11 @@ import CoursesSection from "./portfolio-sections/CoursesSection.jsx";
 import PortfolioFooter from "./portfolio-sections/PortfolioFooter.jsx";
 import { compClasses } from "./components-classes.js";
 
-export default function Portfolio() {
+export default function Portfolio({ isNested }) {
     return (
         <>
-            <div id="portfolio-wrapper" className={compClasses.portfolio.wrapper}>
-                <PortfolioHeader />
+            <PortfolioHeader />
+            <div id="portfolio-wrapper" className={isNested ? compClasses.portfolio.wrapper_nested : compClasses.portfolio.wrapper}>
                 <ServicesSection />
                 <LanguagesSection />
                 <SkillsSection />

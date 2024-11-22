@@ -56,7 +56,7 @@ export default function Projects({ selectedCategory }) {
                                         <div className={projectsClasses.project.contentWrapper}>
                                             <h3 className={projectsClasses.project.h3}>{project.title}</h3>
                                             <p className={projectsClasses.project.description}>{project.description}</p>
-                                            <Link to={`/project/details/${project.id}`}>View details</Link>
+                                            <Link className={projectsClasses.project.link} to={`/project/details/${project.id}`}>View details</Link>
                                         </div>
                                     </motion.div>
                                 </motion.li>

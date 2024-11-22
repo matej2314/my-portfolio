@@ -66,7 +66,7 @@ export default function Menu() {
                                         exit={initialDiv}
                                         transition={transitionConfig}
                                     >
-                                        <Icon icon="bi:briefcase" color={iconColor} width={iconSize} height={iconSize} />
+                                        <Icon icon="mdi:briefcase-variant-outline" color={iconColor} width={iconSize} height={iconSize} />
                                     </motion.div>
                                 ) : (
                                     <motion.span

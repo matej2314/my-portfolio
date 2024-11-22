@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion'
+
 import { sectionsClasses } from "../portSections-classes"
 
 export default function Service({ services, loading }) {
@@ -5,10 +7,18 @@ export default function Service({ services, loading }) {
         <>
             {!loading && services && Array.isArray(services) ? (
                 services.map((service) => (
-                    <div id="service1" className={sectionsClasses.service.serviceWrapper} key={service.id}>
+                    <motion.div
+                        key={service.id}
+                        id="service1"
+                        className={sectionsClasses.service.serviceWrapper}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        viewport={{ amount: 0.4, once: true }}
+                    >
                         <h3 className={sectionsClasses.h3.h3}><span className={sectionsClasses.service.span}>#</span>{service.title}</h3>
                         <p className={sectionsClasses.service.paragraph}>{service.description}</p>
-                    </div>
+                    </motion.div>
                 ))
             ) : (
                 <p>Brak usług do wyświetlenia.</p>

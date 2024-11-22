@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { motion } from "framer-motion";
 import { DataContext } from "../../store/data-context";
 import Skill from "./internal-components/Skill";
 import CategoryMenu from "./internal-components/CategoryMenu";
@@ -16,7 +17,13 @@ export default function SkillsSection() {
     }
 
     return (
-        <section id="skills-section" className={sectionsClasses.skillsSection.sectionWrapper}>
+        <motion.section
+            id="skills-section"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className={sectionsClasses.skillsSection.sectionWrapper}
+        >
             <div className={sectionsClasses.h2.titleWrapper}>
                 <h2 className={sectionsClasses.h2.h2}>Skills</h2>
             </div>
@@ -24,6 +31,6 @@ export default function SkillsSection() {
                 <Skill skills={skills} loading={loading} selectedCategory={selectedCategory} />
             </ul>
             <CategoryMenu handleCategoryClick={handleCategoryClick} />
-        </section>
+        </motion.section>
     );
 }
