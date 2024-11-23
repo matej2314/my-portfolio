@@ -17,9 +17,8 @@ router.get('/all', async (req, res) => {
   try {
     const results = await Promise.all(queries.map(query => pool.query(query)));
 
-    // Wyciągamy dane z wyników zapytań
     const allData = {
-      posts: results[0][0],    // [0] to wynik zapytania (dane)
+      posts: results[0][0],  
       projects: results[1][0],
       services: results[2][0],
       skills: results[3][0],
