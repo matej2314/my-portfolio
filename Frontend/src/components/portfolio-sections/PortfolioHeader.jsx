@@ -9,6 +9,12 @@ import { sectionsClasses } from './portSections-classes';
 
 export default function PortfolioHeader() {
 
+    const contentVariants = {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 }
+    }
+
+
     return (
         <div id="portfolio-header" className={sectionsClasses.portfolioHeader.wrapper}>
             <div className={sectionsClasses.portfolioHeader.innerWrapper}>
@@ -29,10 +35,22 @@ export default function PortfolioHeader() {
                         src={portfolioPhoto}
                         alt="my personal photo"
                     />
-                    <h2 className={sectionsClasses.portfolioHeader.h2}>
+                    <motion.h2
+                        variants={contentVariants}
+                        initial="initial"
+                        animate="animate"
+                        transition={{ type: "spring", duration: 1.6, damping: 10, delay: 0.2 }}
+                        className={sectionsClasses.portfolioHeader.h2}
+                    >
                         Mateusz Śliwowski
-                    </h2>
-                    <motion.h3 className={sectionsClasses.portfolioHeader.h3}>
+                    </motion.h2>
+                    <motion.h3
+                        variants={contentVariants}
+                        initial="initial"
+                        animate="animate"
+                        transition={{ type: "spring", duration: 1.6, damping: 10, delay: 0.2 }}
+                        className={sectionsClasses.portfolioHeader.h3}
+                    >
                         Webdev. DevOps. SEO.
                     </motion.h3>
                     <SocialIcons mailSize={30} iconsSize={30} />

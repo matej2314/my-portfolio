@@ -20,7 +20,7 @@ export default function Projects({ selectedCategory }) {
     };
 
     const liVariants = {
-        initial: { opacity: 0 },
+        initial: { opacity: 0, scale: 0.9 },
         animate: { opacity: 1, scale: 1 },
         hover: { opacity: 1, scale: 1.06 }
     };

@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 import { useContext } from "react"
 import { DataContext } from '../../store/data-context';
 
@@ -13,7 +15,12 @@ export default function ProjectsCategories({ setProjectCat }) {
     ];
 
     return (
-        <div className={projectsClasses.projectsCategories.wrapper}>
+        <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, type: "stiffness", stiffness: 200, delay: 0.6 }}
+            className={projectsClasses.projectsCategories.wrapper}
+        >
             <ul className={projectsClasses.projectsCategories.ul}>
                 {uniqueCategories.map((category) => (
                     <li>
@@ -23,6 +30,6 @@ export default function ProjectsCategories({ setProjectCat }) {
                     </li>
                 ))}
             </ul>
-        </div>
+        </motion.div>
     )
 }

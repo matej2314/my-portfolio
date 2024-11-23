@@ -18,7 +18,7 @@ export const compClasses = {
         span: "w-fit hidden md:inline text-[#6f963b]",
     },
     leftSidebar: {
-        leftSidebar: "h-content w-fit ml-10 mt-3 flex flex-col justify-between gap-3",
+        leftSidebar: "h-content w-fit ml-10 mt-5 flex flex-col justify-between gap-3",
         link: "bg-[#97d93f] w-10/12 rounded-lg flex justify-center items-center py-5 px-4 text-black hover:bg-[#374528] hover:text-slate-200",
         span: "font-bold font-sans tracking-wider",
     },
@@ -30,7 +30,7 @@ export const compClasses = {
     },
     menu: {
         menu: "w-4/5 h-full bg-neutral-600/30 flex flex-col justify-around items-center rounded-lg",
-        ul: "flex flex-col items-center gap-8 text-gray-300 text-xl",
+        ul: "flex flex-col items-center gap-8 text-gray-300 text-lg",
         li: "wi-fit h-fit",
         link: "flex justify-center min-h-[1.5em]",
     },

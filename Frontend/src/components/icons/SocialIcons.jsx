@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react';
-import { motion } from 'framer-motion';
+import { delay, motion } from 'framer-motion';
 import { Link } from "react-router-dom";
 import { socialURLS } from "../../url";
 import { iconsClasses } from './iconsClasses';
@@ -10,7 +10,7 @@ export default function SocialIcons({ mailSize, iconsSize }) {
         animate: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.1
+                staggerChildren: 0.3
             }
         },
         initial: {
@@ -19,8 +19,8 @@ export default function SocialIcons({ mailSize, iconsSize }) {
     };
 
     const linkVariants = {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 }
+        initial: { opacity: 0, y: -10 },
+        animate: { opacity: 1, y: 0 }
     };
 
     return (
