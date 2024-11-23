@@ -14,7 +14,10 @@ export default function LeftSidebar() {
             transition={{ duration: 0.6, type: "spring", damping: 40, stiffness: 60 }}
             className={compClasses.leftSidebar.leftSidebar}
         >
-            <Link to="/contact" className={compClasses.leftSidebar.link}><span className={compClasses.leftSidebar.span}>{codeSign}</span></Link>
+            <Link to="/contact" className={compClasses.leftSidebar.link}>
+                <span className={compClasses.leftSidebar.span}>{codeSign}
+                </span>
+            </Link>
             <Menu />
         </motion.div>
     )

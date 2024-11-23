@@ -9,7 +9,7 @@ export default function Menu() {
     const [hoveredItem, setHoveredItem] = useState(null);
     const location = useLocation();
 
-    const transitionConfig = { duration: 0.2, type: "spring", stiffness: 200, damping: 20 };
+    const transitionConfig = { duration: 0.2, type: "spring", stiffness: 200, damping: 30 };
     const iconColor = "#b8c785";
     const initialDiv = { opacity: 0, x: -10 };
     const initialSpan = { opacity: 0, x: 10 };
