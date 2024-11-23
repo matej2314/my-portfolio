@@ -32,7 +32,7 @@ router.get('/all', async (req, res) => {
     logger.info('Wszystkie dane pobrane');
     return res.status(200).json({ data: allData });
   } catch (error) {
-    logger.error('Błąd pobierania danych', error.message);
+    logger.error('Błąd pobierania danych', error.stack);
     return res.status(500).json({ message: 'Błąd serwera' });
   }
 });
