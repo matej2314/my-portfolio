@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 
 router.use(express.json());
 
-router.post('/new', (req, res) => {
+router.post('/new', async (req, res) => {
     const id = uuidv4();
     const skillName = req.body.skillName;
     const skillCat = req.body.skillCat;
@@ -21,43 +21,44 @@ router.post('/new', (req, res) => {
 
     const query = 'INSERT into skills (id, skill_name, skill_cat, icon_name, icon_color) VALUES (?, ?, ?, ?, ?)';
 
-    pool.query(query, [id, skillName, skillCat, skillIcon, iconColor], (error, result) => {
-        if (error) {
-            logger.error('Nie udało się dodać nowego skilla do bazy');
-            return res.status(500).json({ message: 'Nie udało się dodać nowego skilla do bazy' });
-        };
-
-        res.status(201).json({
-            message: 'Nowy skill dodany!',
+    try {
+        await pool.query(query, [id, skillName, skillCat, skillIcon, iconColor]);
+        logger.info('Umiejętność dodana pomyślnie');
+        return res.status(201).json({
+            message: 'Umiejętność dodana pomyślnie',
             skillId: id,
+            skillName,
         });
-    });
+    } catch (error) {
+        logger.error('Nie udało się dodać nowej umiejętności', error.message);
+        return res.status(500).json({ message: 'Nie udało się dodać nowej umiejętności' });
+    };
 });
 
-router.get('/all', (req, res) => {
+router.get('/all', async (req, res) => {
 
     const query = 'SELECT * FROM skills ORDER BY id';
 
-
-    pool.query(query, (error, rows) => {
-        if (error) {
-            logger.error('Nie udało się pobrać skilli z bazy');
-            return res.status(500).json({ message: 'Nie udało się pobrać skilli z bazy' });
-        };
+    try {
+        const [rows] = await pool.query(query);
 
         if (rows.length === 0) {
-            return res.status(404).json({ message: 'Brak skilli w bazie' });
+            logger.info('Brak umiejętności w bazie danych');
+            return res.status(404).json({ message: 'Brak umiejętności w bazie danych' });
         };
 
         return res.status(200).json({
-            message: 'Skille pobrane poprawnie',
+            message: 'Umiejętności pobrane poprawnie',
             skills: rows,
-        });
-    });
+        })
+    } catch (error) {
+        logger.error('Nie udało się pobrać umiejętności', error.message);
+        return res.status(500).json({ message: 'Nie udało się pobrać umiejętności' });
+    }
 });
 
-router.delete('/delete', (req, res) => {
-    const skillId = req.body.skillId;
+router.delete('/delete', async (req, res) => {
+    const { skillId } = req.body;
 
     if (!skillId || skillId === 0) {
         logger.error('Brak danych do usunięcia skilla');
@@ -66,14 +67,22 @@ router.delete('/delete', (req, res) => {
 
     const query = 'DELETE FROM skills WHERE id=?';
 
-    pool.query(query, [skillId], (error, result) => {
-        if (error) {
-            logger.error('Nie udało się usunąć skilla z bazy');
-            return res.status(500).json({ message: 'Nie udało się usunąć skilla z bazy' });
-        };
+    try {
+        const [result] = await pool.query(query, [skillId]);
 
-        return res.status(200).json({ message: 'Skill usunięty pomyślnie' });
-    })
+        if (result.affectedRows === 0) {
+            logger.info('Umiejętność nie znaleziona');
+            return res.status(404).json({ message: 'Umiejętność nie znaleziona' })
+        }
+
+        return res.status(200).json({
+            message: 'Umiejętność usunięta poprawnie',
+            skillId: skillId,
+        })
+    } catch (error) {
+        logger.error('Nie udało się usunąć umiejętności');
+        return res.status(500).json({ message: 'Nie udało się usunąć umiejętności' });
+    };
 });
 
 module.exports = router;

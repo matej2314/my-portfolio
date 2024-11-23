@@ -6,54 +6,56 @@ const logger = require('../logger.js');
 
 router.use(express.json());
 
-router.post('/new', (req, res) => {
-    const postTitle = req.body.postTitle;
-    const postContent = req.body.postContent;
+router.post('/new', async (req, res) => {
+    const { postTitle, postContent } = req.body;
     const postId = uuidv4();
 
     if (!postTitle || !postContent) {
         return res.status(400).json({ message: 'Prześlij poprawne dane!' });
     }
-    console.log(postContent, postTitle);
 
     const query = 'INSERT INTO posts (id, post_title, post_content) VALUES(?,?,?)';
 
-    pool.query(query, [postId, postTitle, postContent], (error, result) => {
-        if (error) {
-            logger.info('Błąd podczas zapisywania posta', error.message);
+    try {
+        await pool.query(query, [postId, postTitle, postContent]);
+        logger.info('Post dodany pomyślnie!');
+        return res.status(201).json({
+            message: 'Post zapisany',
+            postId,
+        })
+    } catch (error) {
+        logger.info('Błąd podczas zapisywania posta', error.message);
 
-            return res.status(500).json({ message: `Błąd serwera: ${error.message}` });
-        }
-        logger.info('Post saved');
-       return res.status(201).json({ message: 'Post zapisany', postId: postId });
-    });
+        return res.status(500).json({ message: `Błąd serwera: ${error.message}` });
+    };
+
 });
 
-router.get('/all', (req, res) => {
+router.get('/all', async (req, res) => {
 
     const query = 'SELECT * FROM posts ORDER BY id';
 
-    pool.query(query, (error, rows) => {
-        if (error) {
-            logger.error('Błąd podczas pobierania postów:', error.message);
-
-            return res.status(500).json({ message: 'Błąd serwera' });
-        }
+    try {
+        const [rows] = await pool.query(query);
 
         if (rows.length === 0) {
             logger.error('Brak postów do pobrania');
             return res.status(404).json({ message: 'Brak postów' });
-        }
-        logger.info('POSTS GET SUKCES');
-        res.status(200).json({ posts: rows });
-    });
+        };
+
+        return res.status(200).json({ posts: rows });
+
+    } catch (error) {
+        logger.error('Błąd podczas pobierania postów:', error.message);
+
+        return res.status(500).json({ message: 'Błąd serwera' });
+    };
+
 });
 
-router.put('/edit', (req, res) => {
-    const postId = req.body.postId;
-    const postTitle = req.body.postTitle;
-    const postContent = req.body.postContent;
-    let postImage = req.body.imgName;
+router.put('/edit', async (req, res) => {
+    const { postId, postTitle, postContent } = req.body;
+    let postImage = req.body.postImage;
 
     if (!postId || !postTitle || postTitle.trim() === '' || postContent.trim() === '') {
         logger.error('Brak wymaganych danych do edycji posta');
@@ -64,18 +66,46 @@ router.put('/edit', (req, res) => {
 
     const query = 'UPDATE posts SET post_title=?, post_content=?, post_imageName=? WHERE id=?';
 
-    pool.query(query, [postTitle, postContent, postImage, postId], (error, result) => {
-        if (error) {
-            logger.error('Nie udało się edytować posta', error.message);
-            return res.status(500).json({ message: 'Nie udało się edytować posta' });
+
+    try {
+        const [result] = await pool.query(query, [postTitle, postContent, postImage, postId]);
+        logger.info('Post edytowany!');
+        return res.status(200).json({
+            message: 'Post poprawnie zaktualizowany',
+            postId
+        });
+    } catch (error) {
+        logger.error('Nie udało się edytować posta', error.message);
+        return res.status(500).json({ message: 'Nie udało się edytować posta' });
+    }
+});
+
+router.delete('/delete', async (req, res) => {
+    const { postId } = req.body;
+
+    if (!postId || postId < 0) {
+        logger.error('Podaj dane wymagane do usunięcia postu!');
+        return res.status(404).json({ message: 'Podaj dane wymagane do usunięcia postu!' });
+    };
+
+    const query = 'DELETE from posts WHERE id=?';
+
+    try {
+        const [result] = await pool.query(query, [postId]);
+
+        if (result.affectedRows === 0) {
+            logger.info('Post nie znaleziony');
+            return res.status(404).json({ message: 'Post o podanym ID nie istnieje' });
         }
 
         return res.status(200).json({
-            message: 'Post poprawnie zaktualizowany',
-            postId,
-        });
-    });
-
-});
+            message: 'Post usunięty poprawnie',
+            postId
+        })
+    } catch (error) {
+        logger.error('Nie udało się usunąć posta', error.message);
+        return res.status(500).json({ message: 'Nie udało się usunąć posta' });
+    }
+})
 
 module.exports = router;

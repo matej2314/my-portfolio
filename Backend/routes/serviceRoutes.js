@@ -6,26 +6,26 @@ const { v4: uuidv4 } = require('uuid');
 
 router.use(express.json());
 
-router.get('/all', (req, res) => {
+router.get('/all', async (req, res) => {
     const query = 'SELECT * FROM services ORDER BY id';
 
-    pool.query(query, (error, rows) => {
-        if (error) {
-            logger.error(error.message);
-            return res.status(500).json({ message: 'Błąd serwera' });
-        }
+    try {
+        const [rows] = await pool.query(query);
 
-        if (rows.length === 0) {
+        if (rows.length <= 0) {
+            logger.error('Brak usług w bazie danych');
             return res.status(404).json({ message: 'Brak usług w bazie' });
-        }
+        };
 
-        return res.status(200).json({
-            services: rows,
-        });
-    });
+        return res.status(200).json({message: 'Usługi pobrane poprawnie', services: rows });
+    } catch (error) {
+        logger.error('Nie udało się pobrać listy usług', error.message);
+
+        return res.status(500).json({ message: 'Nie udało się pobrać listy usług' });
+    };
 });
 
-router.post('/new', (req, res) => {
+router.post('/new', async (req, res) => {
     const id = uuidv4();
     const service_name = req.body.serviceName;
     const service_description = req.body.serviceDesc;
@@ -35,25 +35,25 @@ router.post('/new', (req, res) => {
         return res.status(400).json({ message: 'Brak wymaganych danych do dodania nowej usługi' });
     }
 
-    
     const query = 'INSERT INTO services (id, serviceName, serviceDescription) VALUES (?, ?, ?)';
 
-    
-    pool.query(query, [id, service_name, service_description], (error, result) => {
-        if (error) {
-            logger.error('SERVICE POST ERROR:', error.stack);
-            return res.status(500).json({ message: 'Nie udało się zapisać nowej usługi do bazy.' });
-        }
-
-        res.status(201).json({
-            message: 'Nowa usługa dodana pomyślnie!',
-            serviceId: id 
+    try {
+        await pool.query(query, [id, service_name, service_description]);
+        logger.info('Usługa dodana pomyślnie');
+        return res.status(200).json({
+            message: 'Nowa usługa dodana!',
+            serviceId: id,
+            serviceName : service_name,
         });
-    });
+
+    } catch (error) {
+        logger.error('Nie udało się dodać nowej usługi');
+        return res.status(500).json({ message: 'Nie udało się dodać nowej usługi' });
+    };
 });
 
-router.delete('/', (req, res) => {
-    const serviceId = req.body.serviceId;
+router.delete('/', async (req, res) => {
+    const { serviceId } = req.body;
 
     if (!serviceId || serviceId === 0) {
         return res.status(400).json({ message: 'Brak wymaganych danych' });
@@ -61,14 +61,24 @@ router.delete('/', (req, res) => {
 
     const query = 'DELETE FROM services WHERE id=?';
 
-    pool.query(query, [serviceId], (error, result) => {
-        if (error) {
-            logger.error('DELETE SERVICE ERROR:', error.message);
-            return res.status(500).json({ message: 'Nie udało się usunąć usługi' });
-        }
 
-        return res.status(200).json({ message: 'Usługa usunięta pomyślnie!' });
-    });
+    try {
+        const [result] = await pool.query(query, [serviceId]);
+
+        if (result.affectedRows === 0) {
+            logger.info('Usługa nie znaleziona');
+            return res.status(404).json({ message: 'Usługa nie znaleziona' });
+        };
+
+        return res.status(200).json({
+            message: 'Usługa usunięta poprawnie',
+            serviceId,
+        });
+
+    } catch (error) {
+        logger.error('Nie udało się usunąć usługi', error.message);
+        return res.status(500).json({ message: 'Nie udało się usunąć usługi' });
+    };
 });
 
 module.exports = router;
