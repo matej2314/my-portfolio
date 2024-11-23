@@ -26,8 +26,8 @@ router.get('/all', async (req, res) => {
       skills: results[3],
       courses: results[4]
     };
-    if (Object.values(allData).every(arr => arr.length === 0)) {
-      return res.status(204).json({ message: 'Brak danych' })
+    if (Object.values(allData).every(arr => !arr || arr.length === 0)) {
+      return res.status(204).json({ message: 'Brak danych' });
     }
     
     logger.info('Wszystkie dane pobrane');
@@ -36,7 +36,7 @@ router.get('/all', async (req, res) => {
     });
   } catch (error) {
     logger.error('Błąd pobierania danych', error.message);
-    return res.status(500).json({ message: 'Błąd serwera' })
+    return res.status(500).json({ message: 'Błąd serwera', error: error.message})
   }
 });
 module.exports = router;
