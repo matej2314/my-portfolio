@@ -71,7 +71,10 @@ router.delete('/delete', (req, res) => {
             logger.error('Nie udało się usunąć kursu');
             return res.status(500).json({ message: 'Nie udało się usunąć kursu' });
         };
-        return res.status(200).json({ message: 'Kurs usunięty poprawnie' });
+        return res.status(200).json({
+            message: 'Kurs usunięty poprawnie',
+            courseId: courseId
+         });
 
     });
 });

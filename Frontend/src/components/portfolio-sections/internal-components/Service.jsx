@@ -14,7 +14,7 @@ export default function Service({ services, loading }) {
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
-                        viewport={{ amount: 0.4, once: true }}
+                        viewport={{ amount: 0.4, once: false }}
                     >
                         <h3 className={sectionsClasses.h3.h3}><span className={sectionsClasses.service.span}>#</span>{service.title}</h3>
                         <p className={sectionsClasses.service.paragraph}>{service.description}</p>

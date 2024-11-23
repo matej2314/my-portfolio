@@ -8,9 +8,16 @@ export default function Course({ courses, loading }) {
         <>
             {!loading && courses && Array.isArray(courses) ? (
                 courses.map((course) => (
-                    <li key={course.id} className={sectionsClasses.course.li}>
+                    <motion.li
+                        key={course.id}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        viewport={{ amount: 0.4, once: false }}
+                        className={sectionsClasses.course.li}
+                    >
                         {`${course.title} - ${course.organizer}`}
-                    </li>
+                    </motion.li>
                 ))
             ) : (
                 <p>Brak kursów do wyświetlenia</p>

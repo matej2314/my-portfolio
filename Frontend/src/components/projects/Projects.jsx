@@ -20,8 +20,9 @@ export default function Projects({ selectedCategory }) {
     };
 
     const liVariants = {
-        initial: { opacity: 0.7, scale: 1 },
-        hover: { opacity: 1, scale: 1.05 }
+        initial: { opacity: 0 },
+        animate: { opacity: 1, scale: 1 },
+        hover: { opacity: 1, scale: 1.06 }
     };
 
     return (
@@ -38,8 +39,9 @@ export default function Projects({ selectedCategory }) {
                                     className={projectsClasses.project.li}
                                     variants={liVariants}
                                     initial="initial"
+                                    animate="animate"
                                     whileHover="hover"
-                                    transition={{ type: "stiffness", stiffness: 300 }}
+                                    transition={{ duration: 0.5, type: "stiffness", stiffness: 200, delay: 0.2 }}
                                 >
                                     <motion.img
                                         className={projectsClasses.project.projectImage}
