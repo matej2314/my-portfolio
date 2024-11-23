@@ -16,13 +16,14 @@ router.get('/all', async (req, res) => {
 
   try {
     const results = await Promise.all(queries.map(query => pool.query(query)));
-    
+
+    // Wyciągamy dane z wyników zapytań
     const allData = {
-      posts: results[0].rows,
-      projects: results[1].rows,
-      services: results[2].rows,
-      skills: results[3].rows,
-      courses: results[4].rows,
+      posts: results[0][0],    // [0] to wynik zapytania (dane)
+      projects: results[1][0],
+      services: results[2][0],
+      skills: results[3][0],
+      courses: results[4][0],
     };
 
     if (Object.values(allData).every(arr => arr.length === 0)) {
@@ -32,8 +33,9 @@ router.get('/all', async (req, res) => {
     logger.info('Wszystkie dane pobrane');
     return res.status(200).json({ data: allData });
   } catch (error) {
-    logger.error('Błąd pobierania danych', error.stack);
+    logger.error('Błąd pobierania danych', error.message);
     return res.status(500).json({ message: 'Błąd serwera' });
   }
 });
+
 module.exports = router;
