@@ -7,17 +7,27 @@ const logger = require('../logger.js');
 router.use(express.json());
 
 router.post('/new', async (req, res) => {
-    const { postTitle, postContent } = req.body;
+    const { postTitle, postContent, postImage } = req.body;
     const postId = uuidv4();
 
     if (!postTitle || !postContent) {
         return res.status(400).json({ message: 'Prześlij poprawne dane!' });
     }
 
-    const query = 'INSERT INTO posts (id, post_title, post_content) VALUES(?,?,?)';
+
+    let query;
+    let values;
+
+    if (postImage) {
+        query = 'INSERT INTO posts (id, post_title, post_content, post_imageName) VALUES(?,?,?,?)';
+        values = [postId, postTitle, postContent, postImage];
+    } else {
+        query = 'INSERT INTO posts (id, post_title, post_content) VALUES(?,?,?)';
+        values = [postId, postTitle, postContent];
+    };
 
     try {
-        await pool.query(query, [postId, postTitle, postContent]);
+        await pool.query(query, values);
         logger.info('Post dodany pomyślnie!');
         return res.status(201).json({
             message: 'Post zapisany',

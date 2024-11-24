@@ -1,7 +1,15 @@
+import { useContext } from "react";
+import { DataContext } from '../store/data-context';
+
 import LeftSidebar from "../components/LeftSidebar";
 import { pagesClasses } from "./pages-classes";
 
 export default function BlogPage() {
+
+    const dataCtx = useContext(DataContext);
+    const posts = dataCtx.fetchedData.data.posts;
+
+
     return (
         <div className={pagesClasses.blogPage.pageWrapper}>
             <LeftSidebar />
