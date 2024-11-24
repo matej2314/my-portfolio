@@ -24,7 +24,7 @@ export default function BlogPage() {
                                 <div id="blog-post" className="w-full flex flex-col items-center gap-3 bg-neutral-400 p-10">
                                     <img className="max-w-96" src={`${blogImgs}/${post.post_imageName}`}></img>
                                     <h2 className="text-black font-bold text-lg">{post.title}</h2>
-                                    <p className="w-full text-black">{post.post_content}</p>
+                                    <p className="w-full text-black">{post.content}</p>
                                 </div>
                             </li>
                         ))
