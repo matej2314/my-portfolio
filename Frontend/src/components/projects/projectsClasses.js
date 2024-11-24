@@ -5,7 +5,7 @@ export const projectsClasses = {
     },
     project: {
         wrapper: "w-full z-0",
-        ul: "w-full grid grid-cols-2 gap-3 pl-2 overflow-scroll no-scrollbar z-0",
+        ul: "w-full flex flex-col md:grid md:grid-cols-2 gap-3 pl-2 overflow-scroll no-scrollbar z-0",
         li: "relative w-full",
         projectImage: "w-full h-full rounded-md",
         hoverContent: "w-full h-full absolute bottom-0 left-o right-0 text-white flex flex-col justify-end items-center",

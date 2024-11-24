@@ -24,7 +24,10 @@ export default function PortfolioHeader() {
                     src={portfolioImage}
                     alt="portfolio header background image"
                 />
-                <div className={sectionsClasses.portfolioHeader.photoTextWrapper}>
+                <div
+                    id="photoTextWrapper"
+                    className={sectionsClasses.portfolioHeader.photoTextWrapper}
+                >
                     <motion.img
                         initial={{ opacity: 0, y: -40 }}
                         animate={{ opacity: 1, y: 0 }}

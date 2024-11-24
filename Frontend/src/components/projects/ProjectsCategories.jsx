@@ -22,8 +22,8 @@ export default function ProjectsCategories({ setProjectCat }) {
             className={projectsClasses.projectsCategories.wrapper}
         >
             <ul className={projectsClasses.projectsCategories.ul}>
-                {uniqueCategories.map((category) => (
-                    <li>
+                {uniqueCategories.map((category, index) => (
+                    <li key={index}>
                         <button onClick={() => setProjectCat(category)} className={projectsClasses.projectsCategories.button}>
                             {category}
                         </button>

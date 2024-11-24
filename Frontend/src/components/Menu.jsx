@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react';
 import { NavLink, useLocation } from "react-router-dom";
 
 import { compClasses } from "./components-classes";
+import { cvURL } from '../url';
 
 export default function Menu() {
     const [hoveredItem, setHoveredItem] = useState(null);
@@ -146,7 +147,7 @@ export default function Menu() {
                         onMouseEnter={() => setHoveredItem("download")}
                         onMouseLeave={() => setHoveredItem(null)}
                     >
-                        <a href="#" className={compClasses.menu.link}>
+                        <a href={cvURL} className={compClasses.menu.link}>
                             <AnimatePresence mode="wait" initial={false}>
                                 {activeItem === "download" || hoveredItem === "download" ? (
                                     <motion.div

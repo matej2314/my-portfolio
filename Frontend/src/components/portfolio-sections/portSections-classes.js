@@ -1,13 +1,13 @@
 export const sectionsClasses = {
     portfolioHeader: {
-        wrapper: "w-full h-fit flex flex-col items-center justify-center relative md:flex-row",
-        innerWrapper: "w-full h-60 relative flex flex-col justify-center items-center",
-        photoTextWrapper: "w-full h-[50%] absolute flex flex-col justify-center items-center gap-1",
-        bgImage: "top-0 left-0 z-0 w-full h-60 opacity-60 blur-[2px] bg-gradient-to-t from-bg-neutral-600/30 via-transparent to-transparent",
+        wrapper: "w-full h-fit flex flex-row items-center justify-center relative md:flex-row",
+        innerWrapper: "w-full h-full md:h-60 relative flex flex-col justify-center items-center", 
+        photoTextWrapper: "w-full md:h-[50%] mt-[13.5rem] md:mt-0 absolute flex flex-col justify-center items-center gap-1", 
+        bgImage: "relative top-0 left-0 z-0 w-full h-full object-cover opacity-60 blur-[2px] bg-gradient-to-t from-bg-neutral-600/30 via-transparent to-transparent", 
         portfolioPhoto: "w-24 h-24 z-10 items-center justify-center rounded-full border-4 border-slate-300 hover:z-20 hover:scale-150",
         h2: "text-white text-lg font-semibold z-10",
         h3: "text-white text-sm z-10 hover:text-[#b8c785]"
-    },
+    },       
     portfolioFooter: {
         wrapper: "w-full flex flex-col items-center justify-center mb-4 gap-3 text-[#b8c785]",
         firstParagraph: "w-full flex justify-center",
@@ -31,11 +31,11 @@ export const sectionsClasses = {
     },
     skill: {
         span: "mr-3 min-w-[40px] flex justify-center",
-        li: "w-fit flex flex-row items-center justify-center gap-2 mx-auto", 
+        li: "w-fit flex flex-row items-center justify-start gap-2 mx-auto", 
     },    
     skillsSection: {
         sectionWrapper: "w-full flex flex-col items-center justify-center border-dotted border-b-2 border-[#6f963b] border-opacity-40",
-        ul: "w-full grid grid-rows-auto md:grid-cols-2 gap-14 my-4 text-xl mx-auto justify-center",
+        ul: "w-full grid grid-cols-2 gap-14 my-4 text-xl mx-auto justify-center",
     },
     workSection: {
         sectionWrapper: "w-full flex flex-col justify-center items-center gap-4",

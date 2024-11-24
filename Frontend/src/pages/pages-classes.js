@@ -12,8 +12,8 @@ export const pagesClasses = {
         contentWrapper: 'relative w-full h-content flex flex-row flex-nowrap mt-5 mr-9',
     },
     portfolioPage: {
-        portfolioWrapper: "relative w-full h-content flex flex-row flex-nowrap",
-        portfolioContentWrapper: "bg-neutral-600/30 text-gray-300 w-11/12 h-content rounded-md flex flex-col justify-between overflow-scroll no-scrollbar mr-9 my-5",
+        portfolioWrapper: "md:relative w-full h-content mt-5 md:h-content flex flex-col items-center justify-center md:flex-row md:flex-nowrap",
+        portfolioContentWrapper: "bg-neutral-600/30 text-gray-300 w-11/12 h-[95vh] md:h-content rounded-md flex flex-col items-center justify-center md:flex-col md:justify-between md:mt-5 md:mr-9 overflow-scroll no-scrollbar",
     },
     projectsDetailsPage: {
         wrapper: "w-screen h-dvh bg-black overflow-hidden flex justify-around flex-nowrap",

@@ -56,7 +56,7 @@ export default function SocialIcons({ mailSize, iconsSize }) {
             >
                 <Icon icon="mdi:linkedin" color={iconsClasses.socialIcons.linkedinColor} width={iconsSize} height={iconsSize} />
             </motion.a>
-            <motion.a
+            <motion.div
                 variants={linkVariants}
             >
                 <Link
@@ -65,7 +65,7 @@ export default function SocialIcons({ mailSize, iconsSize }) {
                 >
                     <Icon icon="mdi:email-outline" width={mailSize} height={mailSize} />
                 </Link>
-            </motion.a>
+            </motion.div>
         </motion.div>
     );
 }
