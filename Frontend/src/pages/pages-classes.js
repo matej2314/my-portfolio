@@ -16,7 +16,8 @@ export const pagesClasses = {
         portfolioContentWrapper: "bg-neutral-600/30 text-gray-300 w-11/12 h-content rounded-md flex flex-col justify-between overflow-scroll no-scrollbar mr-9 my-5",
     },
     blogPage: {
-
+        pageWrapper: "w-screen h-dvh overflow-hidden flex justify-around flex-nowrap",
+        contentWrapper: "w-full h-content flex justify-center items-start mt-5 bg-neutral-600/30 mr-9",
     },
     projectsDetailsPage: {
         wrapper: "w-screen h-dvh bg-black overflow-hidden flex justify-around flex-nowrap",
