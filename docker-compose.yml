@@ -22,7 +22,7 @@ services:
   #     networks:
   #         - main_network
   #     ports:
-  #       # porty
+  #       - "5050:5050"
   #     logging:
   #       driver: "json-file"
   #       options:

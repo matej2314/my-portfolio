@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import { cvURL } from "../../url";
+import { mobileElements } from "./mobileElements-classes";
 
 export default function MobileMenu() {
     return (

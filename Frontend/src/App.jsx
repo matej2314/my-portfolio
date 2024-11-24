@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import MainPage from './pages/MainPage';
 import Contact from './pages/Contact';
-import PortfolioPage from './pages/PortofioPage';
+import PortfolioPage from './pages/PortfolioPage';
 import BlogPage from './pages/BlogPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetails from './pages/ProjectDetailsPage';
