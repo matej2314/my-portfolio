@@ -1,5 +1,5 @@
 const express = require('express');
-const pool = require('../db'); // Zakładając, że masz poprawnie skonfigurowane mysql2/promise w db.js
+const pool = require('../db'); 
 const router = express.Router();
 const logger = require('../logger');
 const { v4: uuidv4 } = require('uuid');

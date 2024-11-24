@@ -23,6 +23,7 @@ const postsRoutes = require('./routes/postRoutes.js');
 const dataRoutes = require('./routes/dataRoutes.js');
 const skillsRoutes = require('./routes/skillsRoutes.js');
 const coursesRoutes = require('./routes/coursesRoutes.js');
+const downloadRoutes = require('./routes/downloadRoute.js');
 
 app.use('/services', serviceRoutes);
 app.use('/projects', projectsRoutes);
@@ -30,6 +31,7 @@ app.use('/posts', postsRoutes);
 app.use('/skills', skillsRoutes);
 app.use('/courses', coursesRoutes);
 app.use('/data', dataRoutes);
+app.use('/download', downloadRoutes);
 
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, './CMS', 'index.html'));

@@ -2,7 +2,6 @@ import { useContext } from "react"
 import { useParams } from "react-router-dom"
 import { DataContext } from '../store/data-context'
 
-
 import { imgUrl } from "../url";
 import LeftSidebar from '../components/LeftSidebar';
 import { pagesClasses } from "./pages-classes";

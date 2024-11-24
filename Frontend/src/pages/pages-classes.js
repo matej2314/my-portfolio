@@ -1,7 +1,7 @@
 export const pagesClasses = {
     blogPage: {
         pageWrapper: "w-screen h-dvh overflow-hidden flex justify-around flex-nowrap font-sans mr-9",
-        contentWrapper: "w-[95vw] h-content bg-neutral-600/30 mt-5 mr-9 flex flex-row items-center justify-center"
+        contentWrapper: "w-[95vw] h-content bg-neutral-600/30 mt-5 mr-9 flex flex-row justify-center items-start"
     },
     contactPage: {
         pageWrapper: "w-screen h-dvh overflow-hidden flex justify-around flex-nowrap",
@@ -15,10 +15,6 @@ export const pagesClasses = {
         portfolioWrapper: "relative w-full h-content flex flex-row flex-nowrap",
         portfolioContentWrapper: "bg-neutral-600/30 text-gray-300 w-11/12 h-content rounded-md flex flex-col justify-between overflow-scroll no-scrollbar mr-9 my-5",
     },
-    blogPage: {
-        pageWrapper: "w-screen h-dvh overflow-hidden flex justify-around flex-nowrap",
-        contentWrapper: "w-full h-content flex justify-center items-start mt-5 bg-neutral-600/30 mr-9",
-    },
     projectsDetailsPage: {
         wrapper: "w-screen h-dvh bg-black overflow-hidden flex justify-around flex-nowrap",
         detailsWrapper: "w-full h-content flex flex-row justify-center items-center mt-5 mr-9 bg-neutral-600/30 text-slate-200 p-2 overflow-scroll no-scrollbar",
@@ -31,6 +27,9 @@ export const pagesClasses = {
         linkParagraph: "underline underline-offset-2",
         demoLink: "hover:text-[#b8c785]",
         repoLink: "text-xl underline underline-offset-1 hover:text-[#b8c785]"
+    },
+    postReadMore: {
+        
     }
 }
 

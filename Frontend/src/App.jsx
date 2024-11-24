@@ -5,6 +5,7 @@ import Contact from './pages/Contact';
 import PortfolioPage from './pages/PortofioPage';
 import BlogPage from './pages/BlogPage';
 import ProjectDetails from './pages/ProjectDetailsPage';
+import PostReadMore from './pages/PostReadMore';
 
 
 
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
   { path: 'blog', element: <BlogPage /> },
   { path: 'contact', element: <Contact /> },
   { path: '/project/details/:id', element: <ProjectDetails /> },
+  { path: '/post/more/:id', element: <PostReadMore /> }
 
 ]);
 
