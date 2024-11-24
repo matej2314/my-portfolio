@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { DataContext } from "../../store/data-context";
+
 import Skill from "./internal-components/Skill";
 import CategoryMenu from "./internal-components/CategoryMenu";
 import { sectionsClasses } from "./portSections-classes";

@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'CMS')));
 app.use('/images',express.static(path.join(__dirname, 'projects-photos')));
-
+app.use('/blog-photos', express.static(path.join(__dirname, 'blog')));
 
 const serviceRoutes = require('./routes/serviceRoutes.js');
 const projectsRoutes = require('./routes/projectsRoutes.js');

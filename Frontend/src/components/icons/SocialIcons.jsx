@@ -43,7 +43,8 @@ export default function SocialIcons({ mailSize, iconsSize }) {
                 href={socialURLS.github}
                 variants={linkVariants}
                 target="_blank"
-                rel="noreferrer">
+                rel="noreferrer"
+            >
                 <Icon icon="mdi:github" color={iconsClasses.socialIcons.githubColor} width={iconsSize} height={iconsSize} />
             </motion.a>
             <motion.a
@@ -51,7 +52,8 @@ export default function SocialIcons({ mailSize, iconsSize }) {
                 href={socialURLS.linkedIn}
                 variants={linkVariants}
                 target="_blank"
-                rel="noreferrer">
+                rel="noreferrer"
+            >
                 <Icon icon="mdi:linkedin" color={iconsClasses.socialIcons.linkedinColor} width={iconsSize} height={iconsSize} />
             </motion.a>
             <motion.a
