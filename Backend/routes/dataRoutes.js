@@ -7,7 +7,7 @@ router.use(express.json());
 
 router.get('/all', async (req, res) => {
   const queries = [
-    `SELECT 'posts' AS source, id, post_title AS title, post_lead AS lead, post_content AS content, post_date, COALESCE(post_imageName, '') AS post_imageName FROM posts ORDER BY id;`,
+    `SELECT 'posts' AS source, id, post_title AS title, post_lead, post_content AS content, post_date, COALESCE(post_imageName, '') AS post_imageName FROM posts ORDER BY id;`,
     `SELECT 'projects' AS source, pr.id, pr.project_name AS title, pr.project_category AS category, pr.project_URL AS link, pr.project_screenName, pr.project_description AS description, pr.repo AS repo, pr.long_text AS long_text FROM projects pr;`,
     `SELECT 'services' AS source, s.id, s.serviceName AS title, s.serviceDescription AS description FROM services s;`,
     `SELECT 'skills' AS source, s.id, s.skill_name AS title, s.skill_cat AS category, s.icon_name AS icon, s.icon_color as iconColor FROM skills s;`,
@@ -32,7 +32,7 @@ router.get('/all', async (req, res) => {
     logger.info('Wszystkie dane pobrane');
     return res.status(200).json({ data: allData });
   } catch (error) {
-    logger.error('Błąd pobierania danych', error.message);
+    logger.error('Błąd pobierania danych', error.stack);
     return res.status(500).json({ message: 'Błąd serwera' });
   }
 });
