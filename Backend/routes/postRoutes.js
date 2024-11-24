@@ -7,7 +7,7 @@ const logger = require('../logger.js');
 router.use(express.json());
 
 router.post('/new', async (req, res) => {
-    const { postTitle, postContent, postImage } = req.body;
+    const { postTitle, postLead, postContent, postImage } = req.body;
     const postId = uuidv4();
 
     if (!postTitle || !postContent) {
@@ -19,10 +19,10 @@ router.post('/new', async (req, res) => {
     let values;
 
     if (postImage) {
-        query = 'INSERT INTO posts (id, post_title, post_content, post_imageName) VALUES(?,?,?,?)';
-        values = [postId, postTitle, postContent, postImage];
+        query = 'INSERT INTO posts (id, post_title, post_lead post_content, post_imageName) VALUES(?,?,?,?,?)';
+        values = [postId, postTitle, postLead, postContent, postImage];
     } else {
-        query = 'INSERT INTO posts (id, post_title, post_content) VALUES(?,?,?)';
+        query = 'INSERT INTO posts (id, post_title, post_lead, post_content) VALUES(?,?,?)';
         values = [postId, postTitle, postContent];
     };
 
@@ -64,21 +64,21 @@ router.get('/all', async (req, res) => {
 });
 
 router.put('/edit', async (req, res) => {
-    const { postId, postTitle, postContent } = req.body;
+    const { postId, postTitle, postLead, postContent } = req.body;
     let postImage = req.body.postImage;
 
-    if (!postId || !postTitle || postTitle.trim() === '' || postContent.trim() === '') {
+    if (!postId || !postTitle || !postLead || postLead.trim() === '' || postTitle.trim() === '' || postContent.trim() === '') {
         logger.error('Brak wymaganych danych do edycji posta');
         return res.status(400).json({ message: 'Brak wymaganych danych do edycji posta!' });
     }
 
     postImage = postImage && postImage.trim() !== '' ? postImage : null;
 
-    const query = 'UPDATE posts SET post_title=?, post_content=?, post_imageName=? WHERE id=?';
+    const query = 'UPDATE posts SET post_title=?, post_lead=?, post_content=?, post_imageName=? WHERE id=?';
 
 
     try {
-        const [result] = await pool.query(query, [postTitle, postContent, postImage, postId]);
+        const [result] = await pool.query(query, [postTitle, postLead, postContent, postImage, postId]);
         logger.info('Post edytowany!');
         return res.status(200).json({
             message: 'Post poprawnie zaktualizowany',
