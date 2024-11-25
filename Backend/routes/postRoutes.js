@@ -41,7 +41,7 @@ router.post('/new', async (req, res) => {
 
 });
 
-router.get('/all', async (req, res) => {
+router.get('/collection', async (req, res) => {
 
     const query = 'SELECT * FROM posts ORDER BY id';
 

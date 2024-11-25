@@ -6,7 +6,7 @@ const logger = require('../logger.js');
 
 router.use(express.json());
 
-router.get('/all', async (req, res) => {
+router.get('/collection', async (req, res) => {
     const query = 'SELECT * FROM projects ORDER BY id';
 
     try {

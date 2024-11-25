@@ -5,7 +5,7 @@ const logger = require('../logger.js');
 
 router.use(express.json());
 
-router.get('/all', async (req, res) => {
+router.get('/collection', async (req, res) => {
   const queries = [
     `SELECT 'posts' AS source, id, post_title AS title, post_lead, post_content AS content, post_date, COALESCE(post_imageName, '') AS post_imageName FROM posts ORDER BY id;`,
     `SELECT 'projects' AS source, pr.id, pr.project_name AS title, pr.project_category AS category, pr.project_URL AS link, pr.project_screenName, pr.project_description AS description, pr.repo AS repo, pr.long_text AS long_text FROM projects pr;`,

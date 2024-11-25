@@ -23,13 +23,7 @@ services:
   #         - main_network
   #     ports:
   #       - "5050:5050"
-  #     logging:
-  #       driver: "json-file"
-  #       options:
-  #         max-size: "15m"
-  #         max-file: "5"
-  #       volumes:
-  #         # - wolumen logów aplikacji
+  #   
 
 networks:
   main_network:

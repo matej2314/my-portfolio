@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import SocialIcons from "./icons/SocialIcons.jsx";
 import { compClasses } from "./components-classes.js";
+import { mailUrl } from "../url.js";
 
 export default function ContactForm() {
     const name = useRef();
@@ -24,7 +25,7 @@ export default function ContactForm() {
         }
 
         try {
-            const response = await fetch("", {
+            const response = await fetch(mailUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

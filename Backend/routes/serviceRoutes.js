@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 
 router.use(express.json());
 
-router.get('/all', async (req, res) => {
+router.get('/collection', async (req, res) => {
     const query = 'SELECT * FROM services ORDER BY id';
 
     try {
