@@ -1,10 +1,10 @@
 export const pagesClasses = {
     blogPage: {
         pageWrapper: "md:w-screen w-full h-full flex flex-col items-center py-5 justify-center md:h-dvh overflow-hidden md:flex-row md:justify-around flex-nowrap font-sans md:mr-9 md:pt-5 md:pb-5",
-        contentWrapper: "w-[95vw] h-[90vh] bg-neutral-600/30 md:h-content md:mt-0 md:mr-9 flex md:flex-row md:justify-center md:items-start"
+        contentWrapper: "w-[95vw] h-[88vh] bg-neutral-600/30 md:h-content md:mt-0 md:mr-9 flex md:flex-row md:justify-center md:items-start"
     },
     contactPage: {
-        pageWrapper: "w-full h-full flex flex-col items-center justify-center pt-6 pb-3 px-2 md:pt-4 md:pb-4 md:w-screen md:h-full md:overflow-hidden md:flex-row md:justify-around md:flex-nowrap",
+        pageWrapper: "w-full h-[96vh] flex flex-col items-center justify-center pt-6 px-2 md:pt-4 md:pb-4 md:w-screen md:h-full md:overflow-hidden md:flex-row md:justify-around md:flex-nowrap",
         formWrapper: "w-full h-full flex md:h-content md:justify-center bg-contact-image bg-cover md:mr-9 bg-opacity-75 md:my-0"
     },
     mainPage: {
