@@ -1,5 +1,5 @@
 const urlFromLocal = 'http://185.170.196.107:5051';
-const urlFromServer = 'http://myPortfolio-backend:5051';
+const urlFromServer = 'http://127.0.0.1:5051';
 
 export const backendUrl = `${urlFromServer}/data/collection`;
 export const imgUrl = `${urlFromServer}/images`;
