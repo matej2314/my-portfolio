@@ -16,12 +16,12 @@ services:
   App:
     build:
       context: ./Frontend
-      container_name: myPortfolio-frontend
-      restart: always
-      networks:
-          - main_network
-      ports:
-        - "5050:5050"
+    container_name: myPortfolio-frontend
+    restart: always
+    networks:
+      - main_network
+    ports:
+      - "5050:5050"
     
 
 networks:
