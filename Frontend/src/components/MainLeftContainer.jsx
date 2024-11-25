@@ -14,7 +14,7 @@ export default function MainLeftContainer() {
 
     return (
         <div id='main-left-container' className={compClasses.mainLeftContainer.mainContainer}>
-            <Projects selectedCategory={selectedCategory} />
+            <Projects selectedCategory={selectedCategory} isMobile={false} />
             <ProjectsCategories setProjectCat={setProjectCat} />
         </div>
     )

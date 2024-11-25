@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { imgUrl } from "../../url";
 import { projectsClasses } from "./projectsClasses";
 
-export default function Projects({ selectedCategory }) {
+export default function Projects({ selectedCategory, isMobile }) {
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
     const projects = dataCtx.fetchedData.data.projects || [];
@@ -51,8 +51,9 @@ export default function Projects({ selectedCategory }) {
                                     <motion.div
                                         className={projectsClasses.project.hoverContent}
                                         variants={divVariants}
-                                        initial="hidden"
-                                        whileHover="visible"
+                                        initial={isMobile ? "visible" : "hidden"}
+                                        animate={isMobile ? "visible" : "hidden"}
+                                        whileHover={!isMobile && "visible"}
                                         transition={{ duration: 0.3 }}
                                     >
                                         <div className={projectsClasses.project.contentWrapper}>

@@ -16,7 +16,7 @@ export default function ProjectsPage() {
         <main className='w-full h-[101vh] flex flex-col items-center py-4 gap-2 overflow-y-scroll no-scrollbar px-4'>
             <MobileMenu />
             <div className='w-full h-[100vh] flex flex-col justify-center bg-neutral-600/30 text-slate-300 pl-4 overflow-y-scroll overflow-x-hidden'>
-                <Projects selectedCategory={selectedCategory} />
+                <Projects selectedCategory={selectedCategory} isMobile={true} />
                 <ProjectsCategories setProjectCat={setProjectCat} />
             </div>
         </main>
