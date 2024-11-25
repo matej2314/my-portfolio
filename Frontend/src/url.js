@@ -1,5 +1,5 @@
 const urlFromLocal = 'http://185.170.196.107:5051';
-const urlFromServer = 'http://172.18.0.6:5051';
+// const urlFromServer = 'http://172.18.0.6:5051';
 
 export const backendUrl = `${urlFromLocal}/data/collection`;
 export const imgUrl = `${urlFromLocal}/images`;
