@@ -1,7 +1,7 @@
 
 export const compClasses = {
     contactForm: {
-        formDiv: "w-full h-full text-gray-100 flex flex-col items-center rounded-md pt-4 pb-14 md:pt-24 overflow-hidden",
+        formDiv: "w-full h-full text-gray-100 flex flex-col items-center rounded-md pt-4 pb-14 md:pt-24 overflow-hidden z-10",
         contactForm: "w-3/4  flex flex-col items-center font-black",
         h2: "text-5xl mb-4",
         h3: "text-2xl text-lime-500",

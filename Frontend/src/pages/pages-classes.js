@@ -4,8 +4,9 @@ export const pagesClasses = {
         contentWrapper: "w-[95vw] h-[88vh] bg-neutral-600/30 md:h-content md:mt-0 md:mr-9 flex md:flex-row md:justify-center md:items-start"
     },
     contactPage: {
-        pageWrapper: "w-full h-[96vh] flex flex-col items-center justify-center pt-6 px-2 md:pt-4 md:pb-4 md:w-screen md:h-full md:overflow-hidden md:flex-row md:justify-around md:flex-nowrap",
-        formWrapper: "w-full h-full flex md:h-content md:justify-center bg-contact-image bg-cover md:mr-9 bg-opacity-75 md:my-0"
+        pageWrapper: "w-full h-[96vh] flex flex-col items-center justify-center pt-6 px-2 md:pt-4 md:pb-4 md:w-screen md:h-full md:overflow-hidden md:flex-row md:justify-around md:flex-nowrap z-0",
+        formWrapper: "relative w-full h-full flex md:h-content md:justify-center bg-cover md:mr-9 bg-opacity-75 md:my- z-0",
+        img: "absolute z-0 left-0 top-0 w-full h-full bg-cover",
     },
     mainPage: {
         wrapper: "w-screen h-dvh overflow-hidden flex justify-around flex-nowrap font-sans mr-9 md:pt-5 md:pb-4",
@@ -29,7 +30,8 @@ export const pagesClasses = {
         repoLink: "text-xl underline underline-offset-1 hover:text-[#b8c785]"
     },
     projectsPage: {
-        
-    }
+        wrapper: 'w-full h-[101vh] flex flex-col items-center py-4 gap-2 overflow-y-scroll no-scrollbar px-4',
+        contentWrapper: 'w-full h-[100vh] flex flex-col justify-center bg-neutral-600/30 text-slate-300 pl-4 overflow-y-scroll overflow-x-hidden',
+    },
 }
 
