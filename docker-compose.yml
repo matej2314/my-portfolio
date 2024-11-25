@@ -13,7 +13,7 @@ services:
       - /root/main/portfolio/backend/.env:/app/.env
     environment:
       - DB_HOST=main_db
-  App:
+  app:
     build:
       context: ./Frontend
     container_name: myPortfolio-frontend
