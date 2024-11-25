@@ -13,17 +13,16 @@ services:
       - /root/main/portfolio/backend/.env:/app/.env
     environment:
       - DB_HOST=main_db
-
-  #  App:
-  #   build:
-  #     context: ./Frontend
-  #     contaner_name: myPortfolio-frontend
-  #     restart: always
-  #     networks:
-  #         - main_network
-  #     ports:
-  #       - "5050:5050"
-  #   
+  App:
+    build:
+      context: ./Frontend
+      contaner_name: myPortfolio-frontend
+      restart: always
+      networks:
+          - main_network
+      ports:
+        - "5050:5050"
+    
 
 networks:
   main_network:
