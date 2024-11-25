@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { DataContext } from '../store/data-context';
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 import LeftSidebar from "../components/LeftSidebar";
+import MobileMenu from '../components/mobileElements/MobileMenu';
 import { pagesClasses } from "./pages-classes";
 import { blogImgs } from "../url";
 
@@ -11,10 +13,13 @@ export default function BlogPage() {
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
     const posts = dataCtx.fetchedData.data.posts || [];
+    const isMobile = useMediaQuery({ maxWidth: 768 });
+
+
 
     return (
         <div className={pagesClasses.blogPage.pageWrapper}>
-            <LeftSidebar />
+            {!isMobile ? <LeftSidebar /> : <MobileMenu />}
             <div className={pagesClasses.blogPage.contentWrapper}>
                 <ul className="w-full flex flex-row justify-start items-center p-3">
                     {loading ? (
