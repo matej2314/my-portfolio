@@ -22,7 +22,8 @@ export default function Projects({ selectedCategory, isMobile }) {
     const liVariants = {
         initial: { opacity: 0, scale: 0.9 },
         animate: { opacity: 1, scale: 1 },
-        hover: { opacity: 1, scale: 1.06 }
+        hover: { opacity: 1, scale: 1.06 },
+        exit: { opacity: 0, scale: 0 }
     };
 
     return (
@@ -40,12 +41,19 @@ export default function Projects({ selectedCategory, isMobile }) {
                                     variants={liVariants}
                                     initial="initial"
                                     animate="animate"
+                                    exit="exit"
                                     whileHover="hover"
                                     transition={{ duration: 0.5, type: "stiffness", stiffness: 200, delay: 0.2 }}
                                 >
                                     <motion.img
                                         className={projectsClasses.project.projectImage}
-                                        src={`${imgUrl}/${project.project_screenName}`}
+                                        src={`${imgUrl}/${project.project_screenName}-640.png`}
+                                        srcSet={`
+                                            ${imgUrl}/${project.project_screenName}-320.png 320w,
+                                            ${imgUrl}/${project.project_screenName}-640.png 640w,
+                                            ${imgUrl}/${project.project_screenName}.png 1100w
+                                            `}
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                         alt={project.title}
                                     />
                                     <motion.div

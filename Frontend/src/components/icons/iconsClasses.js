@@ -6,6 +6,5 @@ export const iconsClasses = {
         githubColor: "gray-500/15",
         linkedinColor: "#0A66C2",
         mailIcon: "h-full flex items-start hover:scale-150",
-        hoverState: "hover:scale-150",
     }
 }

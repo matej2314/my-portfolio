@@ -30,12 +30,12 @@ export const sectionsClasses = {
         servicesWrapper: "grid grid-rows-auto md:grid-cols-2 gap-2 pb-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40 ",
     },
     skill: {
-        span: "mr-1.5 md:mr-3 min-w-[40px] flex justify-center",
-        li: "w-fit flex flex-row items-center justify-start gap-2 mx-auto", 
+        span: "min-w-[40px] flex justify-center",
+        li: "w-fit flex flex-row items-center justify-around gap-3 mx-auto", 
     },    
     skillsSection: {
         sectionWrapper: "w-full flex flex-col items-center justify-center border-dotted border-b-2 border-[#6f963b] border-opacity-40",
-        ul: "w-full grid grid-cols-2 gap-14 my-4 text-sm md:text-xl mx-auto justify-center",
+        ul: "w-full grid grid-cols-2 gap-14 my-4 text-sm md:text-xl mx-auto",
     },
     workSection: {
         sectionWrapper: "w-full flex flex-col justify-center items-center gap-4",

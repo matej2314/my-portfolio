@@ -20,7 +20,8 @@ export default function SocialIcons({ mailSize, iconsSize }) {
 
     const linkVariants = {
         initial: { opacity: 0, y: -10 },
-        animate: { opacity: 1, y: 0 }
+        animate: { opacity: 1, y: 0 },
+        whileHover: { scale: 1.5, transition: { duration: 0.3 } }
     };
 
     return (
@@ -31,26 +32,27 @@ export default function SocialIcons({ mailSize, iconsSize }) {
             className={iconsClasses.socialIcons.iconsWrapper}
         >
             <motion.a
-                className={iconsClasses.socialIcons.hoverState}
                 href={socialURLS.facebook}
                 variants={linkVariants}
+                whileHover={{ scale: 1.5 }}
                 target="_blank"
                 rel="noreferrer">
                 <Icon icon="ic:baseline-facebook" color={iconsClasses.socialIcons.facebookColor} width={iconsSize} height={iconsSize} />
             </motion.a>
             <motion.a
-                className={iconsClasses.socialIcons.hoverState}
                 href={socialURLS.github}
                 variants={linkVariants}
+                whileHover={{ scale: 1.5 }}
                 target="_blank"
                 rel="noreferrer"
+
             >
                 <Icon icon="mdi:github" color={iconsClasses.socialIcons.githubColor} width={iconsSize} height={iconsSize} />
             </motion.a>
             <motion.a
-                className={iconsClasses.socialIcons.hoverState}
                 href={socialURLS.linkedIn}
                 variants={linkVariants}
+                whileHover={{ scale: 1.5 }}
                 target="_blank"
                 rel="noreferrer"
             >
