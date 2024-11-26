@@ -27,6 +27,9 @@ export default function MobileMenu() {
                 transition={{ duration: 0.3 }}
                 className={mobileElements.mobileMenu.ul}>
                 <li className={mobileElements.mobileMenu.li}>
+                    <Link to="/">Home</Link>
+                </li>
+                <li className={mobileElements.mobileMenu.li}>
                     <Link to="/projects">Projects</Link>
                 </li>
                 <li className={mobileElements.mobileMenu.li}>
