@@ -5,9 +5,9 @@ export const projectsClasses = {
     },
     project: {
         wrapper: "w-full z-0",
-        ul: "w-full flex flex-col md:grid md:grid-cols-2 gap-3 pl-2 overflow-scroll no-scrollbar z-0",
+        ul: "w-full flex flex-col md:grid md:grid-cols-2 gap-9 pl-2 overflow-scroll no-scrollbar z-0",
         li: "relative w-full",
-        projectImage: "w-full h-full rounded-md",
+        projectImage: "max-w-72 max-h-72 rounded-md",
         hoverContent: "w-full h-full absolute bottom-0 left-o right-0 text-white flex flex-col justify-end items-center",
         contentWrapper: "w-full bg-black/80 flex flex-col justify-around items-center p-2 gap-2",
         h3: "text-lg underline underline-offset-1",

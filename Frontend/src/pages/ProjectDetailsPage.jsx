@@ -30,7 +30,7 @@ export default function ProjectDetails() {
                         <p className={pagesClasses.projectsDetailsPage.description}>{selectedProject.long_text}</p>
                         {selectedProject.link === 'localhost' ? null : <div className={pagesClasses.projectsDetailsPage.linkWrapper}>
                             <p className={pagesClasses.projectsDetailsPage.linkParagraph}>
-                                Link to the demo:
+                                Link to the demo :
                             </p>
                             <a className={pagesClasses.projectsDetailsPage.demoLink} href={selectedProject.link}>{selectedProject.title}</a>
                         </div>}
