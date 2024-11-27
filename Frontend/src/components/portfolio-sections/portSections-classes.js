@@ -1,9 +1,9 @@
 export const sectionsClasses = {
     portfolioHeader: {
-        wrapper: "w-full h-[50vh] md:h-[30vh] flex flex-row items-center justify-center relative md:flex-row",
+        wrapper: "w-full h-[65vh] indirect:h-[65vh] sm:h-[65vh] md:h-[30vh] flex flex-row items-center justify-center relative md:flex-row",
         innerWrapper: "w-full h-[100%] md:h-full relative flex flex-col justify-center items-center",
-        photoTextWrapper: "w-full h-[55%] mt-[13rem] md:h-[50%] sm:mt-[15rem] md:mt-0 absolute flex flex-col justify-center items-center gap-1",  
-        bgImage: "top-0 left-0 z-0 w-full h-[35vh] sm:h-[40vh] md:h-full object-cover opacity-60 blur-[2px] bg-gradient-to-t from-bg-neutral-600/30 via-transparent to-transparent",
+        photoTextWrapper: "w-full h-[50%] indirect:h-[60vh] mt-[13rem] md:h-[50%] sm:mt-[15rem] md:mt-0 absolute flex flex-col justify-center items-center gap-1",  
+        bgImage: "top-0 left-0 z-0 w-full h-[65vh] indirect:h-[65vh] sm:h-[65vh] md:h-full object-cover opacity-60 blur-[2px] bg-gradient-to-t from-bg-neutral-600/30 via-transparent to-transparent",
         portfolioPhoto: "w-[6rem] h-[6rem] md:w-24 md:h-24 z-10 items-center justify-center rounded-full border-4 border-slate-300 max-w-full max-h-full object-cover",
         h2: "text-white text-xs md:text-lg font-semibold z-10",
         h3: "text-white text-lg z-10 hover:text-[#b8c785]",
