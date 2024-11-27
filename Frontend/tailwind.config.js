@@ -4,7 +4,7 @@ export default {
       "./index.html",
       "./src/**/*.{js,ts,jsx,tsx}",
     ],
-    theme: {
+  theme: {
       extend: {
         height: {
           'content' : '95vh'
@@ -14,8 +14,11 @@ export default {
         },
         fontFamily: {
           sans: ['Roboto', 'sans-serif'],
-        },
-      
+      },
+      screens: {
+        ...require('tailwindcss/defaultTheme').screens,
+          indirect: '450px'
+        }
       },
     },
     plugins: [],

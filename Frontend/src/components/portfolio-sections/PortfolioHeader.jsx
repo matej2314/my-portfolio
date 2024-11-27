@@ -31,6 +31,7 @@ export default function PortfolioHeader() {
                     <motion.img
                         initial={{ opacity: 0, y: -40 }}
                         animate={{ opacity: 1, y: 0 }}
+                        whileHover={{ scale: 1.2 }}
                         exit={{ opacity: 1, y: 0 }}
                         transition={{ type: "spring", duration: 1.6, damping: 10 }}
                         id="portfolio-photo"

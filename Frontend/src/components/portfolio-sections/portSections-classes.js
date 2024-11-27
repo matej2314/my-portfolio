@@ -1,12 +1,12 @@
 export const sectionsClasses = {
     portfolioHeader: {
-        wrapper: "w-full h-[60vh] md:h-[30vh] flex flex-row items-center justify-center relative md:flex-row",
+        wrapper: "w-full h-[50vh] md:h-[30vh] flex flex-row items-center justify-center relative md:flex-row",
         innerWrapper: "w-full h-[100%] md:h-full relative flex flex-col justify-center items-center",
-        photoTextWrapper: "w-full h-[60vh] md:h-[50%] mt-[12.5rem] md:mt-0 absolute flex flex-col justify-center items-center gap-1",  
-        bgImage: "top-0 left-0 z-0 w-full h-[46vh] md:h-full object-cover opacity-60 blur-[2px] bg-gradient-to-t from-bg-neutral-600/30 via-transparent to-transparent",
-        portfolioPhoto: "w-[6rem] h-[6rem] md:w-24 md:h-24 z-10 items-center justify-center rounded-full border-4 border-slate-300 hover:z-20 hover:scale-150 max-w-full max-h-full object-cover",
-        h2: "text-white text-sm md:text-lg font-semibold z-10",
-        h3: "text-white text-sm z-10 hover:text-[#b8c785]",
+        photoTextWrapper: "w-full h-[55%] mt-[13rem] md:h-[50%] sm:mt-[15rem] md:mt-0 absolute flex flex-col justify-center items-center gap-1",  
+        bgImage: "top-0 left-0 z-0 w-full h-[35vh] sm:h-[40vh] md:h-full object-cover opacity-60 blur-[2px] bg-gradient-to-t from-bg-neutral-600/30 via-transparent to-transparent",
+        portfolioPhoto: "w-[6rem] h-[6rem] md:w-24 md:h-24 z-10 items-center justify-center rounded-full border-4 border-slate-300 max-w-full max-h-full object-cover",
+        h2: "text-white text-xs md:text-lg font-semibold z-10",
+        h3: "text-white text-lg z-10 hover:text-[#b8c785]",
     },           
     portfolioFooter: {
         wrapper: "w-full flex flex-col items-center justify-center mb-4 gap-3 text-[#b8c785]",
@@ -16,7 +16,7 @@ export const sectionsClasses = {
     },
     languages: {
         section: "w-full flex flex-col justify-around items-center pb-2 border-dotted border-b-2 border-[#6f963b] border-opacity-40 gap-4",
-        ul: "w-full grid grid-rows-auto text-xl gap-4",
+        ul: "w-full grid grid-rows-auto text-sm sm:text-xl md:text-xl gap-4",
         span: "border-dotted border-b-2 border-[#6f963b]",
         li: "w-full flex flex-row justify-around pb-2"
     },
@@ -35,7 +35,7 @@ export const sectionsClasses = {
     },    
     skillsSection: {
         sectionWrapper: "w-full flex flex-col items-center justify-center border-dotted border-b-2 border-[#6f963b] border-opacity-40",
-        ul: "w-full grid grid-cols-2 gap-14 my-4 text-sm md:text-xl mx-auto",
+        ul: "w-full grid grid-cols-1 indirect:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-14 my-4 text-xs md:text-xl mx-auto",
     },
     workSection: {
         sectionWrapper: "w-full flex flex-col justify-center items-center gap-4",
@@ -56,10 +56,10 @@ export const sectionsClasses = {
         li: "w-full flex justify-around pb-2",
     },
     buttonsList: {
-        buttonsList: "w-[98%] md:w-11/12 flex justify-evenly items-center py-2 px-2 md:px-0 border-2 border-[#6f963b] my-4 mx-auto border-opacity-15 rounded-full gap-3",
+        buttonsList: "indirect:w-11/12 sm:w-11/12 md:w-11/12 flex justify-evenly items-center py-2.5 px-3 md:py-2 md:px-2 md:px-0 border-2 border-[#6f963b] my-4 mx-auto border-opacity-15 rounded-full gap-3",
     },
     categoryButton: {
-        categoryButton: "hover:text-[#6f963b] text-xs  md:text-base flex justify-start",
+        categoryButton: "hover:text-[#6f963b] text-[0.5rem] indirect:text-sm sm:text-xs md:text-base flex justify-start",
     },
     coursesSection: {
         section: "w-full flex flex-col items-center justify-center border-dotted border-b-2 border-[#6f963b] border-opacity-40 gap-4",
