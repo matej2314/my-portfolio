@@ -59,7 +59,7 @@ export const sectionsClasses = {
         buttonsList: "indirect:w-11/12 sm:w-11/12 md:w-11/12 flex justify-evenly items-center py-2.5 px-3 md:py-2 md:px-2 md:px-0 border-2 border-[#6f963b] my-4 mx-auto border-opacity-15 rounded-full gap-3",
     },
     categoryButton: {
-        categoryButton: "hover:text-[#6f963b] text-[0.5rem] indirect:text-sm sm:text-xs md:text-base flex justify-start",
+        categoryButton: "hover:text-[#6f963b] text-[1rem] indirect:text-sm sm:text-xs md:text-base flex justify-start",
     },
     coursesSection: {
         section: "w-full flex flex-col items-center justify-center border-dotted border-b-2 border-[#6f963b] border-opacity-40 gap-4",
