@@ -4,6 +4,7 @@ import MainRightContainer from "../components/MainRightContainer";
 import { pagesClasses } from "./pages-classes";
 
 
+
 export default function MainPage() {
 
     return (

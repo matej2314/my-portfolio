@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import { useState, useEffect } from 'react';
 
 import MainPage from './pages/MainPage';
 import Contact from './pages/Contact';
@@ -9,30 +8,22 @@ import BlogPage from './pages/BlogPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetails from './pages/ProjectDetailsPage';
 import PostReadMore from './pages/PostReadMore';
+import Redirect from './components/redirect/Redirect';
 
 function App() {
 
-  const [mainComponent, setMainComponent] = useState(<MainPage />);
-
   const isMobile = useMediaQuery({ maxWidth: 768 });
-
-  useEffect(() => {
-    if (isMobile) {
-      setMainComponent(<PortfolioPage />)
-    } else {
-      setMainComponent(<MainPage />)
-    }
-  }, [isMobile]);
 
   const router = createBrowserRouter([
 
-    { path: '/', element: mainComponent },
+    { path: '/', element: isMobile ? <PortfolioPage /> : <MainPage /> },
     { path: 'portfolio', element: <PortfolioPage /> },
     { path: 'blog', element: <BlogPage /> },
     { path: 'contact', element: <Contact /> },
     { path: 'projects', element: <ProjectsPage /> },
     { path: '/project/details/:id', element: <ProjectDetails /> },
-    { path: '/post/more/:id', element: <PostReadMore /> }
+    { path: '/post/more/:id', element: <PostReadMore /> },
+    { path: '/cms', element: <Redirect link="http://185.170.196.107:5051/" /> }
 
   ]);
 
