@@ -34,7 +34,7 @@ export const sectionsClasses = {
         li: "w-fit h-fit flex flex-row items-center justify-center gap-1 indirect:gap-3 mx-auto", 
     },    
     skillsSection: {
-        sectionWrapper: "w-full flex flex-col px-1 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
+        sectionWrapper: "w-full flex flex-col items-center px-1 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
         ul: "w-full grid grid-cols-2 gap-x-12 gap-y-8 indirect:grid-cols-2 indirect:gap-x-12 sm:grid-cols-2 sm:gap-x-12 md:grid-cols-2 gap-14 my-4 text-xm md:text-xl mx-auto",
     },
     workSection: {
@@ -56,10 +56,10 @@ export const sectionsClasses = {
         li: "w-full flex justify-around pb-2",
     },
     buttonsList: {
-        buttonsList: "indirect:w-11/12 sm:w-11/12 md:w-11/12 flex justify-evenly items-center py-2.5 px-3 md:py-2 md:px-2 md:px-0 border-2 border-[#6f963b] my-4 mx-auto border-opacity-15 rounded-full gap-3",
+        buttonsList: "w-fit indirect:w-11/12 sm:w-11/12 md:w-11/12 flex flex-row justify-start items-center py-2.5 px-2 md:py-2 md:px-2 md:px-0 border-2 border-[#6f963b] my-4 mx-auto border-opacity-15 rounded-full gap-3",
     },
     categoryButton: {
-        categoryButton: "hover:text-[#6f963b] text-[1rem] indirect:text-sm sm:text-xs md:text-base flex justify-start",
+        categoryButton: "hover:text-[#6f963b] text-[0.8rem] indirect:text-sm sm:text-xs md:text-base flex justify-start",
     },
     coursesSection: {
         section: "w-full flex flex-col items-center justify-center border-dotted border-b-2 border-[#6f963b] border-opacity-40 gap-4",
