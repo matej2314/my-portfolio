@@ -1,15 +1,15 @@
 
 export const compClasses = {
     contactForm: {
-        formDiv: "w-full h-[100%] text-gray-100 flex flex-col items-center rounded-md pt-4 pb-14 md:pt-24 overflow-hidden z-10",
-        contactForm: "w-full h-full px-4 indirect:px-3 md:w-1/3 flex flex-col items-center justify-between font-black",
-        h2: "text-5xl indirect:mb-4",
-        h3: "text-2xl text-lg text-lime-500",
-        firstLabel: "text-lg mb-2 mt-4",
-        otherLabels: "text-lg my-2",
-        input: "w-full text-stone-950 p-3 md:p-2",
-        textarea: "w-full text-stone-950 p-3 md:p-2 resize-none",
-        submitButton: "w-fit h-fit p-4 bg-[#61751b] rounded-md mt-2 md:mt-4 hover:bg-[#374528]"
+        formDiv: "w-full h-dvh text-gray-100 flex flex-col items-center rounded-md pt-2 pb-2 indirect:pb-14 md:pt-24 overflow-scroll no-scrollbar z-10",
+        contactForm: "w-full h-full px-4 indirect:px-3 md:w-1/3 flex flex-col items-center justify-between font-black overflow-scroll no-scrollbar",
+        h2: "text-2xl indirect:text-5xl indirect:mb-4",
+        h3: "indirect:text-2xl text-lg text-lime-500",
+        firstLabel: "indirect:text-lg indirect:mb-2 indirect:mt-4",
+        otherLabels: "indirect:text-lg indirect:my-2",
+        input: "w-full text-stone-950 p-1 indirect:p-3 md:p-2",
+        textarea: "w-full text-sm indirect:text-lg text-stone-950 p-3 md:p-2 resize-none",
+        submitButton: "w-fit h-fit indirect:p-4 bg-[#61751b] rounded-md indirect:mt-2 md:mt-4 hover:bg-[#374528]"
     },
     footer: {
         wrapper: "w-[100%] flex flex-row justify-center items-center mx-auto",

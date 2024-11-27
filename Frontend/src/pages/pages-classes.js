@@ -1,11 +1,11 @@
 export const pagesClasses = {
     blogPage: {
-        pageWrapper: "indirect:w-screen w-dvw h-dvh flex flex-col items-center pt-2 indirect:gap-2 indirect:h-dvh overflow-hidden md:flex-row md:justify-around flex-nowrap font-sans md:mr-9 md:pt-5 md:pb-5",
-        contentWrapper: "w-[95vw] h-[88vh] bg-neutral-600/30 px-10 indirect:h-content md:mt-0 md:mr-9 flex md:flex-row md:justify-center md:items-start"
+        pageWrapper: "pt-5 overflow-scroll no-scrollbar indirect:w-screen w-dvw h-dvh flex flex-col items-center indirect:gap-2 indirect:h-dvh overflow-hidden md:flex-row md:justify-around flex-nowrap font-sans md:mr-9 md:pt-5 md:pb-5",
+        contentWrapper: "w-[95vw] overflow-scroll no-scrollbar h-[88vh] bg-neutral-600/30 px-10 indirect:h-content md:mt-0 md:mr-9 flex md:flex-row md:justify-center md:items-start"
     },
     contactPage: {
-        pageWrapper: "w-screen h-dvh flex flex-col rounded-lg items-center pt-5 gap-2 md:pt-5 md:pb-4 md:w-screen md:h-full md:overflow-hidden md:flex-row md:justify-around md:flex-nowrap z-0",
-        formWrapper: "relative w-full h-[88%] mx-2 flex md:h-content md:justify-center md:rounded-lg bg-cover md:mr-4 bg-opacity-75 md:my- z-0",
+        pageWrapper: "w-full h-full flex flex-col rounded-lg items-center pt-5 gap-2 md:pt-5 md:pb-4 md:w-screen md:h-full md:overflow-hidden md:flex-row md:justify-around md:flex-nowrap z-0",
+        formWrapper: "relative w-full h-fit mx-2 flex md:h-content md:justify-center md:rounded-lg bg-cover md:mr-4 bg-opacity-75 md:my- z-0 overflow-scroll no-scrollbar",
         img: "absolute z-0 left-0 top-0 w-full h-full bg-cover",
     },
     mainPage: {
@@ -30,7 +30,7 @@ export const pagesClasses = {
         repoLink: "text-xl underline underline-offset-1 hover:text-[#b8c785]"
     },
     projectsPage: {
-        wrapper: 'w-full h-[101vh] flex flex-col items-center py-5 gap-2 overflow-y-scroll no-scrollbar px-4',
-        contentWrapper: 'w-full h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 pl-4 overflow-y-scroll overflow-x-hidden',
+        wrapper: 'w-full h-dvh flex flex-col items-center py-5 gap-2 overflow-scroll no-scrollbar px-4',
+        contentWrapper: 'w-full h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 pl-4 overflow-scroll no-scrollbar',
     },
 }
