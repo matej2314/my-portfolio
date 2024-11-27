@@ -3,7 +3,7 @@ export const projectsClasses = {
         wrapper: "w-[98%] h-full flex flex-col justify-start overflow-scroll no-scrollbar z-0",
     },
     project: {
-        wrapper: "relative w-full z-0 flex flex-row justify-center pt-10 md:pt-0 overflow-scroll no-scrollbar",
+        wrapper: "relative w-full z-0 flex flex-row justify-center pt-10 md:pt-0",
         ul: " absolute w-full h-[75vh] gap-9 flex flex-col justify-between md:grid md:grid-cols-2 md:gap-9 pl-2 overflow-scroll no-scrollbar z-0",
         li: "relative w-full h-full flex flex-row justify-center",
         projectImage: "max-h-80 sm:max-w-92 md:max-w-80 md:max-h-72 rounded-md",
