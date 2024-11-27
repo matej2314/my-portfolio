@@ -21,7 +21,7 @@ export default function BlogPage() {
         <div className={pagesClasses.blogPage.pageWrapper}>
             {!isMobile ? <LeftSidebar /> : <MobileMenu />}
             <div className={pagesClasses.blogPage.contentWrapper}>
-                <ul className="w-full flex flex-row justify-start items-center p-3">
+                <ul className="w-full flex flex-row justify-start items-start p-4">
                     {loading ? (
                         <p className="hidden">Loading...</p>
                     ) : posts.length === 0 ? (

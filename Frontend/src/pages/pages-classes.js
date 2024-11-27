@@ -1,7 +1,7 @@
 export const pagesClasses = {
     blogPage: {
-        pageWrapper: "md:w-screen w-dvw h-dvh flex flex-col items-center pt-5 gap-2 md:h-dvh overflow-hidden md:flex-row md:justify-around flex-nowrap font-sans md:mr-9 md:pt-5 md:pb-5",
-        contentWrapper: "w-[95vw] h-[88vh] bg-neutral-600/30 md:h-content md:mt-0 md:mr-9 flex md:flex-row md:justify-center md:items-start"
+        pageWrapper: "indirect:w-screen w-dvw h-dvh flex flex-col items-center pt-2 indirect:gap-2 indirect:h-dvh overflow-hidden md:flex-row md:justify-around flex-nowrap font-sans md:mr-9 md:pt-5 md:pb-5",
+        contentWrapper: "w-[95vw] h-[88vh] bg-neutral-600/30 px-10 indirect:h-content md:mt-0 md:mr-9 flex md:flex-row md:justify-center md:items-start"
     },
     contactPage: {
         pageWrapper: "w-screen h-dvh flex flex-col rounded-lg items-center pt-5 gap-2 md:pt-5 md:pb-4 md:w-screen md:h-full md:overflow-hidden md:flex-row md:justify-around md:flex-nowrap z-0",
