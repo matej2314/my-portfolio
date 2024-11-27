@@ -31,7 +31,7 @@ export const sectionsClasses = {
     },
     skill: {
         span: "w-fit flex justify-center",
-        li: "w-fit h-fit flex flex-row items-center justify-center gap-2 indirect:gap-3 mx-auto", 
+        li: "w-fit h-fit flex flex-row items-center justify-center gap-1 indirect:gap-3 mx-auto", 
     },    
     skillsSection: {
         sectionWrapper: "w-full flex flex-col px-1 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
