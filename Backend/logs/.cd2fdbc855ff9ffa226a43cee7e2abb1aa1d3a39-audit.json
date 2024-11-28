@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 3
+    },
+    "auditLog": "C:\\Users\\matej\\Desktop\\projekt JS\\Portfolio\\Backend\\logs\\.cd2fdbc855ff9ffa226a43cee7e2abb1aa1d3a39-audit.json",
+    "files": [
+        {
+            "date": 1732787283877,
+            "name": "C:\\Users\\matej\\Desktop\\projekt JS\\Portfolio\\Backend\\logs\\combined-2024-11-28.log",
+            "hash": "9c58986b38e3d345af89ece56e858b8c4954be3ea3aad0cfe54c526ee9107a77"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -7,18 +7,51 @@
     <title>msliwowski.net - administracja</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <p>Manage:</p>
-                <li><button>Services</button></li>
-                <li><button>Posts</button></li>
-                <li><button>Projects</button></li>
+    <header id="header">
+        <nav id="nav__element">
+            <ul id="menu__list">
+                <p id="menu__title">Manage:</p>
+                <li id="menu__list--item"><button class="btn-services" id="menu__list--button">Services</button></li>
+                <li id="menu__list--item"><button class="btn-posts" id="menu__list--button">Posts</button></li>
+                <li id="menu__list--item"><button class="btn-projects" id="menu__list--button">Projects</button></li>
+                <li id="menu__list--item"><button class="btn-courses" id="menu__list--button">Courses</button></li>
+                <li id="menu__list--item"><button class="btn-skills" id="menu__list--button">Skills</button></li>
             </ul>
         </nav>
     </header>
-    <main>
+    <main id="main__container">
+        <p id="server__callback">server callback</p>
+        <div id="section">
+            <div id="section__header">
+                <div id="section__topButton"><button id="section__closeButton">Close</button></div>
+                <h2 id="services__title">Services management</h2>
+            </div>
+            <ul id="services__list">
+                <li id="services__list--item">
+                    Item 1
+                    <div id="item__buttons">
+                        <button class="list-btn" id="services__list--item_editButton">
+                            Edit
+                        </button>
+                        <button class="list-btn" id="services__list--item_deleteButton">
+                            Delete
+                        </button>
+                    </div>
 
+                </li>
+                <li id="services__list--item">
+                    Item 2
+                    <div id="item__buttons">
+                        <button class="list-btn" id="services__list--item_editButton">
+                            Edit
+                        </button>
+                        <button class="list-btn" id="services__list--item_deleteButton">
+                            Delete
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </main>
     <script src="./main.js"></script>
 </body>
