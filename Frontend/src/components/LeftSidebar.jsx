@@ -11,7 +11,7 @@ export default function LeftSidebar() {
             id="left-sidebar"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, type: "spring", damping: 40, stiffness: 60 }}
+            transition={{ duration: 0.305, type: "spring", damping: 40, stiffness: 60 }}
             className={compClasses.leftSidebar.leftSidebar}
         >
             <Link to="/contact" className={compClasses.leftSidebar.link}>
