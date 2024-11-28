@@ -21,27 +21,29 @@ export default function MobileMenu() {
             >
                 Menu
             </button>
-            <motion.ul
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : 20 }}
-                transition={{ duration: 0.3 }}
-                className={mobileElements.mobileMenu.ul}>
-                <li className={mobileElements.mobileMenu.li}>
-                    <Link to="/">Home</Link>
-                </li>
-                <li className={mobileElements.mobileMenu.li}>
-                    <Link to="/projects">Projects</Link>
-                </li>
-                <li className={mobileElements.mobileMenu.li}>
-                    <Link to="/blog">Blog</Link>
-                </li>
-                <li className={mobileElements.mobileMenu.li}>
-                    <Link to="/contact">Contact</Link>
-                </li>
-                <li className={mobileElements.mobileMenu.li}>
-                    <Link to={cvURL}>Download CV</Link>
-                </li>
-            </motion.ul>
+            {isOpen && (
+                <motion.ul
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : 20 }}
+                    transition={{ duration: 0.3 }}
+                    className={mobileElements.mobileMenu.ul}>
+                    <li className={mobileElements.mobileMenu.li}>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li className={mobileElements.mobileMenu.li}>
+                        <Link to="/projects">Projects</Link>
+                    </li>
+                    <li className={mobileElements.mobileMenu.li}>
+                        <Link to="/blog">Blog</Link>
+                    </li>
+                    <li className={mobileElements.mobileMenu.li}>
+                        <Link to="/contact">Contact</Link>
+                    </li>
+                    <li className={mobileElements.mobileMenu.li}>
+                        <Link to={cvURL}>Download CV</Link>
+                    </li>
+                </motion.ul>
+            )}
         </div>
     )
 }
