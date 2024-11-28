@@ -2,7 +2,7 @@
 export const compClasses = {
     contactForm: {
         formDiv: "w-full h-full text-gray-100 flex flex-col items-center rounded-md pt-2 pb-2 indirect:pb-16 md:pt-0 z-10",
-        contactForm: "w-full h-fit px-4 pt-2 indirect:px-3 md:w-1/3 flex flex-col items-center justify-between font-black ",
+        contactForm: "w-full h-fit px-4 pt-2 gap-8 indirect:px-3 md:w-1/3 md:gap-2 flex flex-col items-center justify-between font-black ",
         h2: "text-xl indirect:text-5xl indirect:mb-4",
         h3: "indirect:text-2xl text-lg text-lime-500",
         firstLabel: "py-1 indirect:text-lg indirect:mb-2 indirect:mt-3",

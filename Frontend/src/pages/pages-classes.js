@@ -4,7 +4,7 @@ export const pagesClasses = {
         contentWrapper: "w-[95vw] overflow-scroll no-scrollbar h-[88vh] bg-neutral-600/30 px-6 indirect:h-content md:mt-0 md:mr-9 flex md:flex-row md:justify-center md:items-start"
     },
     contactPage: {
-        pageWrapper: "w-full h-dvh overflow-scroll no-scrollbar flex flex-col rounded-lg items-center pt-5 gap-2 md:pt-5 md:pb-4 md:w-screen md:h-full md:overflow-hidden md:flex-row md:justify-around md:flex-nowrap z-0",
+        pageWrapper: "w-full h-[98vh] overflow-scroll no-scrollbar flex flex-col rounded-lg items-center pt-5 gap-2 md:pt-5 md:pb-4 md:w-screen md:h-full md:overflow-hidden md:flex-row md:justify-around md:flex-nowrap z-0",
         formWrapper: "relative w-full h-full indirect:overflow-scroll indirect:no-scrollbar mx-2 flex flex-row md:h-content md:justify-center md:rounded-lg bg-cover md:mr-4 bg-opacity-75 md:my- z-0 overflow-scroll no-scrollbar",
         img: "absolute z-0 left-0 top-0 w-full h-full bg-cover",
     },
