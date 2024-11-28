@@ -8,7 +8,7 @@ import BlogPage from './pages/BlogPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetails from './pages/ProjectDetailsPage';
 import PostReadMore from './pages/PostReadMore';
-import Redirect from './components/redirect/Redirect';
+
 
 function App() {
 
@@ -23,7 +23,7 @@ function App() {
     { path: 'projects', element: <ProjectsPage /> },
     { path: '/project/details/:id', element: <ProjectDetails /> },
     { path: '/post/more/:id', element: <PostReadMore /> },
-    { path: '/cms', element: <Redirect link="http://185.170.196.107:5051/" /> }
+    // { path: '/cms', element: }
 
   ]);
 

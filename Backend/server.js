@@ -35,14 +35,6 @@ app.use('/data', dataRoutes);
 app.use('/download', downloadRoutes);
 app.use('/email', emailRoutes);
 
-app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, './CMS', 'index.html'));
-});
-
-app.get('/main', (req, res) => {
-	res.sendFile(path.join(__dirname, './CMS', 'main.html'));
-});
-
 app.listen(port, () => {
     logger.info(`BACKEND SERVER RUNNING. PORT ${port}`);
     console.log(`SERVER RUNNING ON PORT ${port}`);
