@@ -8,6 +8,8 @@ import BlogPage from './pages/BlogPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetails from './pages/ProjectDetailsPage';
 import PostReadMore from './pages/PostReadMore';
+import NotFound from './pages/NotFound';
+import LoginPage from './components/cms/LoginPage';
 
 
 function App() {
@@ -15,7 +17,6 @@ function App() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const router = createBrowserRouter([
-
     { path: '/', element: isMobile ? <PortfolioPage /> : <MainPage /> },
     { path: 'portfolio', element: <PortfolioPage /> },
     { path: 'blog', element: <BlogPage /> },
@@ -23,8 +24,8 @@ function App() {
     { path: 'projects', element: <ProjectsPage /> },
     { path: '/project/details/:id', element: <ProjectDetails /> },
     { path: '/post/more/:id', element: <PostReadMore /> },
-    // { path: '/cms', element: }
-
+    { path: '/login_admin', element: <LoginPage /> },
+    { path: '*', element: <NotFound /> }
   ]);
 
   return (

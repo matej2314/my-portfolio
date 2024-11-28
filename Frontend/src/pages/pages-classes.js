@@ -33,4 +33,7 @@ export const pagesClasses = {
         wrapper: 'w-full h-dvh flex flex-col items-center py-5 gap-2 overflow-scroll no-scrollbar px-4',
         contentWrapper: 'w-full h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 pl-4 overflow-scroll no-scrollbar',
     },
+    notFound: {
+        
+    }
 }
