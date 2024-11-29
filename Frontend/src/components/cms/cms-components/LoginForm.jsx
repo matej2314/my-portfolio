@@ -22,10 +22,6 @@ export default function LoginForm() {
             data: { email: emailValue, password: passwordValue },
         });
 
-
-        if (response && response.token) {
-            Cookies.set('SESSID', { expires: 7, secure: false });
-        }
     };
 
     return (
