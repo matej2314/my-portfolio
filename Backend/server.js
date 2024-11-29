@@ -1,6 +1,7 @@
 const path = require('path');
 const dotenv = require('dotenv').config({ path: './.env' });
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
 const port = process.env.SERV_PORT || 5051;
@@ -25,6 +26,7 @@ const skillsRoutes = require('./routes/skillsRoutes.js');
 const coursesRoutes = require('./routes/coursesRoutes.js');
 const downloadRoutes = require('./routes/downloadRoute.js');
 const emailRoutes = require('./routes/emailRoutes.js')
+const authRoutes = require('./routes/auth.js');
 
 app.use('/services', serviceRoutes);
 app.use('/projects', projectsRoutes);
@@ -34,6 +36,7 @@ app.use('/courses', coursesRoutes);
 app.use('/data', dataRoutes);
 app.use('/download', downloadRoutes);
 app.use('/email', emailRoutes);
+app.use('/auth', authRoutes);
 
 app.listen(port, () => {
     logger.info(`BACKEND SERVER RUNNING. PORT ${port}`);

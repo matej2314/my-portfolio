@@ -3,6 +3,7 @@ const pool = require('../db.js');
 const router = express.Router();
 const logger = require('../logger.js');
 const { v4: uuidv4 } = require('uuid');
+const verifyAdmin = require('../controllers/verifyAdmin.js');
 
 router.use(express.json());
 
