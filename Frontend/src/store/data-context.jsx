@@ -25,8 +25,8 @@ const DataProvider = ({ children }) => {
 
                 if (!response.ok) {
                     throw new Error('Błąd pobierania danych');
-
                 }
+
                 const data = await response.json();
                 setFetchedData((prevdata) => data);
 

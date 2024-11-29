@@ -1,11 +1,12 @@
-const urlFromLocal = 'http://185.170.196.107:5051';
-// const urlFromServer = 'http://172.18.0.6:5051';
+const serverUrl = 'http://185.170.196.107:5051';
 
-export const backendUrl = `${urlFromLocal}/data/collection`;
-export const imgUrl = `${urlFromLocal}/images`;
-export const blogImgs = `${urlFromLocal}/blog-photos`;
-export const cvURL = `${urlFromLocal}/download`;
-export const mailUrl = `${urlFromLocal}/email`;
+export const backendUrl = `${serverUrl}/data/collection`;
+export const registerUrl = `${serverUrl}/auth/register`;
+export const loginUrl = `${serverUrl}/auth/login`;
+export const imgUrl = `${serverUrl}/images`;
+export const blogImgs = `${serverUrl}/blog-photos`;
+export const cvURL = `${serverUrl}/download`;
+export const mailUrl = `${serverUrl}/email`;
 export const socialURLS = {
     facebook: "https://www.facebook.com/mateusz.sliwowski.9",
     github: "https://github.com/matej2314",

@@ -9,7 +9,7 @@ import ProjectsPage from './pages/ProjectsPage';
 import ProjectDetails from './pages/ProjectDetailsPage';
 import PostReadMore from './pages/PostReadMore';
 import NotFound from './pages/NotFound';
-import LoginPage from './components/cms/LoginPage';
+import CmsIndexPage from './components/cms/CmsIndexPage';
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
     { path: 'projects', element: <ProjectsPage /> },
     { path: '/project/details/:id', element: <ProjectDetails /> },
     { path: '/post/more/:id', element: <PostReadMore /> },
-    { path: '/login_admin', element: <LoginPage /> },
+    { path: 'login_admin', element: <CmsIndexPage /> },
     { path: '*', element: <NotFound /> }
   ]);
 
