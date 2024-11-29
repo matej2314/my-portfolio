@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useSendRequest() {
+function useSendRequest() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const [result, setResult] = useState(null);
@@ -35,3 +35,5 @@ export default function useSendRequest() {
 
     return { sendRequest, result, isLoading, error };
 }
+
+export default useSendRequest;
