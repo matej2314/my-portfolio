@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Cookies from 'js-cookie'
-import { useSendRequest } from "../../../hooks/UseSendRequest";
+import { useSendRequest } from "../../../hooks/UseSendRequest.jsx";
 
 import { loginUrl } from "../../../url";
 
