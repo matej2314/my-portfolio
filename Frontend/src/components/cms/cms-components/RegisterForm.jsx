@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import useSendRequest from "../../../hooks/UseSendRequest"
+import useSendRequest from "../../../hooks/useSendRequest.jsx";
 
 import { registerUrl } from "../../../url"
 
