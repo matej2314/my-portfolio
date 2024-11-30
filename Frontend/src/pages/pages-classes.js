@@ -34,6 +34,12 @@ export const pagesClasses = {
         contentWrapper: 'w-full h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 pl-4 overflow-scroll no-scrollbar',
     },
     notFound: {
-        
+        wrapper: 'w-90dvw h-dvh flex flex-col items-center justify-between ml-5 md:ml-0 md:flex-row md:justify-between',
+        contentWrapper: 'w-full h-content bg-neutral-600/30 flex flex-row justify-center items-start md:items-center text-white mr-9',
+    },
+    postReadMore: {
+        contentWrapper: "w-full h-content flex flex-col justify-start items-center mt-5 mr-9 p-5 bg-neutral-600/30",
+        div: "w-3/4 h- flex flex-col bg-neutral-100 py-2 px-5 gap-4",
+        h2: "w-full flex flex-row justify-center text-black font-bold text-2xl underline underline-offset-2",
     }
 }

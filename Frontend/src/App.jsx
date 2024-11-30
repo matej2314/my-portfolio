@@ -10,6 +10,7 @@ import ProjectDetails from './pages/ProjectDetailsPage';
 import PostReadMore from './pages/PostReadMore';
 import NotFound from './pages/NotFound';
 import CmsIndexPage from './components/cms/CmsIndexPage';
+import CmsMainPage from './components/cms/CmsMainPage';
 import { AuthProvider } from './store/auth-context';
 
 
@@ -26,6 +27,7 @@ function App() {
     { path: '/project/details/:id', element: <ProjectDetails /> },
     { path: '/post/more/:id', element: <PostReadMore /> },
     { path: 'login_admin', element: <AuthProvider><CmsIndexPage /></AuthProvider> },
+    { path: '/cms', element: <AuthProvider><CmsMainPage /></AuthProvider> },
     { path: '*', element: <NotFound /> }
   ]);
 

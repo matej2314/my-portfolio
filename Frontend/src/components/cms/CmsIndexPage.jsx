@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import LoginForm from "./cms-components/LoginForm"
 import RegisterForm from "./cms-components/RegisterForm";
+import { cmsPages } from './cmsPages-styles';
 
 
 export default function CmsIndexPage() {
@@ -13,13 +14,13 @@ export default function CmsIndexPage() {
     }
 
     return (
-        <main className="w-screen h-screen flex flex-row justify-center items-center bg-slate-800 pt-10">
-            <div className="w-full h-full flex flex-col justify=center items-center gap-4">
-                {selectedForm == null && <div className="w-fit h-fit flex flex-row justify-around text-white gap-4">
-                    <button onClick={() => selectForm("login")} className="w-fit h-fit p-5 bg-black">
+        <main className={cmsPages.indexPage.main}>
+            <div className={cmsPages.indexPage.mainDiv}>
+                {selectedForm == null && <div className={cmsPages.indexPage.buttonWrapper}>
+                    <button onClick={() => selectForm("login")} className={cmsPages.indexPage.button}>
                         Log In
                     </button>
-                    <button onClick={() => selectForm("register")} className="w-fit h-fit p-5 bg-black">
+                    <button onClick={() => selectForm("register")} className={cmsPages.indexPage.button}>
                         Register
                     </button>
                 </div>}

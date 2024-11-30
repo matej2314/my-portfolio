@@ -1,5 +1,6 @@
 import { useRef, useContext } from "react";
 import { AuthContext } from "../../../store/auth-context";
+import { cmsComponents } from './cms-componenst-styles';
 
 export default function RegisterForm() {
     const username = useRef();

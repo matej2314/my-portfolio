@@ -23,9 +23,9 @@ export default function PostReadMore() {
     return (
         <main className={pagesClasses.contactPage.pageWrapper}>
             <LeftSidebar />
-            <div className="w-full h-content flex flex-col justify-start items-center mt-5 mr-9 p-5 bg-neutral-600/30">
-                <div className=" w-3/4 h- flex flex-col bg-neutral-100 py-2 px-5 gap-4">
-                    <h2 className="w-full flex flex-row justify-center text-black font-bold text-2xl underline underline-offset-2">{selectedPost.title}</h2>
+            <div className={pagesClasses.postReadMore.contentWrapper}>
+                <div className={pagesClasses.postReadMore.div}>
+                    <h2 className={pagesClasses.postReadMore.h2}>{selectedPost.title}</h2>
                     <img className="rounded-lg" src={`${blogImgs}/${selectedPost.post_imageName}`}></img>
                     <ReactMarkdown>{selectedPost.content}</ReactMarkdown>
                 </div>
