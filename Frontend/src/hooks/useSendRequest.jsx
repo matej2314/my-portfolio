@@ -8,9 +8,9 @@ export default function useSendRequest() {
     const sendRequest = async ({ url, data }) => {
         try {
             setIsLoading(true);
-            setError(null);  // Resetujemy błąd przed nową próbą
-            setResult(null);  // Resetujemy wynik przed nową próbą
-
+            setError(null);
+            setResult(null);
+            console.log(`Dane w sendRequest: ${url}, ${data}`)
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
@@ -27,7 +27,6 @@ export default function useSendRequest() {
 
             const data = await response.json();
             setResult(data);
-            return data;
         } catch (error) {
             setError(error.message);
             return null;
