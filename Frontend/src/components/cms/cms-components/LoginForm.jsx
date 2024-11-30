@@ -26,7 +26,7 @@ export default function LoginForm() {
                 <h2>Log in</h2>
                 {isLoading && <p>Sending data...</p>}
                 {error && <p style={{ color: "red" }}>Error: {error}</p>}
-                {!isLoading && message && <p>{message}!</p>}
+                {!isLoading && user && <p>Witamy ponownie {user.userName}!</p>}
                 <label htmlFor="email">Type your email:</label>
                 <input className="text-black" type="email" name="email" ref={email} required />
                 <label htmlFor="password">Type your password:</label>
