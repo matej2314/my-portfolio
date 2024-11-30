@@ -8,8 +8,8 @@ export default function useSendRequest() {
     const sendRequest = async ({ url, data }) => {
         try {
             setIsLoading(true);
-            setError(null);
-            setResult(null);
+            setError(null);  // Resetujemy błąd przed nową próbą
+            setResult(null);  // Resetujemy wynik przed nową próbą
 
             const response = await fetch(url, {
                 method: "POST",
@@ -21,13 +21,16 @@ export default function useSendRequest() {
             });
 
             if (!response.ok) {
-                throw new Error("Błąd wysyłania danych");
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Błąd serwera");
             }
 
-            const result = await response.json();
-            setResult(result);
+            const data = await response.json();
+            setResult(data);
+            return data;
         } catch (error) {
             setError(error.message);
+            return null;
         } finally {
             setIsLoading(false);
         }
