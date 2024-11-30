@@ -10,14 +10,13 @@ export default function useSendRequest() {
             setIsLoading(true);
             setError(null);
             setResult(null);
-            console.log(`Dane w sendRequest: ${url}, ${data}`)
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(data),
-                credentials: "include"
+                credentials: "include",
             });
 
             if (!response.ok) {
@@ -25,8 +24,10 @@ export default function useSendRequest() {
                 throw new Error(errorData.message || "Błąd serwera");
             }
 
-            const data = await response.json();
-            setResult(data);
+            const userData = await response.json();
+            setResult(userData);
+
+            return userData;
         } catch (error) {
             setError(error.message);
             return null;

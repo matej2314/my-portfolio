@@ -7,34 +7,30 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
-    const [message, setMessage] = useState(null);
     const { sendRequest, isLoading, error, logout } = useSendRequest();
 
 
     const login = async (email, password) => {
-        setMessage(null);
 
         try {
             const response = await sendRequest({
                 url: loginUrl,
                 data: { email, password }
             });
-            console.log('Login response:', response);
 
             if (response && response.userName) {
+                console.log('aaaa')
                 setIsAuthenticated(true);
                 setUser({ userName: response.userName, role: response.role });
-            } else {
-                setMessage('Logowanie nieudane');
+
             }
         } catch (error) {
-            setMessage('Błąd logowania');
+
         }
     };
 
 
     const register = async (username, email, password) => {
-        setMessage(null);
 
         try {
             const response = await sendRequest({
@@ -43,15 +39,12 @@ export const AuthProvider = ({ children }) => {
             });
 
             if (response) {
-                setMessage('Rejestracja zakończona sukcesem. Możesz się zalogować.');
+                console.log('Rejestracja zakończona sukcesem. Możesz się zalogować.');
             }
         } catch (error) {
-            setMessage('Wystąpił błąd podczas rejestracji nowego użytkownika');
+
         }
     };
-
-
-    console.log('AuthContext state:', { isAuthenticated, user, message });
 
     return (
         <AuthContext.Provider value={{
@@ -61,7 +54,6 @@ export const AuthProvider = ({ children }) => {
             error,
             login,
             register,
-            message,
             logout
         }}>
             {children}
