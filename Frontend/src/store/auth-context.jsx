@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     const [status, setStatus] = useState(null);
     const [user, setUser] = useState(null);
     const [message, setMessage] = useState(null);
-    const { sendRequest, isLoading, error, logout, result } = useSendRequest();
+    const { sendRequest, isLoading, error, logout } = useSendRequest();
 
     const login = async (email, password) => {
         setMessage(null);
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true);
             setUser({ userName: response.userName, role: response.role });
             setStatus(response.status);
-            setMessage(result.message);
+            setMessage(`witamy ponownie, ${response.userName}!`);
         }
     };
 
