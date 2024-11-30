@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [status, setStatus] = useState(null);
     const [user, setUser] = useState(null);
-    const [registerMessage, setRegisterMessage] = useState(null);
+    const [message, setMessage] = useState(null);
     const { sendRequest, isLoading, error, logout } = useSendRequest();
 
     const login = async (email, password) => {
@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true);
             setUser({ userName: response.userName, role: response.role });
             setStatus(response.status);
+            setMessage(`Witamy ponownie ${user.userName}`)
         }
     };
 
@@ -33,10 +34,10 @@ export const AuthProvider = ({ children }) => {
             });
 
             if (response) {
-                setRegisterMessage('Rejestracja zakończona sukcesem. Możesz się zalogować.');
+                setMessage('Rejestracja zakończona sukcesem. Możesz się zalogować.');
             }
         } catch (error) {
-            setRegisterMessage('Wystąpił błąd podczas rejestracji nowego użytkownika');
+            setMessage('Wystąpił błąd podczas rejestracji nowego użytkownika');
         }
     });
 
@@ -49,7 +50,7 @@ export const AuthProvider = ({ children }) => {
             error,
             login,
             register,
-            registerMessage,
+            message,
             logout
         }}>
             {children}

@@ -9,7 +9,7 @@ export default function LoginForm() {
     const email = useRef(null);
     const password = useRef(null);
 
-    const { login, isLoading, error, user, status } = useContext(AuthContext);
+    const { login, isLoading, error, user, status, message } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,7 +26,7 @@ export default function LoginForm() {
                 <h2>Log in</h2>
                 {isLoading && <p>Sending data...</p>}
                 {error && <p style={{ color: "red" }}>Error: {error}</p>}
-                {user && <p>Witamy, {user.userName}!</p>}
+                {message && <p>Witamy, {message}!</p>}
                 <label htmlFor="email">Type your email:</label>
                 <input className="text-black" type="email" name="email" ref={email} required />
                 <label htmlFor="password">Type your password:</label>

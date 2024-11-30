@@ -7,7 +7,7 @@ export default function RegisterForm() {
     const email = useRef();
     const password = useRef();
 
-    const { register, isLoading, error, registerMessage } = useContext(AuthContext);
+    const { register, isLoading, error, message } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,7 +42,7 @@ export default function RegisterForm() {
             >
                 <h2 className="text-2xl">Register</h2>
                 {isLoading && <p>Sending data...</p>}
-                {registerMessage && <p>{registerMessage}</p>}
+                {message && <p>{message}</p>}
                 {error && <p className="text-red-700">Error: {error}</p>}
 
                 <label htmlFor="username">Type your username:</label>
