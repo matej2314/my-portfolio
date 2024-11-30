@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
             url: loginUrl,
             data: { email, password }
         });
-
+        console.log('login response:', response)
         if (response && response.userName) {
             setIsAuthenticated(true);
             setUser({ userName: response.userName, role: response.role });
@@ -44,6 +44,11 @@ export const AuthProvider = ({ children }) => {
             setMessage('Wystąpił błąd podczas rejestracji nowego użytkownika');
         }
     });
+
+
+
+    console.log(`Authcontext state after login: user: ${user}, message: ${message}, isAuthenticated: ${isAuthenticated}`)
+
     return (
         <AuthContext.Provider value={{
             isAuthenticated,

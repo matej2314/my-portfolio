@@ -1,5 +1,5 @@
 const serverUrl = 'http://185.170.196.107:5051';
-// const serverUrl = 'http://localhost:5051'
+
 
 export const dataCollectionUrl = `${serverUrl}/data/collection`;
 export const registerUrl = `${serverUrl}/auth/register`;
