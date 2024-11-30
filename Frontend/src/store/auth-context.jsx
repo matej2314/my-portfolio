@@ -25,6 +25,8 @@ export const AuthProvider = ({ children }) => {
             setUser({ userName: response.userName, role: response.role });
             setStatus(response.status);
             setMessage(`witamy ponownie, ${response.userName}!`);
+        } else {
+            setMessage('Logowanie nieudane')
         }
     };
 
@@ -42,7 +44,6 @@ export const AuthProvider = ({ children }) => {
             setMessage('Wystąpił błąd podczas rejestracji nowego użytkownika');
         }
     });
-    console.log('message w auth context:', message)
     return (
         <AuthContext.Provider value={{
             isAuthenticated,

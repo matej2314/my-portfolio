@@ -18,7 +18,7 @@ export default function LoginForm() {
         await login(email.current.value, password.current.value);
     };
 
-    console.log(message)
+    console.log(`Message w loginform: ${message}, user w loginform: ${user}`)
 
     return (
         <div>
