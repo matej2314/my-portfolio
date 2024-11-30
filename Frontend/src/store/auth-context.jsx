@@ -13,6 +13,8 @@ export const AuthProvider = ({ children }) => {
     const { sendRequest, isLoading, error, logout } = useSendRequest();
 
     const login = async (email, password) => {
+        setMessage(null);
+
         const response = await sendRequest({
             url: loginUrl,
             data: { email, password }
