@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true);
             setUser({ userName: response.userName, role: response.role });
             setStatus(response.status);
-            setMessage(`Witamy ponownie ${user.userName}`)
+            setMessage(`Witamy ponownie ${response.userName}`)
         }
     };
 

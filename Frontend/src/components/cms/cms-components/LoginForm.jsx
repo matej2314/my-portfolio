@@ -1,4 +1,4 @@
-import { useRef, useContext } from "react";
+import { useRef, useContext, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../store/auth-context';
 
@@ -11,14 +11,12 @@ export default function LoginForm() {
 
     const { login, isLoading, error, user, status, message } = useContext(AuthContext);
 
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         await login(email.current.value, password.current.value);
     };
-
-    if (status === 200) {
-        navigate('/cms');
-    }
 
     return (
         <div>
@@ -26,7 +24,7 @@ export default function LoginForm() {
                 <h2>Log in</h2>
                 {isLoading && <p>Sending data...</p>}
                 {error && <p style={{ color: "red" }}>Error: {error}</p>}
-                {message && <p>Witamy, {message}!</p>}
+                {!isLoading && message && <p>{message}!</p>}
                 <label htmlFor="email">Type your email:</label>
                 <input className="text-black" type="email" name="email" ref={email} required />
                 <label htmlFor="password">Type your password:</label>
