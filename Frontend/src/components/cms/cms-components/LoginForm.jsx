@@ -18,6 +18,8 @@ export default function LoginForm() {
         await login(email.current.value, password.current.value);
     };
 
+    console.log(message)
+
     return (
         <div>
             <form onSubmit={handleSubmit} className="w-fit h-fit flex flex-col justify-center items-center gap-5 text-white">
