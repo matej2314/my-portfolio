@@ -1,17 +1,24 @@
 import { useRef, useContext } from "react";
+import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../store/auth-context';
+
 import { cmsComponents } from './cms-componenst-styles';
 
 export default function LoginForm() {
+    const navigate = useNavigate();
     const email = useRef(null);
     const password = useRef(null);
 
-    const { login, isLoading, error, user } = useContext(AuthContext);
+    const { login, isLoading, error, user, status } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         await login(email.current.value, password.current.value);
     };
+
+    if (status === 200) {
+        navigate('/cms');
+    }
 
     return (
         <div>

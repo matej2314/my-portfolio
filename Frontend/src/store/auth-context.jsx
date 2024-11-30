@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [status, setStatus] = useState(null);
     const [user, setUser] = useState(null);
     const [registerMessage, setRegisterMessage] = useState(null);
     const { sendRequest, isLoading, error, logout } = useSendRequest();
@@ -19,7 +20,8 @@ export const AuthProvider = ({ children }) => {
 
         if (response && response.userName) {
             setIsAuthenticated(true);
-            setUser({ userName: response.userName });
+            setUser({ userName: response.userName, role: response.role });
+            setStatus(response.status);
         }
     };
 
@@ -41,6 +43,7 @@ export const AuthProvider = ({ children }) => {
     return (
         <AuthContext.Provider value={{
             isAuthenticated,
+            status,
             user,
             isLoading,
             error,

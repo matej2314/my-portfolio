@@ -6,6 +6,6 @@ export const cmsPages = {
         button: "w-fit h-fit p-5 bg-black",
     },
     mainPage: {
-        main: "w-dvw h-dvh flex flex-row justify-center items-start bg-slate-600 pt-10",
+        main: "w-dvw h-dvh flex flex-col justify-start items-center bg-slate-600 pt-10 gap-5 overflow-y-auto",
     }
 }
