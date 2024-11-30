@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { backendUrl } from '../url.js';
+import { dataCollectionUrl } from '../url.js';
 
 export const DataContext = createContext({
     data: {},
@@ -18,7 +18,7 @@ const DataProvider = ({ children }) => {
     const fetchData = async () => {
         try {
             setIsLoading(true);
-            const response = await fetch(backendUrl);
+            const response = await fetch(dataCollectionUrl);
 
             if (!response.ok) {
                 throw new Error('Błąd pobierania danych');

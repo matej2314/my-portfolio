@@ -1,6 +1,6 @@
 const serverUrl = 'http://185.170.196.107:5051';
 
-export const backendUrl = `${serverUrl}/data/collection`;
+export const dataCollectionUrl = `${serverUrl}/data/collection`;
 export const registerUrl = `${serverUrl}/auth/register`;
 export const loginUrl = `${serverUrl}/auth/login`;
 export const imgUrl = `${serverUrl}/images`;
