@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
     const [registerMessage, setRegisterMessage] = useState(null);
-    const { sendRequest, isLoading, error } = useSendRequest();
+    const { sendRequest, isLoading, error, logout } = useSendRequest();
 
     const login = async (email, password) => {
         const response = await sendRequest({
