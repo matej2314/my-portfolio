@@ -1,27 +1,15 @@
-import { useRef } from "react";
-import Cookies from 'js-cookie'
-import useSendRequest from "../../../hooks/useSendRequest";
-
-import { loginUrl } from "../../../url";
+import { useRef, useContext } from "react";
+import { AuthContext } from '../../../store/auth-context';
 
 export default function LoginForm() {
     const email = useRef(null);
     const password = useRef(null);
 
-    const { sendRequest, result, isLoading, error } = useSendRequest();
+    const { login, isLoading, error, user } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const emailValue = email.current?.value;
-        const passwordValue = password.current?.value;
-
-
-        const response = await sendRequest({
-            url: loginUrl,
-            data: { email: emailValue, password: passwordValue },
-        });
-
+        await login(email.current.value, password.current.value);
     };
 
     return (
@@ -30,7 +18,7 @@ export default function LoginForm() {
                 <h2>Log in</h2>
                 {isLoading && <p>Sending data...</p>}
                 {error && <p style={{ color: "red" }}>Error: {error}</p>}
-                {result && result.userName && <p>Witamy, {result.userName}!</p>}
+                {user && <p>Witamy, {user.userName}!</p>}
                 <label htmlFor="email">Type your email:</label>
                 <input className="text-black" type="email" name="email" ref={email} required />
                 <label htmlFor="password">Type your password:</label>
