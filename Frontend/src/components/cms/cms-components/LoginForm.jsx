@@ -11,12 +11,16 @@ export default function LoginForm() {
 
     const { login, isLoading, error, user, status, message } = useContext(AuthContext);
 
+
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(`email z input w login form: ${email.current.value}, password z input: ${password.current.value} `)
         await login(email.current.value, password.current.value);
     };
 
-    console.log(`Message w loginform: ${message}, user w loginform: ${user}, isLoading w loginform: ${isLoading}`)
+
 
     return (
         <div>
