@@ -23,8 +23,6 @@ export const AuthProvider = ({ children }) => {
         if (response && response.userName) {
             setIsAuthenticated(true);
             setUser({ userName: response.userName, role: response.role });
-            setStatus(response.status);
-            setMessage(`witamy ponownie, ${response.userName}!`);
         } else {
             setMessage('Logowanie nieudane')
         }
