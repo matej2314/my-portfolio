@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
             });
 
             if (response && response.userName) {
-                console.log('aaaa')
+
                 setIsAuthenticated(true);
                 setUser({ userName: response.userName, role: response.role });
 
