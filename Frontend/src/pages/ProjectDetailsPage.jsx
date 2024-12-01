@@ -14,7 +14,7 @@ export default function ProjectDetails() {
     const dataCtx = useContext(DataContext);
     const projects = dataCtx.fetchedData.data.projects || [];
     const selectedProject = projects.find((project) => project.id === id);
-    console.log(selectedProject);
+
 
     if (!selectedProject) {
         return <p>Wybierz projekt.</p>

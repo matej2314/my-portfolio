@@ -16,6 +16,16 @@ export default function LoginForm() {
         await login(email.current.value, password.current.value);
     };
 
+    useEffect(() => {
+        let timer
+        if (user) {
+            timer = setTimeout(() => {
+                navigate('/cms');
+            }, 2000);
+        };
+
+        return () => clearTimeout(timer);
+    }, [user, navigate]);
 
     return (
         <div>

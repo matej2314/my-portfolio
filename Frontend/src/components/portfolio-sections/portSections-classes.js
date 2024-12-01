@@ -35,7 +35,7 @@ export const sectionsClasses = {
     },    
     skillsSection: {
         sectionWrapper: "w-full flex flex-col items-center px-1 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
-        ul: "w-full grid grid-cols-2 gap-x-12 gap-y-8 indirect:grid-cols-2 indirect:gap-x-12 sm:grid-cols-2 sm:gap-x-12 md:grid-cols-2 gap-14 my-4 text-xm md:text-xl mx-auto",
+        ul: "w-full grid grid-cols-2 gap-x-12 gap-y-8 indirect:grid-cols-2 indirect:gap-x-12 sm:grid-cols-2 sm:text-xm sm:gap-x-12 lg:grid-cols-2 gap-14 my-4 text-xm md:text-xl mx-auto",
     },
     workSection: {
         sectionWrapper: "w-full flex flex-col justify-center items-center gap-4",
