@@ -53,6 +53,31 @@ router.post('/new', async (req, res) => {
     };
 });
 
+router.put('/edit', async (req, res) => {
+    const { serviceId, serviceName, serviceDescription } = req.body;
+
+    if (!serviceName || !serviceDescription || serviceName.trim() == '' || serviceDescription.trim() == '') {
+        return res.status(400).json({ message: 'Brak danych do edycji usługi' });
+    };
+
+    const query = 'UPDATE services SET serviceName=?, serviceDescription=? WHERE id=?'; 4
+    
+    try {
+        const [result] = await pool.query(query, [serviceName, serviceDescription, serviceId]);
+        logger.info('Usługa edytowana');
+        return res.status(200).json({
+            message: 'Usługa edytowana poprawnie',
+            name: serviceName,
+            id: serviceId
+
+        });
+
+    } catch (error) {
+        logger.error('Nie udało się zaktualizować usługi', error.message);
+        return res.status(500).json({ message: 'Nie udało się zaktualizować usługi' });
+    };
+});
+
 router.delete('/', async (req, res) => {
     const { serviceId } = req.body;
 

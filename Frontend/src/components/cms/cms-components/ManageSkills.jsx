@@ -17,10 +17,6 @@ export default function ManageSkills() {
         setSelectedSkill(skillId)
     };
 
-    const handleEditSkill = (skillData) => {
-        setSelectedSkill(() => skillData);
-    }
-    console.log(selectedSkill)
     return (
         <div className="w-[100vw] h-fit flex flex-col justify-start items-center text-lg text-white p-0 gap-2">
             <h2 className="w-full h-fit flex flex-row justify-center">Skills:</h2>
@@ -40,17 +36,6 @@ export default function ManageSkills() {
                             <span className="w-full">{skill.icon}</span>
                             <span className="w-full">{skill.iconColor}</span>
                             <div className="w-fit h-fit flex flex-col gap-2">
-                                <button
-                                    onClick={() => handleEditSkill({
-                                        id: skill.id,
-                                        title: skill.title,
-                                        category: skill.category,
-                                        icon: skill.icon,
-                                        iconColor: skill.iconColor
-                                    })}
-                                >
-                                    Edit
-                                </button>
                                 <button
                                     onClick={() => handleDeleteSkill(skill.id)}
                                 >

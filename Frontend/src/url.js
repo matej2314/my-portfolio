@@ -15,3 +15,29 @@ export const socialURLS = {
     linkedIn: "https://www.linkedin.com/in/mateusz-%C5%9Bliwowski-499a04105/",
 }
 
+export const requestUrl= {
+    courses: {
+        new: `${serverUrl}/courses/new`,
+        delete: `${serverUrl}/courses/delete`,
+    },
+    posts: {
+        new: `${serverUrl}/posts/new`,
+        put: `${serverUrl}/posts/edit`,
+        delete: `${serverUrl}/posts/delete`
+    },
+    projects: {
+        new: `${serverUrl}/projects/new`,
+        delete: `${serverUrl}/projects/delete`,
+        put: `${serverUrl}/projects/update,`
+    },
+    services: {
+        new: `${serverUrl}/services/new`,
+        delete: `${serverUrl}/services`,
+        put: `${serverUrl}/services/edit`,
+    },
+    skills: {
+        new: `${serverUrl}/skills/new`,
+        delete: `${serverUrl}/skills/delete`
+    }
+
+}

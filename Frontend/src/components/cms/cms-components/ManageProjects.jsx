@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { DataContext } from '../../../store/data-context';
 
+import EditProjects from './data-forms/edit-forms/EditProjects';
 
 export default function ManageProjects() {
 
@@ -9,20 +10,31 @@ export default function ManageProjects() {
     const projects = dataCtx.fetchedData.data.projects;
 
     const [selectedProject, setSelectedProject] = useState(null);
+    const [actionType, setActionType] = useState(null);
 
     const handleEdit = (projectData) => {
         setSelectedProject(() => projectData);
+        setActionType('edit');
     };
 
     const handleDelete = (projectId) => {
         setSelectedProject(() => projectId);
+        setActionType('delete')
     };
 
     const handleAddNew = () => {
-        console.log('add new')
+        setActionType('add')
     }
 
+    if (actionType === 'edit' && selectedProject) {
+        return <EditProjects selectedProject={selectedProject} />
+    };
 
+    if (actionType === 'delete' && selectedProject) {
+        return (
+            <p>Usuwanie projektu</p>
+        )
+    }
 
 
     return (
@@ -38,7 +50,7 @@ export default function ManageProjects() {
                 {!loading && projects && Array.isArray(projects) ? (
                     projects.map((project) => {
                         return <>
-                            <li className="w-fit h-full flex flex-row items-start justify-center text-white text-sm gap-2 border-b-2 border-black p-2" key={project.id}>
+                            <li key={project.id} className="w-fit h-full flex flex-row items-start justify-center text-white text-sm gap-2 border-b-2 border-black p-2" >
                                 <span className="w-full">{project.id}</span>
                                 <span className="w-full">{project.title}</span>
                                 <span className="w-full">{project.category}</span>

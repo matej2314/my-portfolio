@@ -90,7 +90,7 @@ router.delete('/delete', async (req, res) => {
 
 router.put('/update', async (req, res) => {
 
-    const { projectId, projectName, projectCat, projectURL, projectScr } = req.body;
+    const { projectId, projectName, projectCat, projectURL, projectScr, projectDesc } = req.body;
 
     if (!projectId || projectName=== '' || !projectCat || projectURL === '' || projectScr === '') {
         logger.error('Brak wymaganych danych do aktualizacji projektu');

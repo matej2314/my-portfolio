@@ -8,7 +8,7 @@ export default function LoginForm() {
     const email = useRef(null);
     const password = useRef(null);
 
-    const { login, isLoading, error, user } = useContext(AuthContext);
+    const { login, isLoading, error, user, isAuthenticated } = useContext(AuthContext);
 
 
     const handleSubmit = async (e) => {
@@ -18,14 +18,14 @@ export default function LoginForm() {
 
     useEffect(() => {
         let timer
-        if (user) {
+        if (isAuthenticated) {
             timer = setTimeout(() => {
                 navigate('/cms');
             }, 2000);
         };
 
         return () => clearTimeout(timer);
-    }, [user, navigate]);
+    }, [isAuthenticated, navigate]);
 
     return (
         <div>

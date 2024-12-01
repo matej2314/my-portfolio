@@ -1,25 +1,42 @@
 import { useContext, useState } from "react";
 import { DataContext } from '../../../store/data-context';
 import useSendRequest from '../../../hooks/useSendRequest';
+import EditServices from "./data-forms/edit-forms/EditServices";
 
 export default function ManageServices() {
-    const [selectedService, setSelectedService] = useState(null);
-
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
     const services = dataCtx.fetchedData.data.services;
+    const [selectedService, setSelectedService] = useState(null);
+    const [actionType, setActionType] = useState(null);
 
     const handleAddNewService = () => {
-        console.log('add service')
+        setActionType('add')
     };
 
     const handleEditService = (serviceData) => {
         setSelectedService(() => serviceData);
+        setActionType('edit');
     };
 
     const handleDeleteService = (serviceId) => {
+        setActionType('delete');
         selectedService(() => serviceId);
     }
+
+    if (actionType === 'add') {
+        console.log('type add')
+    };
+
+    if (actionType === 'edit' && selectedService) {
+        return <EditServices selectedService={selectedService} />
+    };
+
+    if (actionType === 'delete' && selectedService) {
+        console.log('delete service')
+    }
+
+
 
     return (
         <div className="w-[95vw] h-fit flex flex-col justify-start items-center text-lg text-white p-0 gap-2">

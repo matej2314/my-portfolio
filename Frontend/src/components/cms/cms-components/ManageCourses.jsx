@@ -7,22 +7,18 @@ export default function ManageCourses() {
     const courses = dataCtx.fetchedData.data.courses;
 
     const [selectedCourse, setSelectedCourse] = useState(null);
+    const [actionType, setActionType] = useState(null);
 
-    const handleEdit = (courseData) => {
-        setSelectedCourse(courseData)
-        console.log('edit course')
-    };
-
-    const handleDelete = (courseId) => {
-        setSelectedCourse(courseId);
-        console.log('delete course')
-    };
 
     const handleAddNew = () => {
         console.log('add new course')
     }
 
-
+    if (actionType === 'delete' && selectedCourse) {
+        return (
+            <p>okno usuwania kursu</p>
+        )
+    };
 
 
     return (
@@ -52,11 +48,6 @@ export default function ManageCourses() {
                                 <span className="w-full">{course.organizer}</span>
                                 <span className="w-full">{course.category}</span>
                                 <div className="w-fit h-fit flex flex-row justify-center items-center gap-3">
-                                    <button
-                                        onClick={() => handleEdit({ id: course.id, title: course.title, category: course.category, organizer: course.organizer })}
-                                    >
-                                        Edit
-                                    </button>
                                     <button onClick={() => handleDelete(course.id)}>Delete</button>
                                 </div>
                             </li>

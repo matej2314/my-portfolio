@@ -24,10 +24,10 @@ export default function useSendRequest() {
                 throw new Error(errorData.message || "Błąd serwera");
             }
 
-            const userData = await response.json();
-            setResult(userData);
+            const fetchedData = await response.json();
+            setResult(fetchedData);
 
-            return userData;
+            return fetchedData;
         } catch (error) {
             setError(error.message);
             return null;

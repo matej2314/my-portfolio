@@ -10,7 +10,7 @@ const logger = require('./logger.js');
 
 app.use(express.json());
 
-const allowedOrigins = ["http://185.170.196.107:5050", "https://msliwowski.net"];
+const allowedOrigins = ["http://185.170.196.107:5050", "https://msliwowski.net", "http://localhost:5173"];
 
 app.use(cors({
     origin: (origin, callback) => {
