@@ -1,6 +1,9 @@
 import { useContext, useState } from "react";
 import { DataContext } from '../../../store/data-context';
 
+import DeleteSkill from "./data-forms/delete-forms/DeleteSkill";
+import AddSkill from './data-forms/add-forms/AddSkill';
+
 export default function ManageSkills() {
 
     const dataCtx = useContext(DataContext);
@@ -8,14 +11,24 @@ export default function ManageSkills() {
     const skills = dataCtx.fetchedData.data.skills;
 
     const [selectedSkill, setSelectedSkill] = useState(null);
+    const [actionType, setActionType] = useState(null);
 
     const handleAddNewSkill = () => {
-        console.log('add new skill')
+        setActionType('add')
     };
 
-    const handleDeleteSkill = (skillId) => {
-        setSelectedSkill(skillId)
+    const handleDeleteSkill = (skill) => {
+        setActionType('delete');
+        setSelectedSkill(skill);
     };
+
+    if (actionType === 'add') {
+        return <AddSkill />
+    }
+
+    if (actionType === 'delete') {
+        return <DeleteSkill skillData={selectedSkill} />
+    }
 
     return (
         <div className="w-[100vw] h-fit flex flex-col justify-start items-center text-lg text-white p-0 gap-2">
@@ -37,7 +50,7 @@ export default function ManageSkills() {
                             <span className="w-full">{skill.iconColor}</span>
                             <div className="w-fit h-fit flex flex-col gap-2">
                                 <button
-                                    onClick={() => handleDeleteSkill(skill.id)}
+                                    onClick={() => handleDeleteSkill(skill)}
                                 >
                                     Delete
                                 </button>

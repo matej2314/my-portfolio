@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
 import { DataContext } from "../../../store/data-context";
+import AddCourse from './data-forms/add-forms/AddCourse';
+import DeleteCourse from './data-forms/delete-forms/DeleteCourse';
 
 export default function ManageCourses() {
     const dataCtx = useContext(DataContext);
@@ -9,16 +11,24 @@ export default function ManageCourses() {
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [actionType, setActionType] = useState(null);
 
-
     const handleAddNew = () => {
-        console.log('add new course')
+        setActionType('add');
+    };
+
+
+    const handleDelete = (courseId) => {
+        setSelectedCourse(() => courseId);
+        setActionType('delete');
+    };
+
+    if (actionType === 'delete') {
+        return <DeleteCourse courseData={selectedCourse} />
+    };
+
+    if (actionType === 'add') {
+        return <AddCourse />
     }
 
-    if (actionType === 'delete' && selectedCourse) {
-        return (
-            <p>okno usuwania kursu</p>
-        )
-    };
 
 
     return (
@@ -48,7 +58,7 @@ export default function ManageCourses() {
                                 <span className="w-full">{course.organizer}</span>
                                 <span className="w-full">{course.category}</span>
                                 <div className="w-fit h-fit flex flex-row justify-center items-center gap-3">
-                                    <button onClick={() => handleDelete(course.id)}>Delete</button>
+                                    <button onClick={() => handleDelete({ id: course.id, name: course.title })}>Delete</button>
                                 </div>
                             </li>
                         })

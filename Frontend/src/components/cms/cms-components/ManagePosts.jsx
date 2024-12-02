@@ -8,17 +8,18 @@ export default function ManagePosts() {
     const posts = dataCtx.fetchedData.data.posts;
 
     return (
-        <div>
-            <ul>
-                {!loading && posts && Array.isArray(posts) ? (
+        <div className="w-full h-full flex flex-col items-center justify-center">
+            <ul className="w-full h-fit flex flex-col justify-center items-center">
+                {!loading && posts.length > 0 && Array.isArray(posts) ? (
                     posts.map((post) => {
-                        <li key={post.id}>
-                            <h2>{post.title}</h2>
-
-                        </li>
+                        return (
+                            <li key={post.id}>
+                                <h2>{post.title}</h2>
+                            </li>
+                        );
                     })
                 ) : (
-                    <p>Brak postów</p>
+                    <li className="text-2xl text-white">No Posts</li>
                 )}
             </ul>
         </div>

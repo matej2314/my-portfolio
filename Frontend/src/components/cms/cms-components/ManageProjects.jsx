@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { DataContext } from '../../../store/data-context';
 
 import EditProjects from './data-forms/edit-forms/EditProjects';
+import DeleteProject from './data-forms/delete-forms/DeleteProject';
 
 export default function ManageProjects() {
 
@@ -17,8 +18,8 @@ export default function ManageProjects() {
         setActionType('edit');
     };
 
-    const handleDelete = (projectId) => {
-        setSelectedProject(() => projectId);
+    const handleDelete = (project) => {
+        setSelectedProject(() => project);
         setActionType('delete')
     };
 
@@ -32,7 +33,7 @@ export default function ManageProjects() {
 
     if (actionType === 'delete' && selectedProject) {
         return (
-            <p>Usuwanie projektu</p>
+            <DeleteProject selectedProject={selectedProject} />
         )
     }
 
@@ -76,7 +77,7 @@ export default function ManageProjects() {
                                         Edit
                                     </button>
                                     <button
-                                        onClick={() => handleDelete(project.id)}
+                                        onClick={() => handleDelete(project)}
                                         className="w-full h-fit text-sm text-white"
                                     >
                                         Delete

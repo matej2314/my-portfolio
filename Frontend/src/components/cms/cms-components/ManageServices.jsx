@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { DataContext } from '../../../store/data-context';
 import useSendRequest from '../../../hooks/useSendRequest';
 import EditServices from "./data-forms/edit-forms/EditServices";
+import AddService from "./data-forms/add-forms/AddService";
+import DeleteService from './data-forms/delete-forms/DeleteService';
 
 export default function ManageServices() {
     const dataCtx = useContext(DataContext);
@@ -19,13 +21,13 @@ export default function ManageServices() {
         setActionType('edit');
     };
 
-    const handleDeleteService = (serviceId) => {
+    const handleDeleteService = (serviceData) => {
         setActionType('delete');
-        selectedService(() => serviceId);
+        setSelectedService(() => serviceData);
     }
 
     if (actionType === 'add') {
-        console.log('type add')
+        return <AddService />
     };
 
     if (actionType === 'edit' && selectedService) {
@@ -33,10 +35,8 @@ export default function ManageServices() {
     };
 
     if (actionType === 'delete' && selectedService) {
-        console.log('delete service')
+        return <DeleteService serviceData={selectedService} />
     }
-
-
 
     return (
         <div className="w-[95vw] h-fit flex flex-col justify-start items-center text-lg text-white p-0 gap-2">
@@ -56,13 +56,13 @@ export default function ManageServices() {
                             <span className="w-full">{service.description}</span>
                             <div className="w-fit h-fit flex justify-around items-center gap-3">
                                 <button
-                                    onClick={() => handleEditService({ id: service.id, title: service.title, description: service.description })}
+                                    onClick={handleEditService}
                                     className="w-fit h-fit text-sm text-white"
                                 >
                                     Edit
                                 </button>
                                 <button
-                                    onClick={() => handleDeleteService(service.id)}
+                                    onClick={() => handleDeleteService(service)}
                                     className="w-fit h-fit text-sm text-white"
                                 >
                                     Delete
