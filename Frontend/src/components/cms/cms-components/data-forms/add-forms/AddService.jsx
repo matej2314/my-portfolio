@@ -39,7 +39,7 @@ export default function AddService() {
                 <input type="text" name="service-name" id="service-name" ref={serviceName} />
                 <label htmlFor="service-description">Service description:</label>
                 <textarea name="" id="service-description" ref={serviceDescription} />
-                <input type="submit" value="Save" />
+                <button type="submit">Save</button>
             </form>
         </div>
     )

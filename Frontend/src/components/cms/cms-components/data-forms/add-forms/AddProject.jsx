@@ -63,7 +63,7 @@ export default function AddProject() {
                 <input type="url" name="project-repo" id="project-repo" ref={(el) => (values.current.projectRepo = el)} />
                 <label htmlFor="project-longText">Long Description:</label>
                 <textarea name="project-longText" id="project-longText" ref={(el) => (values.current.projectLongTxt = el)} />
-                <input type="submit" value="Save" />
+                <button type="submit">Save</button>
             </form>
         </div>
     )

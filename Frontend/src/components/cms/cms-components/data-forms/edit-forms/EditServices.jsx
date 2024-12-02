@@ -64,11 +64,13 @@ export default function EditServices({ selectedService }) {
                     defaultValue={selectedService.description}
                     ref={serviceDesc}
                 />
-                <input
+                <button
                     className="w-1/2 h-fit flex flex-row justify-center items-center"
                     type="submit"
-                    value="Send"
-                />
+                >
+                    Save
+                </button>
+
             </form>
         </div>
     )

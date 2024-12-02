@@ -48,7 +48,7 @@ export default function AddCourse({ courseData }) {
                 <input type="text" name="course-organizer" id="course-organizer" ref={courseOrganizer} />
                 <label htmlFor="course-category">Course category:</label>
                 <input type="text" name="course-category" id="course-category" ref={courseOrganizer} />
-                <input type="submit" value="Save" />
+                <button type="submit">Save</button>
             </form>
         </div>
     )

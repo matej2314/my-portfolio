@@ -47,7 +47,7 @@ export default function AddSkill() {
                 <input type="text" name="skill-icon" id="skill-icon" ref={skillIcon} />
                 <label htmlFor="icon-color">Icon color - optional</label>
                 <input type="text" name="icon-color" id="icon-color" ref={skillIconColor} />
-                <input type="submit" value="Save" />
+                <button type="submit">Save</button>
             </form>
         </div>
     )

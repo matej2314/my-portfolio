@@ -136,11 +136,12 @@ export default function EditProjects({ selectedProject }) {
                     defaultValue={selectedProject.long}
                     ref={projLongDesc}
                 />
-                <input
+                <button
                     className="w-1/2 h-fit flex flex-row justify-center items-center"
                     type="submit"
-                    value="Update"
-                />
+                >
+                    Save
+                </button>
             </form>
         </div>
     )
