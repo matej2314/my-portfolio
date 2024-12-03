@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
             }
         } catch (error) {
-
+            console.log(error)
         }
     };
 
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
                 console.log('Rejestracja zakończona sukcesem. Możesz się zalogować.');
             }
         } catch (error) {
-
+            console.log(error)
         }
     };
 

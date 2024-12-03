@@ -1,11 +1,12 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { DataContext } from '../../../../../store/data-context';
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 
 const addServiceUrl = requestUrl.services.new;
 
 export default function AddService() {
-
+    const { refreshData } = useContext(DataContext);
     const serviceName = useRef();
     const serviceDescription = useRef();
 

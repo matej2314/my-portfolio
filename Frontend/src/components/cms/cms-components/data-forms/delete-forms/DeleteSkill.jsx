@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DataContext } from "../../../../../store/data-context";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 import ManageSkills from '../../ManageSkills';
@@ -9,6 +10,7 @@ const deleteSkillUrl = requestUrl.skills.delete;
 export default function DeleteSkill({ skillData }) {
     const [denyDelete, setDenyDelete] = useState(false);
     const { sendRequest, result, error } = useSendRequest();
+    const { refreshData } = useContext(DataContext);
 
     const handleDeleteSkill = async () => {
         const skillId = skillData.id;

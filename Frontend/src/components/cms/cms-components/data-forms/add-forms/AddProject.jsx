@@ -1,10 +1,12 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { DataContext } from '../../../../../store/data-context';
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 
 const addProjectUrl = requestUrl.projects.new;
 
 export default function AddProject() {
+    const { refreshData } = useContext(DataContext);
 
     const values = useRef({
         projectName: null,

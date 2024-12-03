@@ -1,5 +1,6 @@
-import { useEffect, useState, useRef } from "react"
+import { useContext, useState, useRef } from "react"
 import useSendRequest from '../../../../../hooks/useSendRequest';
+import { DataContext } from '../../../../../store/data-context';
 import { requestUrl } from "../../../../../url";
 
 const addCourseUrl = requestUrl.courses.new;
@@ -10,8 +11,8 @@ export default function AddCourse({ courseData }) {
     const courseDate = useRef();
     const courseOrganizer = useRef();
     const courseCategory = useRef();
-
     const { sendRequest, result, isLoading, error } = useSendRequest();
+    const { refreshData } = useContext(DataContext)
 
     const handleSubmit = async (e) => {
         e.preventDefault();

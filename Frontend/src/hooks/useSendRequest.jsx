@@ -12,9 +12,7 @@ export default function useSendRequest() {
             setResult(null);
             const response = await fetch(url, {
                 method: method ? method : "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: method !== "GET" ? { 'Content-Type': 'application/json' } : null,
                 body: method !== "GET" ? JSON.stringify(data) : null,
                 credentials: "include",
             });

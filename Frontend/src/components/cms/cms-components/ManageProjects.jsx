@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { DataContext } from '../../../store/data-context';
 
+import AddProject from './data-forms/add-forms/AddProject';
 import EditProjects from './data-forms/edit-forms/EditProjects';
 import DeleteProject from './data-forms/delete-forms/DeleteProject';
 
@@ -25,6 +26,10 @@ export default function ManageProjects() {
 
     const handleAddNew = () => {
         setActionType('add')
+    }
+
+    if (actionType === 'add' && selectedProject) {
+        return <AddProject />
     }
 
     if (actionType === 'edit' && selectedProject) {
@@ -56,10 +61,8 @@ export default function ManageProjects() {
                                 <span className="w-full">{project.title}</span>
                                 <span className="w-full">{project.category}</span>
                                 <span className="w-full">{project.link}</span>
-                                <span className="w-full">{project.project_screenName}</span>
                                 <span className="w-full">{project.description}</span>
                                 <span className="w-full">{project.repo}</span>
-                                <span className="w-full">{project.long_text}</span>
                                 <div className="w-full h-full flex flex-col items-center justify-center gap-3">
                                     <button
                                         onClick={() => handleEdit({

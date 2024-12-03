@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DataContext } from "../../../../../store/data-context";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import ManageServices from '../../ManageServices';
 import { requestUrl } from "../../../../../url";
@@ -8,7 +9,7 @@ const deleteServiceUrl = requestUrl.services.delete;
 export default function DeleteService({ serviceData }) {
     const [denyDelete, setDenyDelete] = useState(false);
     const { sendRequest, result, error } = useSendRequest();
-
+    const { refreshData } = useContext(DataContext);
 
     const handleDeleteService = async () => {
         const serviceId = serviceData.id;

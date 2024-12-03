@@ -1,4 +1,5 @@
-import { useRef } from "react"
+import { useRef, useContext } from "react";
+import { DataContext } from '../../../../../store/data-context';
 import useSendRequest from "../../../../../hooks/useSendRequest"
 import { requestUrl } from "../../../../../url"
 
@@ -9,6 +10,7 @@ export default function AddSkill() {
     const skillIconColor = useRef();
 
     const { sendRequest, result, error } = useSendRequest();
+    const { refreshData } = useContext(DataContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,7 +28,8 @@ export default function AddSkill() {
             await sendRequest({
                 url: addSkillUrl,
                 data: data
-            })
+            });
+
         } catch (error) {
             console.log('Nie udało się dodać nowego skilla');
         }

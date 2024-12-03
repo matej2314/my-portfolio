@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { DataContext } from '../../../../../store/data-context';
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
 
@@ -9,6 +9,7 @@ const deleteCourseUrl = requestUrl.courses.delete;
 
 export default function DeleteCourse({ courseData }) {
     const { sendRequest, result, error } = useSendRequest();
+    const { refreshData } = useContext(DataContext);
     const [denyDeleteCourse, setDenyDeleteCourse] = useState(false);
 
     const handleDeleteCourse = async () => {
@@ -33,12 +34,12 @@ export default function DeleteCourse({ courseData }) {
         return <ManageCourses />
     }
 
-
     return (
         <div>
             {courseData && <p>{courseData.name}</p>}
             {courseData && <p>{courseData.id}</p>}
             {result && result.message && <p>{result.message}</p>}
+            {error && <p>{error}</p>}
             <p>
                 Czy na pewno chcesz usunąć kurs?
             </p>

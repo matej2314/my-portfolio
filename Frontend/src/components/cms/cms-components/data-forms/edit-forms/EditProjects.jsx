@@ -5,10 +5,9 @@ import { requestUrl } from '../../../../../url';
 
 const editProjectUrl = requestUrl.projects.put;
 
-
 export default function EditProjects({ selectedProject }) {
     const { sendRequest, result, isLoading, error } = useSendRequest();
-    const { refreshData } = useContext(DataContext)
+    const { refreshData } = useContext(DataContext);
 
     const projectId = useRef(selectedProject.id || '');
     const projectName = useRef(selectedProject.title || '');
@@ -19,19 +18,37 @@ export default function EditProjects({ selectedProject }) {
     const projectRepo = useRef(selectedProject.repo || '');
     const projLongDesc = useRef(selectedProject.long || '');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const updatedProject = {
-
+            projectId: projectId.current.value,
+            projectName: projectName.current.value,
+            projectCat: projectCat.current.value,
+            projectURL: projectUrl.current.value,
+            projectScr: projectScreen.current.value,
+            projectDesc: projectDesc.current.value,
+            projectRepo: projectRepo.current.value,
+            projectLongTxt: projectLongTxt.current.value
         };
 
+        try {
+            await sendRequest({
+                url: editProjectUrl,
+                method: "PUT",
+                data: updatedProject,
+            });
+        } catch (error) {
+            console.log('Błąd podczas edycji projektu.');
+        };
 
-    }
+    };
 
     return (
         <div className="w-fit h-fit flex flex-col justify-center items-center text-md text-white border-2 border-black p-4 gap-3">
             <h2 className="w-full h-full flex justify-center items-center text-lg text-black">Edit selected project</h2>
+            {result && result.message && <p>{result.message}</p>}
+            {error && <p>{error}</p>}
             <form
                 className="w-[30vw] h-fit flex flex-col justify-center items-center gap-4 text-black text-md"
             >

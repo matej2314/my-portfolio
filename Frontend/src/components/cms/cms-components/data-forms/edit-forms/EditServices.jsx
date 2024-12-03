@@ -16,12 +16,32 @@ export default function EditServices({ selectedService }) {
     const serviceTitle = useRef(selectedService.title || '');
     const serviceDesc = useRef(selectedService.description || '');
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
+        const updatedService = {
+            serviceId: serviceId.current.value,
+            serviceName: serviceTitle.current.value,
+            serviceDescription: serviceDesc.current.value,
+        };
+
+        try {
+            await sendRequest({
+                url: editeServiceUrl,
+                method: "PUT",
+                data: updatedService
+            });
+        } catch (error) {
+            console.log('Nie udało się edytować usługi.');
+        }
+    }
 
     return (
         <div className="w-fit h-fit flex flex-col justify-center items-center text-md text-white border-2 border-black p-4 gap-3">
             <h2 className="w-full h-full flex justify-center items-center text-lg text-black">Edit selected service</h2>
-            <form className="w-[30vw] h-fit flex flex-col justify-center items-center gap-4 text-black text-md">
+            {result && result.message && <p>{result.message}</p>}
+            {error && <p>{error}</p>}
+            <form onSubmit={handleSubmit} className="w-[30vw] h-fit flex flex-col justify-center items-center gap-4 text-black text-md">
                 <label
                     className="w-full h-fit flex flex-row justify-center items-center text-black"
                     htmlFor="service-id"
