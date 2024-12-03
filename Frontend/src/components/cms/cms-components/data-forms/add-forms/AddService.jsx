@@ -1,12 +1,11 @@
-import { useRef, useContext } from "react";
-import { DataContext } from '../../../../../store/data-context';
+import { useRef } from "react";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
+import { addForms } from "../data-forms-classes";
 
 const addServiceUrl = requestUrl.services.new;
 
 export default function AddService() {
-    const { refreshData } = useContext(DataContext);
     const serviceName = useRef();
     const serviceDescription = useRef();
 
@@ -25,22 +24,24 @@ export default function AddService() {
                 url: addServiceUrl,
                 data: data
             });
+
         } catch (error) {
             console.log('Dodawanie usługi nie powiodło się');
         }
     };
 
+
     return (
-        <div>
-            <h2>Add new service</h2>
-            <form onSubmit={handleSubmit}>
+        <div className={addForms.addService.wrapper}>
+            <h2 className={addForms.addService.h2}>Add new service</h2>
+            <form className={addForms.addService.form} onSubmit={handleSubmit}>
                 {result && result.message && <p>{result.message}</p>}
                 {error && <p>{error}</p>}
-                <label htmlFor="service-name">Service name:</label>
-                <input type="text" name="service-name" id="service-name" ref={serviceName} />
-                <label htmlFor="service-description">Service description:</label>
-                <textarea name="" id="service-description" ref={serviceDescription} />
-                <button type="submit">Save</button>
+                <label className={addForms.addService.label} htmlFor="service-name">Service name:</label>
+                <input className={addForms.addService.input} type="text" name="service-name" id="service-name" ref={serviceName} />
+                <label className={addForms.addService.label} htmlFor="service-description">Service description:</label>
+                <textarea className={addForms.addService.input} name="" id="service-description" ref={serviceDescription} />
+                <button className={addForms.addService.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

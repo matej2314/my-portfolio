@@ -1,3 +1,62 @@
 export const cmsComponents = {
-
+    cmsMenu: {
+        wrapper: "w-fit h-fit flex flex-row justify-center items-center text-white gap-3",
+        ul: "w-full h-fit flex flex-row justify-center items-center gap-3",
+    },
+    loginForm: {
+        form: "w-fit h-fit flex flex-col justify-center items-center gap-5 text-white",
+        input: 'text-black',
+    },
+    manageCourses: {
+        wrapper: "w-[95vw] h-fit flex flex-col justify-center items-center text-lg text-white p-0 gap-3",
+        h2: "w-fit h-fit text-2xl mb-5",
+        addNew: "w-fit h-fit text-xl text-white",
+        ul: "w-fit h-fit flex flex-col justify-center items-center text-lg text-white border-2 border-l-cyan-100 p-4",
+        li: "w-full h-fit flex flex-row justify-start items-center border-b-2 border-black gap-4",
+        span: "w-full flex flex-row justify-center items-center",
+        buttonDiv: "w-fit h-fit flex flex-row justify-center items-center gap-3",
+    },
+    managePosts: {
+        wrapper: "w-full h-full flex flex-col items-center justify-start gap-3 text-white",
+        h2: "text-2xl font-bold",
+        addNew: "text-xl",
+        ul: "w-full h-fit flex flex-col justify-center items-center",
+        buttonDiv: "w-full h-fit flex flex-row justify-around items-center",
+        noPostsLi: "text-2xl text-white",
+    },
+    manageProjects: {
+        wrapper: "w-[95vw] h-fit flex flex-col justify-start items-center text-lg text-white p-0 gap-4",
+        h2: "w-full h-fit flex flex-row text-2xl justify-center",
+        addNew: "w-fit h-fit text-lg text-white",
+        ul: "w-fit h-fit flex flex-col justify-center items-center text-sm text-white border-2 border-l-cyan-100 p-4 gap-4",
+        li: "w-fit h-full flex flex-row items-start justify-center text-white text-sm gap-2 border-b-2 border-black p-2",
+        buttonDiv: "w-full h-full flex flex-col items-center justify-center gap-3",
+        actionBtn: "w-full h-fit text-sm text-white",
+        span: "w-full",
+    },
+    manageServices: {
+        wrapper: "w-[95vw] h-fit flex flex-col justify-start items-center text-lg text-white p-0 gap-2",
+        h2: "w-full h-fit flex flex-row justify-center",
+        addNew: "w-fit h-fit text-lg text-white",
+        ul: "w-fit h-fit flex flex-col justify-center items-center text-sm text-white border-2 border-l-cyan-100 p-4 gap-4",
+        li: "w-full h-full flex flex-row items-start justify-center text-white text-sm gap-4 border-b-2 border-black p-2",
+        span: "w-full",
+        buttonDiv: "w-fit h-fit flex justify-around items-center gap-3",
+        actionBtn: "w-fit h-fit text-sm text-white",
+    },
+    manageSkills: {
+        wrapper: "w-[100vw] h-fit flex flex-col justify-start items-center text-lg text-white p-0 gap-2",
+        h2: "w-full h-fit flex flex-row justify-center",
+        addNew: "w-full h-fit flex flex-row justify-center",
+        ul: "w-fit h-fit flex flex-col justify-center items-center text-sm text-white border-2 border-l-cyan-100 p-4 gap-4",
+        li: "w-full h-full flex flex-row items-start justify-center text-white text-sm gap-2 border-b-2 border-black p-2",
+        span: "w-full",
+        buttonDiv: "w-fit h-fit flex flex-col gap-2",
+    },
+    registerForm: {
+        form: "w-fit h-fit flex flex-col justify-center items-center text-white gap-4 text-xl",
+        h2: "text-2xl",
+        input: "text-black",
+        error: "text-red-700",
+    }
 }

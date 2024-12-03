@@ -1,16 +1,13 @@
-import { useRef, useContext } from "react";
-import { DataContext } from "../../../../../store/data-context";
+import { useRef } from "react";
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
+import { editForms } from "../data-forms-classes";
 
-const editeServiceUrl = requestUrl.services.put;
-
-
+const editServiceUrl = requestUrl.services.put;
 
 export default function EditServices({ selectedService }) {
     console.log(selectedService)
     const { sendRequest, result, isLoading, error } = useSendRequest();
-    const { refreshData } = useContext(DataContext);
 
     const serviceId = useRef(selectedService.id || '');
     const serviceTitle = useRef(selectedService.title || '');
@@ -27,7 +24,7 @@ export default function EditServices({ selectedService }) {
 
         try {
             await sendRequest({
-                url: editeServiceUrl,
+                url: editServiceUrl,
                 method: "PUT",
                 data: updatedService
             });
@@ -37,18 +34,18 @@ export default function EditServices({ selectedService }) {
     }
 
     return (
-        <div className="w-fit h-fit flex flex-col justify-center items-center text-md text-white border-2 border-black p-4 gap-3">
-            <h2 className="w-full h-full flex justify-center items-center text-lg text-black">Edit selected service</h2>
+        <div className={editForms.editServices.wrapper}>
+            <h2 className={editForms.editServices.h2}>Edit selected service</h2>
             {result && result.message && <p>{result.message}</p>}
             {error && <p>{error}</p>}
-            <form onSubmit={handleSubmit} className="w-[30vw] h-fit flex flex-col justify-center items-center gap-4 text-black text-md">
+            <form onSubmit={handleSubmit} className={editForms.editServices.form}>
                 <label
-                    className="w-full h-fit flex flex-row justify-center items-center text-black"
+                    className={editForms.editServices.label}
                     htmlFor="service-id"
                 >Service id:
                 </label>
                 <input
-                    className="w-full h-fit flex flex-row justify-center items-center text-black pl-2"
+                    className={editForms.editServices.input}
                     type="text"
                     name="service-id"
                     id="service-id"
@@ -57,13 +54,13 @@ export default function EditServices({ selectedService }) {
                     readOnly
                 />
                 <label
-                    className="w-full h-fit flex flex-row justify-center items-center text-black"
+                    className={editForms.editServices.label}
                     htmlFor="service-title"
                 >
                     Service title:
                 </label>
                 <input
-                    className="w-full h-fit flex flex-row justify-center items-center text-black pl-2"
+                    className={editForms.editServices.input}
                     type="text"
                     name="service-title"
                     id="service-title"
@@ -71,13 +68,13 @@ export default function EditServices({ selectedService }) {
                     ref={serviceTitle}
                 />
                 <label
-                    className="w-full h-fit flex flex-row justify-center items-center text-black"
+                    className={editForms.editServices.label}
                     htmlFor="service-description"
                 >
                     Service description:
                 </label>
                 <textarea
-                    className="w-full h-fit flex flex-row justify-center items-center text-black pl-2"
+                    className={editForms.editServices.input}
                     type="text"
                     name="service-description"
                     id="service-description"
@@ -85,7 +82,7 @@ export default function EditServices({ selectedService }) {
                     ref={serviceDesc}
                 />
                 <button
-                    className="w-1/2 h-fit flex flex-row justify-center items-center"
+                    className={editForms.editServices.btnSubmit}
                     type="submit"
                 >
                     Save

@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import { DataContext } from "../../../store/data-context";
-
+import { DataContext } from '../../../store/data-context';
 import AddPost from './data-forms/add-forms/AddPost';
 import EditPosts from './data-forms/edit-forms/EditPosts';
 import DeletePost from './data-forms/delete-forms/DeletePost';
+import { cmsComponents } from "./cms-componenst-styles";
 
 
 export default function ManagePosts() {
@@ -42,17 +42,17 @@ export default function ManagePosts() {
     }
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-start gap-3 text-white">
-            <h2 className="text-2xl font-bold">Posts:</h2>
-            <button onClick={handleAddPost} className="text-xl">Add new</button>
-            <ul className="w-full h-fit flex flex-col justify-center items-center">
+        <div className={cmsComponents.managePosts.wrapper}>
+            <h2 className={cmsComponents.managePosts.h2}>Posts:</h2>
+            <button onClick={handleAddPost} className={cmsComponents.managePosts.addNew}>Add new</button>
+            <ul className={cmsComponents.managePosts.ul}>
                 {!loading && posts.length > 0 && Array.isArray(posts) ? (
                     posts.map((post) => {
                         return (
                             <li key={post.id}>
                                 <h2>{post.title}</h2>
-                                <p>{post_lead}</p>
-                                <div>
+                                <p>{post.post_lead}</p>
+                                <div className={cmsComponents.managePosts.buttonDiv}>
                                     <button onClick={() => handleEditPost(post)}>Edit</button>
                                     <button onClick={() => handleDeletePost(post)}>Delete</button>
                                 </div>
@@ -60,7 +60,7 @@ export default function ManagePosts() {
                         );
                     })
                 ) : (
-                    <li className="text-2xl text-white">No Posts</li>
+                    <li className={cmsComponents.managePosts.noPostsLi}>No Posts</li>
                 )}
             </ul>
         </div>

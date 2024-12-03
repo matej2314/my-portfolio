@@ -1,10 +1,11 @@
+import { cmsComponents } from './cms-componenst-styles';
 
 export default function CmsMenu({ handleSelected }) {
 
     return (
-        <div className="w-fit h-fit flex flex-row justify-center items-center text-white gap-3">
+        <div className={cmsComponents.cmsMenu.wrapper}>
             <h2>Manage:</h2>
-            <ul className="w-full h-fit flex flex-row justify-center items-center gap-3">
+            <ul className={cmsComponents.cmsMenu.ul}>
                 <li><button onClick={() => handleSelected('courses')}>Courses</button></li>
                 <li><button onClick={() => handleSelected('posts')}>Posts</button></li>
                 <li><button onClick={() => handleSelected('projects')}>Projects</button></li>

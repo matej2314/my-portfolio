@@ -4,6 +4,7 @@ import useSendRequest from '../../../hooks/useSendRequest';
 import EditServices from "./data-forms/edit-forms/EditServices";
 import AddService from "./data-forms/add-forms/AddService";
 import DeleteService from './data-forms/delete-forms/DeleteService';
+import { cmsComponents } from "./cms-componenst-styles";
 
 export default function ManageServices() {
     const dataCtx = useContext(DataContext);
@@ -39,31 +40,31 @@ export default function ManageServices() {
     }
 
     return (
-        <div className="w-[95vw] h-fit flex flex-col justify-start items-center text-lg text-white p-0 gap-2">
-            <h2 className="w-full h-fit flex flex-row justify-center">Services:</h2>
+        <div className={cmsComponents.manageServices.wrapper}>
+            <h2 className={cmsComponents.manageServices.h2}>Services:</h2>
             <button
                 onClick={handleAddNewService}
-                className="w-fit h-fit text-lg text-white"
+                className={cmsComponents.manageServices.addNew}
             >
                 Add New
             </button>
-            <ul className="w-fit h-fit flex flex-col justify-center items-center text-sm text-white border-2 border-l-cyan-100 p-4 gap-4">
+            <ul className={cmsComponents.manageServices.ul}>
                 {!loading && services && Array.isArray(services) ? (
                     services.map((service) => (
-                        <li className="w-full h-full flex flex-row items-start justify-center text-white text-sm gap-4 border-b-2 border-black p-2" key={service.id}>
-                            <span className="w-full">{service.id}</span>
-                            <span className="w-full">{service.title}</span>
-                            <span className="w-full">{service.description}</span>
-                            <div className="w-fit h-fit flex justify-around items-center gap-3">
+                        <li className={cmsComponents.manageServices.li} key={service.id}>
+                            <span className={cmsComponents.manageServices.span}>{service.id}</span>
+                            <span className={cmsComponents.manageServices.span}>{service.title}</span>
+                            <span className={cmsComponents.manageServices.span}>{service.description}</span>
+                            <div className={cmsComponents.manageServices.buttonDiv}>
                                 <button
                                     onClick={() => handleEditService(service)}
-                                    className="w-fit h-fit text-sm text-white"
+                                    className={cmsComponents.manageServices.actionBtn}
                                 >
                                     Edit
                                 </button>
                                 <button
                                     onClick={() => handleDeleteService(service)}
-                                    className="w-fit h-fit text-sm text-white"
+                                    className={cmsComponents.manageServices.actionBtn}
                                 >
                                     Delete
                                 </button>

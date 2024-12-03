@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
-import { DataContext } from "../../../../../store/data-context";
+import { useState } from "react";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
+import { deleteForms } from "../data-forms-classes";
 import ManageProjects from "../../ManageProjects";
 
 const deleteProjectUrl = requestUrl.projects.delete;
@@ -9,7 +9,6 @@ const deleteProjectUrl = requestUrl.projects.delete;
 export default function DeleteProject({ selectedProject }) {
     const [denyDelete, setDenyDelete] = useState(false);
     const { sendRequest, result, error } = useSendRequest();
-    const { refreshData } = useContext(DataContext);
 
     const handleDeleteProject = async () => {
         const projectId = selectedProject.id;

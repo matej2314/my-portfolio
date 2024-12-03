@@ -7,5 +7,8 @@ export const cmsPages = {
     },
     mainPage: {
         main: "w-dvw h-dvh flex flex-col justify-start items-center bg-slate-600 pt-10 gap-5 overflow-y-auto",
+        contentWrapper: "w-full h-full flex flex-row justify-center items-stretch",
+        parWrapper: "w-full h-full flex flex-row justify-center items-center",
+        paragraph: "text-2xl text-white font-bold",
     }
 }

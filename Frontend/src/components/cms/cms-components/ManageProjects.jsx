@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { DataContext } from '../../../store/data-context';
 
+import { cmsComponents } from "./cms-componenst-styles";
 import AddProject from './data-forms/add-forms/AddProject';
 import EditProjects from './data-forms/edit-forms/EditProjects';
 import DeleteProject from './data-forms/delete-forms/DeleteProject';
@@ -28,7 +29,7 @@ export default function ManageProjects() {
         setActionType('add')
     }
 
-    if (actionType === 'add' && selectedProject) {
+    if (actionType === 'add') {
         return <AddProject />
     }
 
@@ -44,28 +45,31 @@ export default function ManageProjects() {
 
 
     return (
-        <div className="w-[95vw] h-fit flex flex-col justify-start items-center text-lg text-white p-0 gap-4">
-            <h2 className="w-full h-fit flex flex-row text-2xl justify-center">Projects</h2>
+        <div className={cmsComponents.manageProjects.wrapper}>
+            <h2 className={cmsComponents.manageProjects.h2}>Projects</h2>
             <button
                 onClick={handleAddNew}
-                className="w-fit h-fit text-lg text-white"
+                className={cmsComponents.manageProjects.addNew}
             >
                 Add new
             </button>
-            <ul className="w-fit h-fit flex flex-col justify-center items-center text-sm text-white border-2 border-l-cyan-100 p-4 gap-4">
+            <ul className={cmsComponents.manageProjects.ul}>
                 {!loading && projects && Array.isArray(projects) ? (
-                    projects.map((project) => {
-                        return <>
-                            <li key={project.id} className="w-fit h-full flex flex-row items-start justify-center text-white text-sm gap-2 border-b-2 border-black p-2" >
-                                <span className="w-full">{project.id}</span>
-                                <span className="w-full">{project.title}</span>
-                                <span className="w-full">{project.category}</span>
-                                <span className="w-full">{project.link}</span>
-                                <span className="w-full">{project.description}</span>
-                                <span className="w-full">{project.repo}</span>
-                                <div className="w-full h-full flex flex-col items-center justify-center gap-3">
-                                    <button
-                                        onClick={() => handleEdit({
+                    projects.map((project) => (
+                        <li
+                            key={project.id}
+                            className={cmsComponents.manageProjects.li}
+                        >
+                            <span className={cmsComponents.manageProjects.span}>{project.id}</span>
+                            <span className={cmsComponents.manageProjects.span}>{project.title}</span>
+                            <span className={cmsComponents.manageProjects.span}>{project.category}</span>
+                            <span className={cmsComponents.manageProjects.span}>{project.link}</span>
+                            <span className={cmsComponents.manageProjects.span}>{project.description}</span>
+                            <span className={cmsComponents.manageProjects.span}>{project.repo}</span>
+                            <div className={cmsComponents.manageProjects.buttonDiv}>
+                                <button
+                                    onClick={() =>
+                                        handleEdit({
                                             id: project.id,
                                             title: project.title,
                                             category: project.category,
@@ -73,22 +77,22 @@ export default function ManageProjects() {
                                             screen: project.project_screenName,
                                             description: project.description,
                                             repo: project.repo,
-                                            long: project.long_text
-                                        })}
-                                        className="w-full h-fit text-sm text-white"
-                                    >
-                                        Edit
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(project)}
-                                        className="w-full h-fit text-sm text-white"
-                                    >
-                                        Delete
-                                    </button>
-                                </div>
-                            </li>
-                        </>
-                    })
+                                            long: project.long_text,
+                                        })
+                                    }
+                                    className={cmsComponents.manageProjects.actionBtn}
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    onClick={() => handleDelete(project)}
+                                    className={cmsComponents.manageProjects.actionBtn}
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </li>
+                    ))
                 ) : (
                     <p>Brak projektów</p>
                 )}

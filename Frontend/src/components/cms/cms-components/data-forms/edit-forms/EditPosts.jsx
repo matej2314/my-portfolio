@@ -1,7 +1,7 @@
-import { useRef, useContext } from "react";
-import { DataContext } from "../../../../../store/data-context";
+import { useRef } from "react";
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
+import { editForms } from "../data-forms-classes";
 
 const editPostUrl = requestUrl.posts.put;
 
@@ -12,8 +12,6 @@ export default function EditPosts({ selectedPost }) {
     const postContent = useRef(selectedPost.content || '');
     const postImage = useRef(selectedPost.postImage || '');
     const { sendRequest, result, error } = useSendRequest();
-    const { refreshData } = useContext(DataContext);
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();

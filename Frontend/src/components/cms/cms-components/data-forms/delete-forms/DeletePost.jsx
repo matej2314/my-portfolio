@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
-import { DataContext } from "../../../../../store/data-context.jsx";
+import { useState } from "react";
 import useSendRequest from '../../../../../hooks/useSendRequest.jsx';
 import { requestUrl } from "../../../../../url";
+import { deleteForms } from "../data-forms-classes.js";
 import ManagePosts from '../../ManagePosts.jsx';
 
 
@@ -10,7 +10,6 @@ const deletePostUrl = requestUrl.posts.delete;
 export default function DeletePost({ selectedPost }) {
     const [denyDelete, setDenyDelete] = useState(false);
     const { sendRequest, result, error } = useSendRequest();
-    const { refreshData } = useContext(DataContext);
 
     const handleDeletePost = async () => {
         const postId = selectedPost.id;

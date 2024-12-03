@@ -20,7 +20,7 @@ router.post('/new', async (req, res) => {
     let values;
 
     if (postImage) {
-        query = 'INSERT INTO posts (id, post_title, post_lead post_content, post_imageName) VALUES(?,?,?,?,?)';
+        query = 'INSERT INTO posts (id, post_title, post_lead, post_content, post_imageName) VALUES(?,?,?,?,?)';
         values = [postId, postTitle, postLead, postContent, postImage];
     } else {
         query = 'INSERT INTO posts (id, post_title, post_lead, post_content) VALUES(?,?,?)';

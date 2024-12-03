@@ -37,10 +37,10 @@ export default function CmsMainPage() {
     return (
         <main className={cmsPages.mainPage.main}>
             <CmsMenu handleSelected={handleSelected} />
-            <div className="w-full h-full flex flex-row justify-center items-stretch">
+            <div className={cmsPages.mainPage.contentWrapper}>
                 {selectedButton ? selectedComponent() : (
-                    <div className="w-full h-full flex flex-row justify-center items-center">
-                        <p className="text-2xl text-white font-bold">Select category</p>
+                    <div className={cmsPages.mainPage.parWrapper}>
+                        <p className={cmsPages.mainPage.paragraph}>Select category</p>
                     </div>
                 )}
             </div>

@@ -1,7 +1,7 @@
-import { useRef, useContext } from "react";
-import { DataContext } from '../../../../../store/data-context';
+import { useRef } from "react";
 import useSendRequest from "../../../../../hooks/useSendRequest"
 import { requestUrl } from "../../../../../url"
+import { addForms } from "../data-forms-classes";
 
 export default function AddSkill() {
     const skillName = useRef();
@@ -10,7 +10,6 @@ export default function AddSkill() {
     const skillIconColor = useRef();
 
     const { sendRequest, result, error } = useSendRequest();
-    const { refreshData } = useContext(DataContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,20 +36,20 @@ export default function AddSkill() {
 
 
     return (
-        <div>
-            <h2>Add new skill</h2>
+        <div className={addForms.addSkill.wrapper}>
+            <h2 className={addForms.addSkill.h2}>Add new skill</h2>
             {result && result.message && <p>{result.message}</p>}
             {error && <p>{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="skill-name">Skill name:</label>
-                <input type="text" name="skill-name" id="skill-name" ref={skillName} />
-                <label htmlFor="skill-category">Skill category:</label>
-                <input type="text" name="skill-category" id="skill-category" ref={skillCat} />
-                <label htmlFor="skill-icon">Skill icon:</label>
-                <input type="text" name="skill-icon" id="skill-icon" ref={skillIcon} />
-                <label htmlFor="icon-color">Icon color - optional</label>
-                <input type="text" name="icon-color" id="icon-color" ref={skillIconColor} />
-                <button type="submit">Save</button>
+            <form className={addForms.addSkill.form} onSubmit={handleSubmit}>
+                <label className={addForms.addSkill.label} htmlFor="skill-name">Skill name:</label>
+                <input className={addForms.addSkill.input} type="text" name="skill-name" id="skill-name" ref={skillName} />
+                <label className={addForms.addSkill.label} htmlFor="skill-category">Skill category:</label>
+                <input className={addForms.addSkill.input} type="text" name="skill-category" id="skill-category" ref={skillCat} />
+                <label className={addForms.addSkill.label} htmlFor="skill-icon">Skill icon:</label>
+                <input className={addForms.addSkill.input} type="text" name="skill-icon" id="skill-icon" ref={skillIcon} />
+                <label className={addForms.addSkill.label} htmlFor="icon-color">Icon color - optional</label>
+                <input className={addForms.addSkill.input} type="text" name="icon-color" id="icon-color" ref={skillIconColor} />
+                <button className={addForms.addSkill.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

@@ -5,15 +5,12 @@ export const DataContext = createContext({
     data: {},
     isLoading: true,
     error: null,
-    refreshData: () => { },
 });
 
 const DataProvider = ({ children }) => {
     const [fetchedData, setFetchedData] = useState({ data: [] });
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [shouldRefresh, setShouldRefresh] = useState(false);
-
 
     const fetchData = async () => {
         try {
@@ -35,25 +32,11 @@ const DataProvider = ({ children }) => {
     };
 
     useEffect(() => {
-
         fetchData();
     }, []);
 
-
-    useEffect(() => {
-        if (shouldRefresh) {
-            fetchData();
-            setShouldRefresh(false);
-        }
-    }, [shouldRefresh]);
-
-
-    const refreshData = () => {
-        setShouldRefresh(true);
-    };
-
     return (
-        <DataContext.Provider value={{ fetchedData, isLoading, error, refreshData }}>
+        <DataContext.Provider value={{ fetchedData, isLoading, error }}>
             {children}
         </DataContext.Provider>
     );

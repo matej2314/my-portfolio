@@ -37,17 +37,17 @@ export default function RegisterForm() {
     return (
         <div>
             <form
-                className="w-fit h-fit flex flex-col justify-center items-center text-white gap-4 text-xl"
+                className={cmsComponents.registerForm.form}
                 onSubmit={handleSubmit}
             >
-                <h2 className="text-2xl">Register</h2>
+                <h2 className={cmsComponents.registerForm.h2}>Register</h2>
                 {isLoading && <p>Sending data...</p>}
                 {message && <p>{message}</p>}
-                {error && <p className="text-red-700">Error: {error}</p>}
+                {error && <p className={cmsComponents.registerForm.error}>Error: {error}</p>}
 
                 <label htmlFor="username">Type your username:</label>
                 <input
-                    className="text-black"
+                    className={cmsComponents.registerForm.input}
                     type="text"
                     id="username"
                     ref={username}
@@ -56,7 +56,7 @@ export default function RegisterForm() {
 
                 <label htmlFor="email">Type your email:</label>
                 <input
-                    className="text-black"
+                    className={cmsComponents.registerForm.input}
                     type="email"
                     id="email"
                     ref={email}
@@ -65,7 +65,7 @@ export default function RegisterForm() {
 
                 <label htmlFor="password">Type your password:</label>
                 <input
-                    className="text-black"
+                    className={cmsComponents.registerForm.input}
                     type="password"
                     id="password"
                     ref={password}

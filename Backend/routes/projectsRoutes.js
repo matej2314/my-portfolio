@@ -77,15 +77,20 @@ router.delete('/delete', async (req, res) => {
 
     try {
         const [result] = await pool.query(query, [projectId, projectName]);
-
-        if (result.affectedRows === 0) {
+        logger.info('Projekt usunięty');
+       
+        if (result.affectedRows == 0) {
             logger.info('Projekt nie znaleziony');
             return res.status(404).json({ message: 'Nie znaleziono projektu do usunięcia' });
         };
+
+        return res.status(200).json({ message: 'Projekt usunięty' });
     } catch (error) {
         logger.error('Nie udało się usunąć kursu', error.message);
         return res.status(500).json({ message: 'Nie udało się usunąć projektu' });
     };
+
+
 });
 
 router.put('/update', async (req, res) => {
@@ -101,7 +106,7 @@ router.put('/update', async (req, res) => {
 
     try {
         const [result] = await pool.query(query, [projectName, projectCat, projectURL, projectScr, projectDesc, projectRepo, projectLongTxt, projectId]);
-        logger.info('Post edytowany');
+        logger.info('Projekt edytowany');
         return res.status(200).json({
             message: 'Projekt poprawnie zaktualizowany',
             projectId,

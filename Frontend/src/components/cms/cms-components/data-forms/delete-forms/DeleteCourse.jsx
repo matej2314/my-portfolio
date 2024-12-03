@@ -1,7 +1,7 @@
-import { useState, useContext } from 'react';
-import { DataContext } from '../../../../../store/data-context';
+import { useState } from 'react';
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
+import { deleteForms } from '../data-forms-classes';
 
 import ManageCourses from '../../ManageCourses';
 
@@ -9,11 +9,10 @@ const deleteCourseUrl = requestUrl.courses.delete;
 
 export default function DeleteCourse({ courseData }) {
     const { sendRequest, result, error } = useSendRequest();
-    const { refreshData } = useContext(DataContext);
     const [denyDeleteCourse, setDenyDeleteCourse] = useState(false);
 
     const handleDeleteCourse = async () => {
-        const courseId = courseData.courseData.id;
+        const courseId = courseData.id;
         try {
             await sendRequest({
                 url: deleteCourseUrl,

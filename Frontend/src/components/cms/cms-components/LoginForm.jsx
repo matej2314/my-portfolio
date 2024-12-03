@@ -29,14 +29,14 @@ export default function LoginForm() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} className="w-fit h-fit flex flex-col justify-center items-center gap-5 text-white">
+            <form onSubmit={handleSubmit} className={cmsComponents.loginForm.form}>
                 <h2>Log in</h2>
                 {isLoading && <p>Sending data...</p>}
                 {error && <p style={{ color: "red" }}>Error: {error}</p>}
                 {!isLoading && user && <p>Witamy ponownie, {user.userName}!</p>}
                 <label htmlFor="email">Type your email:</label>
                 <input
-                    className="text-black"
+                    className={cmsComponents.loginForm.input}
                     type="email"
                     name="email"
                     ref={email}
@@ -46,7 +46,7 @@ export default function LoginForm() {
 
                 <label htmlFor="password">Type your password:</label>
                 <input
-                    className="text-black"
+                    className={cmsComponents.loginForm.input}
                     type="password"
                     name="password"
                     ref={password}
