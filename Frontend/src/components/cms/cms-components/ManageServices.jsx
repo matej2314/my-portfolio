@@ -56,7 +56,7 @@ export default function ManageServices() {
                             <span className="w-full">{service.description}</span>
                             <div className="w-fit h-fit flex justify-around items-center gap-3">
                                 <button
-                                    onClick={handleEditService}
+                                    onClick={() => handleEditService(service)}
                                     className="w-fit h-fit text-sm text-white"
                                 >
                                     Edit
