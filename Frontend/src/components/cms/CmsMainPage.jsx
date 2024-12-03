@@ -1,5 +1,5 @@
-import { useState } from "react"
-
+import { useState, useContext } from "react"
+import { AuthContext } from '../../store/auth-context';
 import { cmsPages } from "./cmsPages-styles"
 import CmsMenu from "./cms-components/CmsMenu";
 import ManageCourses from './cms-components/ManageCourses';
@@ -11,6 +11,7 @@ import ManageSkills from './cms-components/ManageSkills';
 
 export default function CmsMainPage() {
     const [selectedButton, setSelectedButton] = useState(null);
+    const { isAuthenticated } = useContext(AuthContext);
 
     const handleSelected = (button) => {
         setSelectedButton(button);
