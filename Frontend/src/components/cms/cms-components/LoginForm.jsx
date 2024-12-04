@@ -30,13 +30,13 @@ export default function LoginForm() {
     return (
         <div>
             <form onSubmit={handleSubmit} className={cmsComponents.loginForm.form}>
-                <h2>Log in</h2>
+                <h2 className={cmsComponents.h2.h2}>Login</h2>
                 {isLoading && <p>Sending data...</p>}
-                {error && <p style={{ color: "red" }}>Error: {error}</p>}
-                {!isLoading && user && <p>Witamy ponownie, {user.userName}!</p>}
+                {error && <p className={cmsComponents.message.error}>Error: {error}</p>}
+                {!isLoading && user && <p className={cmsComponents.message.positive}>Witamy ponownie, {user.userName}!</p>}
                 <label htmlFor="email">Type your email:</label>
                 <input
-                    className={cmsComponents.loginForm.input}
+                    className={cmsComponents.input.input}
                     type="email"
                     name="email"
                     ref={email}
@@ -46,7 +46,7 @@ export default function LoginForm() {
 
                 <label htmlFor="password">Type your password:</label>
                 <input
-                    className={cmsComponents.loginForm.input}
+                    className={cmsComponents.input.input}
                     type="password"
                     name="password"
                     ref={password}
@@ -55,6 +55,7 @@ export default function LoginForm() {
                 />
 
                 <button
+                    className={cmsComponents.buttonSubmit.button}
                     type="submit"
                     disabled={isLoading}
                 >

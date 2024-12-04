@@ -15,6 +15,7 @@ export default function CmsIndexPage() {
     return (
         <main className={cmsPages.indexPage.main}>
             <div className={cmsPages.indexPage.mainDiv}>
+                <h2 className="text-4xl mb-8">msliwowski.net</h2>
                 {selectedForm == null && <div className={cmsPages.indexPage.buttonWrapper}>
                     <button onClick={() => selectForm("login")} className={cmsPages.indexPage.button}>
                         Log In

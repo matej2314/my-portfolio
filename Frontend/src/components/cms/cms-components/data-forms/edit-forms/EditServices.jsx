@@ -1,11 +1,11 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
 import { editForms } from "../data-forms-classes";
 
 const editServiceUrl = requestUrl.services.put;
 
-export default function EditServices({ selectedService }) {
+export default function EditServices({ selectedService, onClose }) {
     console.log(selectedService)
     const { sendRequest, result, isLoading, error } = useSendRequest();
 
@@ -31,7 +31,17 @@ export default function EditServices({ selectedService }) {
         } catch (error) {
             console.log('Nie udało się edytować usługi.');
         }
-    }
+    };
+
+    useEffect(() => {
+        if (result && !error) {
+            const timer = setTimeout(() => {
+                onClose();
+            }, 1500);
+
+            return () => clearTimeout(timer);
+        }
+    }, [result, error, onClose])
 
     return (
         <div className={editForms.wrapper.wrapper}>

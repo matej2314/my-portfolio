@@ -24,14 +24,18 @@ export const addForms = {
         btnSave: "w-fit h-fit flex flex-row justify-center border-2 border-black p-3 rounded-xl text-md bg-neutral-700 hover:bg-neutral-800/50",
     },
     input: {
-        input: "w-full h-fit flex justify-center items-center text-black",
+        input: "w-full h-fit flex justify-center items-center text-black bg-slate-300",
     },
     label: {
         label: "w-full h-fit flex flex-row justify-center text-sm",
     },
     h2: {
         h2: "w-1/2 h-fit flex flex-col justify-center items-center text-2xl gap-3 my-2",
-    }
+    },
+    message: {
+        result: "text-lime-600 text-xl",
+        error: "text-red-600 text-xl",
+}
 };
 
 export const deleteForms = {
@@ -47,6 +51,9 @@ export const deleteForms = {
     },
     h2: {
         h2: "text-xl underline underline-offset-2",
+    },
+    buttonsConfirm: {
+        buttonConf: "bg-neutral-700 hover:bg-neutral-800/50 p-2 rounded-md hover:text-lime-600",
     }
 
 };
@@ -56,24 +63,24 @@ export const editForms = {
 
     },
     editProjects: {
-        textarea: "w-full h-[5rem] flex flex-col justify-start items-center break-before-auto pl-2",
+        textarea: "w-full h-[5rem] flex flex-col justify-start items-center break-before-auto pl-2 bg-slate-300",
     },
     wrapper: {
-        wrapper: "w-fit h-fit flex flex-col justify-center items-center text-md text-white border-2 border-black p-4 gap-3",
+        wrapper: "w-fit h-fit flex flex-col justify-center items-center text-md text-white border-2 border-black p-4 gap-3 bg-neutral-600/30 rounded-md",
     },
     h2: {
-        h2: "w-full h-full flex justify-center items-center text-lg text-black",
+        h2: "w-full h-full flex justify-center items-center text-lg text-white",
     },
     form: {
         form: "w-[30vw] h-fit flex flex-col justify-center items-center gap-4 text-black text-md",
     },
     label: {
-        label: "w-full h-fit flex flex-row justify-center items-center text-black",
+        label: "w-full h-fit flex flex-row justify-center items-center text-white",
     },
     input: {
-        input: "w-full h-fit flex flex-row justify-center items-center text-black pl-2", 
+        input: "w-full h-fit flex flex-row justify-center items-center text-black bg-slate-300 pl-2", 
     },
     submitBtn: {
-        submitBtn: "w-1/2 h-fit flex flex-row justify-center items-center",
+        submitBtn: "w-fit h-fit flex flex-row justify-center border-2 border-black p-3 text-white rounded-xl text-md bg-neutral-700 hover:bg-neutral-800/50",
     }
 }

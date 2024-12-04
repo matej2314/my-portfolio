@@ -8,6 +8,7 @@ export default function ManageCourses() {
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
     const courses = dataCtx.fetchedData.data.courses;
+    const { refreshData } = dataCtx;
 
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [actionType, setActionType] = useState(null);
@@ -16,18 +17,22 @@ export default function ManageCourses() {
         setActionType('add');
     };
 
-
     const handleDelete = (courseId) => {
         setSelectedCourse(() => courseId);
         setActionType('delete');
     };
 
+    const handleCloseAction = () => {
+        setActionType(null);
+        refreshData();
+    }
+
     if (actionType === 'delete') {
-        return <DeleteCourse courseData={selectedCourse} />
+        return <DeleteCourse courseData={selectedCourse} onClose={handleCloseAction} />
     };
 
     if (actionType === 'add') {
-        return <AddCourse />
+        return <AddCourse onClose={handleCloseAction} />
     }
 
 

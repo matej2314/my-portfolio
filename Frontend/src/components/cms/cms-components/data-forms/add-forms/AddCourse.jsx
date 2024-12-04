@@ -1,11 +1,12 @@
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import { requestUrl } from "../../../../../url";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { addForms } from "../data-forms-classes";
 
+
 const addCourseUrl = requestUrl.courses.new;
 
-export default function AddCourse({ courseData }) {
+export default function AddCourse({ onClose }) {
 
     const courseName = useRef();
     const courseDate = useRef();
@@ -28,6 +29,7 @@ export default function AddCourse({ courseData }) {
                 url: addCourseUrl,
                 data: newCourse,
             });
+
         } catch (error) {
             console.log('Błąd podczas dodawania nowego kursu');
         }
@@ -35,11 +37,21 @@ export default function AddCourse({ courseData }) {
 
     };
 
+    useEffect(() => {
+        if (result && !error) {
+            const timer = setTimeout(() => {
+                onClose();
+            }, 1500);
+
+            return () => clearTimeout(timer);
+        }
+    }, [result, error, onClose])
+
     return (
         <div className={addForms.addCourse.wrapper}>
             <h2 className={addForms.h2.h2}>Add new course</h2>
-            {result && !error && <p>{result.message}</p>}
-            {error && <p>{error}</p>}
+            {result && !error && <p className={addForms.message.result}>{result.message}</p>}
+            {error && <p className={addForms.message.error}>{error}</p>}
             <form onSubmit={handleSubmit} className={addForms.addCourse.form}>
                 <label className={addForms.label.label} htmlFor="course-name">Course name:</label>
                 <input className={addForms.input.input} type="text" name="course-name" id="course-name" ref={courseName} />

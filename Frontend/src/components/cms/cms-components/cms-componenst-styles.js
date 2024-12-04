@@ -8,13 +8,23 @@ export const cmsComponents = {
     },
     loginForm: {
         form: "w-fit h-fit flex flex-col justify-center items-center gap-5 text-white",
-        input: 'text-black',
+        button: "text-xl border-2 border-black p-2 rounded-lg hover:bg-neutral-700"
     },
     registerForm: {
         form: "w-fit h-fit flex flex-col justify-center items-center text-white gap-4 text-xl",
-        h2: "text-2xl",
-        input: "text-black",
-        error: "text-red-700",
+    },
+    buttonSubmit: {
+        button: "text-xl border-2 border-black p-2 rounded-lg hover:bg-neutral-700",
+    },
+    h2: {
+        h2: "text-2xl"
+    },
+    input: {
+      input: "text-black pl-2",
+    },
+    message: {
+        positive: "text-lime-700",
+        error: "text-red-600",
     },
     manageCourses: {
         li: "w-full h-fit flex flex-row justify-start items-center border-b-2 border-black gap-4 py-2",

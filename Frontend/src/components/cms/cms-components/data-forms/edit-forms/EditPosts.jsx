@@ -1,11 +1,11 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
 import { editForms } from "../data-forms-classes";
 
 const editPostUrl = requestUrl.posts.put;
 
-export default function EditPosts({ selectedPost }) {
+export default function EditPosts({ selectedPost, onClose }) {
     const postId = useRef(selectedPost.id || '');
     const postTitle = useRef(selectedPost.title || '');
     const postLead = useRef(selectedPost.post_lead || '');
@@ -33,7 +33,18 @@ export default function EditPosts({ selectedPost }) {
         } catch (error) {
             console.log('Nie udało się edytować posta')
         }
-    }
+    };
+
+    useEffect(() => {
+        if (result && !error) {
+            const timer = setTimeout(() => {
+                onClose();
+            }, 1500);
+
+            return () => clearTimeout(timer);
+        }
+    }, [result, error, onClose])
+
 
     return (
         <div>

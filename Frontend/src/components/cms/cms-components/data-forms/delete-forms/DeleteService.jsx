@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import ManageServices from '../../ManageServices';
 import { requestUrl } from "../../../../../url";
@@ -6,7 +6,7 @@ import { deleteForms } from "../data-forms-classes";
 
 const deleteServiceUrl = requestUrl.services.delete;
 
-export default function DeleteService({ serviceData }) {
+export default function DeleteService({ serviceData, onClose }) {
     const [denyDelete, setDenyDelete] = useState(false);
     const { sendRequest, result, error } = useSendRequest();
 
@@ -30,7 +30,18 @@ export default function DeleteService({ serviceData }) {
 
     if (denyDelete) {
         return <ManageServices />
-    }
+    };
+
+    useEffect(() => {
+        if (result && !error) {
+            const timer = setTimeout(() => {
+                onClose();
+            }, 1500);
+
+            return () => clearTimeout(timer);
+        }
+    }, [error, result, onClose]);
+
 
     return (
         <div className={deleteForms.wrapper.wrapper}>
@@ -41,8 +52,8 @@ export default function DeleteService({ serviceData }) {
             {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
-                <button onClick={handleDeleteService}>Tak</button>
-                <button onClick={handleDenyDelete}>Nie</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteService}>Tak</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDenyDelete}>Nie</button>
             </div>
         </div>
     )

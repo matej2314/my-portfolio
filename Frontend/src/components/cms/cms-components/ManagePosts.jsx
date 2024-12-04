@@ -10,6 +10,7 @@ export default function ManagePosts() {
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
     const posts = dataCtx.fetchedData.data.posts;
+    const { refreshData } = dataCtx;
 
     const [actionType, setActionType] = useState(null);
     const [selectedPost, setSelectedPost] = useState(null);
@@ -29,16 +30,21 @@ export default function ManagePosts() {
         setActionType("delete");
     };
 
+    const handleCloseAction = () => {
+        setActionType(null);
+        refreshData();
+    }
+
     if (actionType === "add") {
-        return <AddPost />
+        return <AddPost onClose={handleCloseAction} />
     };
 
     if (actionType === 'edit') {
-        return <EditPosts selectedPost={selectedPost} />
+        return <EditPosts selectedPost={selectedPost} onClose={handleCloseAction} />
     };
 
     if (actionType === 'delete') {
-        return <DeletePost selectedPost={selectedPost} />
+        return <DeletePost selectedPost={selectedPost} onClose={handleCloseAction} />
     }
 
     return (

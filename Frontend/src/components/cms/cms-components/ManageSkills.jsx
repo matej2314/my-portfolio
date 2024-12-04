@@ -10,6 +10,7 @@ export default function ManageSkills() {
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
     const skills = dataCtx.fetchedData.data.skills;
+    const { refreshData } = dataCtx;
 
     const [selectedSkill, setSelectedSkill] = useState(null);
     const [actionType, setActionType] = useState(null);
@@ -23,12 +24,17 @@ export default function ManageSkills() {
         setSelectedSkill(skill);
     };
 
+    const handleCloseAction = () => {
+        setActionType(null);
+        refreshData();
+    };
+
     if (actionType === 'add') {
-        return <AddSkill />
+        return <AddSkill onClose={handleCloseAction} />
     }
 
     if (actionType === 'delete') {
-        return <DeleteSkill skillData={selectedSkill} />
+        return <DeleteSkill skillData={selectedSkill} onClose={handleCloseAction} />
     }
 
     return (

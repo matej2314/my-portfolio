@@ -11,6 +11,7 @@ export default function ManageProjects() {
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
     const projects = dataCtx.fetchedData.data.projects;
+    const { refreshData } = dataCtx;
 
     const [selectedProject, setSelectedProject] = useState(null);
     const [actionType, setActionType] = useState(null);
@@ -27,19 +28,24 @@ export default function ManageProjects() {
 
     const handleAddNew = () => {
         setActionType('add')
-    }
+    };
+
+    const handleCloseAction = () => {
+        setActionType(null);
+        refreshData();
+    };
 
     if (actionType === 'add') {
-        return <AddProject />
+        return <AddProject onClose={handleCloseAction} />
     }
 
     if (actionType === 'edit' && selectedProject) {
-        return <EditProjects selectedProject={selectedProject} />
+        return <EditProjects selectedProject={selectedProject} onClose={handleCloseAction} />
     };
 
     if (actionType === 'delete' && selectedProject) {
         return (
-            <DeleteProject selectedProject={selectedProject} />
+            <DeleteProject selectedProject={selectedProject} onClose={handleCloseAction} />
         )
     }
 

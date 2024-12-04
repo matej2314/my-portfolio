@@ -1,11 +1,11 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 import { addForms } from "../data-forms-classes";
 
 const addPostUrl = requestUrl.posts.new;
 
-export default function AddPost() {
+export default function AddPost({ onClose }) {
 
     const { sendRequest, error, result } = useSendRequest();
 
@@ -35,11 +35,21 @@ export default function AddPost() {
         }
     }
 
+    useEffect(() => {
+        if (result && !error) {
+            const timer = setTimeout(() => {
+                onClose();
+            }, 1500);
+
+            return () => clearTimeout(timer);
+        }
+    }, [result, error, onClose]);
+
     return (
         <div className={addForms.addPost.wrapper}>
             <h2 className={addForms.h2.h2}>Add new blog post</h2>
-            {result && result.message && <p>{result.message}</p>}
-            {error && <p>{error}</p>}
+            {result && result.message && <p className={addForms.message.result}>{result.message}</p>}
+            {error && <p className={addForms.message.error}>{error}</p>}
             <form className={addForms.addPost.form} onSubmit={handleSubmit}>
                 <label className={addForms.label.label} htmlFor="post-title">Post title:</label>
                 <input className={addForms.input.input} type="text" name="post-title" id="post-title" ref={postTitle} />

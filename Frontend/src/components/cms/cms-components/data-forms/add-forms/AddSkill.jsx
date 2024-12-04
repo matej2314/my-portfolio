@@ -1,9 +1,9 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import useSendRequest from "../../../../../hooks/useSendRequest"
 import { requestUrl } from "../../../../../url"
 import { addForms } from "../data-forms-classes";
 
-export default function AddSkill() {
+export default function AddSkill({ onClose }) {
     const skillName = useRef();
     const skillCat = useRef();
     const skillIcon = useRef();
@@ -34,12 +34,21 @@ export default function AddSkill() {
         }
     };
 
+    useEffect(() => {
+        if (result && !error) {
+            const timer = setTimeout(() => {
+                onClose();
+            }, 1500);
+
+            return () => clearTimeout(timer);
+        }
+    }, [error, result, onClose])
 
     return (
         <div className={addForms.addSkill.wrapper}>
             <h2 className={addForms.h2.h2}>Add new skill</h2>
-            {result && result.message && <p>{result.message}</p>}
-            {error && <p>{error}</p>}
+            {result && result.message && <p className={addForms.message.result}>{result.message}</p>}
+            {error && <p className={addForms.message.error}>{error}</p>}
             <form className={addForms.addSkill.form} onSubmit={handleSubmit}>
                 <label className={addForms.label.label} htmlFor="skill-name">Skill name:</label>
                 <input className={addForms.input.input} type="text" name="skill-name" id="skill-name" ref={skillName} />

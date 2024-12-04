@@ -1,11 +1,11 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
 import { editForms } from "../data-forms-classes";
 
 const editProjectUrl = requestUrl.projects.put;
 
-export default function EditProjects({ selectedProject }) {
+export default function EditProjects({ selectedProject, onClose }) {
     const { sendRequest, result, isLoading, error } = useSendRequest();
 
     const projectId = useRef(selectedProject.id || '');
@@ -42,6 +42,16 @@ export default function EditProjects({ selectedProject }) {
         };
 
     };
+    useEffect(() => {
+        if (result && !error) {
+            const timer = setTimeout(() => {
+                onClose();
+            }, 1500);
+
+            return () => clearTimeout(timer);
+        }
+    }, [result, error, onClose])
+
 
     return (
         <div className={editForms.wrapper.wrapper}>

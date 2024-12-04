@@ -5,6 +5,7 @@ export const DataContext = createContext({
     data: {},
     isLoading: true,
     error: null,
+    refreshData: () => { },
 });
 
 const DataProvider = ({ children }) => {
@@ -35,8 +36,12 @@ const DataProvider = ({ children }) => {
         fetchData();
     }, []);
 
+    const refreshData = () => {
+        fetchData();
+    };
+
     return (
-        <DataContext.Provider value={{ fetchedData, isLoading, error }}>
+        <DataContext.Provider value={{ fetchedData, isLoading, error, refreshData }}>
             {children}
         </DataContext.Provider>
     );

@@ -10,6 +10,8 @@ export default function ManageServices() {
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
     const services = dataCtx.fetchedData.data.services;
+    const { refreshData } = dataCtx;
+
     const [selectedService, setSelectedService] = useState(null);
     const [actionType, setActionType] = useState(null);
 
@@ -25,18 +27,23 @@ export default function ManageServices() {
     const handleDeleteService = (serviceData) => {
         setActionType('delete');
         setSelectedService(() => serviceData);
+    };
+
+    const handleCloseAction = () => {
+        setActionType(null);
+        refreshData();
     }
 
     if (actionType === 'add') {
-        return <AddService />
+        return <AddService onClose={handleCloseAction} />
     };
 
     if (actionType === 'edit' && selectedService) {
-        return <EditServices selectedService={selectedService} />
+        return <EditServices selectedService={selectedService} onClose={handleCloseAction} />
     };
 
     if (actionType === 'delete' && selectedService) {
-        return <DeleteService serviceData={selectedService} />
+        return <DeleteService serviceData={selectedService} onClose={handleCloseAction} />
     }
 
     return (

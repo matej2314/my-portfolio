@@ -26,7 +26,7 @@ export default function RegisterForm() {
         if (response) {
             setTimeout(() => {
                 window.location.reload();
-            })
+            }, 2000)
         }
 
         username.current.value = "";
@@ -40,14 +40,14 @@ export default function RegisterForm() {
                 className={cmsComponents.registerForm.form}
                 onSubmit={handleSubmit}
             >
-                <h2 className={cmsComponents.registerForm.h2}>Register</h2>
+                <h2 className={cmsComponents.h2.h2}>Register</h2>
                 {isLoading && <p>Sending data...</p>}
-                {message && <p>{message}</p>}
-                {error && <p className={cmsComponents.registerForm.error}>Error: {error}</p>}
+                {message && <p className={cmsComponents.message.positive}>{message}</p>}
+                {error && <p className={cmsComponents.message.error}>Error: {error}</p>}
 
                 <label htmlFor="username">Type your username:</label>
                 <input
-                    className={cmsComponents.registerForm.input}
+                    className={cmsComponents.input.input}
                     type="text"
                     id="username"
                     ref={username}
@@ -56,7 +56,7 @@ export default function RegisterForm() {
 
                 <label htmlFor="email">Type your email:</label>
                 <input
-                    className={cmsComponents.registerForm.input}
+                    className={cmsComponents.input.input}
                     type="email"
                     id="email"
                     ref={email}
@@ -65,14 +65,20 @@ export default function RegisterForm() {
 
                 <label htmlFor="password">Type your password:</label>
                 <input
-                    className={cmsComponents.registerForm.input}
+                    className={cmsComponents.input.input}
                     type="password"
                     id="password"
                     ref={password}
                     required
                 />
 
-                <input type="submit" value="Register" />
+                <button
+                    className={cmsComponents.buttonSubmit.button}
+                    type="submit"
+                    disabled={isLoading}
+                >
+                    Register
+                </button>
             </form>
         </div>
     );
