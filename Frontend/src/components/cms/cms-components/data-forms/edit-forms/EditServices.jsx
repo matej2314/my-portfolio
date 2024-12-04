@@ -34,18 +34,18 @@ export default function EditServices({ selectedService }) {
     }
 
     return (
-        <div className={editForms.editServices.wrapper}>
-            <h2 className={editForms.editServices.h2}>Edit selected service</h2>
+        <div className={editForms.wrapper.wrapper}>
+            <h2 className={editForms.h2.h2}>Edit selected service</h2>
             {result && result.message && <p>{result.message}</p>}
             {error && <p>{error}</p>}
-            <form onSubmit={handleSubmit} className={editForms.editServices.form}>
+            <form onSubmit={handleSubmit} className={editForms.form.form}>
                 <label
-                    className={editForms.editServices.label}
+                    className={editForms.label.label}
                     htmlFor="service-id"
                 >Service id:
                 </label>
                 <input
-                    className={editForms.editServices.input}
+                    className={editForms.input.input}
                     type="text"
                     name="service-id"
                     id="service-id"
@@ -54,13 +54,13 @@ export default function EditServices({ selectedService }) {
                     readOnly
                 />
                 <label
-                    className={editForms.editServices.label}
+                    className={editForms.label.label}
                     htmlFor="service-title"
                 >
                     Service title:
                 </label>
                 <input
-                    className={editForms.editServices.input}
+                    className={editForms.input.input}
                     type="text"
                     name="service-title"
                     id="service-title"
@@ -68,13 +68,13 @@ export default function EditServices({ selectedService }) {
                     ref={serviceTitle}
                 />
                 <label
-                    className={editForms.editServices.label}
+                    className={editForms.label.label}
                     htmlFor="service-description"
                 >
                     Service description:
                 </label>
                 <textarea
-                    className={editForms.editServices.input}
+                    className={editForms.input.input}
                     type="text"
                     name="service-description"
                     id="service-description"
@@ -82,7 +82,7 @@ export default function EditServices({ selectedService }) {
                     ref={serviceDesc}
                 />
                 <button
-                    className={editForms.editServices.btnSubmit}
+                    className={editForms.submitBtn.submitBtn}
                     type="submit"
                 >
                     Save

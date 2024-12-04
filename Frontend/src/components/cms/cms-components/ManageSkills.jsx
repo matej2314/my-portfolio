@@ -32,25 +32,26 @@ export default function ManageSkills() {
     }
 
     return (
-        <div className={cmsComponents.manageSkills.wrapper}>
-            <h2 className={cmsComponents.manageSkills.h2}>Skills:</h2>
+        <div className={cmsComponents.wrapper.wrapper}>
+            <h2 className={cmsComponents.h2.h2}>Skills:</h2>
             <button
                 onClick={handleAddNewSkill}
-                className={cmsComponents.manageSkills.addNew}
+                className={cmsComponents.addNew.addNew}
             >
                 Add new
             </button>
-            <ul className={cmsComponents.manageSkills.ul}>
+            <ul className={cmsComponents.ul.ul}>
                 {!loading && skills && Array.isArray(skills) ? (
                     skills.map((skill) => (
-                        <li className={cmsComponents.manageSkills.li} key={skill.id}>
-                            <span className={cmsComponents.manageSkills.span}>{skill.id}</span>
-                            <span className={cmsComponents.manageSkills.span}>{skill.title}</span>
-                            <span className={cmsComponents.manageSkills.span}>{skill.category}</span>
-                            <span className={cmsComponents.manageSkills.span}>{skill.icon}</span>
-                            <span className={cmsComponents.manageSkills.span}>{skill.iconColor}</span>
+                        <li className={cmsComponents.li.li} key={skill.id}>
+                            <span className={cmsComponents.span.span}>{skill.id}</span>
+                            <span className={cmsComponents.span.span}>{skill.title}</span>
+                            <span className={cmsComponents.span.span}>{skill.category}</span>
+                            <span className={cmsComponents.span.span}>{skill.icon}</span>
+                            <span className={cmsComponents.span.span}>{skill.iconColor}</span>
                             <div className={cmsComponents.manageSkills.buttonDiv}>
                                 <button
+                                    className={cmsComponents.actionBtn.actionBtn}
                                     onClick={() => handleDeleteSkill(skill)}
                                 >
                                     Delete

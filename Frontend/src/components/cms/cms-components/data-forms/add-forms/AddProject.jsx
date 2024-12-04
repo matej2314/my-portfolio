@@ -49,21 +49,21 @@ export default function AddProject() {
             {result && result.message && <p>{result.message}</p>}
             {error && <p>{error}</p>}
             <form onSubmit={handleSubmit} className={addForms.addProject.h2}>
-                <label className={addForms.addProject.label} htmlFor="project-name">Project name:</label>
-                <input className={addForms.addProject.input} type="text" name="project-name" id="project-name" ref={(el) => (values.current.projectName = el)} />
-                <label className={addForms.addProject.label} htmlFor="project-category">Project Category:</label>
-                <input className={addForms.addProject.input} type="text" name="project-category" id="project-category" ref={(el) => (values.current.projectCat = el)} />
-                <label className={addForms.addProject.label} htmlFor="project-url">Project URL:</label>
-                <input className={addForms.addProject.input} type="url" name="project-url" id="project-url" ref={(el) => (values.current.projectUrl = el)} />
-                <label className={addForms.addProject.label} htmlFor="project-screen">Screen name:</label>
-                <input className={addForms.addProject.input} type="text" name="project-screen" id="project-screen" ref={(el) => (values.current.projectScr = el)} />
-                <label className={addForms.addProject.label} htmlFor="project-description">Project short description</label>
-                <textarea className={addForms.addProject.input} name="project-description" id="project-descritpion" ref={(el) => (values.current.projectDesc = el)} />
-                <label className={addForms.addProject.label} htmlFor="project-repo">Project repository URL:</label>
-                <input className={addForms.addProject.input} type="url" name="project-repo" id="project-repo" ref={(el) => (values.current.projectRepo = el)} />
-                <label className={addForms.addProject.label} htmlFor="project-longText">Long Description:</label>
-                <textarea className={addForms.addProject.input} name="project-longText" id="project-longText" ref={(el) => (values.current.projectLongTxt = el)} />
-                <button className={addForms.addProject.btnSave} type="submit">Save</button>
+                <label className={addForms.label.label} htmlFor="project-name">Project name:</label>
+                <input className={addForms.input.input} type="text" name="project-name" id="project-name" ref={(el) => (values.current.projectName = el)} />
+                <label className={addForms.label.label} htmlFor="project-category">Project Category:</label>
+                <input className={addForms.input.input} type="text" name="project-category" id="project-category" ref={(el) => (values.current.projectCat = el)} />
+                <label className={addForms.label.label} htmlFor="project-url">Project URL:</label>
+                <input className={addForms.input.input} type="url" name="project-url" id="project-url" ref={(el) => (values.current.projectUrl = el)} />
+                <label className={addForms.label.label} htmlFor="project-screen">Screen name:</label>
+                <input className={addForms.input.input} type="text" name="project-screen" id="project-screen" ref={(el) => (values.current.projectScr = el)} />
+                <label className={addForms.label.label} htmlFor="project-description">Project short description</label>
+                <textarea className={addForms.input.input} name="project-description" id="project-descritpion" ref={(el) => (values.current.projectDesc = el)} />
+                <label className={addForms.label.label} htmlFor="project-repo">Project repository URL:</label>
+                <input className={addForms.input.input} type="url" name="project-repo" id="project-repo" ref={(el) => (values.current.projectRepo = el)} />
+                <label className={addForms.label.label} htmlFor="project-longText">Long Description:</label>
+                <textarea className={addForms.input.input} name="project-longText" id="project-longText" ref={(el) => (values.current.projectLongTxt = el)} />
+                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

@@ -37,19 +37,19 @@ export default function AddCourse({ courseData }) {
 
     return (
         <div className={addForms.addCourse.wrapper}>
-            <h2 className={addForms.addCourse.h2}>Add new course</h2>
+            <h2 className={addForms.h2.h2}>Add new course</h2>
             {result && !error && <p>{result.message}</p>}
             {error && <p>{error}</p>}
             <form onSubmit={handleSubmit} className={addForms.addCourse.form}>
-                <label className={addForms.addCourse.label} htmlFor="course-name">Course name:</label>
-                <input className={addForms.addCourse.input} type="text" name="course-name" id="course-name" ref={courseName} />
-                <label className={addForms.addCourse.label} htmlFor="course-date">Course date:</label>
-                <input className={addForms.addCourse.input} type="date" name="" id="course-date" ref={courseDate} />
-                <label className={addForms.addCourse.label} htmlFor="course-organizer">Organizer:</label>
-                <input className={addForms.addCourse.input} type="text" name="course-organizer" id="course-organizer" ref={courseOrganizer} />
-                <label className={addForms.addCourse.label} htmlFor="course-category">Course category:</label>
-                <input className={addForms.addCourse.input} type="text" name="course-category" id="course-category" ref={courseCategory} />
-                <button className={addForms.addCourse.btnSubmit} type="submit">Save</button>
+                <label className={addForms.label.label} htmlFor="course-name">Course name:</label>
+                <input className={addForms.input.input} type="text" name="course-name" id="course-name" ref={courseName} />
+                <label className={addForms.label.label} htmlFor="course-date">Course date:</label>
+                <input className={addForms.input.input} type="date" name="" id="course-date" ref={courseDate} />
+                <label className={addForms.label.label} htmlFor="course-organizer">Organizer:</label>
+                <input className={addForms.input.input} type="text" name="course-organizer" id="course-organizer" ref={courseOrganizer} />
+                <label className={addForms.label.label} htmlFor="course-category">Course category:</label>
+                <input className={addForms.input.input} type="text" name="course-category" id="course-category" ref={courseCategory} />
+                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

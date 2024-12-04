@@ -45,28 +45,28 @@ export default function ManageProjects() {
 
 
     return (
-        <div className={cmsComponents.manageProjects.wrapper}>
-            <h2 className={cmsComponents.manageProjects.h2}>Projects</h2>
+        <div className={cmsComponents.wrapper.wrapper}>
+            <h2 className={cmsComponents.h2.h2}>Projects</h2>
             <button
                 onClick={handleAddNew}
-                className={cmsComponents.manageProjects.addNew}
+                className={cmsComponents.addNew.addNew}
             >
                 Add new
             </button>
-            <ul className={cmsComponents.manageProjects.ul}>
+            <ul className={cmsComponents.ul.ul}>
                 {!loading && projects && Array.isArray(projects) ? (
                     projects.map((project) => (
                         <li
                             key={project.id}
-                            className={cmsComponents.manageProjects.li}
+                            className={cmsComponents.li.li}
                         >
-                            <span className={cmsComponents.manageProjects.span}>{project.id}</span>
-                            <span className={cmsComponents.manageProjects.span}>{project.title}</span>
-                            <span className={cmsComponents.manageProjects.span}>{project.category}</span>
-                            <span className={cmsComponents.manageProjects.span}>{project.link}</span>
-                            <span className={cmsComponents.manageProjects.span}>{project.description}</span>
-                            <span className={cmsComponents.manageProjects.span}>{project.repo}</span>
-                            <div className={cmsComponents.manageProjects.buttonDiv}>
+                            <span className={cmsComponents.span.span}>{project.id}</span>
+                            <span className={cmsComponents.span.span}>{project.title}</span>
+                            <span className={cmsComponents.span.span}>{project.category}</span>
+                            <span className={cmsComponents.span.span}>{project.link}</span>
+                            <span className={cmsComponents.span.span}>{project.description}</span>
+                            <span className={cmsComponents.span.span}>{project.repo}</span>
+                            <div className={cmsComponents.buttonDiv.buttonDiv}>
                                 <button
                                     onClick={() =>
                                         handleEdit({
@@ -80,13 +80,13 @@ export default function ManageProjects() {
                                             long: project.long_text,
                                         })
                                     }
-                                    className={cmsComponents.manageProjects.actionBtn}
+                                    className={cmsComponents.actionBtn.actionBtn}
                                 >
                                     Edit
                                 </button>
                                 <button
                                     onClick={() => handleDelete(project)}
-                                    className={cmsComponents.manageProjects.actionBtn}
+                                    className={cmsComponents.actionBtn.actionBtn}
                                 >
                                     Delete
                                 </button>

@@ -37,19 +37,19 @@ export default function AddSkill() {
 
     return (
         <div className={addForms.addSkill.wrapper}>
-            <h2 className={addForms.addSkill.h2}>Add new skill</h2>
+            <h2 className={addForms.h2.h2}>Add new skill</h2>
             {result && result.message && <p>{result.message}</p>}
             {error && <p>{error}</p>}
             <form className={addForms.addSkill.form} onSubmit={handleSubmit}>
-                <label className={addForms.addSkill.label} htmlFor="skill-name">Skill name:</label>
-                <input className={addForms.addSkill.input} type="text" name="skill-name" id="skill-name" ref={skillName} />
-                <label className={addForms.addSkill.label} htmlFor="skill-category">Skill category:</label>
-                <input className={addForms.addSkill.input} type="text" name="skill-category" id="skill-category" ref={skillCat} />
-                <label className={addForms.addSkill.label} htmlFor="skill-icon">Skill icon:</label>
-                <input className={addForms.addSkill.input} type="text" name="skill-icon" id="skill-icon" ref={skillIcon} />
-                <label className={addForms.addSkill.label} htmlFor="icon-color">Icon color - optional</label>
-                <input className={addForms.addSkill.input} type="text" name="icon-color" id="icon-color" ref={skillIconColor} />
-                <button className={addForms.addSkill.btnSave} type="submit">Save</button>
+                <label className={addForms.label.label} htmlFor="skill-name">Skill name:</label>
+                <input className={addForms.input.input} type="text" name="skill-name" id="skill-name" ref={skillName} />
+                <label className={addForms.label.label} htmlFor="skill-category">Skill category:</label>
+                <input className={addForms.input.input} type="text" name="skill-category" id="skill-category" ref={skillCat} />
+                <label className={addForms.label.label} htmlFor="skill-icon">Skill icon:</label>
+                <input className={addForms.input.input} type="text" name="skill-icon" id="skill-icon" ref={skillIcon} />
+                <label className={addForms.label.label} htmlFor="icon-color">Icon color - optional</label>
+                <input className={addForms.input.input} type="text" name="icon-color" id="icon-color" ref={skillIconColor} />
+                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

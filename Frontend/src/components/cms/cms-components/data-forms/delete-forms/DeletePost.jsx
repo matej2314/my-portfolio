@@ -34,14 +34,14 @@ export default function DeletePost({ selectedPost }) {
     }
 
     return (
-        <div>
-            <h2>Czy na pewno chcesz usunąć post?</h2>
+        <div className={deleteForms.wrapper.wrapper}>
+            <h2 className={deleteForms.h2.h2}>Czy na pewno chcesz usunąć post?</h2>
             {selectedPost && <p>{selectedPost.id}</p>}
             {selectedPost && <p>{selectedPost.title}</p>}
             {selectedPost && <p>{selectedPost.post_lead}</p>}
-            {result && result.message && <p>{result.message}</p>}
-            {error && <p>{error}</p>}
-            <div>
+            {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
+            {error && <p className={deleteForms.messages.error}>{error}</p>}
+            <div className={deleteForms.buttonWrapper.buttonWrapper}>
                 <button onClick={handleDeletePost}>Tak</button>
                 <button onClick={handleDenyDelete}>Nie</button>
             </div>

@@ -40,31 +40,31 @@ export default function ManageServices() {
     }
 
     return (
-        <div className={cmsComponents.manageServices.wrapper}>
-            <h2 className={cmsComponents.manageServices.h2}>Services:</h2>
+        <div className={cmsComponents.wrapper.wrapper}>
+            <h2 className={cmsComponents.h2.h2}>Services:</h2>
             <button
                 onClick={handleAddNewService}
-                className={cmsComponents.manageServices.addNew}
+                className={cmsComponents.addNew.addNew}
             >
-                Add New
+                Add new
             </button>
-            <ul className={cmsComponents.manageServices.ul}>
+            <ul className={cmsComponents.ul.ul}>
                 {!loading && services && Array.isArray(services) ? (
                     services.map((service) => (
-                        <li className={cmsComponents.manageServices.li} key={service.id}>
-                            <span className={cmsComponents.manageServices.span}>{service.id}</span>
-                            <span className={cmsComponents.manageServices.span}>{service.title}</span>
-                            <span className={cmsComponents.manageServices.span}>{service.description}</span>
-                            <div className={cmsComponents.manageServices.buttonDiv}>
+                        <li className={cmsComponents.li.li} key={service.id}>
+                            <span className={cmsComponents.span.span}>{service.id}</span>
+                            <span className={cmsComponents.span.span}>{service.title}</span>
+                            <span className={cmsComponents.span.span}>{service.description}</span>
+                            <div className={cmsComponents.buttonDiv.buttonDiv}>
                                 <button
                                     onClick={() => handleEditService(service)}
-                                    className={cmsComponents.manageServices.actionBtn}
+                                    className={cmsComponents.actionBtn.actionBtn}
                                 >
                                     Edit
                                 </button>
                                 <button
                                     onClick={() => handleDeleteService(service)}
-                                    className={cmsComponents.manageServices.actionBtn}
+                                    className={cmsComponents.actionBtn.actionBtn}
                                 >
                                     Delete
                                 </button>

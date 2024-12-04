@@ -44,31 +44,31 @@ export default function EditProjects({ selectedProject }) {
     };
 
     return (
-        <div className={editForms.editProjects.wrapper}>
-            <h2 className={editForms.editProjects.h2}>Edit selected project</h2>
+        <div className={editForms.wrapper.wrapper}>
+            <h2 className={editForms.h2.h2}>Edit selected project</h2>
             {result && result.message && <p>{result.message}</p>}
             {error && <p>{error}</p>}
             <form
-                className={editForms.editProjects.form}
+                className={editForms.form.form}
             >
                 <label
                     htmlFor="project-id"
-                    className={editForms.editProjects.label}
+                    className={editForms.label.label}
                 >Project id:
                 </label>
                 <input
-                    className={editForms.editProjects.input}
+                    className={editForms.input.input}
                     type="text" name="" id="project-id"
                     defaultValue={selectedProject.id}
                     ref={projectId}
                     readOnly />
                 <label
-                    className={editForms.editProjects.label}
+                    className={editForms.label.label}
                     htmlFor="project-name">
                     Project name:
                 </label>
                 <input
-                    className={editForms.editProjects.input}
+                    className={editForms.input.input}
                     type="text"
                     name="project-name"
                     id="project-name"
@@ -76,12 +76,12 @@ export default function EditProjects({ selectedProject }) {
                     ref={projectName}
                 />
                 <label
-                    className={editForms.editProjects.label}
+                    className={editForms.label.label}
                     htmlFor="project-category">
                     Category:
                 </label>
                 <input
-                    className={editForms.editProjects.input}
+                    className={editForms.input.input}
                     type="text"
                     name="project-category"
                     id="project-category"
@@ -89,12 +89,12 @@ export default function EditProjects({ selectedProject }) {
                     ref={projectCat}
                 />
                 <label
-                    className={editForms.editProjects.label}
+                    className={editForms.label.label}
                     htmlFor="project-url">
                     Project URL:
                 </label>
                 <input
-                    className={editForms.editProjects.input}
+                    className={editForms.input.input}
                     type="url"
                     name="project-url"
                     id="project-url"
@@ -102,24 +102,24 @@ export default function EditProjects({ selectedProject }) {
                     ref={projectUrl}
                 />
                 <label
-                    className={editForms.editProjects.label}
+                    className={editForms.label.label}
                     htmlFor="project-screen">
                     Screen name:
                 </label>
                 <input
-                    className={editForms.editProjects.input}
+                    className={editForms.input.input}
                     type="text"
                     name="project-screen" id="project-screen"
                     defaultValue={selectedProject.screen}
                     ref={projectScreen}
                 />
                 <label
-                    className={editForms.editProjects.label}
+                    className={editForms.label.label}
                     htmlFor="project-desc">
                     Description:
                 </label>
                 <textarea
-                    className={editForms.editProjects.input}
+                    className={editForms.input.input}
                     type="text"
                     name="project-desc"
                     id="project-desc"
@@ -127,12 +127,12 @@ export default function EditProjects({ selectedProject }) {
                     ref={projectDesc}
                 />
                 <label
-                    className={editForms.editProjects.label}
+                    className={editForms.label.label}
                     htmlFor="project-repo">
                     Repository
                 </label>
                 <input
-                    className={editForms.editProjects.input}
+                    className={editForms.input.input}
                     type="url"
                     name="project-repo"
                     id="project-repo"
@@ -140,7 +140,7 @@ export default function EditProjects({ selectedProject }) {
                     ref={projectRepo}
                 />
                 <label
-                    className={editForms.editProjects.label}
+                    className={editForms.label.label}
                     htmlFor="proj-long-desc">
                     Long Description:
                 </label>
@@ -153,7 +153,7 @@ export default function EditProjects({ selectedProject }) {
                     ref={projLongDesc}
                 />
                 <button
-                    className={editForms.editProjects.submitBtn}
+                    className={editForms.submitBtn.submitBtn}
                     type="submit"
                 >
                     Save

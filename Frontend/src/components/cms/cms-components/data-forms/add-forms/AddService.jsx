@@ -33,15 +33,15 @@ export default function AddService() {
 
     return (
         <div className={addForms.addService.wrapper}>
-            <h2 className={addForms.addService.h2}>Add new service</h2>
+            <h2 className={addForms.h2.h2}>Add new service</h2>
             <form className={addForms.addService.form} onSubmit={handleSubmit}>
                 {result && result.message && <p>{result.message}</p>}
                 {error && <p>{error}</p>}
-                <label className={addForms.addService.label} htmlFor="service-name">Service name:</label>
-                <input className={addForms.addService.input} type="text" name="service-name" id="service-name" ref={serviceName} />
-                <label className={addForms.addService.label} htmlFor="service-description">Service description:</label>
-                <textarea className={addForms.addService.input} name="" id="service-description" ref={serviceDescription} />
-                <button className={addForms.addService.btnSave} type="submit">Save</button>
+                <label className={addForms.label.label} htmlFor="service-name">Service name:</label>
+                <input className={addForms.input.input} type="text" name="service-name" id="service-name" ref={serviceName} />
+                <label className={addForms.label.label} htmlFor="service-description">Service description:</label>
+                <textarea className={addForms.input.input} name="" id="service-description" ref={serviceDescription} />
+                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

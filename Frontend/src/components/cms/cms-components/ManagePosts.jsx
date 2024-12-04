@@ -42,9 +42,9 @@ export default function ManagePosts() {
     }
 
     return (
-        <div className={cmsComponents.managePosts.wrapper}>
-            <h2 className={cmsComponents.managePosts.h2}>Posts:</h2>
-            <button onClick={handleAddPost} className={cmsComponents.managePosts.addNew}>Add new</button>
+        <div className={cmsComponents.wrapper.wrapper}>
+            <h2 className={cmsComponents.h2.h2}>Posts:</h2>
+            <button onClick={handleAddPost} className={cmsComponents.addNew.addNew}>Add new</button>
             <ul className={cmsComponents.managePosts.ul}>
                 {!loading && posts.length > 0 && Array.isArray(posts) ? (
                     posts.map((post) => {
@@ -53,8 +53,8 @@ export default function ManagePosts() {
                                 <h2>{post.title}</h2>
                                 <p>{post.post_lead}</p>
                                 <div className={cmsComponents.managePosts.buttonDiv}>
-                                    <button onClick={() => handleEditPost(post)}>Edit</button>
-                                    <button onClick={() => handleDeletePost(post)}>Delete</button>
+                                    <button className={cmsComponents.actionBtn.actionBtn} onClick={() => handleEditPost(post)}>Edit</button>
+                                    <button className={cmsComponents.actionBtn.actionBtn} onClick={() => handleDeletePost(post)}>Delete</button>
                                 </div>
                             </li>
                         );

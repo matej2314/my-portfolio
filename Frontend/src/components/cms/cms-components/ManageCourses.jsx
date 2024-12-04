@@ -34,22 +34,15 @@ export default function ManageCourses() {
 
     return (
         <>
-            <div className={cmsComponents.manageCourses.wrapper}>
-                <h2 className={cmsComponents.manageCourses.h2}>Courses:</h2>
+            <div className={cmsComponents.wrapper.wrapper}>
+                <h2 className={cmsComponents.h2.h2}>Courses:</h2>
                 <button
                     onClick={handleAddNew}
-                    className={cmsComponents.manageCourses.addNew}
+                    className={cmsComponents.addNew.addNew}
                 >
                     Add new
                 </button>
-                <ul className={cmsComponents.manageCourses.ul}>
-                    <li className={cmsComponents.manageCourses.li}>
-                        <span className={cmsComponents.manageCourses.span}>Id</span>
-                        <span className={cmsComponents.manageCourses.span}>Title</span>
-                        <span className={cmsComponents.manageCourses.span}>Date</span>
-                        <span className={cmsComponents.manageCourses.span}>Organizer</span>
-                        <span className={cmsComponents.manageCourses.span}>Category</span>
-                    </li>
+                <ul className={cmsComponents.ul.ul}>
                     {!loading && courses && Array.isArray(courses) ? (
                         courses.map((course) => {
                             return <li className={cmsComponents.manageCourses.li} key={course.id}>
@@ -58,8 +51,8 @@ export default function ManageCourses() {
                                 <span className={cmsComponents.manageCourses.span}>{course.date}</span>
                                 <span className={cmsComponents.manageCourses.span}>{course.organizer}</span>
                                 <span className={cmsComponents.manageCourses.span}>{course.category}</span>
-                                <div className={cmsComponents.manageCourses.buttonDiv}>
-                                    <button onClick={() => handleDelete({ id: course.id, name: course.title })}>Delete</button>
+                                <div className={cmsComponents.buttonDiv.buttonDiv}>
+                                    <button className={cmsComponents.actionBtn.actionBtn} onClick={() => handleDelete({ id: course.id, name: course.title })}>Delete</button>
                                 </div>
                             </li>
                         })
