@@ -9,29 +9,29 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const { sendRequest, isLoading, error, logout } = useSendRequest();
 
-    const checkAuth = async () => {
-        try {
-            const response = await sendRequest({
-                url: verifyURL,
-                data: null,
-            });
+    // const checkAuth = async () => {
+    //     try {
+    //         const response = await sendRequest({
+    //             url: verifyURL,
+    //             data: null,
+    //         });
 
-            if (response && response.userName) {
-                setIsAuthenticated(true);
-                setUser({ userName: response.userName, role: response.userRole });
-            }
-        } catch (error) {
-            console.log('Błąd autoryzacji', error);
-            setIsAuthenticated(false);
-            setUser(null);
-        }
-    };
+    //         if (response && response.userName) {
+    //             setIsAuthenticated(true);
+    //             setUser({ userName: response.userName, role: response.userRole });
+    //         }
+    //     } catch (error) {
+    //         console.log('Błąd autoryzacji', error);
+    //         setIsAuthenticated(false);
+    //         setUser(null);
+    //     }
+    // };
 
-    useEffect(() => {
-        if (!isAuthenticated) {
-            checkAuth();
-        }
-    }, [isAuthenticated]);
+    // useEffect(() => {
+    //     if (!isAuthenticated) {
+    //         checkAuth();
+    //     }
+    // }, [isAuthenticated]);
 
     const login = async (email, password) => {
 
