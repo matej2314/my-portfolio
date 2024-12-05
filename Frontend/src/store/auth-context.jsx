@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-
     const register = async (username, email, password) => {
 
         try {

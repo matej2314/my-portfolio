@@ -10,17 +10,25 @@ export default function useSendRequest() {
             setIsLoading(true);
             setError(null);
             setResult(null);
-            const response = await fetch(url, {
+
+            const requestOptions = {
                 method: method ? method : "POST",
-                headers: method !== "GET" ? { 'Content-Type': 'application/json' } : null,
-                body: method !== "GET" ? JSON.stringify(data) : null,
                 credentials: "include",
-            });
+            };
+
+            if (method !== "GET") {
+                requestOptions.headers = {
+                    'Content-Type': 'application/json',
+                };
+                requestOptions.body = JSON.stringify(data);
+            }
+
+            const response = await fetch(url, requestOptions);
 
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || "Błąd serwera");
-            }
+            };
 
             const fetchedData = await response.json();
             setResult(fetchedData);
@@ -33,6 +41,7 @@ export default function useSendRequest() {
             setIsLoading(false);
         }
     };
+
 
     return { sendRequest, result, isLoading, error };
 }
