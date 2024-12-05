@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthChecked, setIsAuthChecked] = useState(false);
     const [user, setUser] = useState(null);
     const { sendRequest, isLoading, error, logout } = useSendRequest();
 
@@ -24,14 +25,16 @@ export const AuthProvider = ({ children }) => {
             console.log('Błąd autoryzacji', error);
             setIsAuthenticated(false);
             setUser(null);
+        } finally {
+            setIsAuthChecked(true);
         }
     };
 
     useEffect(() => {
-        if (isAuthenticated) {
+        if (!isAuthChecked) {
             checkAuth();
         }
-    }, [isAuthenticated]);
+    }, [isAuthChecked]);
 
     const login = async (email, password) => {
 
@@ -44,6 +47,7 @@ export const AuthProvider = ({ children }) => {
             if (response && response.userName) {
 
                 setIsAuthenticated(true);
+                setIsAuthChecked(true);
                 setUser({ userName: response.userName, role: response.role });
 
             }
