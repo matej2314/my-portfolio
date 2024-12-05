@@ -1,6 +1,3 @@
-const path = require('path');
-const dotenv = require('dotenv').config({ path: './.env' });
-const logger = require('./logger');
 const mysql = require('mysql2/promise');
 
 const pool = mysql.createPool({

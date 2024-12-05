@@ -1,10 +1,7 @@
-const dotenv = require('dotenv').config({ path: '../../../.env' });
-const path = require('path');
 const pool = require('../db');
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
 const JWT_SECRET = process.env.JWT_SECRET;
 const logger = require('../logger');
 

@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config({path: './.env'})
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
