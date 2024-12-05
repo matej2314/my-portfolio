@@ -3,8 +3,8 @@ import { AuthContext } from '../../../store/auth-context';
 import { cmsComponents } from './cms-componenst-styles';
 
 export default function CmsMenu({ handleSelected }) {
-    const { user } = useContext(AuthContext);
-
+    const { user, isAuthenticated } = useContext(AuthContext);
+    console.log('isauthenticated w cmsnmenu:', isAuthenticated)
     return (
         <div className={cmsComponents.cmsMenu.wrapper}>
             <h2 className={cmsComponents.cmsMenu.h2}>Manage:</h2>
