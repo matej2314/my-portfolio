@@ -11,8 +11,8 @@ router.get('/verify', verifyJWT(), (req, res) => {
 
     res.status(200).json({
         userId: req.userId,
-        userName,
-        userRole,
+        userName: userName,
+        role: userRole,
     })
 })
 
