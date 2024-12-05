@@ -130,7 +130,6 @@ exports.loginUser = async (req, res) => {
         return res.status(200).json({
             message: 'Użytkownik zalogowany pomyślnie.',
             status: 200,
-            token:token,
             userName: user.name,
             role: user.role,
         });

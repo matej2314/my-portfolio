@@ -5,7 +5,7 @@ const verifyJWT = require('../controllers/verifyJWT');
 
 router.post('/register', authController.registerUser);
 router.post('/login', authController.loginUser);
-router.post('/verify', verifyJWT(), (req, res) => {
+router.get('/verify', verifyJWT(), (req, res) => {
    
     res.status(200).json({
         userId: req.userId,

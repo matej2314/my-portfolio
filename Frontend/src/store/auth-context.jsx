@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await sendRequest({
                 url: verifyURL,
-                data: localStorage.getItem('token'),
+                method: "GET",
             });
 
             if (response && response.userName) {
@@ -45,7 +45,6 @@ export const AuthProvider = ({ children }) => {
 
                 setIsAuthenticated(true);
                 setUser({ userName: response.userName, role: response.role });
-                localStorage.setItem('token', response.token);
 
             }
         } catch (error) {
