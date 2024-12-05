@@ -1,4 +1,5 @@
 import { useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../store/auth-context";
 import { cmsComponents } from './cms-componenst-styles';
 
@@ -8,6 +9,7 @@ export default function RegisterForm() {
     const password = useRef();
 
     const { register, isLoading, error, message } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,8 +27,9 @@ export default function RegisterForm() {
 
         if (response) {
             setTimeout(() => {
-                window.location.reload();
-            }, 2000)
+                navigate('login_admin');
+            }, 2000);
+
         }
 
         username.current.value = "";
@@ -43,7 +46,7 @@ export default function RegisterForm() {
                 <h2 className={cmsComponents.h2.h2}>Register</h2>
                 {isLoading && <p>Sending data...</p>}
                 {message && <p className={cmsComponents.message.positive}>{message}</p>}
-                {error && <p className={cmsComponents.message.error}>Error: {error}</p>}
+                {error && <p className={cmsComponents.message.error}>{error}</p>}
 
                 <label htmlFor="username">Type your username:</label>
                 <input

@@ -30,7 +30,6 @@ const jwtCookieOptions = {
 	httpOnly: true,
     secure: false,
     sameSite: "lax",
-	maxAge: 86400000,
 };
 
 exports.registerUser = async (req, res) => {
@@ -71,7 +70,10 @@ exports.registerUser = async (req, res) => {
         try {
             await pool.query('INSERT INTO users SET ?', { id: userId, role, name: reg_username, password: hashedPassword, email: reg_email });
             const token = jwt.sign({ id: userId, role }, JWT_SECRET, { expiresIn: '1h' });
-            res.cookie('SESSID', token, jwtCookieOptions);
+            res.cookie('SESSID', token, {
+                ...jwtCookieOptions,
+                maxAge: 60 * 60 * 1000,
+            });
             return res.status(200).json({ message: 'Użytkownik zarejestrowany pomyślnie' });
          } catch (error) {
             logger.error('Błąd podczas rejestracji użytkownika:', error.message);
@@ -118,11 +120,14 @@ exports.loginUser = async (req, res) => {
         const token = jwt.sign(
             { id: user.id, role: user.role, userName: user.name }, 
             JWT_SECRET, 
-            { expiresIn: '2h' }
+            { expiresIn: '24h' }
         );
 
         
-        res.cookie('SESSID', token, jwtCookieOptions);
+        res.cookie('SESSID', token, {
+            ...jwtCookieOptions,
+            maxAge: 86400000,
+        });
 
         logger.info(`Użytkownik ${user.email} zalogowany pomyślnie.`);
 
@@ -139,3 +144,12 @@ exports.loginUser = async (req, res) => {
         return res.status(500).json({ message: 'Wewnętrzny błąd serwera.' });
     }
 };
+
+exports.logOut = (req, res) => {
+    res.clearCookie('SESSID', {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+    });
+    res.status(200).json({ message: 'Wylogowano pomyślnie' });
+}

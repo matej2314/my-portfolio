@@ -8,7 +8,7 @@ const verifyJWT = (requiredRole) => {
         const token = req.cookies.SESSID;
 
         if (!token) {
-            return res.status(401).json({ message: 'Błąd uwierzytelniania' });
+            return res.status(401).json({ message: 'Zaloguj się, aby zobaczyć zasoby.' });
         }
 
         try {
@@ -23,7 +23,7 @@ const verifyJWT = (requiredRole) => {
 
             next();
         } catch (error) {
-            return res.status(401).json({ message: 'Błąd uwierzytelniania' });
+            return res.status(401).json({ message: 'Zaloguj się, aby zobaczyć zasoby.' });
         };
     };
 };

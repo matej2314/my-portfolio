@@ -1,13 +1,16 @@
 import { createContext, useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import useSendRequest from '../hooks/useSendRequest';
-import { loginUrl, registerUrl, verifyURL } from "../url";
+import { loginUrl, registerUrl, verifyURL, logOutUrl } from "../url";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
-    const { sendRequest, isLoading, error, logout } = useSendRequest();
+    const { sendRequest, isLoading, error } = useSendRequest();
+
+    const navigate = useNavigate();
 
     const login = async (email, password) => {
 
@@ -28,6 +31,24 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const logout = async () => {
+        try {
+            const response = await sendRequest({
+                url: logOutUrl,
+                data: null,
+            });
+
+            if (response && response.message) {
+                setIsAuthenticated(false);
+                setUser(null);
+                return response.message;
+            };
+
+        } catch (error) {
+            console.log('Nie udało się wylogować użytkownika');
+        }
+    }
+
     const register = async (username, email, password) => {
 
         try {
@@ -37,7 +58,7 @@ export const AuthProvider = ({ children }) => {
             });
 
             if (response) {
-                console.log('Rejestracja zakończona sukcesem. Możesz się zalogować.');
+                return response.message;
             }
         } catch (error) {
             console.log(error)
@@ -59,6 +80,7 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
             setIsAuthenticated(false);
             setUser(null);
+
         }
     };
 

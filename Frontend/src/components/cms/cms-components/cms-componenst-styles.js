@@ -4,7 +4,8 @@ export const cmsComponents = {
         ul: "w-full h-fit flex flex-row justify-center items-center gap-10 ml-14",
         h2: 'w-fit h-fit flex flex-row justify-center items-center',
         li: 'hover:text-lime-600',
-        userDiv: 'w-full h-fit flex flex-row justify-between gap-4 ml-[18rem]',
+        userDiv: 'w-full h-fit flex flex-row justify-between gap-4 ml-[15rem]',
+        logOutBtn: 'ml-3 hover:text-lime-600',
     },
     loginForm: {
         form: "w-fit h-fit flex flex-col justify-center items-center gap-5 text-white",
@@ -24,7 +25,7 @@ export const cmsComponents = {
     },
     message: {
         positive: "text-xl text-lime-500",
-        error: "text-xl text-red-500",
+        error: "text-xl text-neutral-950",
     },
     manageCourses: {
         li: "w-full h-fit flex flex-row justify-start items-center border-b-2 border-black gap-4 py-2",
