@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const checkAuth = async () => {
-            const sessionCookie = Cookies.get('SESSID');
+            const sessionCookie = Cookies.get("SESSID");
 
             if (sessionCookie) {
                 try {
