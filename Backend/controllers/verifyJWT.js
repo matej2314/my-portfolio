@@ -5,7 +5,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const verifyJWT = (requiredRole) => {
     return (req, res, next) => {
-        const token = req.cookies.SESSID;
+        const token = req.cookie.SESSID;
 
         if (!token) {
             return res.status(401).json({ message: 'Błąd uwierzytelniania' });
