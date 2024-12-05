@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import Cookies from 'js-cookie';
 import useSendRequest from '../hooks/useSendRequest';
 import { loginUrl, registerUrl, verifyURL } from "../url";
 
@@ -13,24 +12,20 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const checkAuth = async () => {
-            const sessionCookie = Cookies.get("SESSID");
-            console.log('ciasteczko:', sessionCookie)
-            if (sessionCookie) {
-                try {
-                    const response = await sendRequest({
-                        url: verifyURL,
-                        method: "GET",
-                    });
+            try {
+                const response = await sendRequest({
+                    url: verifyURL,
+                    method: "GET",
+                });
 
-                    if (response && response.userName) {
-                        setIsAuthenticated(true);
-                        setUser({ userName: response.userName, role: response.userRole });
-                    }
-                } catch (error) {
-                    console.log('Błąd autoryzacji', error);
-                    setIsAuthenticated(false);
-                    setUser(null);
+                if (response && response.userName) {
+                    setIsAuthenticated(true);
+                    setUser({ userName: response.userName, role: response.userRole });
                 }
+            } catch (error) {
+                console.log('Błąd autoryzacji', error);
+                setIsAuthenticated(false);
+                setUser(null);
             }
         }
         checkAuth();
