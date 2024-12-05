@@ -14,7 +14,7 @@ export default function useSendRequest() {
                 method: method ? method : "POST",
                 headers: method !== "GET" ? { 'Content-Type': 'application/json' } : null,
                 body: method !== "GET" ? JSON.stringify(data) : null,
-                credentials: "include",
+                credentials: "same-origin",
             });
 
             if (!response.ok) {
