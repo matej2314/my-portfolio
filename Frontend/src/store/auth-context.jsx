@@ -45,27 +45,27 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    // const verifySession = async () => {
-    //     try {
-    //         const response = await sendRequest({
-    //             url: verifyURL,
-    //             method: "GET",
-    //         });
+    const verifySession = async () => {
+        try {
+            const response = await sendRequest({
+                url: verifyURL,
+                method: "GET",
+            });
 
-    //         if (response && response.userName) {
-    //             setIsAuthenticated(true);
-    //             setUser({ userName: response.userName, role: response.role });
-    //         }
+            if (response && response.userName) {
+                setIsAuthenticated(true);
+                setUser({ userName: response.userName, role: response.role });
+            }
 
-    //     } catch (error) {
-    //         setIsAuthenticated(false);
-    //         setUser(null);
-    //     }
-    // };
+        } catch (error) {
+            setIsAuthenticated(false);
+            setUser(null);
+        }
+    };
 
-    // useEffect(() => {
-    //     verifySession();
-    // }, [])
+    useEffect(() => {
+        verifySession();
+    }, [])
 
     return (
         <AuthContext.Provider value={{

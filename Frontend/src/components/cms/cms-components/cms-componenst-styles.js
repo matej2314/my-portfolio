@@ -23,8 +23,8 @@ export const cmsComponents = {
       input: "text-black pl-2",
     },
     message: {
-        positive: "text-lime-500",
-        error: "text-red-500",
+        positive: "text-xl text-lime-500",
+        error: "text-xl text-red-500",
     },
     manageCourses: {
         li: "w-full h-fit flex flex-row justify-start items-center border-b-2 border-black gap-4 py-2",
