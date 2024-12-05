@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
             try {
                 const response = await sendRequest({
                     url: verifyURL,
-                    method: "GET",
+                    data: null,
                 });
 
                 if (response && response.userName) {
