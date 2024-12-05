@@ -12,6 +12,6 @@ router.get('/verify', verifyJWT(), (req, res) => {
         role: req.role,
     });
 });
-router.post('/logout', authController.logOut);
+router.get('/logout', authController.logOut);
 
 module.exports = router;

@@ -7,7 +7,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
-    const { sendRequest, isLoading, error } = useSendRequest();
+    const { sendRequest, isLoading, error, result } = useSendRequest();
 
     const login = async (email, password) => {
 
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const response = await sendRequest({
                 url: logOutUrl,
-                data: null,
+                method: "GET",
             });
 
             if (response && response.message) {
