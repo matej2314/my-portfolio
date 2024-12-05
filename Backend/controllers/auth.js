@@ -29,7 +29,7 @@ function isValidUsername(username) {
 const jwtCookieOptions = {
 	httpOnly: true,
     secure: false,
-    sameSite: "lax",
+    sameSite: "none",
 	maxAge: 86400000,
 };
 
