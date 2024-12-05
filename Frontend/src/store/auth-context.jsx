@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 import useSendRequest from '../hooks/useSendRequest';
 import { loginUrl, registerUrl, verifyURL, logOutUrl } from "../url";
 
@@ -9,8 +8,6 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUser] = useState(null);
     const { sendRequest, isLoading, error } = useSendRequest();
-
-    const navigate = useNavigate();
 
     const login = async (email, password) => {
 

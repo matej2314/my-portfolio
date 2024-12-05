@@ -12,7 +12,7 @@ export default function CmsMenu({ handleSelected }) {
         try {
             const message = await logout();
             alert(message);
-            navigate('login_admin');
+            navigate('/login_admin');
         } catch (error) {
             console.log(error.message)
         }
