@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
             }
         }
         checkAuth();
-    }, [sendRequest]);
+    }, []);
 
     const login = async (email, password) => {
 
