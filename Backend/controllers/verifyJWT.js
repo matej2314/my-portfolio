@@ -14,7 +14,8 @@ const verifyJWT = (requiredRole) => {
         try {
             const decoded = jwt.verify(token, JWT_SECRET);
             req.userId = decoded.id;
-            req.userRole = decoded.role;
+            req.role = decoded.role;
+            req.userName = decoded.userName;
 
             if (requiredRole && decoded.role !== requiredRole) {
                 return res.status(403).json({ message: 'Brak uprawnień' });

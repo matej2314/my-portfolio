@@ -6,7 +6,7 @@ import { editForms } from "../data-forms-classes";
 const editServiceUrl = requestUrl.services.put;
 
 export default function EditServices({ selectedService, onClose }) {
-    console.log(selectedService)
+
     const { sendRequest, result, isLoading, error } = useSendRequest();
 
     const serviceId = useRef(selectedService.id || '');
