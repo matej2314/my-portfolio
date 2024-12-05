@@ -24,8 +24,6 @@ export const AuthProvider = ({ children }) => {
             console.log('Błąd autoryzacji', error);
             setIsAuthenticated(false);
             setUser(null);
-        } finally {
-            setIsAuthChecked(true);
         }
     };
 
