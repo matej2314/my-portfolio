@@ -77,7 +77,6 @@ router.delete('/delete', async (req, res) => {
 
     try {
         const [result] = await pool.query(query, [projectId, projectName]);
-        logger.info('Projekt usunięty');
        
         if (result.affectedRows == 0) {
             logger.info('Projekt nie znaleziony');

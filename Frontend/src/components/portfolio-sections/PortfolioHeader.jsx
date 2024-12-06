@@ -9,9 +9,14 @@ import { sectionsClasses } from './portSections-classes';
 
 export default function PortfolioHeader() {
 
-    const contentVariants = {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 }
+    const h2Variants = {
+        initial: { opacity: 0, x: 20 },
+        animate: { opacity: 1, x: 0 }
+    };
+
+    const h3Variants = {
+        initial: { opacity: 0, x: -20 },
+        animate: { opacity: 1, x: 0 }
     }
 
 
@@ -40,7 +45,7 @@ export default function PortfolioHeader() {
                         alt="my personal photo"
                     />
                     <motion.h2
-                        variants={contentVariants}
+                        variants={h2Variants}
                         initial="initial"
                         animate="animate"
                         transition={{ type: "spring", duration: 1.6, damping: 10, delay: 0.2 }}
@@ -49,7 +54,7 @@ export default function PortfolioHeader() {
                         Mateusz Śliwowski
                     </motion.h2>
                     <motion.h3
-                        variants={contentVariants}
+                        variants={h3Variants}
                         initial="initial"
                         animate="animate"
                         transition={{ type: "spring", duration: 1.6, damping: 10, delay: 0.2 }}

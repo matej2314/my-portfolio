@@ -14,7 +14,7 @@ export default function Course({ courses, loading }) {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
                         viewport={{ amount: 0.4, once: false }}
-                        className={sectionsClasses.course.li}
+                        className={sectionsClasses.li.li}
                     >
                         {`${course.title} - ${course.organizer}`}
                     </motion.li>

@@ -1,23 +1,20 @@
 import { useRef, useState } from "react";
 import SocialIcons from "./icons/SocialIcons.jsx";
+import useSendRequest from '../hooks/useSendRequest.jsx';
 import { compClasses } from "./components-classes.js";
 import { mailUrl } from "../url.js";
 
 export default function ContactForm() {
+    const [status, setStatus] = useState("");
+    const { sendRequest, result, isLoading, error } = useSendRequest();
+
     const name = useRef();
     const email = useRef();
     const messageSubject = useRef();
     const message = useRef();
 
-    const [status, setStatus] = useState("");
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const userName = name.current.value;
-        const userEmail = email.current.value;
-        const subject = messageSubject.current.value;
-        const userMessage = message.current.value;
 
         if (!userName || !userEmail || !subject || !userMessage) {
             setStatus("Please fill out all fields");
@@ -25,15 +22,21 @@ export default function ContactForm() {
         }
 
         try {
-            const response = await fetch(mailUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ userName, userEmail, subject, userMessage }),
+
+            const contactObj = {
+                userName: name.current.value,
+                userEmail: email.current.value,
+                subject: messageSubject.current.value,
+                userMessage: message.current.value,
+            };
+
+
+            await sendRequest({
+                url: mailUrl,
+                data: contactObj,
             });
 
-            if (response.ok) {
+            if (!error) {
                 setStatus("Message sent successfully");
 
                 name.current.value = "";

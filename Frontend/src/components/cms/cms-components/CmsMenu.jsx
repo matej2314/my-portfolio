@@ -7,7 +7,6 @@ export default function CmsMenu({ handleSelected }) {
     const { user, logout, isAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
 
-
     const handleLogOut = async () => {
         try {
             const message = await logout();

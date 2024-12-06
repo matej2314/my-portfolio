@@ -21,12 +21,14 @@ export const sectionsClasses = {
         li: "w-full h-full flex flex-row justify-around items-center pb-2"
     },
     service: {
-        serviceWrapper: "w-full flex flex-col items-center justify-start pt-2 pb-3 px-4 bg-gray-500/15 rounded",
         span: "text-[#6f963b] text-2xl hidden md:inline",
         paragraph: "w-full flex flex-wrap mt-2 whitespace-pre-line leading-relaxed",
     },
+    greybox: {
+        greybox: "w-full flex flex-col items-center justify-start pt-2 pb-3 px-4 bg-gray-500/15 rounded",
+    },
     servicesSection: {
-        h2: "w-full flex flex-row justify-center text-2xl mb-4",
+        h2: "w-fit flex  text-2xl mb-4 border-b-2 border-[#6f963b] border-opacity-30",
         servicesWrapper: "grid grid-rows-auto md:grid-cols-2 gap-2 pb-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40 ",
     },
     skill: {
@@ -40,7 +42,6 @@ export const sectionsClasses = {
     workSection: {
         sectionWrapper: "w-full flex flex-col justify-center items-center gap-4",
         contentWrapper: "w-full flex justify-center border-dotted border-b-2 border-[#6f963b] mb-4 pb-4 border-opacity-15",
-        workWrapper: "w-11/12 flex flex-col items-center justify-center pt-2 px-4 pb-4 bg-gray-500/15 rounded",
     },
 
     h2: {
@@ -65,9 +66,8 @@ export const sectionsClasses = {
         section: "w-full flex flex-col items-center justify-center border-dotted border-b-2 border-[#6f963b] border-opacity-40 gap-4",
         ul: "w-full flex flex-col justify-center items-center gap-4 mb-4 pl-4 md:mb-4",
     },
-    course: {
-        li: "w-full flex flex-row md:justify-around",
+    aboutMe: {
+        wrapper: "w-full h-fit flex flex-col justify-center items-center gap-4 mt-3",
     }
-
 }
 

@@ -21,7 +21,7 @@ export default function WorkSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
           viewport={{ amount: 0.4, once: false }}
-          className={sectionsClasses.workSection.workWrapper}
+          className={sectionsClasses.greybox.greybox}
         >
           <h3 className={sectionsClasses.h3.h3}><span className={sectionsClasses.service.span}>#</span>SEO Copywriter</h3>
           <p className={sectionsClasses.service.paragraph}>I worked as an SEO Copywriter and Junior SEO Specialist. My responsibilities included creating SEO-friendly content, on-site and off-site optimization, and initial preparation of online campaigns.</p>

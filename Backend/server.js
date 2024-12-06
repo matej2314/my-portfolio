@@ -44,6 +44,8 @@ const postsRoutes = require('./routes/postRoutes.js');
 const dataRoutes = require('./routes/dataRoutes.js');
 const skillsRoutes = require('./routes/skillsRoutes.js');
 const coursesRoutes = require('./routes/coursesRoutes.js');
+const interestsRoutes = require('./routes/interestsRoutes.js');
+const aboutMeRoutes = require('./routes/aboutMeRoutes.js');
 const downloadRoutes = require('./routes/downloadRoute.js');
 const emailRoutes = require('./routes/emailRoutes.js')
 const authRoutes = require('./routes/auth.js');
@@ -53,6 +55,8 @@ app.use('/projects', projectsRoutes);
 app.use('/posts', postsRoutes);
 app.use('/skills', skillsRoutes);
 app.use('/courses', coursesRoutes);
+app.use('/interests', interestsRoutes);
+app.use('/about', aboutMeRoutes)
 app.use('/data', dataRoutes);
 app.use('/download', downloadRoutes);
 app.use('/email', emailRoutes);

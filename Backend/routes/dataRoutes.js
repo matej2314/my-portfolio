@@ -11,7 +11,9 @@ router.get('/collection', async (req, res) => {
     `SELECT 'projects' AS source, pr.id, pr.project_name AS title, pr.project_category AS category, pr.project_URL AS link, pr.project_screenName, pr.project_description AS description, pr.repo AS repo, pr.long_text AS long_text FROM projects pr;`,
     `SELECT 'services' AS source, s.id, s.serviceName AS title, s.serviceDescription AS description FROM services s;`,
     `SELECT 'skills' AS source, s.id, s.skill_name AS title, s.skill_cat AS category, s.icon_name AS icon, s.icon_color as iconColor FROM skills s;`,
-    `Select 'courses' AS source, c.id, c.course_name AS title, c.course_date AS date, c.course_organizer AS organizer, c.course_category AS category FROM courses c;`
+    `Select 'courses' AS source, c.id, c.course_name AS title, c.course_date AS date, c.course_organizer AS organizer, c.course_category AS category FROM courses c;`,
+    `SELECT 'about_me' AS source, a.id, a.about_text AS aboutText FROM about_me a;`,
+    `SELECT 'interests' AS source, i.id, i.interest_name AS intName FROM interests i;`,
   ];
 
   try {
@@ -23,6 +25,8 @@ router.get('/collection', async (req, res) => {
       services: results[2][0],
       skills: results[3][0],
       courses: results[4][0],
+      about: results[5][0],
+      interests: results[6][0],
     };
 
     if (Object.values(allData).every(arr => arr.length === 0)) {

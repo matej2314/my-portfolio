@@ -15,7 +15,6 @@ router.post('/new', async (req, res) => {
         return res.status(400).json({ message: 'Prześlij poprawne dane!' });
     }
 
-
     let query;
     let values;
 
