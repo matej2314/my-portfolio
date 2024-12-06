@@ -27,6 +27,8 @@ export default function CmsMenu({ handleSelected }) {
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('projects')}>Projects</button></li>
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('services')}>Services</button></li>
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('skills')}>Skills</button></li>
+                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('about')}>About me</button></li>
+                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('interests')}>Interests</button></li>
             </ul>
             {user && user.userName ? (
                 <div className={cmsComponents.cmsMenu.userDiv}>

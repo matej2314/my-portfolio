@@ -4,6 +4,10 @@ import { motion } from 'framer-motion';
 import { sectionsClasses } from "./portSections-classes";
 
 export default function AboutMe() {
+    const dataCtx = useContext(DataContext);
+    const loading = dataCtx.isLoading;
+    const about = dataCtx.fetchedData.data.about;
+
     return (
         <motion.div
             id="aboutMe-section"
@@ -17,7 +21,14 @@ export default function AboutMe() {
                 <h2 className={sectionsClasses.h2.h2}>About Me</h2>
             </div>
             <div className={sectionsClasses.greybox.greybox}>
-                <p className={sectionsClasses.service.paragraph}>About me text</p>
+                {!loading && about && Array.isArray(about) ? (
+                    about.map((desc) => (
+                        <p key={desc.id} className={sectionsClasses.service.paragraph}>{desc.aboutText}</p>
+                    ))
+                ) : (
+                    <p>Brak opisu.</p>
+                )}
+
             </div>
         </motion.div >
     )

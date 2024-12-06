@@ -39,6 +39,12 @@ export const cmsComponents = {
     manageSkills: {
         buttonDiv: "w-fit h-fit flex flex-col gap-2",
     },
+    manageAbout: {
+
+    },
+    manageInterests: {
+
+    },
     h2: {
         h2: "w-full h-fit flex flex-row text-2xl font-bold justify-center",
     },

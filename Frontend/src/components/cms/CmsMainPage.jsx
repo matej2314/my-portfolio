@@ -8,6 +8,8 @@ import ManagePosts from './cms-components/ManagePosts';
 import ManageProjects from './cms-components/ManageProjects';
 import ManageServices from './cms-components/ManageServices';
 import ManageSkills from './cms-components/ManageSkills';
+import ManageInterests from "./cms-components/ManageInterests";
+import ManageAbout from './cms-components/ManageAbout';
 
 
 export default function CmsMainPage() {
@@ -30,6 +32,10 @@ export default function CmsMainPage() {
                 return <ManageServices />
             case 'skills':
                 return <ManageSkills />
+            case 'about':
+                return <ManageAbout />
+            case 'interests':
+                return <ManageInterests />
             default:
                 return null;
         }

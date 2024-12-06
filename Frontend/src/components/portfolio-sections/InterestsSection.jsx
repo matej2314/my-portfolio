@@ -5,6 +5,11 @@ import { motion } from "framer-motion"
 
 
 export default function Interests() {
+    const dataCtx = useContext(DataContext);
+    const loading = dataCtx.isLoading;
+    const interests = dataCtx.fetchedData.data.interests || '';
+
+
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -18,41 +23,23 @@ export default function Interests() {
             </div>
             <ul
                 className="grid grid-rows-auto md:grid-rows-2 gap-2 pb-4 ">
-                <motion.li
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ amount: 0.4, once: false }}
-                    className={`${sectionsClasses.li.li} text-xl`}
-                >IT
-                </motion.li>
-                <motion.li
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ amount: 0.4, once: false }}
-                    className={`${sectionsClasses.li.li} text-xl`}
-                >
-                    Film
-                </motion.li>
-                <motion.li
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ amount: 0.4, once: false }}
-                    className={`${sectionsClasses.li.li} text-xl`}
-                >
-                    New technologies
-                </motion.li>
-                <motion.li
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    viewport={{ amount: 0.4, once: false }}
-                    className={`${sectionsClasses.li.li} text-xl`}
-                >
-                    Gaming
-                </motion.li>
+
+                {!loading && interests && Array.isArray(interests) ? (
+                    interests.map((interest) => (
+                        <motion.li
+                            key={interest.id}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                            viewport={{ amount: 0.4, once: false }}
+                            className={`${sectionsClasses.li.li} text-xl`}
+                        >
+                            {interest.intName}
+                        </motion.li>
+                    ))
+                ) : (
+                    <p>Brak zainteresowań</p>
+                )}
             </ul>
         </motion.div>
     )
