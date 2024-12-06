@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
 import { editForms } from "../data-forms-classes";
@@ -8,6 +9,7 @@ const editServiceUrl = requestUrl.services.put;
 export default function EditServices({ selectedService, onClose }) {
 
     const { sendRequest, result, isLoading, error } = useSendRequest();
+    const { user } = useContext(AuthContext);
 
     const serviceId = useRef(selectedService.id || '');
     const serviceTitle = useRef(selectedService.title || '');
@@ -94,6 +96,7 @@ export default function EditServices({ selectedService, onClose }) {
                 <button
                     className={editForms.submitBtn.submitBtn}
                     type="submit"
+                    disabled={user.role !== 'admin'}
                 >
                     Save
                 </button>

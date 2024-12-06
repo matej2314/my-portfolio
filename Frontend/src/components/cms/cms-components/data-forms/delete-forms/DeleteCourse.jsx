@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
 import { deleteForms } from '../data-forms-classes';
-
 import ManageCourses from '../../ManageCourses';
-import { cmsComponents } from '../../cms-componenst-styles';
+
 
 const deleteCourseUrl = requestUrl.courses.delete;
 
 export default function DeleteCourse({ courseData, onClose }) {
     const { sendRequest, result, error } = useSendRequest();
+    const { user } = useContext(AuthContext);
     const [denyDeleteCourse, setDenyDeleteCourse] = useState(false);
 
     const handleDeleteCourse = async () => {
@@ -54,7 +55,7 @@ export default function DeleteCourse({ courseData, onClose }) {
             {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
-                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteCourse}>Tak</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteCourse} disabled={user.role !== 'admin'}>Tak</button>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDenyDelete}>Nie</button>
             </div>
         </div>

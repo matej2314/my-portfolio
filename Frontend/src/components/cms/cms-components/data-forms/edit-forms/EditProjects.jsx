@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
 import { editForms } from "../data-forms-classes";
@@ -7,6 +8,7 @@ const editProjectUrl = requestUrl.projects.put;
 
 export default function EditProjects({ selectedProject, onClose }) {
     const { sendRequest, result, isLoading, error } = useSendRequest();
+    const { user } = useContext(AuthContext);
 
     const projectId = useRef(selectedProject.id || '');
     const projectName = useRef(selectedProject.title || '');
@@ -165,6 +167,7 @@ export default function EditProjects({ selectedProject, onClose }) {
                 <button
                     className={editForms.submitBtn.submitBtn}
                     type="submit"
+                    disabled={user.role !== 'admin'}
                 >
                     Save
                 </button>

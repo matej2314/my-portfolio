@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 import { addForms } from "../data-forms-classes";
@@ -10,6 +11,7 @@ export default function AddService({ onClose }) {
     const serviceDescription = useRef();
 
     const { sendRequest, result, error } = useSendRequest();
+    const { user } = useContext(AuthContext);
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -51,7 +53,7 @@ export default function AddService({ onClose }) {
                 <input className={addForms.input.input} type="text" name="service-name" id="service-name" ref={serviceName} />
                 <label className={addForms.label.label} htmlFor="service-description">Service description:</label>
                 <textarea className={addForms.input.input} name="" id="service-description" ref={serviceDescription} />
-                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
+                <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
             </form>
         </div>
     )

@@ -1,4 +1,5 @@
 import { useState, useContext } from "react"
+import { Link } from "react-router-dom";
 import { AuthContext } from '../../store/auth-context';
 import { cmsPages } from "./cmsPages-styles"
 import CmsMenu from "./cms-components/CmsMenu";
@@ -35,15 +36,27 @@ export default function CmsMainPage() {
     }
 
     return (
-        <main className={cmsPages.mainPage.main}>
-            <CmsMenu handleSelected={handleSelected} />
-            <div className={cmsPages.mainPage.contentWrapper}>
-                {selectedButton ? selectedComponent() : (
-                    <div className={cmsPages.mainPage.parWrapper}>
-                        <p className={cmsPages.mainPage.paragraph}>Select category</p>
+        <>
+            {isAuthenticated ? (
+                <main className={cmsPages.mainPage.main}>
+                    <CmsMenu handleSelected={handleSelected} />
+                    <div className={cmsPages.mainPage.contentWrapper}>
+                        {selectedButton ? selectedComponent() : (
+                            <div className={cmsPages.mainPage.parWrapper}>
+                                <p className={cmsPages.mainPage.paragraph}>Select category</p>
+                            </div>
+                        )}
                     </div>
-                )}
-            </div>
-        </main>
+                </main>
+            ) : (
+                <main className={cmsPages.mainPage.main}>
+                    <CmsMenu handleSelected={handleSelected} />
+                    <div className={cmsPages.mainPage.parWrapper}>
+                        <p className={cmsPages.mainPage.paragraph}>Aby skorzystać z panelu, <Link to="/login_admin" className="hover:text-lime-600">zaloguj się</Link></p>
+                    </div>
+
+                </main>
+            )}
+        </>
     )
 }

@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 import { addForms } from "../data-forms-classes";
@@ -17,6 +18,7 @@ export default function AddProject({ onClose }) {
     });
 
     const { sendRequest, result, error } = useSendRequest();
+    const { user } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -73,7 +75,7 @@ export default function AddProject({ onClose }) {
                 <input className={addForms.input.input} type="url" name="project-repo" id="project-repo" ref={(el) => (values.current.projectRepo = el)} />
                 <label className={addForms.label.label} htmlFor="project-longText">Long Description:</label>
                 <textarea className={addForms.input.input} name="project-longText" id="project-longText" ref={(el) => (values.current.projectLongTxt = el)} />
-                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
+                <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
             </form>
         </div>
     )

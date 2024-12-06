@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../../../../store/auth-context";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 import { deleteForms } from "../data-forms-classes";
@@ -10,6 +11,7 @@ const deleteSkillUrl = requestUrl.skills.delete;
 export default function DeleteSkill({ skillData, onClose }) {
     const [denyDelete, setDenyDelete] = useState(false);
     const { sendRequest, result, error } = useSendRequest();
+    const { user } = useContext(AuthContext);
 
     const handleDeleteSkill = async () => {
         const skillId = skillData.id;
@@ -53,7 +55,7 @@ export default function DeleteSkill({ skillData, onClose }) {
             {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
-                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteSkill}>Tak</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteSkill} disabled={user.role !== 'admin'}>Tak</button>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDenyDelete}>Nie</button>
             </div>
         </div>

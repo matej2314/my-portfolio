@@ -25,6 +25,7 @@ export default function LanguagesSection() {
                         className={sectionsClasses.languages.li}
                     >
                         {lang.lang}
+
                         <span className={sectionsClasses.languages.span}>
                             {lang.lvl}
                         </span>

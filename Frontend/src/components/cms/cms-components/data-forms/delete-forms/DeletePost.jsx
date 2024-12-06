@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../../../../store/auth-context.jsx";
 import useSendRequest from '../../../../../hooks/useSendRequest.jsx';
 import { requestUrl } from "../../../../../url";
 import { deleteForms } from "../data-forms-classes.js";
@@ -10,6 +11,7 @@ const deletePostUrl = requestUrl.posts.delete;
 export default function DeletePost({ selectedPost, onClose }) {
     const [denyDelete, setDenyDelete] = useState(false);
     const { sendRequest, result, error } = useSendRequest();
+    const { user } = useContext(AuthContext);
 
     const handleDeletePost = async () => {
         const postId = selectedPost.id;
@@ -54,7 +56,7 @@ export default function DeletePost({ selectedPost, onClose }) {
             {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
-                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeletePost}>Tak</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeletePost} disabled={user.role !== 'admin'}>Tak</button>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDenyDelete}>Nie</button>
             </div>
         </div>

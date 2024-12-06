@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from "../../../../../hooks/useSendRequest"
 import { requestUrl } from "../../../../../url"
 import { addForms } from "../data-forms-classes";
@@ -10,6 +11,7 @@ export default function AddSkill({ onClose }) {
     const skillIconColor = useRef();
 
     const { sendRequest, result, error } = useSendRequest();
+    const { user } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -58,7 +60,7 @@ export default function AddSkill({ onClose }) {
                 <input className={addForms.input.input} type="text" name="skill-icon" id="skill-icon" ref={skillIcon} />
                 <label className={addForms.label.label} htmlFor="icon-color">Icon color - optional</label>
                 <input className={addForms.input.input} type="text" name="icon-color" id="icon-color" ref={skillIconColor} />
-                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
+                <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
             </form>
         </div>
     )

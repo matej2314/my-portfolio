@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 import { addForms } from "../data-forms-classes";
@@ -8,6 +9,7 @@ const addPostUrl = requestUrl.posts.new;
 export default function AddPost({ onClose }) {
 
     const { sendRequest, error, result } = useSendRequest();
+    const { user } = useContext(AuthContext);
 
     const postTitle = useRef();
     const postLead = useRef();
@@ -59,7 +61,7 @@ export default function AddPost({ onClose }) {
                 <textarea className={addForms.input.input} name="post-content" id="post-content" ref={postContent} />
                 <label className={addForms.label.label} htmlFor="post-imageName">Post image name:</label>
                 <input className={addForms.input.input} type="text" name="post-imageName" id="post-imageName" ref={postImgName} />
-                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
+                <button className={addForms.btnSave.btnSave} disabled={user.role !== 'admin'} type="submit">Save</button>
             </form>
         </div>
     )

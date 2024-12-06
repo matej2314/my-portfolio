@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useContext } from "react"
+import { AuthContext } from '../../../../../store/auth-context';
 import { requestUrl } from "../../../../../url";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { addForms } from "../data-forms-classes";
@@ -13,6 +14,7 @@ export default function AddCourse({ onClose }) {
     const courseOrganizer = useRef();
     const courseCategory = useRef();
     const { sendRequest, result, isLoading, error } = useSendRequest();
+    const { user } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,7 +63,7 @@ export default function AddCourse({ onClose }) {
                 <input className={addForms.input.input} type="text" name="course-organizer" id="course-organizer" ref={courseOrganizer} />
                 <label className={addForms.label.label} htmlFor="course-category">Course category:</label>
                 <input className={addForms.input.input} type="text" name="course-category" id="course-category" ref={courseCategory} />
-                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
+                <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
             </form>
         </div>
     )

@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
 import { editForms } from "../data-forms-classes";
@@ -12,6 +13,7 @@ export default function EditPosts({ selectedPost, onClose }) {
     const postContent = useRef(selectedPost.content || '');
     const postImage = useRef(selectedPost.postImage || '');
     const { sendRequest, result, error } = useSendRequest();
+    const { user } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -62,7 +64,7 @@ export default function EditPosts({ selectedPost, onClose }) {
                 <textarea name="post-content" id="post-content" ref={postContent} defaultValue={selectedPost.content} />
                 <label htmlFor="post-image">Post image name:</label>
                 <input type="text" name="post-image" id="post-image" ref={postImage} defaultValue={selectedPost.postImage} />
-                <button type="submit">Save</button>
+                <button type="submit" disabled={user.role !== 'admin'}>Save</button>
             </form>
         </div>
     )

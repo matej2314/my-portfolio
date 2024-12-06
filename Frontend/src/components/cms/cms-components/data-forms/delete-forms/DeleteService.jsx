@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../../../../store/auth-context";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import ManageServices from '../../ManageServices';
 import { requestUrl } from "../../../../../url";
@@ -9,6 +10,7 @@ const deleteServiceUrl = requestUrl.services.delete;
 export default function DeleteService({ serviceData, onClose }) {
     const [denyDelete, setDenyDelete] = useState(false);
     const { sendRequest, result, error } = useSendRequest();
+    const { user } = useContext(AuthContext);
 
     const handleDeleteService = async () => {
         const serviceId = serviceData.id;
@@ -52,7 +54,7 @@ export default function DeleteService({ serviceData, onClose }) {
             {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
-                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteService}>Tak</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteService} disabled={user.role !== 'admin'}>Tak</button>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDenyDelete}>Nie</button>
             </div>
         </div>
