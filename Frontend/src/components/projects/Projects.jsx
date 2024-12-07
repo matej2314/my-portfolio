@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useMediaQuery } from 'react-responsive';
 import { motion } from 'framer-motion'
 import { DataContext } from '../../store/data-context';
 import { Link } from "react-router-dom";
@@ -11,15 +12,17 @@ export default function Projects({ selectedCategory }) {
     const projects = dataCtx.fetchedData.data.projects || [];
     const [flippedCards, setFlippedCards] = useState({});
 
+    const isMobile = useMediaQuery({ maxWidth: 768 });
+
     const filteredProjects = selectedCategory === "all"
         ? projects
         : projects.filter(project => project.category === selectedCategory);
 
-    const handleMouseEnter = (id) => {
+    const handleFlipCard = (id) => {
         setFlippedCards((prev) => ({ ...prev, [id]: true }));
     };
 
-    const handleMouseLeave = (id) => {
+    const handleBackCardFront = (id) => {
         setFlippedCards((prev) => ({ ...prev, [id]: false }));
     };
 
@@ -39,8 +42,10 @@ export default function Projects({ selectedCategory }) {
                                     transition={{ duration: 0.2, ease: "easeIn", type: "spring", damping: 70, stiffness: 70 }}
                                     className={projectsClasses.project.li}
                                     key={project.id}
-                                    onMouseEnter={() => handleMouseEnter(project.id)}
-                                    onMouseLeave={() => handleMouseLeave(project.id)}
+                                    onMouseEnter={() => handleFlipCard(project.id)}
+                                    onMouseLeave={() => handleBackCardFront(project.id)}
+                                    onClick={() => { isMobile ? handleFlipCard(project.id) : null }}
+                                    onBlur={() => { isMobile ? handleBackCardFront(project.id) : null }}
                                 >
                                     <div
                                         className={`${projectsClasses.project.cardWrapper} ${flippedCards[project.id] ? 'rotate-y-180' : 'rotate-y-0'}`}
