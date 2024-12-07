@@ -10,7 +10,7 @@ export default function Projects({ selectedCategory }) {
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
     const projects = dataCtx.fetchedData.data.projects || [];
-    const [flippedCards, setFlippedCards] = useState({});
+    const [flippedCard, setFlippedCard] = useState({});
 
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
@@ -19,11 +19,11 @@ export default function Projects({ selectedCategory }) {
         : projects.filter(project => project.category === selectedCategory);
 
     const handleFlipCard = (id) => {
-        setFlippedCards((prev) => ({ ...prev, [id]: true }));
+        setFlippedCard((prev) => ({ [id]: true }));
     };
 
     const handleBackCardFront = (id) => {
-        setFlippedCards((prev) => ({ ...prev, [id]: false }));
+        setFlippedCard((prev) => ({ [id]: false }));
     };
 
     return (
@@ -49,7 +49,7 @@ export default function Projects({ selectedCategory }) {
                                     onBlur={() => { isMobile && handleBackCardFront(project.id) }}
                                 >
                                     <div
-                                        className={`${projectsClasses.project.cardWrapper} ${flippedCards[project.id] ? 'rotate-y-180' : 'rotate-y-0'}`}
+                                        className={`${projectsClasses.project.cardWrapper} ${flippedCard[project.id] ? 'rotate-y-180' : 'rotate-y-0'}`}
                                     >
                                         {/* Front of project card */}
                                         <div

@@ -14,13 +14,14 @@ export default function Interests() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className={sectionsClasses.wrapper.wrapper}>
+            className={sectionsClasses.wrapper.wrapper}
+        >
             <div className={sectionsClasses.h2.titleWrapper}>
                 <h2 className={sectionsClasses.h2.h2}>
                     Interests
                 </h2>
             </div>
-            <ul className="w-full h-full grid grid-cols-3 gap-6 pb-4 md:text-xl pl-[6.5rem]">
+            <ul className="w-full h-full grid grid-cols-3 gap-6 pb-4 md:text-xl pl-[6.0rem]">
                 {!loading && interests && Array.isArray(interests) ? (
                     interests.map((interest, index) => (
                         <motion.li
