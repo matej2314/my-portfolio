@@ -44,7 +44,7 @@ export default function Projects({ selectedCategory }) {
                                     key={project.id}
                                     onMouseEnter={() => handleFlipCard(project.id)}
                                     onMouseLeave={() => handleBackCardFront(project.id)}
-                                    onClick={() => { isMobile ? handleFlipCard(project.id) : null }}
+                                    onFocus={() => { isMobile ? handleFlipCard(project.id) : null }}
                                     onBlur={() => { isMobile ? handleBackCardFront(project.id) : null }}
                                 >
                                     <div
