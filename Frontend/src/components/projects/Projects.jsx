@@ -36,7 +36,7 @@ export default function Projects({ selectedCategory }) {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.3, ease: "easeInOut", type: "spring", damping: 70, stiffness: 70 }}
+                                    transition={{ duration: 0.2, ease: "easeIn", type: "spring", damping: 70, stiffness: 70 }}
                                     className={projectsClasses.project.li}
                                     key={project.id}
                                     onMouseEnter={() => handleMouseEnter(project.id)}
@@ -53,7 +53,7 @@ export default function Projects({ selectedCategory }) {
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
-                                                transition={{ duration: 0.7, ease: "easeInOut", type: "spring", damping: 70, stiffness: 70 }}
+                                                transition={{ duration: 0.3, ease: "easeIn", type: "spring", damping: 70, stiffness: 70 }}
                                                 src={`${imgUrl}/${project.project_screenName}-640.png`}
                                                 srcSet={`
                                                       ${imgUrl}/${project.project_screenName}-320.png 320w,
