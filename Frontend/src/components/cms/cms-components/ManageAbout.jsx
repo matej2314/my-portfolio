@@ -10,17 +10,17 @@ export default function ManageAbout() {
 
 
     return (
-        <div>
-            <ul>
+        <div className={cmsComponents.wrapper.wrapper}>
+            <ul className={cmsComponents.ul.ul}>
                 {!isLoading && about && Array.isArray(about) ? (
                     about.map((text) => {
-                        <li>
-                            <span>{text.id}</span>
-                            <span>{text.aboutText}</span>
+                        <li className={cmsComponents.li.li}>
+                            <span className={cmsComponents.span.span}>{text.id}</span>
+                            <span className={cmsComponents.span.span}>{text.aboutText}</span>
                         </li>
                     })
                 ) : (
-                    <p>Brak opisów.</p>
+                    <p className={cmsComponents.managePosts.noPostsLi}>Brak opisów.</p>
                 )}
             </ul>
         </div>

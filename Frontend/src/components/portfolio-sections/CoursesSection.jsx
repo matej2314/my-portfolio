@@ -18,7 +18,7 @@ export default function CoursesSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className={sectionsClasses.coursesSection.section}
+            className={sectionsClasses.wrapper.wrapper}
         >
             <div className={sectionsClasses.h2.titleWrapper}>
                 <h2 className={sectionsClasses.h2.h2}>Courses</h2>

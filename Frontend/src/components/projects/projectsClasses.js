@@ -6,7 +6,7 @@ export const projectsClasses = {
         wrapper: "relative w-full h-fit flex flex-row justify-center pt-10 md:pt-0 ",
         ul: "relative w-full h-[75vh] gap-9 flex flex-col justify-between xl:grid xl:grid-cols-2 xl:gap-9 pl-2 overflow-scroll no-scrollbar z-0",
         li: "w-full max-h-80 relative perspective-1000",
-        projectImage: "w-full h-full object-cover",
+        projectImage: "w-full h-full object-cover rounded-md",
         cardWrapper: 'relative w-full h-full transition-transform duration-700 ease-in-out transform-preserve-3d',
         frontCard: "absolute w-full max-h-80", 
         contentWrapper: "absolute w-full min-h-60 bg-black text-white flex flex-col justify-center items-center backface-hidden rotate-y-180 bg-opacity-80",

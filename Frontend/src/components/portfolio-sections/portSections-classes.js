@@ -22,7 +22,7 @@ export const sectionsClasses = {
     },
     service: {
         span: "text-[#6f963b] text-2xl hidden md:inline",
-        paragraph: "w-full flex flex-wrap mt-2 whitespace-pre-line leading-relaxed",
+        paragraph: "w-full flex justify-center flex-wrap mt-2 whitespace-break-spaces leading-relaxed",
     },
     greybox: {
         greybox: "w-full flex flex-col items-center justify-start pt-2 pb-3 px-4 bg-gray-500/15 rounded",
@@ -34,6 +34,7 @@ export const sectionsClasses = {
     skill: {
         span: "w-fit h-fit flex justify-center",
         li: "w-full h-fit flex flex-row items-center justify-center gap-1.5 indirect:gap-2.5 mx-auto", 
+        
     },    
     skillsSection: {
         sectionWrapper: "w-full flex flex-col items-center px-1 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
@@ -63,8 +64,10 @@ export const sectionsClasses = {
         categoryButton: "hover:text-[#6f963b] text-[0.8rem] indirect:text-sm sm:text-xs md:text-base flex justify-start",
     },
     coursesSection: {
-        section: "w-full flex flex-col items-center justify-center border-dotted border-b-2 border-[#6f963b] border-opacity-40 gap-4",
-        ul: "w-full flex flex-col justify-center items-center gap-4 mb-4 pl-4 md:mb-4",
+        ul: "w-full flex flex-col justify-center items-center gap-4 mb-4 pl-4 md:mb-4 md:grid md:grid-cols-4",
+    },
+    wrapper: {
+        wrapper: "w-full h-fit flex flex-col items-center gap-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
     },
     aboutMe: {
         wrapper: "w-full h-fit flex flex-col justify-center items-center gap-4 mt-3",
