@@ -20,7 +20,7 @@ export default function AboutMe() {
             <div className={sectionsClasses.h2.titleWrapper}>
                 <h2 className={sectionsClasses.h2.h2}>About Me</h2>
             </div>
-            <div className={sectionsClasses.greybox.greybox}>
+            <div className={`${sectionsClasses.greybox.greybox}`}>
                 {!loading && about && Array.isArray(about) ? (
                     about.map((desc) => (
                         <p key={desc.id} className={sectionsClasses.service.paragraph}>{desc.aboutText}</p>

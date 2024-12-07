@@ -1,29 +1,26 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { motion } from 'framer-motion'
 import { DataContext } from '../../store/data-context';
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { imgUrl } from "../../url";
 import { projectsClasses } from "./projectsClasses";
 
-export default function Projects({ selectedCategory, isMobile }) {
+export default function Projects({ selectedCategory }) {
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
     const projects = dataCtx.fetchedData.data.projects || [];
+    const [flippedCards, setFlippedCards] = useState({});
 
     const filteredProjects = selectedCategory === "all"
         ? projects
         : projects.filter(project => project.category === selectedCategory);
 
-    const divVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 },
+    const handleMouseEnter = (id) => {
+        setFlippedCards((prev) => ({ ...prev, [id]: true }));
     };
 
-    const liVariants = {
-        initial: { opacity: 0, scale: 0.9 },
-        animate: { opacity: 1, scale: 1 },
-        hover: { opacity: 1, scale: 1.06 },
-        exit: { opacity: 0, scale: 0 }
+    const handleMouseLeave = (id) => {
+        setFlippedCards((prev) => ({ ...prev, [id]: false }));
     };
 
     return (
@@ -36,40 +33,49 @@ export default function Projects({ selectedCategory, isMobile }) {
                         filteredProjects.length > 0 ? (
                             filteredProjects.map((project) => (
                                 <motion.li
-                                    key={project.id}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.3, ease: "easeInOut", type: "spring", damping: 70, stiffness: 70 }}
                                     className={projectsClasses.project.li}
-                                    variants={liVariants}
-                                    initial="initial"
-                                    animate="animate"
-                                    exit="exit"
-                                    whileHover="hover"
-                                    transition={{ duration: 0.5, type: "stiffness", stiffness: 200, delay: 0.2 }}
+                                    key={project.id}
+                                    onMouseEnter={() => handleMouseEnter(project.id)}
+                                    onMouseLeave={() => handleMouseLeave(project.id)}
                                 >
-                                    <motion.img
-                                        className={projectsClasses.project.projectImage}
-                                        src={`${imgUrl}/${project.project_screenName}-640.png`}
-                                        srcSet={`
-                                            ${imgUrl}/${project.project_screenName}-320.png 320w,
-                                            ${imgUrl}/${project.project_screenName}-640.png 640w,
-                                            ${imgUrl}/${project.project_screenName}.png 1100w
-                                            `}
-                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                        alt={project.title}
-                                    />
-                                    <motion.div
-                                        className={projectsClasses.project.hoverContent}
-                                        variants={divVariants}
-                                        initial={isMobile ? "visible" : "hidden"}
-                                        animate={isMobile ? "visible" : "hidden"}
-                                        whileHover={!isMobile && "visible"}
-                                        transition={{ duration: 0.3 }}
+                                    <div
+                                        className={`${projectsClasses.project.cardWrapper} ${flippedCards[project.id] ? 'rotate-y-180' : 'rotate-y-0'}`}
                                     >
-                                        <div className={projectsClasses.project.contentWrapper}>
+                                        {/* Front of project card */}
+                                        <div
+                                            className={projectsClasses.project.frontCard}
+                                        >
+                                            <motion.img
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
+                                                transition={{ duration: 0.7, ease: "easeInOut", type: "spring", damping: 70, stiffness: 70 }}
+                                                src={`${imgUrl}/${project.project_screenName}-640.png`}
+                                                srcSet={`
+                                                      ${imgUrl}/${project.project_screenName}-320.png 320w,
+                                                      ${imgUrl}/${project.project_screenName}-640.png 640w,
+                                                      ${imgUrl}/${project.project_screenName}.png 1100w
+                                                   `}
+                                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                                alt={project.title}
+                                                className={projectsClasses.project.projectImage}
+                                            />
+                                        </div>
+                                        {/* Back of project card */}
+                                        <div
+                                            className={projectsClasses.project.contentWrapper}
+                                        >
                                             <h3 className={projectsClasses.project.h3}>{project.title}</h3>
                                             <p className={projectsClasses.project.description}>{project.description}</p>
-                                            <Link className={projectsClasses.project.link} to={`/project/details/${project.id}`}>View details</Link>
+                                            <Link className={projectsClasses.project.link} to={`/project/details/${project.id}`}>
+                                                View details
+                                            </Link>
                                         </div>
-                                    </motion.div>
+                                    </div>
                                 </motion.li>
                             ))
                         ) : (
@@ -79,6 +85,5 @@ export default function Projects({ selectedCategory, isMobile }) {
                 </ul>
             </div>
         </div>
-    )
-
+    );
 }
