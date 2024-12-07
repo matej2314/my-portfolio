@@ -1,11 +1,11 @@
 export const cmsComponents = {
     cmsMenu: {
-        wrapper: "w-full h-fit flex flex-row justify-between items-center text-white bg-neutral-600/30 py-3 px-[35rem]",
-        ul: "w-full h-fit flex flex-row justify-center items-center gap-10 ml-14",
-        h2: 'w-fit h-fit flex flex-row justify-center items-center',
-        li: 'hover:text-lime-600',
-        userDiv: 'w-full h-fit flex flex-row justify-between gap-4 ml-[15rem]',
-        logOutBtn: 'ml-3 hover:text-lime-600',
+        wrapper: "w-full h-fit flex flex-row justify-between items-center text-white bg-neutral-600/30 py-1",
+        ul: "w-full h-fit flex flex-row justify-center items-center gap-8",
+        h2: 'w-full h-fit flex flex-row justify-around items-center mr-3',
+        li: 'w-full h-fit flex flex-row justify-around hover:text-lime-600',
+        userDiv:'w-full h-fit flex flex-row justify-end gap-4 pr-2',
+        logOutBtn: 'w-full h-full hover:text-lime-600',
     },
     loginForm: {
         form: "w-fit h-fit flex flex-col justify-center items-center gap-5 text-white",

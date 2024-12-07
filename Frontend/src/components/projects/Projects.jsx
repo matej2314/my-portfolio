@@ -42,6 +42,7 @@ export default function Projects({ selectedCategory }) {
                                     transition={{ duration: 0.2, ease: "easeIn", type: "spring", damping: 70, stiffness: 70 }}
                                     className={projectsClasses.project.li}
                                     key={project.id}
+                                    tabIndex={0}
                                     onMouseEnter={() => { !isMobile && handleFlipCard(project.id) }}
                                     onMouseLeave={() => { !isMobile && handleBackCardFront(project.id) }}
                                     onFocus={() => { isMobile && handleFlipCard(project.id) }}

@@ -9,7 +9,6 @@ export default function Interests() {
     const loading = dataCtx.isLoading;
     const interests = dataCtx.fetchedData.data.interests || '';
 
-
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -21,17 +20,16 @@ export default function Interests() {
                     Interests
                 </h2>
             </div>
-            <ul
-                className="w-full grid grid-rows-auto md:grid-cols-2 gap-x-6 pb-4 ">
-
+            <ul className="w-full h-full grid grid-cols-3 gap-6 pb-4 md:text-xl pl-[6.5rem]">
                 {!loading && interests && Array.isArray(interests) ? (
-                    interests.map((interest) => (
+                    interests.map((interest, index) => (
                         <motion.li
                             key={interest.id}
                             initial={{ opacity: 0, scale: 0.8 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, ease: "easeOut" }}
                             viewport={{ amount: 0.4, once: false }}
+
                             className={`${sectionsClasses.li.li} text-xl`}
                         >
                             {interest.intName}

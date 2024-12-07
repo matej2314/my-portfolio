@@ -10,8 +10,8 @@ export default function ManageAbout() {
 
 
     return (
-        <div className={cmsComponents.wrapper.wrapper}>
-            <ul className={cmsComponents.ul.ul}>
+        <div className="w-full h-full bg-neutral-600/30 flex justify-center items-center">
+            <ul className="w-1/2 h-1/2 bg-blabk">
                 {!isLoading && about && Array.isArray(about) ? (
                     about.map((text) => {
                         <li className={cmsComponents.li.li}>
@@ -20,7 +20,7 @@ export default function ManageAbout() {
                         </li>
                     })
                 ) : (
-                    <p className={cmsComponents.managePosts.noPostsLi}>Brak opisów.</p>
+                    <p className="w-fit h-fit text-2xl text-white">Brak opisów.</p>
                 )}
             </ul>
         </div>
