@@ -44,8 +44,8 @@ export default function Projects({ selectedCategory }) {
                                     key={project.id}
                                     onMouseEnter={() => { !isMobile && handleFlipCard(project.id) }}
                                     onMouseLeave={() => { !isMobile && handleBackCardFront(project.id) }}
-                                    onFocus={() => { isMobile ? handleFlipCard(project.id) : null }}
-                                    onBlur={() => { isMobile ? handleBackCardFront(project.id) : null }}
+                                    onFocus={() => { isMobile && handleFlipCard(project.id) }}
+                                    onBlur={() => { isMobile && handleBackCardFront(project.id) }}
                                 >
                                     <div
                                         className={`${projectsClasses.project.cardWrapper} ${flippedCards[project.id] ? 'rotate-y-180' : 'rotate-y-0'}`}
