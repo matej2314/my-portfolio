@@ -34,7 +34,7 @@ export default function DeleteInterest(interestData, onClose) {
     }
 
     if (denyDeleteInterest) {
-        return <ManageInterests />
+        onClose();
     }
 
     useEffect(() => {

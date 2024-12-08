@@ -46,7 +46,7 @@ export default function DeleteProject({ selectedProject, onClose }) {
     }, [error, result, onClose]);
 
     if (denyDelete) {
-        return <ManageProjects />
+        onClose();
     }
 
     return (

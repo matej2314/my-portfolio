@@ -32,7 +32,7 @@ export default function DeleteCourse({ courseData, onClose }) {
     };
 
     if (denyDeleteCourse) {
-        return <ManageCourses />
+        onClose();
     }
 
     useEffect(() => {

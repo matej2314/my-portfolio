@@ -32,7 +32,7 @@ export default function DeletePost({ selectedPost, onClose }) {
     };
 
     if (denyDelete) {
-        return <ManagePosts />
+        onClose();
     }
 
     useEffect(() => {

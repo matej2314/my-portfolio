@@ -31,7 +31,7 @@ export default function DeleteService({ serviceData, onClose }) {
     };
 
     if (denyDelete) {
-        return <ManageServices />
+        onClose();
     };
 
     useEffect(() => {

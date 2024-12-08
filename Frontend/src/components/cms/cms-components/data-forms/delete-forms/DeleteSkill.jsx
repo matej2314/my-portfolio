@@ -33,7 +33,7 @@ export default function DeleteSkill({ skillData, onClose }) {
     }
 
     if (denyDelete) {
-        return <ManageSkills />
+        onClose();
     };
 
     useEffect(() => {

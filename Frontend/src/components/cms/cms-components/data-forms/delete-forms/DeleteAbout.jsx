@@ -31,7 +31,7 @@ export default function DeleteAbout({ descData, onClose }) {
     };
 
     if (denyDeleteAbout) {
-        return <ManageAbout />
+        onClose();
     }
 
     useEffect(() => {
