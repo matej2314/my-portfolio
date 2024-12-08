@@ -24,7 +24,7 @@ export default function ManageAbout() {
         setActionType('edit')
     };
 
-    const handleDelete = ({ descData }) => {
+    const handleDelete = (descData) => {
         setSelectedDesc(descData)
         setActionType('delete')
     };

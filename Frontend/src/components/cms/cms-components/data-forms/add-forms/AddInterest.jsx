@@ -38,16 +38,16 @@ export default function AddInterest({ onClose }) {
 
 
     return (
-        <div>
-            <h2>Add new interest:</h2>
+        <div className="w-full h-full flex flex-col items-center justify-start text-white bg-neutral-600/30 pt-3 gap-4">
+            <h2 className="text-3xl">Add new interest:</h2>
             {result && !error && <p className={addForms.message.result}>{result.message}</p>}
             {error && <p className={addForms.message.error}>{error}</p>}
             <form
                 onSubmit={handleSubmit}
-                className=""
+                className="w-1/4 h-fit flex flex-col items-center justify-center gap-3"
             >
-                <label htmlFor="interest-name">Type interest name:</label>
-                <input type="text" name="interest-name" id="interest-name" ref={interest} />
+                <label className="text-2xl" htmlFor="interest-name">Type interest name:</label>
+                <input className="text-2xl text-black pl-2" type="text" name="interest-name" id="interest-name" ref={interest} />
                 <button className={addForms.btnSave.btnSave} disabled={user.role !== 'admin'} type="submit">Save</button>
             </form>
         </div>

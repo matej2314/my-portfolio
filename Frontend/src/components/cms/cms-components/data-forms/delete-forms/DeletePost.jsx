@@ -31,6 +31,10 @@ export default function DeletePost({ selectedPost, onClose }) {
         setDenyDelete(true);
     };
 
+    if (denyDelete) {
+        return <ManagePosts />
+    }
+
     useEffect(() => {
         if (result && !error) {
             const timer = setTimeout(() => {

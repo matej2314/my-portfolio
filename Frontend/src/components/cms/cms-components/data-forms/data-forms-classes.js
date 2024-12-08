@@ -24,7 +24,7 @@ export const addForms = {
         btnSave: "w-fit h-fit flex flex-row justify-center border-2 border-black p-3 rounded-xl text-md bg-neutral-700 hover:bg-neutral-800/50",
     },
     input: {
-        input: "w-full h-fit flex justify-center items-center text-black bg-slate-300",
+        input: "w-full h-fit flex justify-center items-center text-black bg-slate-300 pl-2",
     },
     label: {
         label: "w-full h-fit flex flex-row justify-center text-sm",

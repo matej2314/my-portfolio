@@ -41,7 +41,7 @@ export default function CmsMenu({ handleSelected }) {
                     <p className='w-fit h-fit'>Guest</p>
                 )}
                 <div className='w-fit h-fit flex justify-center'>
-                    <button onClick={handleLogOut} className={cmsComponents.cmsMenu.logOutBtn}>Logout</button>
+                    <button onClick={handleLogOut} className={cmsComponents.cmsMenu.logOutBtn} disabled={!isAuthenticated}>Logout</button>
                 </div>
             </div>
         </div>

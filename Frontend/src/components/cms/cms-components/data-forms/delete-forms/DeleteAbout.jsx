@@ -12,8 +12,6 @@ export default function DeleteAbout({ descData, onClose }) {
     const { user } = useContext(AuthContext);
     const [denyDeleteAbout, setDenyDeleteAbout] = useState(false);
 
-
-
     const handleDeleteAbout = async () => {
         const id = descData.id;
 
@@ -32,6 +30,10 @@ export default function DeleteAbout({ descData, onClose }) {
         setDenyDeleteAbout(true);
     };
 
+    if (denyDeleteAbout) {
+        return <ManageAbout />
+    }
+
     useEffect(() => {
         if (result && !error) {
             const timer = setTimeout(() => {
@@ -43,8 +45,18 @@ export default function DeleteAbout({ descData, onClose }) {
     }, [error, result, onClose]);
 
     return (
-        <div>
-
+        <div className={deleteForms.wrapper.wrapper}>
+            <h2 className={deleteForms.h2.h2}>
+                Czy na pewno chcesz usunąć opis 'o mnie'?
+            </h2>
+            {descData && <p>{descData.name}</p>}
+            {descData && <p>id: {descData.id}</p>}
+            {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
+            {error && <p className={deleteForms.messages.error}>{error}</p>}
+            <div className={deleteForms.buttonWrapper.buttonWrapper}>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteAbout} disabled={user.role !== 'admin'}>Tak</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDenyDelete}>Nie</button>
+            </div>
         </div>
     )
 }

@@ -53,7 +53,7 @@ export default function AddProject({ onClose }) {
 
             return () => clearTimeout(timer);
         }
-    }, [result, error, onCLose])
+    }, [result, error, onClose])
 
     return (
         <div className={addForms.addProject.wrapper}>

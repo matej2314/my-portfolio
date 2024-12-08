@@ -33,6 +33,10 @@ export default function DeleteInterest(interestData, onClose) {
         setDenyDeleteInterest(true);
     }
 
+    if (denyDeleteInterest) {
+        return <ManageInterests />
+    }
+
     useEffect(() => {
         if (result && !error) {
             const timer = setTimeout(() => {
@@ -44,8 +48,18 @@ export default function DeleteInterest(interestData, onClose) {
     }, [result, error, onClose])
 
     return (
-        <div>
-
+        <div className={deleteForms.wrapper.wrapper}>
+            <h2 className={deleteForms.h2.h2}>
+                Czy na pewno chcesz usunąć zainteresowanie z bazy danych?
+            </h2>
+            {interestData && <p>{interestData.intName}</p>}
+            {interestData && <p>id: {interestData.id}</p>}
+            {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
+            {error && <p className={deleteForms.messages.error}>{error}</p>}
+            <div className={deleteForms.buttonWrapper.buttonWrapper}>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteInterest} disabled={user.role !== 'admin'}>Tak</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDenyDelete}>Nie</button>
+            </div>
         </div>
     )
 
