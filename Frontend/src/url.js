@@ -40,6 +40,15 @@ export const requestUrl= {
     skills: {
         new: `${serverUrl}/skills/new`,
         delete: `${serverUrl}/skills/delete`
-    }
+    },
+    about: {
+        new: `${serverUrl}/about/new`,
+        edit: `${serverUrl}/about/update`,
+        delete: `${serverUrl}/about/delete`
+    },
+    interests: {
+        new: `${serverUrl}/interests/new`,
+        delete: `${serverUrl}/interests/delete`,
+    },
 
 }

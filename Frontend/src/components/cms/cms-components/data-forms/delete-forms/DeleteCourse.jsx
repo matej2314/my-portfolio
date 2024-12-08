@@ -31,10 +31,6 @@ export default function DeleteCourse({ courseData, onClose }) {
         setDenyDeleteCourse(true);
     };
 
-    if (denyDeleteCourse) {
-        return <ManageCourses />
-    };
-
     useEffect(() => {
         if (result && !error) {
             const timer = setTimeout(() => {

@@ -35,10 +35,6 @@ export default function DeleteProject({ selectedProject, onClose }) {
         setDenyDelete(true);
     };
 
-    if (denyDelete) {
-        return <ManageProjects />
-    };
-
     useEffect(() => {
         if (result && !error) {
             const timer = setTimeout(() => {

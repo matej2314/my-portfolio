@@ -1,23 +1,68 @@
 import { useState, useContext } from 'react';
 import { DataContext } from '../../../store/data-context';
 import { cmsComponents } from './cms-componenst-styles';
+import AddInterest from './data-forms/add-forms/AddInterest';
+import DeleteInterest from './data-forms/delete-forms/DeleteInterest';
+
 
 
 export default function ManageInterests() {
-    const { refreshData, fetchedData, isLoading } = useContext(DataContext);
-    const interests = fetchedData.data.interests;
-    console.log(interests)
+    const dataCtx = useContext(DataContext);
+    const loading = dataCtx.isLoading;
+    const interests = dataCtx.fetchedData.data.interests;
+    const { refreshData } = dataCtx;
+    const [actionType, setActionType] = useState(null);
+    const [selectedInterest, setSelectedInterest] = useState(null);
 
+    const handleAddNew = () => {
+        setActionType('add')
+    };
+
+    const handleDelete = (interestData) => {
+        setSelectedInterest(interestData);
+        setActionType('delete')
+    };
+
+    const handleCloseAction = () => {
+        setActionType(null);
+        refreshData();
+    }
+
+    if (actionType === 'add') {
+        return <AddInterest onClose={handleCloseAction} />
+    };
+
+    if (actionType === 'delete' && selectedInterest) {
+        return <DeleteInterest interestData={selectedInterest} onClose={handleCloseAction} />
+    }
 
     return (
         <div className={cmsComponents.wrapper.wrapper}>
-            <h2 className={cmsComponents.h2.h2}>Interests in DB:</h2>
-            <ul className='w-1/3 h-full flex flex-col justify-center items-center'>
-                {!isLoading && interests && Array.isArray(interests) ? (
+            <h2
+                className={cmsComponents.h2.h2}
+            >
+                Interests in DB:
+            </h2>
+            <button
+                onClick={handleAddNew}
+                className={cmsComponents.addNew.addNew}
+            >
+                Add new
+            </button>
+            <ul className={cmsComponents.ul.ul}>
+                {!loading && interests && Array.isArray(interests) ? (
                     interests.map((interest) => {
-                        <li className='w-full flex justify-around'>
-                            <span>{interest.id}</span>
-                            {interest.intName}
+                        return <li
+                            className={cmsComponents.li.li}
+                        >
+                            <span className={cmsComponents.span.span}>{interest.id}</span>
+                            <span className={cmsComponents.span.span}>{interest.intName}</span>
+                            <button
+                                className={cmsComponents.actionBtn.actionBtn}
+                                onClick={() => handleDelete(interest)}
+                            >
+                                Delete
+                            </button>
                         </li>
                     })
                 ) : (

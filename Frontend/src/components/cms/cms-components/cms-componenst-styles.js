@@ -62,7 +62,7 @@ export const cmsComponents = {
         ul: "w-fit h-fit flex flex-col justify-center items-center text-sm text-white border-2 border-l-cyan-100 p-4 gap-4",
     },
     li: {
-       li: "w-full h-full flex flex-row items-start justify-center text-white text-sm gap-4 border-b-2 border-black p-2",
+       li: "w-full h-fit flex flex-row items-center justify-center text-white text-sm gap-4 border-b-2 border-black p-2",
     },
     span: {
         span: "w-full",

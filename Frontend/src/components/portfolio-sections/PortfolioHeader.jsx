@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 
 
-import portfolioImage from '../../assets/portfolio-header-image.png';
-import portfolioPhoto from '../../assets/portfolio-photo.jpg';
+import portfolioImage from '../../assets/portfolio-header-image.webp';
+import portfolioPhoto from '../../assets/portfolio-photo.png';
 import SocialIcons from '../icons/SocialIcons';
 import { sectionsClasses } from './portSections-classes';
 
