@@ -3,7 +3,7 @@ import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
 import { deleteForms } from '../data-forms-classes';
-import ManageInterests from '../../ManageInterests';
+
 
 
 const deleteInterestUrl = requestUrl.interests.delete;
@@ -30,7 +30,7 @@ export default function DeleteInterest(interestData, onClose) {
     };
 
     const handleDenyDelete = () => {
-        setDenyDeleteInterest(true);
+        setDenyDeleteInterest(() => true);
     }
 
     if (denyDeleteInterest) {
