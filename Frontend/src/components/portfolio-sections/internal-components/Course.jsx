@@ -14,7 +14,7 @@ export default function Course({ courses, loading }) {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
                         viewport={{ amount: 0.4, once: false }}
-                        className={`${sectionsClasses.li.li} items-center h-[11rem] border-r-2 border-[#6f963b] border-opacity-40 whitespace-break-spaces`}
+                        className={`"w-full h-full md:w-full md:h-full flex md:flex-col justify-around pb-2 items-center border-r-2 border-[#6f963b] border-opacity-40 whitespace-break-spaces`}
                     >
                         {`${course.title} - ${course.organizer}`}
                     </motion.li>

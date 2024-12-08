@@ -17,7 +17,7 @@ export const sectionsClasses = {
     languages: {
         section: "w-full flex flex-col items-center pb-2 border-dotted border-b-2 border-[#6f963b] border-opacity-40 gap-4",
         ul: "w-full grid grid-rows-auto text-sm sm:text-xl md:text-xl gap-3",
-        span: "border-dotted border-b-2 border-[#6f963b] max-w-10",
+        span: "border-dotted border-b-2 border-[#6f963b] w-fit",
         li: "w-full h-full flex flex-row justify-around items-center pb-2"
     },
     service: {
@@ -64,7 +64,7 @@ export const sectionsClasses = {
         categoryButton: "hover:text-[#6f963b] text-[0.8rem] indirect:text-sm sm:text-xs md:text-base flex justify-start",
     },
     coursesSection: {
-        ul: "w-full flex flex-col justify-center items-center gap-4 mb-4 pl-4 md:mb-4 md:grid md:grid-cols-4",
+        ul: "w-full h-full flex flex-col text-base justify-center gap-3 md:w-full md:h-fit md:items-center md:gap-4 mb-4 pl-4 md:mb-4 md:grid md:grid-cols-4",
     },
     wrapper: {
         wrapper: "w-full h-fit flex flex-col items-center gap-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
