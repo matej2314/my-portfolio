@@ -30,7 +30,7 @@ export default function DeleteInterest(interestData, onClose) {
     };
 
     const handleDenyDelete = () => {
-        setDenyDeleteInterest(() => true);
+        setDenyDeleteInterest(true);
     }
 
     if (denyDeleteInterest) {
@@ -45,7 +45,7 @@ export default function DeleteInterest(interestData, onClose) {
 
             return () => clearTimeout(timer);
         }
-    }, [result, error, onClose])
+    }, [result, error, onClose]);
 
     return (
         <div className={deleteForms.wrapper.wrapper}>
