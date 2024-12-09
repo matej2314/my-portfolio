@@ -21,6 +21,7 @@ export default function DeleteInterest(interestData, onClose) {
         try {
             await sendRequest({
                 url: deleteInterestUrl,
+                method: "DELETE",
                 data: { id: interestId, interestName: interestName },
             });
 

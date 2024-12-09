@@ -19,6 +19,7 @@ export default function DeleteAbout({ descData, onClose }) {
             await sendRequest({
                 url: deleteAboutUrl,
                 data: { id: id },
+                method: "DELETE",
             });
 
         } catch (error) {

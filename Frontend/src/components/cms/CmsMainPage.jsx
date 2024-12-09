@@ -58,7 +58,13 @@ export default function CmsMainPage() {
                 <main className={cmsPages.mainPage.main}>
                     <CmsMenu handleSelected={handleSelected} />
                     <div className={cmsPages.mainPage.parWrapper}>
-                        <p className={cmsPages.mainPage.paragraph}>Aby skorzystać z panelu, <Link to="/login_admin" className="hover:text-lime-600">zaloguj się</Link></p>
+                        <p className={cmsPages.mainPage.paragraph}>
+                            Aby skorzystać z panelu, <Link to="/login_admin"
+                                className="text-lime-600 hover:text-white"
+                            >
+                                zaloguj się
+                            </Link>
+                        </p>
                     </div>
 
                 </main>
