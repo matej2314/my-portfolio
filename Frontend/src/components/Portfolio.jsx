@@ -20,7 +20,7 @@ export default function Portfolio({ isNested }) {
                 <LanguagesSection />
                 <SkillsSection />
                 <CoursesSection />
-                <Interests />
+                <Interests isNested={isNested} />
                 <WorkSection />
                 <PortfolioFooter />
                 <Footer />

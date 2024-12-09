@@ -39,16 +39,16 @@ export default function AddAbout({ onClose }) {
 
 
     return (
-        <div className="w-full h-full flex flex-col justify-center items-center bg-neutral-600/30 text-white pt-2">
+        <div className="w-full h-full flex flex-col justify-start items-center bg-neutral-600/30 text-white pt-2 gap-8">
             <h2 className="text-3xl">Add new about me text</h2>
             {result && result.message && <p className={addForms.message.result}>{result.message}</p>}
             {error && <p className={addForms.message.error}>{error}</p>}
             <form
-                className="w-11/12 h-full flex flex-col items-center justify-center text-white gap-4 "
+                className="w-11/12 h-full flex flex-col items-center justify-start text-white gap-4 "
                 onSubmit={handleSubmit}
             >
-                <label className="text-2xl" htmlFor="about-text">Write new about me text:</label>
-                <textarea className="w-full text-black pl-2 text-xl" name="about-text" id="about-text" ref={about} />
+                <label className="text-2xl" htmlFor="about-text">Write new 'about me' text:</label>
+                <textarea className={addForms.input.input} name="about-text" id="about-text" ref={about} />
                 <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
             </form>
         </div>

@@ -12,7 +12,7 @@ export const projectsClasses = {
         contentWrapper: "absolute w-full min-h-[14rem] md:min-h-[16.5rem] bg-black text-white flex flex-col justify-center items-center backface-hidden rotate-y-180 bg-opacity-80",
         h3: "text-sm md:text-lg underline underline-offset-1 -translate-y-1/2 ",
         description: "w-full flex flex-row justify-center md:-translate-y-[.5rem] text-[0.5rem] md:flex md:flex-col md:justify-center md:text-base md:pl-2.5 md:whitespace-pre-wrap",
-        link: "underline underline-offset-2 hover:text-[#b8c785] translate-y-1/2 ",
+        link: "underline underline-offset-2 hover:text-[#b8c785] translate-y-1/3 ",
     },
     projectsCategories: {
         wrapper: "w-full h-fit flex items-center bg-neutral-600/30 rounded-md",

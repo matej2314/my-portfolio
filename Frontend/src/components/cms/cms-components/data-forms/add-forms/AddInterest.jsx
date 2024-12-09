@@ -46,8 +46,8 @@ export default function AddInterest({ onClose }) {
                 onSubmit={handleSubmit}
                 className="w-1/4 h-fit flex flex-col items-center justify-center gap-3"
             >
-                <label className="text-2xl" htmlFor="interest-name">Type interest name:</label>
-                <input className="text-2xl text-black pl-2" type="text" name="interest-name" id="interest-name" ref={interest} />
+                <label className="text-2xl" htmlFor="interest-name">Type name of new interest:</label>
+                <input className={addForms.input.input} type="text" name="interest-name" id="interest-name" ref={interest} />
                 <button className={addForms.btnSave.btnSave} disabled={user.role !== 'admin'} type="submit">Save</button>
             </form>
         </div>

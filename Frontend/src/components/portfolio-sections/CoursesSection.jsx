@@ -18,7 +18,7 @@ export default function CoursesSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="w-full h-fit flex flex-col md:flex-col md:w-full items-center gap-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40"
+            className={sectionsClasses.coursesSection.wrapper}
         >
             <div className={sectionsClasses.h2.titleWrapper}>
                 <h2 className={sectionsClasses.h2.h2}>Courses</h2>

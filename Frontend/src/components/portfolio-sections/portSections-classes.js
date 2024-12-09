@@ -16,7 +16,7 @@ export const sectionsClasses = {
     },
     languages: {
         section: "w-full flex flex-col items-center pb-2 border-dotted border-b-2 border-[#6f963b] border-opacity-40 gap-4",
-        ul: "w-full grid grid-rows-auto text-sm sm:text-xl md:text-xl gap-3",
+        ul: "w-7/12 grid grid-rows-3 text-sm sm:text-xl md:text-xl gap-3",
         span: "border-dotted border-b-2 border-[#6f963b] w-fit",
         li: "w-full h-full flex flex-row justify-around items-center pb-2"
     },
@@ -25,14 +25,14 @@ export const sectionsClasses = {
         paragraph: "w-full flex justify-center flex-wrap mt-2 whitespace-break-spaces leading-relaxed",
     },
     greybox: {
-        greybox: "w-full flex flex-col items-center justify-start pt-2 pb-3 px-4 bg-gray-500/15 rounded",
+        greybox: "w-full flex flex-col items-center justify-start pt-2 pb-3 px-4 bg-gray-500/15 rounded shadow-xl shadow-neutral-950/25",
     },
     servicesSection: {
         h2: "w-fit flex  text-2xl mb-4 border-b-2 border-[#6f963b] border-opacity-30",
         servicesWrapper: "grid grid-rows-auto md:grid-cols-2 gap-2 pb-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40 ",
     },
     skill: {
-        span: "w-fit h-fit flex justify-center",
+        span: "max-w-[40px] max-h-[40px] flex justify-center",
         li: "w-full h-fit flex flex-row items-center justify-center gap-1.5 indirect:gap-2.5 mx-auto", 
         
     },    
@@ -51,7 +51,7 @@ export const sectionsClasses = {
     },
 
     h3: {
-        h3: "text-lg w-full flex justify-center mx-auto border-solid border-b-2 border-[#6f963b] border-opacity-40 md:border-0",
+        h3: "text-xl w-full flex justify-center items-center gap-1 mx-auto border-solid border-b-2 border-[#6f963b] border-opacity-40 md:border-0",
     },
 
     li: {
@@ -64,7 +64,16 @@ export const sectionsClasses = {
         categoryButton: "hover:text-[#6f963b] text-[0.8rem] indirect:text-sm sm:text-xs md:text-base flex justify-start",
     },
     coursesSection: {
-        ul: "w-full h-full flex flex-col text-base justify-center gap-3 md:w-full md:h-fit md:items-center md:gap-4 mb-4 pl-4 md:mb-4 md:grid md:grid-cols-4",
+        wrapper: "w-full h-fit flex flex-col md:flex-col md:w-full items-center gap-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
+        ul: "w-full h-full flex flex-col text-base justify-center gap-4 md:w-full md:h-fit md:items-center md:gap-4 mb-4 pl-4 md:mb-4 md:grid md:grid-cols-4",
+    },
+    course: {
+        course: "w-full h-full md:w-full md:h-full flex md:flex-col justify-stretch md:justify-center pb-2 items-center border-r-2 border-[#6f963b] border-opacity-40 whitespace-break-spaces",
+    },
+    interestsSection: {
+        ul: "w-full grid grid-cols-2 gap-y-4 gap-x-6 md:grid-cols-3 md:gap-y-6 pb-4 text-center",
+        li: "w-full h-fit flex justify-center items-center text-base md:text-lg",
+        par: "w-full text-center",
     },
     wrapper: {
         wrapper: "w-full h-fit flex flex-col items-center gap-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",

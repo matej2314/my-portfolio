@@ -35,7 +35,7 @@ export const compClasses = {
         link: "flex justify-center min-h-[1.5em]",
     },
     portfolio: {
-        wrapper_nested: "w-full h-full flex flex-col gap-5 px-2.5",
+        wrapper_nested: "w-full h-full flex flex-col gap-8 px-2.5",
         wrapper: "w-full h-full flex flex-col gap-4 px-10",
     },
 }

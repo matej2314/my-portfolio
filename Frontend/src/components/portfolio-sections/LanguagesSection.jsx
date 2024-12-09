@@ -24,7 +24,10 @@ export default function LanguagesSection() {
                         viewport={{ amount: 0.4, once: false }}
                         className={sectionsClasses.languages.li}
                     >
-                        {lang.lang}
+                        <span className='w-full'>
+                            {lang.lang}
+                        </span>
+
 
                         <span className={sectionsClasses.languages.span}>
                             {lang.lvl}
