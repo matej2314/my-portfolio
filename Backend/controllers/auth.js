@@ -71,7 +71,7 @@ exports.registerUser = async (req, res) => {
                 ...jwtCookieOptions,
                 maxAge: 60 * 60 * 1000,
             });
-            return res.status(200).json({ message: 'Użytkownik zarejestrowany pomyślnie' });
+            return res.status(200).json({status: 200, message: 'Użytkownik zarejestrowany pomyślnie' });
          } catch (error) {
             logger.error('Błąd podczas rejestracji użytkownika:', error.message);
             return res.status(500).json({ message: 'Błąd serwera' });

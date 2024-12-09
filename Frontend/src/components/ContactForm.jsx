@@ -1,4 +1,6 @@
 import { useRef, useState } from "react";
+import { toast } from 'react-toastify';
+
 import SocialIcons from "./icons/SocialIcons.jsx";
 import useSendRequest from '../hooks/useSendRequest.jsx';
 import { compClasses } from "./components-classes.js";
@@ -18,6 +20,7 @@ export default function ContactForm() {
 
         if (!userName || !userEmail || !subject || !userMessage) {
             setStatus("Please fill out all fields");
+            toast.error('Please fill out all fields');
             return;
         }
 
@@ -38,6 +41,7 @@ export default function ContactForm() {
 
             if (!error) {
                 setStatus("Message sent successfully");
+                toast.info('Message sent successfully');
 
                 name.current.value = "";
                 email.current.value = "";
@@ -45,11 +49,12 @@ export default function ContactForm() {
                 message.current.value = "";
             } else {
                 setStatus("Failed to send message. Try again");
+                toast.error('Failed to send message. Try again.');
             }
 
         } catch (error) {
-            console.error("Error:", error.message);
             setStatus("An error occurred. Please try again.");
+            toast.error('An error occured. Please try again.');
         }
     };
 

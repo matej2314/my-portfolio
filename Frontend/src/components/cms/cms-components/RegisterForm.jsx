@@ -1,5 +1,7 @@
 import { useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+
 import { AuthContext } from "../../../store/auth-context";
 import { cmsComponents } from './cms-componenst-styles';
 
@@ -25,11 +27,14 @@ export default function RegisterForm() {
 
         const response = await register(username.current.value, email.current.value, password.current.value);
 
-        if (response) {
+        if (response.status === 200) {
+            toast.info(response.message);
             setTimeout(() => {
                 navigate('login_admin');
             }, 2000);
 
+        } else {
+            toast.info(response.message);
         }
 
         username.current.value = "";

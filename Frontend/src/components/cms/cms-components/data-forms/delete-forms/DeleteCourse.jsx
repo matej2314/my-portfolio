@@ -1,17 +1,16 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
+import { toast } from 'react-toastify'
+
 import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
 import { deleteForms } from '../data-forms-classes';
-import ManageCourses from '../../ManageCourses';
-
 
 const deleteCourseUrl = requestUrl.courses.delete;
 
 export default function DeleteCourse({ courseData, onClose }) {
     const { sendRequest, result, error } = useSendRequest();
     const { user } = useContext(AuthContext);
-    const [denyDeleteCourse, setDenyDeleteCourse] = useState(false);
 
     const handleDeleteCourse = async () => {
         const courseId = courseData.id;
@@ -27,23 +26,20 @@ export default function DeleteCourse({ courseData, onClose }) {
 
     };
 
-    const handleDenyDelete = () => {
-        setDenyDeleteCourse(true);
-    };
-
-    if (denyDeleteCourse) {
-        onClose();
-    }
-
     useEffect(() => {
-        if (result && !error) {
+        if (result || error) {
+            const message = result?.message || error;
+            const type = result ? "info" : "error";
+
+            toast[type](message);
+
             const timer = setTimeout(() => {
                 onClose();
             }, 1500);
 
             return () => clearTimeout(timer);
         }
-    }, [error, result, onClose]);
+    }, [result, error, onClose]);
 
     return (
         <div className={deleteForms.wrapper.wrapper}>
@@ -56,7 +52,7 @@ export default function DeleteCourse({ courseData, onClose }) {
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteCourse} disabled={user.role !== 'admin'}>Tak</button>
-                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDenyDelete}>Nie</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={onClose}>Nie</button>
             </div>
         </div>
     )

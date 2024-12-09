@@ -45,14 +45,19 @@ export default function EditProjects({ selectedProject, onClose }) {
 
     };
     useEffect(() => {
-        if (result && !error) {
+        if (result || error) {
+            const message = result?.message || error;
+            const type = result ? "info" : "error";
+
+            toast[type](message);
+
             const timer = setTimeout(() => {
                 onClose();
             }, 1500);
 
             return () => clearTimeout(timer);
         }
-    }, [result, error, onClose])
+    }, [result, error, onClose]);
 
 
     return (
@@ -61,6 +66,7 @@ export default function EditProjects({ selectedProject, onClose }) {
             {result && result.message && <p>{result.message}</p>}
             {error && <p>{error}</p>}
             <form
+                onSubmit={handleSubmit}
                 className={editForms.form.form}
             >
                 <label

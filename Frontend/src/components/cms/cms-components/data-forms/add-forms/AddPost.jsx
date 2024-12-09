@@ -1,4 +1,6 @@
 import { useRef, useEffect, useContext } from "react";
+import { toast } from 'react-toastify';
+
 import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
@@ -38,7 +40,12 @@ export default function AddPost({ onClose }) {
     }
 
     useEffect(() => {
-        if (result && !error) {
+        if (result || error) {
+            const message = result?.message || error;
+            const type = result ? "info" : "error";
+
+            toast[type](message);
+
             const timer = setTimeout(() => {
                 onClose();
             }, 1500);

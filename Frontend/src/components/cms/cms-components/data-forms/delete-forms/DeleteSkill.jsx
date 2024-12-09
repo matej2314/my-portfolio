@@ -1,15 +1,13 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import { AuthContext } from "../../../../../store/auth-context";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 import { deleteForms } from "../data-forms-classes";
-import ManageSkills from '../../ManageSkills';
 
 const deleteSkillUrl = requestUrl.skills.delete;
 
 
 export default function DeleteSkill({ skillData, onClose }) {
-    const [denyDelete, setDenyDelete] = useState(false);
     const { sendRequest, result, error } = useSendRequest();
     const { user } = useContext(AuthContext);
 
@@ -28,23 +26,20 @@ export default function DeleteSkill({ skillData, onClose }) {
         }
     };
 
-    const handleDenyDelete = () => {
-        setDenyDelete(true);
-    }
-
-    if (denyDelete) {
-        onClose();
-    };
-
     useEffect(() => {
-        if (result && !error) {
+        if (result || error) {
+            const message = result?.message || error;
+            const type = result ? "info" : "error";
+
+            toast[type](message);
+
             const timer = setTimeout(() => {
                 onClose();
             }, 1500);
 
             return () => clearTimeout(timer);
         }
-    }, [error, result, onClose]);
+    }, [result, error, onClose]);
 
 
     return (
@@ -56,7 +51,7 @@ export default function DeleteSkill({ skillData, onClose }) {
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteSkill} disabled={user.role !== 'admin'}>Tak</button>
-                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDenyDelete}>Nie</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={onClose}>Nie</button>
             </div>
         </div>
     )

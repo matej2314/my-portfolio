@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import MainPage from './pages/MainPage';
 import Contact from './pages/Contact';
@@ -12,7 +14,6 @@ import NotFound from './pages/NotFound';
 import CmsIndexPage from './components/cms/CmsIndexPage';
 import CmsMainPage from './components/cms/CmsMainPage';
 import { AuthProvider } from './store/auth-context';
-
 
 function App() {
 
@@ -32,7 +33,26 @@ function App() {
   ]);
 
   return (
-    <RouterProvider router={router} />
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer
+        position="top-center"
+        autoClose={2200}
+        closeOnClick={false}
+        hideProgressBar={true}
+        newestOnTop={false}
+        draggable={false}
+        closeButton={false}
+        toastClassName={({ type }) => {
+          return type === "info"
+            ? "text-lime-400 bg-gray-600"
+            : type === "error"
+              ? "text-red-400 bg-gray-600"
+              : "text-black bg-gray-600"
+        }}
+      />
+
+    </>
   )
 }
 

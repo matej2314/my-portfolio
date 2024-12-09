@@ -38,14 +38,20 @@ export default function EditPosts({ selectedPost, onClose }) {
     };
 
     useEffect(() => {
-        if (result && !error) {
+        if (result || error) {
+            const message = result?.message || error;
+            const type = result ? "info" : "error";
+
+            toast[type](message);
+
             const timer = setTimeout(() => {
                 onClose();
             }, 1500);
 
             return () => clearTimeout(timer);
         }
-    }, [result, error, onClose])
+    }, [result, error, onClose]);
+
 
 
     return (

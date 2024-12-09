@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import { AuthContext } from '../../../store/auth-context';
 import { cmsComponents } from './cms-componenst-styles';
 
@@ -11,10 +13,10 @@ export default function CmsMenu({ handleSelected }) {
     const handleLogOut = async () => {
         try {
             const message = await logout();
-            alert(message);
+            toast.info(message);
             navigate('/login_admin');
         } catch (error) {
-            console.log(error.message)
+            toast.error(error.message);
         }
     };
 
