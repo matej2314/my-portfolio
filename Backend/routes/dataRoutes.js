@@ -8,13 +8,13 @@ router.use(express.json());
 router.get('/collection', async (req, res) => {
   const queries = [
     `SELECT 'posts' AS source, id, post_title AS title, post_lead, post_content AS content, post_date, COALESCE(post_imageName, '') AS post_imageName FROM posts ORDER BY id;`,
-    `SELECT 'projects' AS source, pr.id, pr.project_name AS title, pr.project_category AS category, pr.project_URL AS link, pr.project_screenName, pr.project_description AS description,
-     pr.repo AS repo, pr.technologies AS technologies, pr.difficulty AS difficulty, pr.end_date AS end_date, pr.long_text AS long_text FROM projects pr;`,
-    `SELECT 'services' AS source, s.id, s.serviceName AS title, s.serviceDescription AS description FROM services s;`,
-    `SELECT 'skills' AS source, s.id, s.skill_name AS title, s.skill_cat AS category, s.icon_name AS icon, s.icon_color as iconColor FROM skills s;`,
-    `Select 'courses' AS source, c.id, c.course_name AS title, c.course_date AS date, c.course_organizer AS organizer, c.course_category AS category FROM courses c;`,
-    `SELECT 'about_me' AS source, a.id, a.about_text AS aboutText FROM about_me a;`,
-    `SELECT 'interests' AS source, i.id, i.interest_name AS intName FROM interests i;`,
+    `SELECT 'projects' AS source, id, project_name AS title, project_category AS category, project_URL AS link, project_screenName, project_description AS description,
+     repo AS repo, technologies AS technologies, difficulty AS difficulty, end_date AS end_date, long_text AS long_text FROM projects;`,
+    `SELECT 'services' AS source, id, serviceName AS title, serviceDescription AS description FROM services;`,
+    `SELECT 'skills' AS source, id, skill_name AS title, skill_cat AS category, icon_name AS icon, icon_color as iconColor FROM skills;`,
+    `Select 'courses' AS source, id, course_name AS title, course_date AS date, course_organizer AS organizer, course_category AS category FROM courses;`,
+    `SELECT 'about_me' AS source, id, about_text AS aboutText FROM about_me;`,
+    `SELECT 'interests' AS source, id, interest_name AS intName FROM interests;`,
   ];
 
   try {
