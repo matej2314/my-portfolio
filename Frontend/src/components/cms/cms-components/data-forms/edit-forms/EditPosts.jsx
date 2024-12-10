@@ -61,18 +61,18 @@ export default function EditPosts({ selectedPost, onClose }) {
             <h2>Edit selected post:</h2>
             {result && result.message && <p>{result.message}</p>}
             {error && <p>{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="post-id">Post id: </label>
-                <input type="text" name="post-id" id="post-id" defaultValue={selectedPost.id} readOnly />
-                <label htmlFor="post-title">Post title:</label>
-                <input type="text" name="post-title" id="post-title" ref={postTitle} defaultValue={selectedPost.title} />
-                <label htmlFor="post-lead">Post lead:</label>
-                <textarea name="post-lead" id="post-lead" ref={postLead} defaultValue={selectedPost.post_lead} />
-                <label htmlFor="post-content">Post content:</label>
-                <textarea name="post-content" id="post-content" ref={postContent} defaultValue={selectedPost.content} />
-                <label htmlFor="post-image">Post image name:</label>
-                <input type="text" name="post-image" id="post-image" ref={postImage} defaultValue={selectedPost.postImage} />
-                <button className="text-white" type="submit" disabled={user.role !== 'admin'}>Save</button>
+            <form className={editForms.form.form} onSubmit={handleSubmit}>
+                <label className={editForms.label.label} htmlFor="post-id">Post id: </label>
+                <input className={editForms.input.input} type="text" name="post-id" id="post-id" defaultValue={selectedPost.id} readOnly />
+                <label className={editForms.label.label} htmlFor="post-title">Post title:</label>
+                <input className={editForms.input.input} type="text" name="post-title" id="post-title" ref={postTitle} defaultValue={selectedPost.title} />
+                <label className={editForms.label.label} htmlFor="post-lead">Post lead:</label>
+                <textarea className={editForms.input.input} name="post-lead" id="post-lead" ref={postLead} defaultValue={selectedPost.post_lead} />
+                <label className={editForms.label.label} htmlFor="post-content">Post content:</label>
+                <textarea className={editForms.input.input} name="post-content" id="post-content" ref={postContent} defaultValue={selectedPost.content} />
+                <label className={editForms.label.label} htmlFor="post-image">Post image name:</label>
+                <input className={editForms.input.input} type="text" name="post-image" id="post-image" ref={postImage} defaultValue={selectedPost.postImage} />
+                <button className={editForms.submitBtn.submitBtn} type="submit" disabled={user.role !== 'admin'}>Save</button>
             </form>
         </div>
     )

@@ -49,7 +49,7 @@ export default function EditAbout({ descData, onClose }) {
 
     return (
         <div
-            className={editForms.wrapper.wrapper}
+            className='w-1/2 h-fit flex flex-col justify-center items-center text-md text-white p-4 gap-3 bg-neutral-600/30 rounded-md'
         >
             <h2 className={editForms.h2.h2}>Edit 'about me' text</h2>
             {error && <p className={addForms.message.error}>{error}</p>}
@@ -57,11 +57,13 @@ export default function EditAbout({ descData, onClose }) {
                 onSubmit={handleSubmit}
                 className={editForms.form.form}>
                 <label
+                    className={editForms.label.label}
                     htmlFor="about-id"
                 >
                     Id:
                 </label>
                 <input
+                    className={editForms.input.input}
                     type="text"
                     name="about-id"
                     id="about-id"
@@ -73,6 +75,7 @@ export default function EditAbout({ descData, onClose }) {
                     Edit 'about me' text:
                 </label>
                 <textarea
+                    className={editForms.input.input}
                     name="about-text"
                     id="about-text"
                     defaultValue={descData.aboutText}
