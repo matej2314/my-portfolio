@@ -21,9 +21,9 @@ router.post('/new', async (req, res) => {
 
     try {
         await pool.query(query, [id, courseName, courseDate, organizer, courseCat]);
-        logger.info('Kurs dodany pomyślnie');
+        logger.info(`Kurs ${courseName} dodany pomyślnie`);
         return res.status(201).json({
-            message: 'Kurs dodany',
+            message: `Kurs ${courseName} dodany`,
             courseId: id,
         });
     } catch (error) {

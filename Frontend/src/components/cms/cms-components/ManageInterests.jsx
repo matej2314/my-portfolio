@@ -43,6 +43,7 @@ export default function ManageInterests() {
             >
                 Interests in DB:
             </h2>
+            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             <button
                 onClick={handleAddNew}
                 className={cmsComponents.addNew.addNew}

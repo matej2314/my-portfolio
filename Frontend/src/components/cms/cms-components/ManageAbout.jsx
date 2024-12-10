@@ -47,14 +47,16 @@ export default function ManageAbout() {
     }
 
     return (
-        <div className="w-full h-full bg-neutral-600/30 flex flex-col justify-start items-center pt-3 gap-2">
+        <div className={cmsComponents.wrapper.wrapper}>
+            <h2 className={cmsComponents.h2.h2}>'About me' text:</h2>
+            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             <button
                 onClick={handleAddNew}
                 className={cmsComponents.addNew.addNew}
             >
                 Add new
             </button>
-            <ul className="w-1/2 h-fit flex flex-col justify-start items-center border-2 border-white">
+            <ul className={cmsComponents.ul.ul}>
                 {!loading && about && Array.isArray(about) ? (
                     about.map((text) => {
                         return <li

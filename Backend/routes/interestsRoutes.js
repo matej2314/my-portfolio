@@ -37,7 +37,7 @@ router.post('/new', async (req, res) => {
 
     try {
         await pool.query(query, [id, interest]);
-        logger.info('Zainteresowanie dodane poprawnie');
+        logger.info(`Zainteresowanie ${interest} dodane poprawnie`);
         return res.status(201).json({ message: `Zainteresowanie ${interest} dodane poprawnie` });
     } catch (error) {
         logger.error('Nie udało się dodać nowego zainteresowania');
@@ -61,8 +61,8 @@ router.delete('/delete', async (req, res) => {
             logger.error('Zainteresowanie nie znalezione');
             return res.status(404).json({ message: 'Zainteresowanie nie znalezione' });
         };
-
-        return res.status(200).json({ message: 'Zainteresowanie usunięte' });
+        logger.info(`Zainteresowanie ${interestName} usunięte.`)
+        return res.status(200).json({ message: `Zainteresowanie ${interestName} usunięte.` });
     } catch (error) {
         logger.error('Nie udało się usunąć zainteresowania', error.message);
         return res.status(500).json({ message: 'Nie udało się usunąć zainteresowania' });

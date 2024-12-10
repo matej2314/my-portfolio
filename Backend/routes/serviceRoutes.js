@@ -40,15 +40,15 @@ router.post('/new', async (req, res) => {
 
     try {
         await pool.query(query, [id, service_name, service_description]);
-        logger.info('Usługa dodana pomyślnie');
+        logger.info(`Usługa ${service_name} dodana pomyślnie`);
         return res.status(200).json({
-            message: 'Nowa usługa dodana!',
+            message: `Usługa ${service_name} dodana!`,
             serviceId: id,
             serviceName : service_name,
         });
 
     } catch (error) {
-        logger.error('Nie udało się dodać nowej usługi');
+        logger.error(`Nie udało się dodać usługi ${service_name}`);
         return res.status(500).json({ message: 'Nie udało się dodać nowej usługi' });
     };
 });
@@ -64,9 +64,9 @@ router.put('/edit', async (req, res) => {
     
     try {
         const [result] = await pool.query(query, [serviceName, serviceDescription, serviceId]);
-        logger.info('Usługa edytowana');
+        logger.info(`Usługa ${serviceName} edytowana.`);
         return res.status(200).json({
-            message: 'Usługa edytowana poprawnie',
+            message: `Usługa ${serviceName} edytowana poprawnie.`,
             name: serviceName,
             id: serviceId
 
@@ -97,7 +97,7 @@ router.delete('/', async (req, res) => {
         };
 
         return res.status(200).json({
-            message: 'Usługa usunięta poprawnie',
+            message: `Usługa usunięta poprawnie`,
             serviceId,
         });
 

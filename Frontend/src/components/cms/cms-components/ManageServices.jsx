@@ -49,6 +49,7 @@ export default function ManageServices() {
     return (
         <div className={cmsComponents.wrapper.wrapper}>
             <h2 className={cmsComponents.h2.h2}>Services:</h2>
+            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             <button
                 onClick={handleAddNewService}
                 className={cmsComponents.addNew.addNew}

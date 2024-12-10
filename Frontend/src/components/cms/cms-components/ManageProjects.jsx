@@ -53,6 +53,7 @@ export default function ManageProjects() {
     return (
         <div className={cmsComponents.wrapper.wrapper}>
             <h2 className={cmsComponents.h2.h2}>Projects</h2>
+            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             <button
                 onClick={handleAddNew}
                 className={cmsComponents.addNew.addNew}

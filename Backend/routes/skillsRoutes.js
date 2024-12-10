@@ -24,9 +24,9 @@ router.post('/new', async (req, res) => {
 
     try {
         await pool.query(query, [id, skillName, skillCat, skillIcon, iconColor]);
-        logger.info('Umiejętność dodana pomyślnie');
+        logger.info(`Umiejętność ${skillName} dodana pomyślnie`);
         return res.status(201).json({
-            message: 'Umiejętność dodana pomyślnie',
+            message: `Umiejętność ${skillName} dodana pomyślnie`,
             skillId: id,
             skillName,
         });

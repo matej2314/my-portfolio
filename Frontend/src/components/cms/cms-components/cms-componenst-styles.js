@@ -5,7 +5,7 @@ export const cmsComponents = {
         h2: 'w-full h-fit flex flex-row justify-around items-center mr-3 text-lime-500 hover:text-white',
         li: 'w-full h-fit flex flex-row justify-around hover:text-lime-600',
         userDiv:'w-full h-fit flex flex-row justify-end gap-4 pr-2',
-        logOutBtn: 'w-full h-full hover:text-lime-600',
+        logOutBtn: 'w-full h-full text-lime-500 hover:text-white',
     },
     loginForm: {
         form: "w-fit h-fit flex flex-col justify-center items-center gap-5 text-white",
@@ -68,7 +68,7 @@ export const cmsComponents = {
         span: "w-full",
     },
     wrapper: {
-        wrapper: "w-[98vw] h-fit flex flex-col justify-start items-center text-lg text-white gap-2 bg-neutral-600/30 pt-3 pb-6 px-5 rounded-md",
+        wrapper: "w-[98vw] h-fit flex flex-col justify-start items-center text-lg text-white gap-3 bg-neutral-600/30 pt-3 pb-6 px-5 rounded-md",
     },
 
 }

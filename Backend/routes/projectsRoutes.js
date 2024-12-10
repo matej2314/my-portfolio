@@ -53,15 +53,15 @@ router.post('/new', async (req, res) => {
 
     try {
         await pool.query(query, [projectId, projectName, projectCat, projectURL, projectScrName, projectDesc, projectRepo, projectLong]);
-        logger.info('Projekt dodany pomyślnie!');
+        logger.info(`Projekt ${projectName} dodany pomyślnie!`);
         return res.status(201).json({
-            message: 'Projekt dodany pomyślnie!',
+            message: `Projekt ${projectName} dodany pomyślnie!`,
             projectId,
             projectName,
         });
     } catch (error) {
         logger.error('Nie udało się dodać projektu', error.message);
-        return res.status(500).json({ message: 'Nie udało się dodać projektu' });
+        return res.status(500).json({ message: `Nie udało się dodać projektu ${projectName}`});
 }
 });
 
@@ -83,10 +83,10 @@ router.delete('/delete', async (req, res) => {
             return res.status(404).json({ message: 'Nie znaleziono projektu do usunięcia' });
         };
 
-        return res.status(200).json({ message: 'Projekt usunięty' });
+        return res.status(200).json({ message: `Projekt ${projectName} usunięty` });
     } catch (error) {
-        logger.error('Nie udało się usunąć kursu', error.message);
-        return res.status(500).json({ message: 'Nie udało się usunąć projektu' });
+        logger.error('Nie udało się usunąć projektu', error.message);
+        return res.status(500).json({ message: `Nie udało się usunąć projektu ${projectName}` });
     };
 
 
@@ -106,9 +106,9 @@ router.put('/update', async (req, res) => {
 
     try {
         const [result] = await pool.query(query, [projectName, projectCat, projectURL, projectScr, projectDesc, projectRepo, projectLongTxt, projectId]);
-        logger.info('Projekt edytowany');
+        logger.info(`Projekt ${projectName} edytowany`);
         return res.status(200).json({
-            message: 'Projekt poprawnie zaktualizowany',
+            message: `Projekt ${projectName} poprawnie zaktualizowany`,
             projectId: projectId,
             projectName: projectName,
         });

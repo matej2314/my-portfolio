@@ -30,7 +30,7 @@ router.post('/new', async (req, res) => {
         await pool.query(query, values);
         logger.info('Post dodany pomyślnie!');
         return res.status(201).json({
-            message: 'Post zapisany',
+            message: `Post ${postTitle} zapisany`,
             postId,
         })
     } catch (error) {
@@ -81,12 +81,12 @@ router.put('/edit', async (req, res) => {
         const [result] = await pool.query(query, [postTitle, postLead, postContent, postImage, postId]);
         logger.info('Post edytowany!');
         return res.status(200).json({
-            message: 'Post poprawnie zaktualizowany',
+            message: `Post ${postTitle} poprawnie zaktualizowany`,
             postId
         });
     } catch (error) {
         logger.error('Nie udało się edytować posta', error.message);
-        return res.status(500).json({ message: 'Nie udało się edytować posta' });
+        return res.status(500).json({ message: `Nie udało się edytować posta ${postTitle}` });
     }
 });
 
@@ -109,7 +109,7 @@ router.delete('/delete', async (req, res) => {
         }
 
         return res.status(200).json({
-            message: 'Post usunięty poprawnie',
+            message: `Post usunięty poprawnie`,
             postId
         })
     } catch (error) {
