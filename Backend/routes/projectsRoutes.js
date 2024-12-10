@@ -109,8 +109,8 @@ router.put('/update', async (req, res) => {
         logger.info('Projekt edytowany');
         return res.status(200).json({
             message: 'Projekt poprawnie zaktualizowany',
-            projectId,
-            projectName
+            projectId: projectId,
+            projectName: projectName,
         });
 
     } catch (error) {

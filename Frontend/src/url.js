@@ -30,7 +30,7 @@ export const requestUrl= {
     projects: {
         new: `${serverUrl}/projects/new`,
         delete: `${serverUrl}/projects/delete`,
-        put: `${serverUrl}/projects/update,`
+        put: `${serverUrl}/projects/update`
     },
     services: {
         new: `${serverUrl}/services/new`,

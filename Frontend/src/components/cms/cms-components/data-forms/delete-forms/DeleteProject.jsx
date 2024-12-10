@@ -55,7 +55,6 @@ export default function DeleteProject({ selectedProject, onClose }) {
             {selectedProject.title && <p>{selectedProject.title} ?</p>}
             {selectedProject.id && <p>id: {selectedProject.id}</p>}
 
-            {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteProject} disabled={user.role !== 'admin'}>Tak</button>

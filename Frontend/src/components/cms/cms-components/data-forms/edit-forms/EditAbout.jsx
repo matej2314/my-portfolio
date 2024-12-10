@@ -52,7 +52,6 @@ export default function EditAbout({ descData, onClose }) {
             className={editForms.wrapper.wrapper}
         >
             <h2 className={editForms.h2.h2}>Edit 'about me' text</h2>
-            {result && result.message && <p className={addForms.message.result}>{result.message}</p>}
             {error && <p className={addForms.message.error}>{error}</p>}
             <form
                 onSubmit={handleSubmit}
