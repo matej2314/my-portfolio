@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { AuthContext } from '../../../store/auth-context';
 import { cmsComponents } from './cms-componenst-styles';
 
-export default function CmsMenu({ handleSelected }) {
+export default function CmsMenu({ handleSelected, onClose }) {
     const { user, logout, isAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ export default function CmsMenu({ handleSelected }) {
 
         <div className={cmsComponents.cmsMenu.wrapper}>
             <div className='w-full h-fit flex justify-stretch items-center pl-[28rem]'>
-                <Link className={cmsComponents.cmsMenu.h2} to="/cms">Manage:</Link>
+                <button className={cmsComponents.cmsMenu.h2} onClick={onClose}>Manage:</button>
                 <ul className={cmsComponents.cmsMenu.ul}>
                     <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('courses')}>Courses</button></li>
                     <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('posts')}>Posts</button></li>

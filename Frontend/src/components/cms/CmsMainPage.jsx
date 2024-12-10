@@ -20,6 +20,10 @@ export default function CmsMainPage() {
         setSelectedButton(button);
     };
 
+    const handleCloseComponents = () => {
+        setSelectedButton(null);
+    }
+
     const selectedComponent = () => {
         switch (selectedButton) {
             case 'courses':
@@ -45,7 +49,7 @@ export default function CmsMainPage() {
         <>
             {isAuthenticated ? (
                 <main className={cmsPages.mainPage.main}>
-                    <CmsMenu handleSelected={handleSelected} />
+                    <CmsMenu handleSelected={handleSelected} onClose={handleCloseComponents} />
                     <div className={cmsPages.mainPage.contentWrapper}>
                         {selectedButton ? selectedComponent() : (
                             <div className={cmsPages.mainPage.parWrapper}>
@@ -56,7 +60,7 @@ export default function CmsMainPage() {
                 </main>
             ) : (
                 <main className={cmsPages.mainPage.main}>
-                    <CmsMenu handleSelected={handleSelected} />
+                    <CmsMenu handleSelected={handleSelected} onClose={null} />
                     <div className={cmsPages.mainPage.parWrapper}>
                         <p className={cmsPages.mainPage.paragraph}>
                             Aby skorzystać z panelu, <Link to="/login_admin"
