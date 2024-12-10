@@ -21,7 +21,7 @@ export default function DeleteInterest(interestData, onClose) {
             });
 
         } catch (error) {
-            console.log('Nie udało się usunąć zainteresowania.')
+
         }
     };
 
