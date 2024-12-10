@@ -70,6 +70,7 @@ export default function EditAbout({ descData, onClose }) {
                     defaultValue={descData.id}
                     readOnly />
                 <label
+                    className={editForms.label.label}
                     htmlFor="about-text"
                 >
                     Edit 'about me' text:
