@@ -21,7 +21,7 @@ export default function ManageSkills() {
 
     const handleDeleteSkill = (skill) => {
         setActionType('delete');
-        setSelectedSkill(skill);
+        setSelectedSkill(() => skill);
     };
 
     const handleCloseAction = () => {

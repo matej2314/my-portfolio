@@ -20,12 +20,12 @@ export default function ManageAbout() {
     };
 
     const handleEdit = (descData) => {
-        setSelectedDesc(descData)
+        setSelectedDesc(() => descData)
         setActionType('edit')
     };
 
     const handleDelete = (descData) => {
-        setSelectedDesc(descData)
+        setSelectedDesc(() => descData)
         setActionType('delete')
     };
 
@@ -61,7 +61,7 @@ export default function ManageAbout() {
                     about.map((text) => {
                         return <li
                             key={text.id}
-                            className="w-full h-fit flex flex-row items-center justify-center text-white text-sm gap-4 px-2 py-3">
+                            className={cmsComponents.manageAbout.li}>
                             <span className={cmsComponents.span.span}>{text.id}</span>
                             <span className={cmsComponents.span.span}>{text.aboutText}</span>
                             <div className={cmsComponents.buttonDiv.buttonDiv}>

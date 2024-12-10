@@ -19,7 +19,7 @@ export default function ManageInterests() {
     };
 
     const handleDelete = (interestData) => {
-        setSelectedInterest(interestData);
+        setSelectedInterest(() => interestData);
         setActionType('delete')
     };
 

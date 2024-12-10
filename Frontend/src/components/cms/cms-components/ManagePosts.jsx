@@ -21,12 +21,12 @@ export default function ManagePosts() {
 
 
     const handleEditPost = (post) => {
-        setSelectedPost(post);
+        setSelectedPost(() => post);
         setActionType("edit");
     };
 
     const handleDeletePost = (post) => {
-        setSelectedPost(post)
+        setSelectedPost(() => post)
         setActionType("delete");
     };
 

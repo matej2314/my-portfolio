@@ -40,7 +40,7 @@ export const cmsComponents = {
         buttonDiv: "w-fit h-fit flex flex-col gap-2",
     },
     manageAbout: {
-
+        li: "w-full h-fit flex flex-row items-center justify-center text-white text-sm gap-4 px-2 py-3",
     },
     manageInterests: {
 
