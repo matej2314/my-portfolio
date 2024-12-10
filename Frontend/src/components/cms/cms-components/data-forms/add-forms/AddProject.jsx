@@ -65,7 +65,6 @@ export default function AddProject({ onClose }) {
     return (
         <div className={addForms.addProject.wrapper}>
             <h2 className={addForms.addProject.h2}>Add new Project</h2>
-            {result && result.message && <p className={addForms.message.result}>{result.message}</p>}
             {error && <p className={addForms.message.error}>{error}</p>}
             <form onSubmit={handleSubmit} className={addForms.addProject.h2}>
                 <label className={addForms.label.label} htmlFor="project-name">Project name:</label>

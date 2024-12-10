@@ -56,7 +56,6 @@ export default function AddSkill({ onClose }) {
     return (
         <div className={addForms.addSkill.wrapper}>
             <h2 className={addForms.h2.h2}>Add new skill</h2>
-            {result && result.message && <p className={addForms.message.result}>{result.message}</p>}
             {error && <p className={addForms.message.error}>{error}</p>}
             <form className={addForms.addSkill.form} onSubmit={handleSubmit}>
                 <label className={addForms.label.label} htmlFor="skill-name">Skill name:</label>

@@ -1,4 +1,6 @@
 import { useRef, useEffect, useContext } from "react";
+import { toast } from 'react-toastify';
+
 import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
@@ -17,7 +19,7 @@ export default function EditProjects({ selectedProject, onClose }) {
     const projectScreen = useRef(selectedProject.screen || '');
     const projectDesc = useRef(selectedProject.description || '');
     const projectRepo = useRef(selectedProject.repo || '');
-    const projLongDesc = useRef(selectedProject.long || '');
+    const projLongTxt = useRef(selectedProject.long || '');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,14 +32,15 @@ export default function EditProjects({ selectedProject, onClose }) {
             projectScr: projectScreen.current.value,
             projectDesc: projectDesc.current.value,
             projectRepo: projectRepo.current.value,
-            projectLongTxt: projectLongTxt.current.value
-        };
+            projectLongTxt: projLongTxt.current.value
 
+        };
+        console.log(updatedProject)
         try {
             await sendRequest({
                 url: editProjectUrl,
-                method: "PUT",
                 data: updatedProject,
+                method: "PUT",
             });
         } catch (error) {
             console.log('Błąd podczas edycji projektu.');
@@ -168,7 +171,7 @@ export default function EditProjects({ selectedProject, onClose }) {
                     name="proj-long-desc"
                     id="proj-long-desc"
                     defaultValue={selectedProject.long}
-                    ref={projLongDesc}
+                    ref={projLongTxt}
                 />
                 <button
                     className={editForms.submitBtn.submitBtn}

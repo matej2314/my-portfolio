@@ -59,7 +59,6 @@ export default function AddCourse({ onClose }) {
     return (
         <div className={addForms.addCourse.wrapper}>
             <h2 className={addForms.h2.h2}>Add new course</h2>
-            {result && !error && <p className={addForms.message.result}>{result.message}</p>}
             {error && <p className={addForms.message.error}>{error}</p>}
             <form onSubmit={handleSubmit} className={addForms.addCourse.form}>
                 <label className={addForms.label.label} htmlFor="course-name">Course name:</label>

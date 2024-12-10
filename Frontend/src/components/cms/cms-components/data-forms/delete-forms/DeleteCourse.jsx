@@ -48,7 +48,6 @@ export default function DeleteCourse({ courseData, onClose }) {
             </h2>
             {courseData && <p>{courseData.name}</p>}
             {courseData && <p>id: {courseData.id}</p>}
-            {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteCourse} disabled={user.role !== 'admin'}>Tak</button>

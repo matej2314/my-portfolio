@@ -54,7 +54,6 @@ export default function AddService({ onClose }) {
         <div className={addForms.addService.wrapper}>
             <h2 className={addForms.h2.h2}>Add new service</h2>
             <form className={addForms.addService.form} onSubmit={handleSubmit}>
-                {result && result.message && <p className={addForms.message.result}>{result.message}</p>}
                 {error && <p className={addForms.message.error}>{error}</p>}
                 <label className={addForms.label.label} htmlFor="service-name">Service name:</label>
                 <input className={addForms.input.input} type="text" name="service-name" id="service-name" ref={serviceName} />

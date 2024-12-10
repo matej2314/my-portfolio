@@ -49,7 +49,6 @@ export default function DeletePost({ selectedPost, onClose }) {
             {selectedPost && <p>{selectedPost.id}</p>}
             {selectedPost && <p>{selectedPost.title}</p>}
             {selectedPost && <p>{selectedPost.post_lead}</p>}
-            {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeletePost} disabled={user.role !== 'admin'}>Tak</button>

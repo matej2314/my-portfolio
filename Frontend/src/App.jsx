@@ -45,10 +45,10 @@ function App() {
         closeButton={false}
         toastClassName={({ type }) => {
           return type === "info"
-            ? "text-lime-400 bg-gray-600"
+            ? "text-lime-400 bg-gray-600 rounded-md"
             : type === "error"
-              ? "text-red-400 bg-gray-600"
-              : "text-black bg-gray-600"
+              ? "text-red-400 bg-gray-600 rounded-md"
+              : "text-black bg-gray-600 rounded-md"
         }}
       />
 
