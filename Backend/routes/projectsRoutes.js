@@ -96,12 +96,13 @@ router.put('/update', async (req, res) => {
 
     const { projectId, projectName, projectCat, projectURL, projectScr, projectDesc, projectRepo, projectLongTxt } = req.body;
 
-    if (!projectId || projectName=== '' || !projectCat || projectURL === '' || projectScr === '' || projectDesc == '' || projectRepo.length < 0 || projectLongTxt.length < 0) {
+    if (!projectId || !projectName || !projectCat || !projectURL || !projectScr || !projectDesc || !projectRepo || !projectLongTxt) {
         logger.error('Brak wymaganych danych do aktualizacji projektu');
         return res.status(400).json({ message: 'Brak wymaganych danych do aktualizacji projektu' });
     }
+    
 
-    const query = 'UPDATE projects SET project_name=?, project_category=?, project_URL=?, project_screenName=?, project_description=?, repo=?, long_text WHERE id=?';
+    const query = 'UPDATE projects SET project_name=?, project_category=?, project_URL=?, project_screenName=?, project_description=?, repo=?, long_text=? WHERE id=?';
 
     try {
         const [result] = await pool.query(query, [projectName, projectCat, projectURL, projectScr, projectDesc, projectRepo, projectLongTxt, projectId]);

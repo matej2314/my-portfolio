@@ -19,7 +19,7 @@ export default function ManageAbout() {
         setActionType('add');
     };
 
-    const handleEdit = ({ descData }) => {
+    const handleEdit = (descData) => {
         setSelectedDesc(descData)
         setActionType('edit')
     };

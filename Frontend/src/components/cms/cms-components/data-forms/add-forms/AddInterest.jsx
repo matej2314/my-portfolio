@@ -47,7 +47,6 @@ export default function AddInterest({ onClose }) {
     return (
         <div className="w-full h-full flex flex-col items-center justify-start text-white bg-neutral-600/30 pt-3 gap-4">
             <h2 className="text-3xl">Add new interest:</h2>
-            {result && !error && <p className={addForms.message.result}>{result.message}</p>}
             {error && <p className={addForms.message.error}>{error}</p>}
             <form
                 onSubmit={handleSubmit}

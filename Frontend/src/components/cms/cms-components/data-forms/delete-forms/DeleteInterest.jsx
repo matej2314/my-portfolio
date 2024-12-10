@@ -47,7 +47,6 @@ export default function DeleteInterest(interestData, onClose) {
             </h2>
             {interestData && <p>{interestData.interestData.intName}</p>}
             {interestData && <p>id: {interestData.interestData.id}</p>}
-            {result && result.message && <p className={deleteForms.messages.result}>{result.message}</p>}
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteInterest} disabled={user.role !== 'admin'}>Tak</button>

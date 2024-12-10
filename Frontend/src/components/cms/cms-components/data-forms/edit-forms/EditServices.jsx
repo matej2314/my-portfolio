@@ -54,7 +54,6 @@ export default function EditServices({ selectedService, onClose }) {
     return (
         <div className={editForms.wrapper.wrapper}>
             <h2 className={editForms.h2.h2}>Edit selected service</h2>
-            {result && result.message && <p>{result.message}</p>}
             {error && <p>{error}</p>}
             <form
                 onSubmit={handleSubmit}

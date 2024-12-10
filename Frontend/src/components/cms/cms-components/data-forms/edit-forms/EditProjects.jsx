@@ -25,22 +25,22 @@ export default function EditProjects({ selectedProject, onClose }) {
         e.preventDefault();
 
         const updatedProject = {
-            projectId: projectId.current.value,
-            projectName: projectName.current.value,
-            projectCat: projectCat.current.value,
-            projectURL: projectUrl.current.value,
-            projectScr: projectScreen.current.value,
-            projectDesc: projectDesc.current.value,
-            projectRepo: projectRepo.current.value,
-            projectLongTxt: projLongTxt.current.value
+            projectId: selectedProject.id,
+            projectName: projectName.current.value.trim(),
+            projectCat: projectCat.current.value.trim(),
+            projectURL: projectUrl.current.value.trim(),
+            projectScr: projectScreen.current.value.trim(),
+            projectDesc: projectDesc.current.value.trim(),
+            projectRepo: projectRepo.current.value.trim(),
+            projectLongTxt: projLongTxt.current.value.trim(),
 
         };
         console.log(updatedProject)
         try {
             await sendRequest({
                 url: editProjectUrl,
-                data: updatedProject,
                 method: "PUT",
+                data: updatedProject,
             });
         } catch (error) {
             console.log('Błąd podczas edycji projektu.');
@@ -66,7 +66,6 @@ export default function EditProjects({ selectedProject, onClose }) {
     return (
         <div className={editForms.wrapper.wrapper}>
             <h2 className={editForms.h2.h2}>Edit selected project</h2>
-            {result && result.message && <p>{result.message}</p>}
             {error && <p>{error}</p>}
             <form
                 onSubmit={handleSubmit}
