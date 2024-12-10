@@ -22,7 +22,7 @@ export const sectionsClasses = {
     },
     service: {
         span: "text-[#6f963b] text-2xl hidden md:inline",
-        paragraph: "w-full flex justify-center flex-wrap mt-2 whitespace-break-spaces leading-relaxed",
+        paragraph: "w-full flex justify-center flex-wrap mt-2 break-keep leading-relaxed tracking-wide",
     },
     greybox: {
         greybox: "w-full flex flex-col items-center justify-start pt-2 pb-3 px-4 bg-gray-500/15 rounded shadow-xl shadow-neutral-950/25",
@@ -79,7 +79,10 @@ export const sectionsClasses = {
         wrapper: "w-full h-fit flex flex-col items-center gap-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
     },
     aboutMe: {
-        wrapper: "w-full h-fit flex flex-col justify-center items-center gap-4 mt-3",
+        wrapper: "w-11/12 flex flex-col justify-center items-center gap-4 mt-3 mx-auto",
+        contentWrapper: "w-full flex flex-col items-center justify-center pl-16 pr-16 pt-2 pb-3 bg-gray-500/15 rounded shadow-xl shadow-neutral-950/25",
+        paragraph: "w-full text-center tracking-wide mt-2 leading-loose whitespace-normal",
+        titleWrapper: "w-full flex flex-col justify-center items-center gap-4 mt-3 mx-auto",
     }
 }
 
