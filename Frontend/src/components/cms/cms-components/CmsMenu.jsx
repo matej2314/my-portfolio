@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { AuthContext } from '../../../store/auth-context';
@@ -24,7 +24,7 @@ export default function CmsMenu({ handleSelected }) {
 
         <div className={cmsComponents.cmsMenu.wrapper}>
             <div className='w-full h-fit flex justify-stretch items-center pl-[28rem]'>
-                <h2 className={cmsComponents.cmsMenu.h2}>Manage:</h2>
+                <Link className={cmsComponents.cmsMenu.h2} to="/cms">Manage:</Link>
                 <ul className={cmsComponents.cmsMenu.ul}>
                     <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('courses')}>Courses</button></li>
                     <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('posts')}>Posts</button></li>

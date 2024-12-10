@@ -83,6 +83,7 @@ export default function EditAbout({ descData, onClose }) {
                     ref={about}
                 />
                 <button
+                    className={editForms.submitBtn.submitBtn}
                     type="submit"
                     disabled={user.role !== 'admin'}
                 >

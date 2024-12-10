@@ -2,7 +2,7 @@ export const cmsComponents = {
     cmsMenu: {
         wrapper: "w-full h-fit flex flex-row justify-between items-center text-white bg-neutral-600/30 py-1",
         ul: "w-full h-fit flex flex-row justify-center items-center gap-8",
-        h2: 'w-full h-fit flex flex-row justify-around items-center mr-3',
+        h2: 'w-full h-fit flex flex-row justify-around items-center mr-3 text-lime-500 hover:text-white',
         li: 'w-full h-fit flex flex-row justify-around hover:text-lime-600',
         userDiv:'w-full h-fit flex flex-row justify-end gap-4 pr-2',
         logOutBtn: 'w-full h-full hover:text-lime-600',
