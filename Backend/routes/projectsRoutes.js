@@ -40,19 +40,22 @@ router.post('/new', async (req, res) => {
     const projectScrName = req.body.prScrName;
     const projectDesc = req.body.description;
     const projectRepo = req.body.repo;
+    const technologies = req.body.technologies;
     const projectLong = req.body.longText;
+    const projectDiff = req.body.projectDiff;
+    const projectEndDate = req.body.endDate;
 
-    if (!projectId || projectName === '' || projectCat === '' || projectURL ==='' || projectScrName === '' || projectDesc === '')
+    if (!projectId || projectName === '' || projectCat === '' || projectURL === '' || projectScrName === '' || projectDesc === '' || projectRepo === '' || technologies === '' || projectDiff === '' || projectEndDate === '' )
         {
         logger.error('Brak wymaganych danych do dodania projektu');
         return res.status(400).json({ message: 'Brak wymaganych danych do dodania projektu' });
     };
 
-    const query = 'INSERT INTO projects (id, project_name, project_category, project_URL, project_screenName, project_description, repo, long_text) VALUES(?,? ,? ,? ,?, ?, ?,?)';
+    const query = 'INSERT INTO projects (id, project_name, project_category, project_URL, project_screenName, project_description, repo, technologies, long_text, difficulty, end_date) VALUES(?,? ,? ,? ,?, ?, ?,?,?,?,?)';
 
 
     try {
-        await pool.query(query, [projectId, projectName, projectCat, projectURL, projectScrName, projectDesc, projectRepo, projectLong]);
+        await pool.query(query, [projectId, projectName, projectCat, projectURL, projectScrName, projectDesc, projectRepo, technologies, projectLong, projectDiff, projectEndDate]);
         logger.info(`Projekt ${projectName} dodany pomyślnie!`);
         return res.status(201).json({
             message: `Projekt ${projectName} dodany pomyślnie!`,
@@ -94,7 +97,7 @@ router.delete('/delete', async (req, res) => {
 
 router.put('/update', async (req, res) => {
 
-    const { projectId, projectName, projectCat, projectURL, projectScr, projectDesc, projectRepo, projectLongTxt } = req.body;
+    const { projectId, projectName, projectCat, projectURL, projectScr, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate } = req.body;
 
     if (!projectId || !projectName || !projectCat || !projectURL || !projectScr || !projectDesc || !projectRepo || !projectLongTxt) {
         logger.error('Brak wymaganych danych do aktualizacji projektu');
@@ -102,10 +105,10 @@ router.put('/update', async (req, res) => {
     }
     
 
-    const query = 'UPDATE projects SET project_name=?, project_category=?, project_URL=?, project_screenName=?, project_description=?, repo=?, long_text=? WHERE id=?';
+    const query = 'UPDATE projects SET project_name=?, project_category=?, project_URL=?, project_screenName=?, project_description=?, repo=?, technologies=?, long_text=?, difficulty=?, end_date=? WHERE id=?';
 
     try {
-        const [result] = await pool.query(query, [projectName, projectCat, projectURL, projectScr, projectDesc, projectRepo, projectLongTxt, projectId]);
+        const [result] = await pool.query(query,  [projectId, projectName, projectCat, projectURL, projectScr, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate]);
         logger.info(`Projekt ${projectName} edytowany`);
         return res.status(200).json({
             message: `Projekt ${projectName} poprawnie zaktualizowany`,

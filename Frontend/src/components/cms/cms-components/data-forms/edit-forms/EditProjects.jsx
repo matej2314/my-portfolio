@@ -19,7 +19,10 @@ export default function EditProjects({ selectedProject, onClose }) {
     const projectScreen = useRef(selectedProject.screen || '');
     const projectDesc = useRef(selectedProject.description || '');
     const projectRepo = useRef(selectedProject.repo || '');
+    const technologies = useRef(selectedProject.technologies || '');
     const projLongTxt = useRef(selectedProject.long || '');
+    const projectDiff = useRef(selectedProject.difficulty || '');
+    const projectEndDate = useRef(selectedProject.end_date || '');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -32,10 +35,13 @@ export default function EditProjects({ selectedProject, onClose }) {
             projectScr: projectScreen.current.value.trim(),
             projectDesc: projectDesc.current.value.trim(),
             projectRepo: projectRepo.current.value.trim(),
+            technologies: technologies.current.value.trim(),
             projectLongTxt: projLongTxt.current.value.trim(),
+            projectDiff: projectDiff.current.value,
+            projectEndDate: projectEndDate.current.value.trim(),
 
         };
-        console.log(updatedProject)
+
         try {
             await sendRequest({
                 url: editProjectUrl,
@@ -161,6 +167,19 @@ export default function EditProjects({ selectedProject, onClose }) {
                 />
                 <label
                     className={editForms.label.label}
+                    htmlFor="project-tech">
+                    Tech stack:
+                </label>
+                <input
+                    className={editForms.input.input}
+                    type="text"
+                    name="project-tech"
+                    id="project-tech"
+                    defaultValue={selectedProject.technologies}
+                    ref={technologies}
+                />
+                <label
+                    className={editForms.label.label}
                     htmlFor="proj-long-desc">
                     Long Description:
                 </label>
@@ -171,6 +190,30 @@ export default function EditProjects({ selectedProject, onClose }) {
                     id="proj-long-desc"
                     defaultValue={selectedProject.long}
                     ref={projLongTxt}
+                />
+                <label
+                    className={editForms.label.label}
+                    htmlFor="project-diff">
+                    Choose project difficulty:
+                </label>
+                <select
+                    name="project-diff"
+                    id="project-diff"
+                    defaultValue={selectedProject.difficulty}
+                    ref={projectDiff}
+                >
+                    <option value="newbie">newbie</option>
+                    <option value="junior">junior</option>
+                    <option value="mid">mid</option>
+                    <option value="senior">senior</option>
+                </select>
+                <label htmlFor="project-endDate">Project end date:</label>
+                <input
+                    type="text"
+                    name="project-endDate"
+                    id="project-endDate"
+                    defaultValue={selectedProject.end_date}
+                    ref={projectEndDate}
                 />
                 <button
                     className={editForms.submitBtn.submitBtn}

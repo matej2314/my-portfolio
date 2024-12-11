@@ -16,7 +16,10 @@ export default function AddProject({ onClose }) {
         projectScr: null,
         projectDesc: null,
         projectRepo: null,
+        technologies: null,
         projectLongTxt: null,
+        projectDiff: null,
+        projectEndDate: null,
     });
 
     const { sendRequest, result, error } = useSendRequest();
@@ -32,7 +35,10 @@ export default function AddProject({ onClose }) {
             prScrName: values.current.projectScr.value,
             description: values.current.projectDesc.value,
             repo: values.current.projectRepo.value,
+            technologies: values.current.technologies.value,
             longText: values.current.projectLongTxt.value,
+            projectDiff: values.current.projectDiff.value,
+            endDate: values.current.projectEndDate.value,
         };
 
         try {
@@ -79,8 +85,19 @@ export default function AddProject({ onClose }) {
                 <textarea className={addForms.input.input} name="project-description" id="project-descritpion" ref={(el) => (values.current.projectDesc = el)} />
                 <label className={addForms.label.label} htmlFor="project-repo">Project repository URL:</label>
                 <input className={addForms.input.input} type="url" name="project-repo" id="project-repo" ref={(el) => (values.current.projectRepo = el)} />
+                <label className={addForms.label.label} htmlFor="project-tech">Tech stack:</label>
+                <input className={addForms.input.input} type="text" name="project-tech" id="project-tech" ref={(el) => (values.current.technologies = el)} />
                 <label className={addForms.label.label} htmlFor="project-longText">Long Description:</label>
                 <textarea className={addForms.input.input} name="project-longText" id="project-longText" ref={(el) => (values.current.projectLongTxt = el)} />
+                <label className={addForms.label.label} htmlFor="project-diff">Select project-difficulty:</label>
+                <select name="project-diff" id="project-diff" ref={(el) => (values.current.projectDiff = el)}>
+                    <option value="newbie">newbie</option>
+                    <option value="junior">junior</option>
+                    <option value="mid">mid</option>
+                    <option value="senior">senior</option>
+                </select>
+                <label className={addForms.label.label} htmlFor="project-endDate">Project completion date:</label>
+                <input className={addForms.input.input} type="date" name="project-endDate" id="project-endDate" ref={(el) => (values.current.projectEndDate = el)} />
                 <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
             </form>
         </div>
