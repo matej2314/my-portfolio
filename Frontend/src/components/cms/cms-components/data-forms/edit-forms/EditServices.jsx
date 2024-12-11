@@ -52,12 +52,13 @@ export default function EditServices({ selectedService, onClose }) {
         }
     }, [result, error, onClose]);
     return (
-        <div className={editForms.wrapper.wrapper}>
-            <h2 className={editForms.h2.h2}>Edit selected service</h2>
+        <div className={editForms.EditServices.wrapper}>
+            <h2 className="text-2xl">Edit selected service</h2>
+            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             {error && <p>{error}</p>}
             <form
                 onSubmit={handleSubmit}
-                className={editForms.form.form}>
+                className={`${editForms.form.form} mt-3 border-2 border-white p-4 rounded-md`}>
                 <label
                     className={editForms.label.label}
                     htmlFor="service-id"

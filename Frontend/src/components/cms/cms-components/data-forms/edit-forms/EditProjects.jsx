@@ -70,12 +70,13 @@ export default function EditProjects({ selectedProject, onClose }) {
 
 
     return (
-        <div className={editForms.wrapper.wrapper}>
-            <h2 className={editForms.h2.h2}>Edit selected project</h2>
+        <div className={editForms.editProjects.wrapper}>
+            <h2 className="text-2xl">Edit selected project</h2>
+            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             {error && <p>{error}</p>}
             <form
                 onSubmit={handleSubmit}
-                className={editForms.form.form}
+                className={`${editForms.form.form} mt-4 border-2 border-white p-4 rounded-md`}
             >
                 <label
                     htmlFor="project-id"
@@ -106,14 +107,18 @@ export default function EditProjects({ selectedProject, onClose }) {
                     htmlFor="project-category">
                     Category:
                 </label>
-                <input
+                <select
                     className={editForms.input.input}
                     type="text"
                     name="project-category"
                     id="project-category"
                     defaultValue={selectedProject.category}
                     ref={projectCat}
-                />
+                >
+                    <option className={editForms.select.option} value="Frontend">Frontend</option>
+                    <option className={editForms.select.option} value="Backend">Backend</option>
+                    <option className={editForms.select.option} value="FullStack">FullStack</option>
+                </select>
                 <label
                     className={editForms.label.label}
                     htmlFor="project-url">
@@ -197,6 +202,7 @@ export default function EditProjects({ selectedProject, onClose }) {
                     Choose project difficulty:
                 </label>
                 <select
+                    className={editForms.input.input}
                     name="project-diff"
                     id="project-diff"
                     defaultValue={selectedProject.difficulty}
@@ -207,8 +213,11 @@ export default function EditProjects({ selectedProject, onClose }) {
                     <option value="mid">mid</option>
                     <option value="senior">senior</option>
                 </select>
-                <label htmlFor="project-endDate">Project end date:</label>
+                <label
+                    className={editForms.label.label}
+                    htmlFor="project-endDate">Project completion date:</label>
                 <input
+                    className="text-lg"
                     type="date"
                     name="project-endDate"
                     id="project-endDate"

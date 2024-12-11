@@ -70,13 +70,23 @@ export default function AddProject({ onClose }) {
 
     return (
         <div className={addForms.addProject.wrapper}>
-            <h2 className={addForms.addProject.h2}>Add new Project</h2>
+            <h2 className={addForms.h2.h2}>Add new Project</h2>
+            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             {error && <p className={addForms.message.error}>{error}</p>}
-            <form onSubmit={handleSubmit} className={addForms.addProject.h2}>
+            <form onSubmit={handleSubmit} className={addForms.addProject.form}>
                 <label className={addForms.label.label} htmlFor="project-name">Project name:</label>
                 <input className={addForms.input.input} type="text" name="project-name" id="project-name" ref={(el) => (values.current.projectName = el)} />
                 <label className={addForms.label.label} htmlFor="project-category">Project Category:</label>
-                <input className={addForms.input.input} type="text" name="project-category" id="project-category" ref={(el) => (values.current.projectCat = el)} />
+                <select
+                    className={`${addForms.select.select} text-base`}
+                    name="project-category"
+                    id="project-category"
+                    ref={(el) => (values.current.projectCat = el)}
+                >
+                    <option className={addForms.select.option} value="Frontend">Frontend</option>
+                    <option className={addForms.select.option} value="Backend">Backend</option>
+                    <option className={addForms.select.option} value="FullStack">FullStack</option>
+                </select>
                 <label className={addForms.label.label} htmlFor="project-url">Project URL:</label>
                 <input className={addForms.input.input} type="url" name="project-url" id="project-url" ref={(el) => (values.current.projectUrl = el)} />
                 <label className={addForms.label.label} htmlFor="project-screen">Screen name:</label>
@@ -90,14 +100,14 @@ export default function AddProject({ onClose }) {
                 <label className={addForms.label.label} htmlFor="project-longText">Long Description:</label>
                 <textarea className={addForms.input.input} name="project-longText" id="project-longText" ref={(el) => (values.current.projectLongTxt = el)} />
                 <label className={addForms.label.label} htmlFor="project-diff">Select project-difficulty:</label>
-                <select name="project-diff" id="project-diff" ref={(el) => (values.current.projectDiff = el)}>
-                    <option value="newbie">newbie</option>
-                    <option value="junior">junior</option>
-                    <option value="mid">mid</option>
-                    <option value="senior">senior</option>
+                <select className={`${addForms.select.select} text-lg`} name="project-diff" id="project-diff" ref={(el) => (values.current.projectDiff = el)}>
+                    <option className={addForms.select.option} value="newbie">newbie</option>
+                    <option className={addForms.select.option} value="junior">junior</option>
+                    <option className={addForms.select.option} value="mid">mid</option>
+                    <option className={addForms.select.option} value="senior">senior</option>
                 </select>
                 <label className={addForms.label.label} htmlFor="project-endDate">Project completion date:</label>
-                <input className={addForms.input.input} type="date" name="project-endDate" id="project-endDate" ref={(el) => (values.current.projectEndDate = el)} />
+                <input className={`${addForms.input.input} text-lg`} type="date" name="project-endDate" id="project-endDate" ref={(el) => (values.current.projectEndDate = el)} />
                 <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
             </form>
         </div>

@@ -45,12 +45,12 @@ export default function AddInterest({ onClose }) {
 
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-start text-white bg-neutral-600/30 pt-3 gap-4">
+        <div className={addForms.AddInterest.wrapper}>
             <h2 className="text-3xl">Add new interest:</h2>
             {error && <p className={addForms.message.error}>{error}</p>}
             <form
                 onSubmit={handleSubmit}
-                className="w-1/4 h-fit flex flex-col items-center justify-center gap-3"
+                className={addForms.AddInterest.form}
             >
                 <label className="text-2xl" htmlFor="interest-name">Type name of new interest:</label>
                 <input className={addForms.input.input} type="text" name="interest-name" id="interest-name" ref={interest} />

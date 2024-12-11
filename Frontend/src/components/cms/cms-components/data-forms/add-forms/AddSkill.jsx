@@ -56,12 +56,22 @@ export default function AddSkill({ onClose }) {
     return (
         <div className={addForms.addSkill.wrapper}>
             <h2 className={addForms.h2.h2}>Add new skill</h2>
+            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             {error && <p className={addForms.message.error}>{error}</p>}
             <form className={addForms.addSkill.form} onSubmit={handleSubmit}>
                 <label className={addForms.label.label} htmlFor="skill-name">Skill name:</label>
                 <input className={addForms.input.input} type="text" name="skill-name" id="skill-name" ref={skillName} />
-                <label className={addForms.label.label} htmlFor="skill-category">Skill category:</label>
-                <input className={addForms.input.input} type="text" name="skill-category" id="skill-category" ref={skillCat} />
+                <label className={addForms.label.label} htmlFor="skill-category">Choose skill category:</label>
+                <select
+                    className={addForms.select.select}
+                    name="skill-category"
+                    id="skill-category"
+                    ref={skillCat} >
+                    <option className={addForms.select.option} value="WebDev">WebDev</option>
+                    <option className={addForms.select.option} value="DevOps">DevOps</option>
+                    <option className={addForms.select.option} value="SEO">SEO</option>
+                    <option className={addForms.select.option} value="Security">Security</option>
+                </select>
                 <label className={addForms.label.label} htmlFor="skill-icon">Skill icon:</label>
                 <input className={addForms.input.input} type="text" name="skill-icon" id="skill-icon" ref={skillIcon} />
                 <label className={addForms.label.label} htmlFor="icon-color">Icon color - optional</label>

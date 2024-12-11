@@ -57,6 +57,7 @@ export default function AddPost({ onClose }) {
     return (
         <div className={addForms.addPost.wrapper}>
             <h2 className={addForms.h2.h2}>Add new blog post</h2>
+            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             {error && <p className={addForms.message.error}>{error}</p>}
             <form className={addForms.addPost.form} onSubmit={handleSubmit}>
                 <label className={addForms.label.label} htmlFor="post-title">Post title:</label>

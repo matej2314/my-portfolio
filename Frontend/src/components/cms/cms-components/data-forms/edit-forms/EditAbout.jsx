@@ -49,13 +49,14 @@ export default function EditAbout({ descData, onClose }) {
 
     return (
         <div
-            className='w-1/2 h-fit flex flex-col justify-center items-center text-md text-white p-4 gap-3 bg-neutral-600/30 rounded-md'
+            className={editForms.ediAbout.wrapper}
         >
-            <h2 className={editForms.h2.h2}>Edit 'about me' text</h2>
+            <h2 className={editForms.ediAbout.h2}>Edit 'about me' text</h2>
+            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             {error && <p className={addForms.message.error}>{error}</p>}
             <form
                 onSubmit={handleSubmit}
-                className={editForms.form.form}>
+                className={`${editForms.form.form} border-2 border-white p-4 mt-8 rounded-md`}>
                 <label
                     className={editForms.label.label}
                     htmlFor="about-id"

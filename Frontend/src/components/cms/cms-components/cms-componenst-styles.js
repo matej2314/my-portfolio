@@ -37,6 +37,7 @@ export const cmsComponents = {
         noPostsLi: "text-2xl text-white",
     },
     manageSkills: {
+        wrapper: "w-full h-fit bg-neutral-600/30 text-white flex flex-col justify-start items-center gap-4 pb-4 pt-2",
         buttonDiv: "w-fit h-fit flex flex-col gap-2",
     },
     manageAbout: {
@@ -59,7 +60,7 @@ export const cmsComponents = {
         actionBtn: "w-full h-fit text-sm text-white hover:text-lime-600",
     },
     ul: {
-        ul: "w-fit h-fit flex flex-col justify-center items-center text-sm text-white border-2 border-l-cyan-100 p-4 gap-4",
+        ul: "w-fit h-fit flex flex-col justify-center items-center text-sm text-white border-2 border-l-cyan-100 p-4 gap-4 rounded-md",
     },
     li: {
        li: "w-full h-fit flex flex-row items-center justify-center text-white text-sm gap-4 border-b-2 border-black p-2",
@@ -68,7 +69,7 @@ export const cmsComponents = {
         span: "w-full",
     },
     wrapper: {
-        wrapper: "w-[98vw] h-fit flex flex-col justify-start items-center text-lg text-white gap-3 bg-neutral-600/30 pt-3 pb-6 px-5 rounded-md",
+        wrapper: "w-[98vw] h-full flex flex-col justify-start items-center text-lg text-white gap-3 bg-neutral-600/30 pt-3 pb-6 px-5 rounded-md",
     },
 
 }

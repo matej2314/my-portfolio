@@ -59,6 +59,7 @@ export default function AddCourse({ onClose }) {
     return (
         <div className={addForms.addCourse.wrapper}>
             <h2 className={addForms.h2.h2}>Add new course</h2>
+            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             {error && <p className={addForms.message.error}>{error}</p>}
             <form onSubmit={handleSubmit} className={addForms.addCourse.form}>
                 <label className={addForms.label.label} htmlFor="course-name">Course name:</label>
@@ -67,8 +68,17 @@ export default function AddCourse({ onClose }) {
                 <input className={addForms.input.input} type="date" name="" id="course-date" ref={courseDate} />
                 <label className={addForms.label.label} htmlFor="course-organizer">Organizer:</label>
                 <input className={addForms.input.input} type="text" name="course-organizer" id="course-organizer" ref={courseOrganizer} />
-                <label className={addForms.label.label} htmlFor="course-category">Course category:</label>
-                <input className={addForms.input.input} type="text" name="course-category" id="course-category" ref={courseCategory} />
+                <label className={addForms.label.label} htmlFor="course-category">Select course category:</label>
+                <select
+                    className={addForms.select.select}
+                    name="course-category"
+                    id="course-category"
+                    ref={courseCategory}
+                >
+                    <option className={addForms.select.option} value="SEO">SEO</option>
+                    <option className={addForms.select.option} value="Security">Security</option>
+                    <option className={addForms.select.option} value="WebDev">WebDev</option>
+                </select>
                 <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
             </form>
         </div>
