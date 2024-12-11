@@ -31,7 +31,7 @@ export default function Projects({ selectedCategory }) {
             <div className={projectsClasses.project.wrapper}>
                 <ul className={projectsClasses.project.ul}>
                     {loading ? (
-                        <p>Ładowanie projektów...</p>
+                        <p className="hidden">Ładowanie projektów...</p>
                     ) : (
                         filteredProjects.length > 0 ? (
                             filteredProjects.map((project) => (
