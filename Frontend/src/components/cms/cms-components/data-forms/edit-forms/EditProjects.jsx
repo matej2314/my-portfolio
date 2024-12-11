@@ -209,7 +209,7 @@ export default function EditProjects({ selectedProject, onClose }) {
                 </select>
                 <label htmlFor="project-endDate">Project end date:</label>
                 <input
-                    type="text"
+                    type="date"
                     name="project-endDate"
                     id="project-endDate"
                     defaultValue={selectedProject.end_date}
