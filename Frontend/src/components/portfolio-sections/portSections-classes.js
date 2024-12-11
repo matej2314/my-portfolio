@@ -79,8 +79,8 @@ export const sectionsClasses = {
         wrapper: "w-full h-fit flex flex-col items-center gap-4 border-dotted border-b-2 border-[#6f963b] border-opacity-40",
     },
     aboutMe: {
-        wrapper: "w-11/12 flex flex-col justify-center items-center gap-4 mt-3 mx-auto",
-        contentWrapper: "w-full flex flex-col items-center justify-center pl-16 pr-16 pt-2 pb-3 bg-gray-500/15 rounded shadow-xl shadow-neutral-950/25",
+        wrapper: "w-[100%] md:w-11/12 flex flex-col justify-center items-center gap-4 mt-3 md:mx-auto",
+        contentWrapper: "w-full flex flex-col items-center justify-center px-6 md:pl-16 md:pr-16 pt-2 pb-3 bg-gray-500/15 rounded shadow-xl shadow-neutral-950/25",
         paragraph: "w-full text-center tracking-wide mt-2 leading-loose whitespace-normal",
         titleWrapper: "w-full flex flex-col justify-center items-center gap-4 mt-3 mx-auto",
     }
