@@ -7,6 +7,8 @@ import { imgUrl } from "../url";
 import LeftSidebar from '../components/LeftSidebar';
 import { pagesClasses } from "./pages-classes";
 import MobileMenu from '../components/mobileElements/MobileMenu';
+import { formDate } from "../utils/formatDate";
+import ScreenGallery from "../components/projects/ScreenGallery";
 
 export default function ProjectDetails() {
     const { id } = useParams();
@@ -29,6 +31,16 @@ export default function ProjectDetails() {
                 <div className={pagesClasses.projectsDetailsPage.detailsWrapper}>
                     <div id="projects-details" className={pagesClasses.projectsDetailsPage.div}>
                         <h2 className={pagesClasses.projectsDetailsPage.projectTitle}>{selectedProject.title}</h2>
+                        <div className="w-full h-fit flex flex-row justify-center bg-neutral-600/30 border-2 border-white rounded-md text-lg p-3 gap-4">
+                            <div className="w-full h-fit flex flex-row justify-center border-[1px] border-lime-400 gap-3">
+                                <p className="w-fit h-fit">completion date:</p>
+                                <p>{formDate(selectedProject.end_date)}</p>
+                            </div>
+                            <div className="w-full h-fit flex flex-row justify-center border-[1px] border-lime-400 gap-3">
+                                <p className="w-fit h-fit">difficulty:</p>
+                                <p>{selectedProject.difficulty}</p>
+                            </div>
+                        </div>
                         <img
                             className={pagesClasses.projectsDetailsPage.screenshot}
                             src={`${imgUrl}/${selectedProject.project_screenName}-640.png`}
@@ -39,6 +51,10 @@ export default function ProjectDetails() {
                                 `}
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             alt="" />
+                        <div className="w-full flex flex-row justify-center items-center">
+                            <p>Used technologies:</p>
+                            <p>{selectedProject.technologies}</p>
+                        </div>
                         <h2 className={pagesClasses.projectsDetailsPage.subtitle}>Description:</h2>
                         <p className={pagesClasses.projectsDetailsPage.description}>{selectedProject.long_text}</p>
                         {selectedProject.link === 'localhost' ? null : <div className={pagesClasses.projectsDetailsPage.linkWrapper}>

@@ -47,7 +47,8 @@ const coursesRoutes = require('./routes/coursesRoutes.js');
 const interestsRoutes = require('./routes/interestsRoutes.js');
 const aboutMeRoutes = require('./routes/aboutMeRoutes.js');
 const downloadRoutes = require('./routes/downloadRoute.js');
-const emailRoutes = require('./routes/emailRoutes.js')
+const emailRoutes = require('./routes/emailRoutes.js');
+const galleryRoutes = require('./routes/galleryRoutes.js');
 const authRoutes = require('./routes/auth.js');
 
 app.use('/services', serviceRoutes);
@@ -59,6 +60,7 @@ app.use('/interests', interestsRoutes);
 app.use('/about', aboutMeRoutes)
 app.use('/data', dataRoutes);
 app.use('/download', downloadRoutes);
+app.use('/gallery', galleryRoutes);
 app.use('/email', emailRoutes);
 app.use('/auth', authRoutes);
 
