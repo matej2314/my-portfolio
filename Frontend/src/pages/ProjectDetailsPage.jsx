@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { DataContext } from '../store/data-context'
 import { useMediaQuery } from 'react-responsive';
@@ -11,18 +11,16 @@ import { formDate } from "../utils/formatDate";
 import ScreenGallery from "../components/projects/ScreenGallery";
 
 export default function ProjectDetails() {
-    const { id } = useParams();
-
     const dataCtx = useContext(DataContext);
     const projects = dataCtx.fetchedData.data.projects || [];
-    const selectedProject = projects.find((project) => project.id === id);
+    const { id } = useParams();
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
+    const selectedProject = projects.find((project) => project.id === id);
 
     if (!selectedProject) {
         return <p>Wybierz projekt.</p>
     }
-
-    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     return (
         <>
@@ -32,11 +30,11 @@ export default function ProjectDetails() {
                     <div id="projects-details" className={pagesClasses.projectsDetailsPage.div}>
                         <h2 className={pagesClasses.projectsDetailsPage.projectTitle}>{selectedProject.title}</h2>
                         <div className="w-full h-fit flex flex-row justify-center bg-neutral-600/30 border-2 border-white rounded-md text-lg p-3 gap-4">
-                            <div className="w-full h-fit flex flex-row justify-center border-[1px] border-lime-400 gap-3">
+                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-3 rounded-md py-2">
                                 <p className="w-fit h-fit">completion date:</p>
                                 <p>{formDate(selectedProject.end_date)}</p>
                             </div>
-                            <div className="w-full h-fit flex flex-row justify-center border-[1px] border-lime-400 gap-3">
+                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-3 rounded-md py-2">
                                 <p className="w-fit h-fit">difficulty:</p>
                                 <p>{selectedProject.difficulty}</p>
                             </div>
@@ -51,22 +49,29 @@ export default function ProjectDetails() {
                                 `}
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             alt="" />
-                        <div className="w-full flex flex-row justify-center items-center">
-                            <p>Used technologies:</p>
+                        <div className="w-full flex flex-row justify-center items-center gap-3">
+                            <p className="text-lime-400 text-lg">Used technologies:</p>
                             <p>{selectedProject.technologies}</p>
                         </div>
-                        <h2 className={pagesClasses.projectsDetailsPage.subtitle}>Description:</h2>
-                        <p className={pagesClasses.projectsDetailsPage.description}>{selectedProject.long_text}</p>
-                        {selectedProject.link === 'localhost' ? null : <div className={pagesClasses.projectsDetailsPage.linkWrapper}>
-                            <p className={pagesClasses.projectsDetailsPage.linkParagraph}>
-                                Link to the demo :
-                            </p>
-                            <a className={pagesClasses.projectsDetailsPage.demoLink} href={selectedProject.link}>{selectedProject.title}</a>
-                        </div>}
+                        <div className="w-full h-fit flex flex-col justify-center items-center">
+                            <h2 className={pagesClasses.projectsDetailsPage.subtitle}>Description:</h2>
+                            <p className={pagesClasses.projectsDetailsPage.description}>{selectedProject.long_text}</p>
+                            {selectedProject.link === 'localhost' ? null : <div className={pagesClasses.projectsDetailsPage.linkWrapper}>
+                                <p className={pagesClasses.projectsDetailsPage.linkParagraph}>
+                                    Link to the demo :
+                                </p>
+                                <a className={pagesClasses.projectsDetailsPage.demoLink} href={selectedProject.link}>{selectedProject.title}</a>
+                            </div>}
+                        </div>
+                        <div className="w-[25rem] h-fit flex flex-col justify-center items-center gap-4">
+                            <h2 className={pagesClasses.projectsDetailsPage.subtitle}>
+                                Gallery:
+                            </h2>
+                            <ScreenGallery id={selectedProject.id} />
+                        </div>
                         <a className={pagesClasses.projectsDetailsPage.repoLink} href={selectedProject.repo}>Github repository</a>
                     </div>
                 </div>
-
             </div>
         </>
     )

@@ -11,6 +11,7 @@ export const imgUrl = `${serverUrl}/images`;
 export const blogImgs = `${serverUrl}/blog-photos`;
 export const cvURL = `${serverUrl}/download`;
 export const mailUrl = `${serverUrl}/email`;
+export const galleryUrl = `${serverUrl}/gallery`;
 export const socialURLS = {
     facebook: "https://www.facebook.com/mateusz.sliwowski.9",
     github: "https://github.com/matej2314",

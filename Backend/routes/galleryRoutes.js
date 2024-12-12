@@ -6,7 +6,7 @@ const logger = require('../logger');
 const verifyAdmin = require('../controllers/verifyAdmin');
 
 router.post('/', (req, res) => {
-    const {folder} = req.body;
+    const folder = req.body.folder;
 
     if (!folder || folder == '') {
         logger.error('Brak folderu do wylistowania');
