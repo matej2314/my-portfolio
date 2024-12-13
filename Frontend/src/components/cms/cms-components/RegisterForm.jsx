@@ -23,17 +23,13 @@ export default function RegisterForm({ onClose }) {
             return;
         }
 
-        const response = await register(username.current.value, email.current.value, password.current.value);
+        await register(username.current.value, email.current.value, password.current.value);
 
-        if (response.status == 200) {
-            toast.info('Użytkownik zarejestrowany. Możesz się zalogować.');
-            setTimeout(() => {
-                onClose();
-            }, 2500);
+        toast.info('Użytkownik zarejestrowany. Możesz się zalogować.');
+        setTimeout(() => {
+            window.location.reload();
+        }, 2500);
 
-        } else {
-            toast.info(response.message);
-        }
 
         username.current.value = "";
         email.current.value = "";
