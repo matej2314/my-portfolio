@@ -63,7 +63,7 @@ export default function ProjectDetails() {
                                 <a className={pagesClasses.projectsDetailsPage.demoLink} href={selectedProject.link}>{selectedProject.title}</a>
                             </div>}
                         </div>
-                        <div className="w-[35rem] h-fit flex flex-col justify-center items-center gap-4">
+                        <div className="max-w-[960px] h-fit flex flex-col justify-center items-center gap-4">
                             <h2 className={pagesClasses.projectsDetailsPage.subtitle}>
                                 Gallery:
                             </h2>
