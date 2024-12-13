@@ -29,13 +29,17 @@ export default function ProjectDetails() {
                 <div className={pagesClasses.projectsDetailsPage.detailsWrapper}>
                     <div id="projects-details" className={pagesClasses.projectsDetailsPage.div}>
                         <h2 className={pagesClasses.projectsDetailsPage.projectTitle}>{selectedProject.title}</h2>
-                        <div className="w-full h-fit flex flex-row justify-center bg-neutral-600/30 border-2 border-white rounded-md text-lg p-3 gap-4">
-                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-3 rounded-md py-2">
-                                <p className="w-fit h-fit">completion date:</p>
+                        <div className="w-full h-fit flex flex-row justify-center items-center bg-neutral-600/30 border-2 border-white rounded-md text-md p-3 gap-4">
+                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-1 rounded-md py-2">
+                                <p className="w-fit h-fit underline underline-offset-1">Completion date:</p>
                                 <p>{formDate(selectedProject.end_date)}</p>
                             </div>
-                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-3 rounded-md py-2">
-                                <p className="w-fit h-fit">difficulty:</p>
+                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black py-2 rounded-md">
+                                <p className="w-full flex flex-row justify-center items-center underline underline-offset-1">Used technologies:</p>
+                                <p className="w-full flex flex-row justify-center items-center">{selectedProject.technologies}</p>
+                            </div>
+                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-1 rounded-md py-2">
+                                <p className="w-fit h-fit underline underline-offset-1">Difficulty:</p>
                                 <p>{selectedProject.difficulty}</p>
                             </div>
                         </div>
@@ -49,10 +53,6 @@ export default function ProjectDetails() {
                                 `}
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             alt="" />
-                        <div className="w-full flex flex-row justify-center items-center gap-3">
-                            <p className="text-lime-400 text-lg">Used technologies:</p>
-                            <p>{selectedProject.technologies}</p>
-                        </div>
                         <div className="w-full h-fit flex flex-col justify-center items-center">
                             <h2 className={pagesClasses.projectsDetailsPage.subtitle}>Description:</h2>
                             <p className={pagesClasses.projectsDetailsPage.description}>{selectedProject.long_text}</p>
@@ -63,7 +63,7 @@ export default function ProjectDetails() {
                                 <a className={pagesClasses.projectsDetailsPage.demoLink} href={selectedProject.link}>{selectedProject.title}</a>
                             </div>}
                         </div>
-                        <div className="w-[25rem] h-fit flex flex-col justify-center items-center gap-4">
+                        <div className="w-[35rem] h-fit flex flex-col justify-center items-center gap-4">
                             <h2 className={pagesClasses.projectsDetailsPage.subtitle}>
                                 Gallery:
                             </h2>

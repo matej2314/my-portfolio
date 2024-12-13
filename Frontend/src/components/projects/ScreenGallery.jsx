@@ -52,7 +52,7 @@ export default function ScreenGallery({ id }) {
     return (
         <div className="relative w-full flex flex-col justify-center items-center ">
             <motion.div
-                className="w-full max-w-10/12 h-auto flex justify-center items-center"
+                className="w-full flex justify-center items-center"
                 key={currentIndex}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

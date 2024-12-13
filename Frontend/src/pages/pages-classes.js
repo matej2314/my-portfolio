@@ -19,9 +19,9 @@ export const pagesClasses = {
     projectsDetailsPage: {
         wrapper: "w-dvw h-dvh bg-black overflow-hidden flex flex-col justify-center items-center flex-nowrap pt-5 md:w-dvw md:h-dvh md:overflow-hidden md:flex md:flex-row md:items-center md:justify-around md:py-5",
         detailsWrapper: "w-full h-full md:h-content flex flex-col pt-10 justify-between items-center mx-auto bg-neutral-600/30 text-slate-200 overflow-scroll no-scrollbar",
-        div: "w-[80%] h-full flex flex-col items-center px-2 pb-2 overflow-scroll no-scrollbar gap-4",
+        div: "w-[85%] h-full flex flex-col items-center px-2 pb-2 overflow-scroll no-scrollbar gap-4",
         projectTitle: "w-full flex flex-row justify-center text-3xl font-bold",
-        screenshot: "w-full flex flex-row justify-center border-8 border-slate-200 rounded-sm max-w-[55rem]",
+        screenshot: "w-full h-full flex flex-row justify-center border-8 border-slate-200 rounded-sm max-w-[45rem]",
         subtitle: "text-xl font-bold text-[#b8c785]",
         description: "w-full flex flex-row justify-center text-xl px-4 whitespace-pre-line leading-relaxed",
         linkWrapper: "w-full flex flex-row justify-center gap-3 font-bold text-xl",
@@ -31,7 +31,7 @@ export const pagesClasses = {
     },
     projectsPage: {
         wrapper: 'w-full h-dvh flex flex-col items-center py-5 gap-2 overflow-scroll no-scrollbar px-4',
-        contentWrapper: 'w-full h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 pl-4 overflow-scroll no-scrollbar',
+        contentWrapper: 'w-full h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 pl-4 overflow-scroll no-scrollbar gap-2',
     },
     notFound: {
         wrapper: 'w-90dvw h-dvh flex flex-col items-center justify-between ml-5 md:ml-0 md:flex-row md:justify-between',
