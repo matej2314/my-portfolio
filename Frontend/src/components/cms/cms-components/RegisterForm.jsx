@@ -28,7 +28,7 @@ export default function RegisterForm({ onClose }) {
         toast.info('Użytkownik zarejestrowany. Możesz się zalogować.');
         setTimeout(() => {
             window.location.reload();
-        }, 2500);
+        }, 3000);
 
 
         username.current.value = "";
@@ -43,7 +43,6 @@ export default function RegisterForm({ onClose }) {
                 onSubmit={handleSubmit}
             >
                 <h2 className={cmsComponents.h2.h2}>Register</h2>
-                {isLoading && <p>Sending data...</p>}
                 {message && <p className={cmsComponents.message.positive}>{message}</p>}
                 {error && <p className={cmsComponents.message.error}>{error}</p>}
 
