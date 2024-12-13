@@ -30,8 +30,8 @@ export default function RegisterForm() {
         if (response.status === 200) {
             toast.info(response.message);
             setTimeout(() => {
-                navigate('login_admin');
-            }, 2000);
+                navigate('/login_admin');
+            }, 2500);
 
         } else {
             toast.info(response.message);
