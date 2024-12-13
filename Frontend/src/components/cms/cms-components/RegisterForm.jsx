@@ -28,7 +28,7 @@ export default function RegisterForm() {
         const response = await register(username.current.value, email.current.value, password.current.value);
 
         if (response.status === 200) {
-            toast.info(response.message);
+            toast.info(message);
             setTimeout(() => {
                 navigate('login_admin');
             }, 2500);
