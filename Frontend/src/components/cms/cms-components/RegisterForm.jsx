@@ -1,17 +1,15 @@
 import { useRef, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 import { AuthContext } from "../../../store/auth-context";
 import { cmsComponents } from './cms-componenst-styles';
 
-export default function RegisterForm() {
+export default function RegisterForm({ onClose }) {
     const username = useRef();
     const email = useRef();
     const password = useRef();
 
     const { register, isLoading, error, message } = useContext(AuthContext);
-    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,7 +28,7 @@ export default function RegisterForm() {
         if (response.status == 200) {
             toast.info('Użytkownik zarejestrowany. Możesz się zalogować.');
             setTimeout(() => {
-                navigate('login_admin');
+                onClose();
             }, 2500);
 
         } else {
