@@ -8,7 +8,7 @@ export default function CmsIndexPage() {
 
     const [selectedForm, setSelectedForm] = useState(null);
 
-    const handleselectForm = (form) => {
+    const handleSelectForm = (form) => {
         setSelectedForm(() => form);
     };
 
