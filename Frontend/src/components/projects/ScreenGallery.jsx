@@ -66,18 +66,18 @@ export default function ScreenGallery({ id }) {
                 />
             </motion.div>
             <div className="absolute top-1/2 w-full flex flex-row justify-between -translate-y-1/2">
-                <button
+                <motion.button
                     onClick={currentIndex > 0 && prevPhoto}
                     className=" bg-black/50 text-white text-md border-0 p-3 cursor-pointer rounded-[50%] hover:bg-black/80"
                 >
                     &#10094;
-                </button>
-                <button
+                </motion.button>
+                <motion.button
                     onClick={nextPhoto}
                     className="bg-black/50 text-white text-md border-0 p-3 cursor-pointer rounded-[50%] hover:bg-black/80"
                 >
                     &#10095;
-                </button>
+                </motion.button>
             </div>
             <div className="flex flex-row justify-center mt-3">
                 {photos.map((_, index) => (
