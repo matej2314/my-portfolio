@@ -15,6 +15,11 @@ export default function DeleteService({ serviceData, onClose }) {
     const handleDeleteService = async () => {
         const serviceId = serviceData.id;
 
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        }
+
         try {
             await sendRequest({
                 url: deleteServiceUrl,
@@ -50,7 +55,7 @@ export default function DeleteService({ serviceData, onClose }) {
 
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
-                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteService} disabled={user.role !== 'admin'}>Tak</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteService}>Tak</button>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={onClose}>Nie</button>
             </div>
         </div>

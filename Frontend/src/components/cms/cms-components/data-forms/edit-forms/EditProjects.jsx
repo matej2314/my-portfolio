@@ -41,6 +41,10 @@ export default function EditProjects({ selectedProject, onClose }) {
             projectEndDate: projectEndDate.current.value.trim(),
 
         };
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        };
 
         try {
             await sendRequest({
@@ -227,7 +231,6 @@ export default function EditProjects({ selectedProject, onClose }) {
                 <button
                     className={editForms.submitBtn.submitBtn}
                     type="submit"
-                    disabled={user.role !== 'admin'}
                 >
                     Save
                 </button>

@@ -18,6 +18,11 @@ export default function AddService({ onClose }) {
     const handleSubmit = async e => {
         e.preventDefault();
 
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        }
+
         const data = {
             serviceName: serviceName.current.value,
             serviceDesc: serviceDescription.current.value,
@@ -60,7 +65,7 @@ export default function AddService({ onClose }) {
                 <input className={addForms.input.input} type="text" name="service-name" id="service-name" ref={serviceName} />
                 <label className={addForms.label.label} htmlFor="service-description">Service description:</label>
                 <textarea className={addForms.input.input} name="" id="service-description" ref={serviceDescription} />
-                <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
+                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

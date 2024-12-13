@@ -17,6 +17,11 @@ export default function EditAbout({ descData, onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        };
+
         try {
             await sendRequest({
                 url: editAboutUrl,
@@ -86,7 +91,6 @@ export default function EditAbout({ descData, onClose }) {
                 <button
                     className={editForms.submitBtn.submitBtn}
                     type="submit"
-                    disabled={user.role !== 'admin'}
                 >
                     Save
                 </button>

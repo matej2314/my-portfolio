@@ -17,6 +17,11 @@ export default function AddAbout({ onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        }
+
         try {
             await sendRequest({
                 url: addAboutUrl,
@@ -55,7 +60,7 @@ export default function AddAbout({ onClose }) {
             >
                 <label className="text-xl" htmlFor="about-text">Write new 'about me' text:</label>
                 <textarea className={addForms.addAbout.textarea} name="about-text" id="about-text" ref={about} />
-                <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
+                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

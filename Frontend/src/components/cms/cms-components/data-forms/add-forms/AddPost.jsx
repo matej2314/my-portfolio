@@ -21,6 +21,11 @@ export default function AddPost({ onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        }
+
         const values = {
             postTitle: postTitle.current.value,
             postLead: postLead.current.value,
@@ -68,7 +73,7 @@ export default function AddPost({ onClose }) {
                 <textarea className={addForms.input.input} name="post-content" id="post-content" ref={postContent} />
                 <label className={addForms.label.label} htmlFor="post-imageName">Post image name:</label>
                 <input className={addForms.input.input} type="text" name="post-imageName" id="post-imageName" ref={postImgName} />
-                <button className={addForms.btnSave.btnSave} disabled={user.role !== 'admin'} type="submit">Save</button>
+                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

@@ -10,7 +10,6 @@ import { addForms } from "../data-forms-classes";
 const addCourseUrl = requestUrl.courses.new;
 
 export default function AddCourse({ onClose }) {
-
     const courseName = useRef();
     const courseDate = useRef();
     const courseOrganizer = useRef();
@@ -20,6 +19,11 @@ export default function AddCourse({ onClose }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        }
 
         const newCourse = {
             courseName: courseName.current.value,
@@ -79,7 +83,7 @@ export default function AddCourse({ onClose }) {
                     <option className={addForms.select.option} value="Security">Security</option>
                     <option className={addForms.select.option} value="WebDev">WebDev</option>
                 </select>
-                <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
+                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

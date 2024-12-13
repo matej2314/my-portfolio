@@ -17,6 +17,11 @@ export default function AddInterest({ onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        }
+
         try {
             await sendRequest({
                 url: addInterestUrl,
@@ -54,7 +59,7 @@ export default function AddInterest({ onClose }) {
             >
                 <label className="text-2xl" htmlFor="interest-name">Type name of new interest:</label>
                 <input className={addForms.input.input} type="text" name="interest-name" id="interest-name" ref={interest} />
-                <button className={addForms.btnSave.btnSave} disabled={user.role !== 'admin'} type="submit">Save</button>
+                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

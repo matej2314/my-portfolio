@@ -28,6 +28,11 @@ export default function EditPosts({ selectedPost, onClose }) {
             postImage: postImage.current.value > 0 ? postImage.current.value : null,
         };
 
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        };
+
         try {
             await sendRequest({
                 url: editPostUrl,
@@ -72,7 +77,7 @@ export default function EditPosts({ selectedPost, onClose }) {
                 <textarea className={editForms.input.input} name="post-content" id="post-content" ref={postContent} defaultValue={selectedPost.content} />
                 <label className={editForms.label.label} htmlFor="post-image">Post image name:</label>
                 <input className={editForms.input.input} type="text" name="post-image" id="post-image" ref={postImage} defaultValue={selectedPost.postImage} />
-                <button className={editForms.submitBtn.submitBtn} type="submit" disabled={user.role !== 'admin'}>Save</button>
+                <button className={editForms.submitBtn.submitBtn} type="submit">Save</button>
             </form>
         </div>
     )

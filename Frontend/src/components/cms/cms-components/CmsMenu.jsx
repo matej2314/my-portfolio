@@ -9,7 +9,6 @@ export default function CmsMenu({ handleSelected, onClose }) {
     const { user, logout, isAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
 
-
     const handleLogOut = async () => {
         try {
             const message = await logout();
@@ -23,23 +22,23 @@ export default function CmsMenu({ handleSelected, onClose }) {
     return (
 
         <div className={cmsComponents.cmsMenu.wrapper}>
-            <div className='w-full h-fit flex justify-stretch items-center pl-[28rem] gap-5'>
-                <button className='text-lime-500 hover:text-white'><Link to="/">Home</Link></button>
+            <div className='w-full h-full flex flex-row justify-around items-center gap-[23rem]'>
+                <button className='w-fit h-full text-lime-500 hover:text-white'><Link to="/">Home</Link></button>
                 <button className={cmsComponents.cmsMenu.h2} onClick={onClose}>Manage:</button>
-                <ul className={cmsComponents.cmsMenu.ul}>
-                    <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('courses')}>Courses</button></li>
-                    <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('posts')}>Posts</button></li>
-                    <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('projects')}>Projects</button></li>
-                    <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('services')}>Services</button></li>
-                    <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('skills')}>Skills</button></li>
-                    <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('about')}>About me</button></li>
-                    <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('interests')}>Interests</button></li>
-                </ul>
             </div>
+            <ul className={cmsComponents.cmsMenu.ul}>
+                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('courses')}>Courses</button></li>
+                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('posts')}>Posts</button></li>
+                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('projects')}>Projects</button></li>
+                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('services')}>Services</button></li>
+                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('skills')}>Skills</button></li>
+                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('about')}>About me</button></li>
+                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('interests')}>Interests</button></li>
+            </ul>
             <div className={cmsComponents.cmsMenu.userDiv}>
-                <span className='w-fit h-fit'>User:</span>
+                <span className='w-fit h-fit text-white'>User:</span>
                 {user && user.userName ? (
-                    <p className='w-fit h-fit'>{user.userName}</p>
+                    <p className='w-fit h-fit text-white'>{user.userName}</p>
                 ) : (
                     <p className='w-fit h-fit'>Guest</p>
                 )}

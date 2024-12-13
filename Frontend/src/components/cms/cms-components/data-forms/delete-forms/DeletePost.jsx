@@ -15,6 +15,11 @@ export default function DeletePost({ selectedPost, onClose }) {
     const handleDeletePost = async () => {
         const postId = selectedPost.id;
 
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        }
+
         try {
             await sendRequest({
                 url: deletePostUrl,
@@ -51,7 +56,7 @@ export default function DeletePost({ selectedPost, onClose }) {
             {selectedPost && <p>{selectedPost.post_lead}</p>}
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
-                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeletePost} disabled={user.role !== 'admin'}>Tak</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeletePost}>Tak</button>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={onClose}>Nie</button>
             </div>
         </div>

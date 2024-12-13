@@ -16,6 +16,11 @@ export default function DeleteProject({ selectedProject, onClose }) {
         const projectId = selectedProject.id;
         const projectName = selectedProject.title;
 
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        }
+
         try {
             await sendRequest({
                 url: deleteProjectUrl,
@@ -57,7 +62,7 @@ export default function DeleteProject({ selectedProject, onClose }) {
 
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
-                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteProject} disabled={user.role !== 'admin'}>Tak</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteProject}>Tak</button>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={onClose}>Nie</button>
             </div>
         </div>

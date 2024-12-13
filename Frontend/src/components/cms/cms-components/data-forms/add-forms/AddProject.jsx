@@ -28,6 +28,11 @@ export default function AddProject({ onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        }
+
         const data = {
             projectName: values.current.projectName.value,
             projectCat: values.current.projectCat.value,
@@ -108,7 +113,7 @@ export default function AddProject({ onClose }) {
                 </select>
                 <label className={addForms.label.label} htmlFor="project-endDate">Project completion date:</label>
                 <input className={`${addForms.input.input} text-lg`} type="date" name="project-endDate" id="project-endDate" ref={(el) => (values.current.projectEndDate = el)} />
-                <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
+                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

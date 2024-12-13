@@ -20,6 +20,11 @@ export default function AddSkill({ onClose }) {
 
         const addSkillUrl = requestUrl.skills.new;
 
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        };
+
         const data = {
             skillName: skillName.current.value,
             skillCat: skillCat.current.value,
@@ -76,7 +81,7 @@ export default function AddSkill({ onClose }) {
                 <input className={addForms.input.input} type="text" name="skill-icon" id="skill-icon" ref={skillIcon} />
                 <label className={addForms.label.label} htmlFor="icon-color">Icon color - optional</label>
                 <input className={addForms.input.input} type="text" name="icon-color" id="icon-color" ref={skillIconColor} />
-                <button className={addForms.btnSave.btnSave} type="submit" disabled={user.role !== 'admin'}>Save</button>
+                <button className={addForms.btnSave.btnSave} type="submit">Save</button>
             </form>
         </div>
     )

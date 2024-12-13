@@ -14,6 +14,12 @@ export default function DeleteCourse({ courseData, onClose }) {
 
     const handleDeleteCourse = async () => {
         const courseId = courseData.id;
+
+        if (user.role !== 'admin') {
+            toast.info('Sorry! You are not an admin!');
+            return;
+        }
+
         try {
             await sendRequest({
                 url: deleteCourseUrl,
@@ -50,7 +56,7 @@ export default function DeleteCourse({ courseData, onClose }) {
             {courseData && <p>id: {courseData.id}</p>}
             {error && <p className={deleteForms.messages.error}>{error}</p>}
             <div className={deleteForms.buttonWrapper.buttonWrapper}>
-                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteCourse} disabled={user.role !== 'admin'}>Tak</button>
+                <button className={deleteForms.buttonsConfirm.buttonConf} onClick={handleDeleteCourse}>Tak</button>
                 <button className={deleteForms.buttonsConfirm.buttonConf} onClick={onClose}>Nie</button>
             </div>
         </div>
