@@ -53,10 +53,10 @@ export default function CmsMainPage() {
                     <div className={cmsPages.mainPage.contentWrapper}>
                         {selectedButton ? selectedComponent() : (
                             <div className={cmsPages.mainPage.parWrapper}>
-                                <p className={cmsPages.mainPage.paragraph}>
+                                <div className={cmsPages.mainPage.paragraph}>
                                     <p className={cmsPages.mainPage.titlePar}>msliwowski.net - admin panel</p>
                                     <p className="text-2xl">Please select the category.</p>
-                                </p>
+                                </div>
                             </div>
                         )}
                     </div>
@@ -65,14 +65,14 @@ export default function CmsMainPage() {
                 <main className={cmsPages.mainPage.main}>
                     <CmsMenu handleSelected={handleSelected} onClose={null} />
                     <div className={cmsPages.mainPage.parWrapper}>
-                        <p className={cmsPages.mainPage.paragraph}>
+                        <div className={cmsPages.mainPage.paragraph}>
                             <p className={cmsPages.mainPage.titlePar}>msliwowski.net - admin panel</p>
                             <p className={cmsPages.mainPage.linkPar}>Aby skorzystać z panelu,<Link to="/login_admin"
                                 className="text-lime-600 hover:text-white"
                             >
                                 zaloguj się.
                             </Link></p>
-                        </p>
+                        </div>
                     </div>
 
                 </main>
