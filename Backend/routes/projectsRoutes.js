@@ -65,7 +65,7 @@ router.post('/new', createProjectFolder, upload.fields([
 
         return res.status(201).json({
             message: `Projekt ${projectName} dodany pomyślnie!`,
-            projectId
+            projectId: projectId,
         });
     } catch (error) {
         logger.error('Nie udało się dodać projektu', error);

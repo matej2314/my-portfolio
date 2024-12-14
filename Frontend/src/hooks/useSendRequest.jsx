@@ -20,7 +20,7 @@ export default function useSendRequest() {
                 if (data instanceof FormData) {
                     requestOptions.body = data;
                 } else {
-                    // Jeśli wysyłamy dane tekstowe, ustawiamy Content-Type jako application/json
+
                     requestOptions.headers = {
                         'Content-Type': 'application/json',
                     };
