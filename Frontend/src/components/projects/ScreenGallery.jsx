@@ -75,8 +75,7 @@ export default function ScreenGallery({ id }) {
     };
 
     const prevPhoto = () => {
-        setCurrentIndex((prevIndex) =>
-            prevIndex === 0 ? filteredPhotos.length - 1 : prevIndex - 1
+        setCurrentIndex((prevIndex) => prevIndex === 0 ? filteredPhotos.length - 1 : prevIndex - 1
         );
     };
 
