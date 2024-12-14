@@ -36,7 +36,7 @@ router.get('/collection', async (req, res) => {
 });
 
 router.post('/new', createProjectFolder, upload.fields([
-    { name: 'mainImages', maxCount: 5 },  
+    { name: 'mainImages', maxCount: 15 },  
     { name: 'galleryImages', maxCount: 25 },
 ]), async (req, res) => {
     const projectId = req.projectId;
@@ -68,7 +68,7 @@ router.post('/new', createProjectFolder, upload.fields([
             projectId
         });
     } catch (error) {
-        logger.error('Nie udało się dodać projektu', error.message);
+        logger.error('Nie udało się dodać projektu', error);
         return res.status(500).json({ message: `Nie udało się dodać projektu ${projectName}` });
     }
 });
