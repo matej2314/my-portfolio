@@ -1,9 +1,13 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
+const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const pool = require('../db.js');
 const logger = require('../logger.js');
 const verifyAdmin = require('../controllers/verifyAdmin.js');
+const upload = require('../controllers/multerConfig.js');
+const createProjectFolder = require('../controllers/createProjectFolder.js');
 
 router.use(express.json());
 
@@ -31,42 +35,45 @@ router.get('/collection', async (req, res) => {
     };
 });
 
-router.post('/new', async (req, res) => {
+router.post('/new', createProjectFolder, upload.fields([
+    { name: 'mainImages', maxCount: 5 },  
+    { name: 'galleryImages', maxCount: 25 },
+]), async (req, res) => {
+    const projectId = req.projectId;
+    const { projectName, projectCat, prURL, description, repo, technologies, longText, projectDiff, endDate } = req.body;
 
-    const projectId = uuidv4();
-    const projectName = req.body.projectName;
-    const projectCat = req.body.projectCat;
-    const projectURL = req.body.prURL;
-    const projectScrName = req.body.prScrName;
-    const projectDesc = req.body.description;
-    const projectRepo = req.body.repo;
-    const technologies = req.body.technologies;
-    const projectLong = req.body.longText;
-    const projectDiff = req.body.projectDiff;
-    const projectEndDate = req.body.endDate;
-
-    if (!projectId || projectName === '' || projectCat === '' || projectURL === '' || projectScrName === '' || projectDesc === '' || projectRepo === '' || technologies === '' || projectDiff === '' || projectEndDate === '' )
-        {
+    // Walidacja danych
+    if (!projectName || !projectCat || !prURL || !description || !repo || !technologies || !projectDiff || !endDate) {
         logger.error('Brak wymaganych danych do dodania projektu');
         return res.status(400).json({ message: 'Brak wymaganych danych do dodania projektu' });
-    };
+    }
 
-    const query = 'INSERT INTO projects (id, project_name, project_category, project_URL, project_screenName, project_description, repo, technologies, long_text, difficulty, end_date) VALUES(?,? ,? ,? ,?, ?, ?,?,?,?,?)';
+    // Sprawdzanie, czy plik mainImages jest obecny
+    if (!req.files.mainImages) {
+        return res.status(400).json({ message: 'Brak głównego obrazu (mainImages)' });
+    }
 
+    // Pobranie nazwy pliku z mainImages (screenName)
+    const screenNames = req.files.mainImages.map(file => file.filename.split('-')[0]);  // Tablica nazw plików bez rozdzielczości i rozszerzenia
+    const screenName = screenNames[0];  // Możesz wybrać pierwszą nazwę (lub inną, zależnie od logiki)
+
+    const query = 'INSERT INTO projects (id, project_name, project_category, project_URL, project_screenName, project_description, repo, technologies, long_text, difficulty, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
     try {
-        await pool.query(query, [projectId, projectName, projectCat, projectURL, projectScrName, projectDesc, projectRepo, technologies, projectLong, projectDiff, projectEndDate]);
+        await pool.query(query, [projectId, projectName, projectCat, prURL, screenName, description, repo, technologies, longText, projectDiff, endDate]);
         logger.info(`Projekt ${projectName} dodany pomyślnie!`);
+
         return res.status(201).json({
             message: `Projekt ${projectName} dodany pomyślnie!`,
-            projectId,
-            projectName,
+            projectId
         });
     } catch (error) {
         logger.error('Nie udało się dodać projektu', error.message);
-        return res.status(500).json({ message: `Nie udało się dodać projektu ${projectName}`});
-}
+        return res.status(500).json({ message: `Nie udało się dodać projektu ${projectName}` });
+    }
 });
+
+
 
 router.delete('/delete', async (req, res) => {
     const { projectId, projectName } = req.body;
