@@ -9,7 +9,7 @@ const removeResolutionAndExtension = (filename) => {
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         
-        const baseUploadPath = 'projects-photos';
+        const baseUploadPath = '../projects-photos';
 
         if (file.fieldname === 'mainImages') {
             
@@ -23,12 +23,19 @@ const storage = multer.diskStorage({
         }
     },
     filename: (req, file, cb) => {
-        const baseName = removeResolutionAndExtension(file.originalname);
-        cb(null, baseName + path.extname(file.originalname)); 
+        const baseName = removeResolutionAndExtension(file.originalname); // Usuwamy rozdzielczość i rozszerzenie z nazwy pliku
 
+        // Jeśli plik jest z mainImages, zapisujemy tylko nazwę (bez rozszerzenia)
+        if (file.fieldname === 'mainImages') {
+            cb(null, baseName); // Zapisuje nazwę pliku bez rozszerzenia
+        } else if (file.fieldname === 'galleryImages') {
+            // Dla galleryImages zapisujemy pełną nazwę (z rozszerzeniem)
+            cb(null, file.originalname); 
+        }
+        
         // Ustawiamy nazwę tylko dla pierwszego pliku z kategorii mainImages
         if (file.fieldname === 'mainImages' && !req.screenName) {
-            req.screenName = baseName; 
+            req.screenName = baseName; // Przechowujemy nazwę pliku z mainImages bez rozdzielczości
         }
     }
 });
