@@ -42,20 +42,18 @@ router.post('/new', createProjectFolder, upload.fields([
     const projectId = req.projectId;
     const { projectName, projectCat, prURL, description, repo, technologies, longText, projectDiff, endDate } = req.body;
 
-    // Walidacja danych
     if (!projectName || !projectCat || !prURL || !description || !repo || !technologies || !projectDiff || !endDate) {
         logger.error('Brak wymaganych danych do dodania projektu');
         return res.status(400).json({ message: 'Brak wymaganych danych do dodania projektu' });
     }
 
-    // Sprawdzanie, czy plik mainImages jest obecny
     if (!req.files.mainImages) {
         return res.status(400).json({ message: 'Brak głównego obrazu (mainImages)' });
     }
 
-    // Pobranie nazwy pliku z mainImages (screenName)
-    const screenNames = req.files.mainImages.map(file => file.filename.split('-')[0]);  // Tablica nazw plików bez rozdzielczości i rozszerzenia
-    const screenName = screenNames[0];  // Możesz wybrać pierwszą nazwę (lub inną, zależnie od logiki)
+    const firstFile = req.files.mainImages[0];
+    const fileWithoutExtension = path.parse(firstFile.filename).name;
+    const screenName = fileWithoutExtension.replace(/-.+$/, '');
 
     const query = 'INSERT INTO projects (id, project_name, project_category, project_URL, project_screenName, project_description, repo, technologies, long_text, difficulty, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 

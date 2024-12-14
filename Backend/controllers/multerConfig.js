@@ -1,16 +1,11 @@
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');  // Do sprawdzania i tworzenia folderów
-
-const removeResolutionAndExtension = (filename) => {
-    const baseName = filename.replace(/(-\d+)(?=\.\w+$)/, '');  // Usuwamy rozdzielczość i rozszerzenie
-    return baseName;
-};
+const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         
-        const baseUploadPath = path.join(__dirname, '..', 'projects-photos'); // Absolutna ścieżka do katalogu
+        const baseUploadPath = path.join(__dirname, '..', 'projects-photos');
 
         if (file.fieldname === 'mainImages') {
             cb(null, baseUploadPath);
@@ -18,8 +13,8 @@ const storage = multer.diskStorage({
             const projectId = req.projectId;
             const galleryPath = path.join(baseUploadPath, projectId.toString());
             
-            // Sprawdzamy, czy folder dla projektu istnieje, jeśli nie - tworzymy
-            fs.mkdirSync(galleryPath, { recursive: true }); // Używamy { recursive: true } żeby stworzyć wszystkie brakujące foldery
+           
+            fs.mkdirSync(galleryPath, { recursive: true }); 
             
             cb(null, galleryPath);
         } else {
@@ -27,20 +22,13 @@ const storage = multer.diskStorage({
         }
     },
     filename: (req, file, cb) => {
-        const baseName = removeResolutionAndExtension(file.originalname);  // Usuwamy rozdzielczość i rozszerzenie z nazwy pliku
 
-        // Jeśli plik jest z mainImages, zapisujemy tylko nazwę (bez rozszerzenia)
         if (file.fieldname === 'mainImages') {
-            cb(null, baseName);  // Zapisuje nazwę pliku bez rozszerzenia
+            cb(null, file.originalname);
         } else if (file.fieldname === 'galleryImages') {
-            // Dla galleryImages zapisujemy pełną nazwę (z rozszerzeniem)
-            cb(null, file.originalname);  // Pełna nazwa pliku (wraz z rozszerzeniem)
+            cb(null, file.originalname);
         }
 
-        // Ustawiamy nazwę tylko dla pierwszego pliku z kategorii mainImages
-        if (file.fieldname === 'mainImages' && !req.screenName) {
-            req.screenName = baseName;  // Przechowujemy nazwę pliku z mainImages bez rozdzielczości
-        }
     }
 });
 
