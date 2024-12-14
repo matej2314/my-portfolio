@@ -14,6 +14,7 @@ export default function AddProject({ onClose }) {
         projectCat: null,
         projectUrl: null,
         projectScr: null,
+        galleryScr: null,
         projectDesc: null,
         projectRepo: null,
         technologies: null,
@@ -33,23 +34,34 @@ export default function AddProject({ onClose }) {
             return;
         }
 
-        const data = {
-            projectName: values.current.projectName.value,
-            projectCat: values.current.projectCat.value,
-            prURL: values.current.projectUrl.value,
-            prScrName: values.current.projectScr.value,
-            description: values.current.projectDesc.value,
-            repo: values.current.projectRepo.value,
-            technologies: values.current.technologies.value,
-            longText: values.current.projectLongTxt.value,
-            projectDiff: values.current.projectDiff.value,
-            endDate: values.current.projectEndDate.value,
+        const formData = new FormData();
+
+        formData.append('projectName', values.current.projectName.value);
+        formData.append('projectCat', values.current.projectCat.value);
+        formData.append('prURL', values.current.projectUrl.value);
+        formData.append('description', values.current.projectDesc.value); // Tekstowy opis projektu
+        formData.append('repo', values.current.projectRepo.value);
+        formData.append('technologies', values.current.technologies.value); // Technologie
+        formData.append('longText', values.current.projectLongTxt.value); // Długi opis
+        formData.append('projectDiff', values.current.projectDiff.value);
+        formData.append('endDate', values.current.projectEndDate.value);
+
+        // Pliki główne
+        const mainFiles = values.current.projectScr.files;
+        for (let i = 0; i < mainFiles.length; i++) {
+            formData.append('mainImages', mainFiles[i]);
+        };
+
+        // Pliki galerii
+        const galleryFiles = values.current.galleryScr.files;
+        for (let i = 0; i < galleryFiles.length; i++) {
+            formData.append('galleryImages', galleryFiles[i]);
         };
 
         try {
             await sendRequest({
                 url: addProjectUrl,
-                data: data,
+                data: formData,
             });
 
         } catch (error) {
@@ -94,8 +106,10 @@ export default function AddProject({ onClose }) {
                 </select>
                 <label className={addForms.label.label} htmlFor="project-url">Project URL:</label>
                 <input className={addForms.input.input} type="url" name="project-url" id="project-url" ref={(el) => (values.current.projectUrl = el)} />
-                <label className={addForms.label.label} htmlFor="project-screen">Screen name:</label>
-                <input className={addForms.input.input} type="text" name="project-screen" id="project-screen" ref={(el) => (values.current.projectScr = el)} />
+                <label className={addForms.label.label} htmlFor="project-screen">Upload main screens of the project:</label>
+                <input className={addForms.input.input} type="file" name="project-screens" id="project-screens" ref={(el) => (values.current.projectScr = el)} multiple />
+                <label className={addForms.label.label} htmlFor="gallery-screens">Upload screens to gallery:</label>
+                <input type="file" className={addForms.input.input} id="gallery-screens" name="gallery-screens" ref={(el) => (values.current.galleryScr = el)} multiple />
                 <label className={addForms.label.label} htmlFor="project-description">Project short description</label>
                 <textarea className={addForms.input.input} name="project-description" id="project-descritpion" ref={(el) => (values.current.projectDesc = el)} />
                 <label className={addForms.label.label} htmlFor="project-repo">Project repository URL:</label>

@@ -5,22 +5,31 @@ export default function useSendRequest() {
     const [error, setError] = useState(null);
     const [result, setResult] = useState(null);
 
-    const sendRequest = async ({ url, data, method }) => {
+    const sendRequest = async ({ url, data, method = "POST", header }) => {
         try {
             setIsLoading(true);
             setError(null);
             setResult(null);
 
             const requestOptions = {
-                method: method ? method : "POST",
+                method,
                 credentials: "include",
             };
 
             if (method !== "GET") {
-                requestOptions.headers = {
-                    'Content-Type': 'application/json',
-                };
-                requestOptions.body = JSON.stringify(data);
+                if (data instanceof FormData) {
+                    requestOptions.body = data;
+                } else {
+                    // Jeśli wysyłamy dane tekstowe, ustawiamy Content-Type jako application/json
+                    requestOptions.headers = {
+                        'Content-Type': 'application/json',
+                    };
+                    requestOptions.body = JSON.stringify(data);
+                }
+            }
+
+            if (header) {
+                requestOptions.headers = { ...requestOptions.headers, ...header };
             }
 
             const response = await fetch(url, requestOptions);
@@ -28,7 +37,7 @@ export default function useSendRequest() {
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || "Błąd serwera");
-            };
+            }
 
             const fetchedData = await response.json();
             setResult(fetchedData);
@@ -41,7 +50,6 @@ export default function useSendRequest() {
             setIsLoading(false);
         }
     };
-
 
     return { sendRequest, result, isLoading, error };
 }
