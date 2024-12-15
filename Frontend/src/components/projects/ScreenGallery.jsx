@@ -84,9 +84,9 @@ export default function ScreenGallery({ id }) {
     const imageUrl = `${imgUrl}/${id}/${getImageForScreen(currentPhoto)}`;
 
     return (
-        <div className="relative w-full md:max-w-full bg-black flex flex-col px-5 justify-center items-center">
+        <div className="relative w-fit h-fit md:max-w-full bg-black flex flex-col pt-2 px-5 justify-center items-center">
             <motion.div
-                className="w-full flex justify-center items-center"
+                className="w-fit flex justify-center items-center"
                 key={currentIndex}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -94,7 +94,7 @@ export default function ScreenGallery({ id }) {
                 transition={{ duration: 0.5 }}
             >
                 <img
-                    className="w-full max-w-full"
+                    className="w-[700px] h-[30rem]"
                     src={imageUrl}
                     alt={`Gallery image ${currentIndex + 1}`}
                 />

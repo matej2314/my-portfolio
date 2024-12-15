@@ -27,7 +27,7 @@ export const pagesClasses = {
         linkWrapper: "w-full flex flex-row justify-center gap-3 font-bold text-xl",
         linkParagraph: "underline underline-offset-2",
         demoLink: "hover:text-[#b8c785]",
-        repoLink: "text-xl underline underline-offset-1 hover:text-[#b8c785]"
+        repoLink: "text-xl underline underline-offset-1 text-[#b8c785] hover:text=[#5e6e29]"
     },
     projectsPage: {
         wrapper: 'w-full h-dvh flex flex-col items-center py-5 gap-2 overflow-scroll no-scrollbar px-4',
