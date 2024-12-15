@@ -43,6 +43,7 @@ export default function ProjectDetails() {
                                 <p>{selectedProject.difficulty}</p>
                             </div>
                         </div>
+                        <a className={pagesClasses.projectsDetailsPage.repoLink} href={selectedProject.repo}>Github repository</a>
                         <img
                             className={pagesClasses.projectsDetailsPage.screenshot}
                             src={`${imgUrl}/${selectedProject.project_screenName}-640.png`}
@@ -69,7 +70,6 @@ export default function ProjectDetails() {
                             </h2>
                             <ScreenGallery id={selectedProject.id} />
                         </div>
-                        <a className={pagesClasses.projectsDetailsPage.repoLink} href={selectedProject.repo}>Github repository</a>
                     </div>
                 </div>
             </div>
