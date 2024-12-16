@@ -129,8 +129,9 @@ router.put('/update', upload.fields([
             projectName, projectCat, projectURL, screenName, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate, projectId
         ]);
 
-        // Jeśli nowe zdjęcia zostały przesłane, należy zaktualizować je w systemie plików
+        // Jeśli nowe zdjęcia zostały przesłane, zaktualizuj je w systemie plików
         if (req.files && req.files.mainImages) {
+            // Usuwanie starego głównego obrazu, jeśli został przesłany nowy
             const oldMainImagePath = path.join(__dirname, '../projects-photos', projectId, req.body.projectScr);
             if (fs.existsSync(oldMainImagePath)) {
                 fs.unlinkSync(oldMainImagePath); // Usunięcie starego obrazu
@@ -141,12 +142,11 @@ router.put('/update', upload.fields([
         if (req.files && req.files.galleryImages) {
             const galleryPath = path.join(__dirname, '../projects-photos', projectId.toString());
 
-            // Usuwanie starych plików galerii
+            // Usuwanie starych plików galerii, jeśli zostały przesłane nowe zdjęcia
             const existingFiles = fs.readdirSync(galleryPath);
             existingFiles.forEach(file => fs.unlinkSync(path.join(galleryPath, file)));
 
-            // Można dodać logikę, by zapisać nowe zdjęcia galerii (np. przesunięcie nowych plików)
-            // Multer zapisuje pliki automatycznie w odpowiednich folderach.
+            // Nowe zdjęcia galerii zostaną zapisane przez multer automatycznie w odpowiednich folderach
         }
 
         logger.info(`Projekt ${projectName} edytowany`);

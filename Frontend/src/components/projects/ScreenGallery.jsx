@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import useSendRequest from '../../hooks/useSendRequest';
 import { galleryUrl, imgUrl } from "../../url";
 import { useMediaQuery } from 'react-responsive';
+import { useSwipeable } from 'react-swipeable';
 
 export default function ScreenGallery({ id }) {
     const { sendRequest, result, isLoading, error } = useSendRequest();
@@ -84,6 +85,12 @@ export default function ScreenGallery({ id }) {
 
     const imageUrl = `${imgUrl}/${id}/${getImageForScreen(currentPhoto)}`;
 
+    const swipeHandlers = useSwipeable({
+        onSwipedLeft: () => nextPhoto(),
+        onSwipedRight: () => prevPhoto(),
+        preventDefaultTouchmoveEvent: true,
+    })
+
     return (
         <div className="relative w-11/12 md:max-w-[700px] md:max-h-[30rem] bg-black flex flex-col pt-2 px-5 justify-center items-center rounded-md overflow-hidden">
             <AnimatePresence mode="popLayout">
@@ -102,6 +109,7 @@ export default function ScreenGallery({ id }) {
                         ease: "easeIn",
                         mode: "wait"
                     }}
+                    {...swipeHandlers}
                 >
                     <motion.img
                         key={currentIndex}
