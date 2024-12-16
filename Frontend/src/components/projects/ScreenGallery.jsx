@@ -4,7 +4,7 @@ import useSendRequest from '../../hooks/useSendRequest';
 import { galleryUrl, imgUrl } from "../../url";
 import { projectsClasses } from "./projectsClasses";
 import { useMediaQuery } from 'react-responsive';
-import { getImageForScreen } from "../../utils/GetImageForScreen";
+import { getImageForScreen } from "../../utils/getImageForScreen";
 
 
 export default function ScreenGallery({ id }) {
