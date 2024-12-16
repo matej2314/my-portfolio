@@ -33,7 +33,7 @@ export default function ProjectDetails() {
                         <h2 className={pagesClasses.projectsDetailsPage.projectTitle}>{selectedProject.title}</h2>
                         <div className="w-full h-fit flex flex-col md:flex-row justify-center items-center text-base md:text-lg p-3 gap-4">
                             <div className="w-full h-full bg-lime-600 text-black font-semibold flex flex-col justify-center items-center gap-3 py-2 rounded-md">
-                                <p className="w-fit h-fit flex justify-center items-center underline underline-offset-1 gap-1">
+                                <p className="w-fit h-fit flex justify-center items-center gap-1">
                                     <Icon icon="codicon:calendar" width={30} height={30} className="text-gray-300/80" />
                                     Completion date:
                                 </p>
