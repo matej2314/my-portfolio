@@ -29,18 +29,18 @@ export default function ProjectDetails() {
                 <div className={pagesClasses.projectsDetailsPage.detailsWrapper}>
                     <div id="projects-details" className={pagesClasses.projectsDetailsPage.div}>
                         <h2 className={pagesClasses.projectsDetailsPage.projectTitle}>{selectedProject.title}</h2>
-                        <div className="w-full h-fit flex flex-row justify-center items-center bg-neutral-600/30 border-2 border-white rounded-md text-md p-3 gap-4">
-                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-1 rounded-md py-2">
+                        <div className="w-full h-fit flex flex-col md:flex-row justify-center items-center bg-neutral-600/30 border-2 border-white rounded-md text-base p-3 gap-4">
+                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-7 md:gap-5 rounded-md py-2">
                                 <p className="w-fit h-fit underline underline-offset-1">Completion date:</p>
                                 <p>{formDate(selectedProject.end_date)}</p>
                             </div>
-                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black py-2 rounded-md">
-                                <p className="w-full flex flex-row justify-center items-center underline underline-offset-1">Used technologies:</p>
-                                <p className="w-full flex flex-row justify-center items-center">{selectedProject.technologies}</p>
+                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black  rounded-md py-2 gap-4 pl-5 md:gap-5 md:pl-5">
+                                <p className="w-fit h-fit flex justify-self-center justify-end underline underline-offset-1">Tech stack:</p>
+                                <p className="w-full h-fit">{selectedProject.technologies}</p>
                             </div>
-                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-1 rounded-md py-2">
-                                <p className="w-fit h-fit underline underline-offset-1">Difficulty:</p>
-                                <p>{selectedProject.difficulty}</p>
+                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-8 md:gap-5 rounded-md py-2">
+                                <p className="w-full h-fit flex flex-row justify-end underline underline-offset-1">Difficulty:</p>
+                                <p className="w-full h-fit flex flex-row justify-start">{selectedProject.difficulty}</p>
                             </div>
                         </div>
                         <a className={pagesClasses.projectsDetailsPage.repoLink} href={selectedProject.repo}>Github repository</a>
