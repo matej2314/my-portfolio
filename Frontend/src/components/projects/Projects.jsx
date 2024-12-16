@@ -59,7 +59,7 @@ export default function Projects({ selectedCategory }) {
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 0.3, ease: "easeIn", type: "spring", damping: 70, stiffness: 70 }}
-                                            src={`${imgUrl}/${project.project_screenName}-640.png`}
+                                            src={`${imgUrl}/${project.project_screenName}.png`}
                                             srcSet={` 
                                                     ${imgUrl}/${project.project_screenName}-320.png 320w,
                                                     ${imgUrl}/${project.project_screenName}-640.png 640w,

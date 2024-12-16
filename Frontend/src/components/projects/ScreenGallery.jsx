@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import useSendRequest from '../../hooks/useSendRequest';
 import { galleryUrl, imgUrl } from "../../url";
 import { useMediaQuery } from 'react-responsive';
@@ -29,6 +29,7 @@ export default function ScreenGallery({ id }) {
         };
         fetchScreens();
     }, [id]);
+
 
     if (error) {
         return <div>Wystąpił błąd: {error}</div>;
@@ -84,22 +85,44 @@ export default function ScreenGallery({ id }) {
     const imageUrl = `${imgUrl}/${id}/${getImageForScreen(currentPhoto)}`;
 
     return (
-        <div className="relative w-fit h-fit md:max-w-full bg-black flex flex-col pt-2 px-5 justify-center items-center">
-            <motion.div
-                className="w-fit flex justify-center items-center"
-                key={currentIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-            >
-                <img
-                    className="w-[700px] h-[30rem]"
-                    src={imageUrl}
-                    alt={`Gallery image ${currentIndex + 1}`}
-                />
-            </motion.div>
-
+        <div className="relative max-w-[700px] max-h-[30rem] bg-black flex flex-col pt-2 px-5 justify-center items-center rounded-md overflow-hidden">
+            <AnimatePresence mode="popLayout">
+                <motion.div
+                    className="relative w-[700px] h-[30rem] flex justify-center items-center overflow-hidden aspect-auto"
+                    key={currentIndex}
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 100, transition: { delay: 0.2 } }}
+                    transition={{
+                        duration: 0.2,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 30,
+                        delay: 0.5, // Opóźnienie, żeby poprzedni obrazek nie znikał za szybko
+                        ease: "easeIn",
+                        mode: "wait"
+                    }}
+                >
+                    <motion.img
+                        key={currentIndex}
+                        initial={{ opacity: 1, x: -100 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 100, transition: { delay: 0.2 } }}
+                        transition={{
+                            duration: 0.2,
+                            type: "spring",
+                            stiffness: 150,
+                            damping: 35,
+                            delay: 0.3, // Opóźnienie, aby obrazek wjeżdżał po tym, jak poprzedni prawie zniknie
+                            ease: "easeIn",
+                            mode: "wait"
+                        }}
+                        className="w-full h-full object-fill"
+                        src={imageUrl}
+                        alt={`Gallery image ${currentIndex + 1}`}
+                    />
+                </motion.div>
+            </AnimatePresence>
             <div className="absolute top-1/2 w-full flex flex-row justify-between -translate-y-1/2">
                 <motion.button
                     onClick={() => currentIndex > 0 && prevPhoto()}

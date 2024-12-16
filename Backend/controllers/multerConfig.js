@@ -13,8 +13,9 @@ const storage = multer.diskStorage({
             const projectId = req.projectId;
             const galleryPath = path.join(baseUploadPath, projectId.toString());
             
-           
-            fs.mkdirSync(galleryPath, { recursive: true }); 
+            if (!fs.existsSync(galleryPath)) {
+                fs.mkdirSync(galleryPath, { recursive: true }); 
+            };
             
             cb(null, galleryPath);
         } else {
