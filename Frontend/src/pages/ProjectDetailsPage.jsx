@@ -33,7 +33,7 @@ export default function ProjectDetails() {
                         <h2 className={pagesClasses.projectsDetailsPage.projectTitle}>{selectedProject.title}</h2>
                         <div className="w-full h-fit flex flex-col md:flex-row justify-center items-center text-base md:text-lg p-3 gap-4">
                             <div className="w-full h-full bg-lime-600 text-black font-semibold flex flex-col justify-center items-center gap-3 py-2 rounded-md">
-                                <p className="w-fit h-fit flex justify-center items-center gap-1">
+                                <p className="w-full h-fit flex justify-center items-center gap-1">
                                     <Icon icon="codicon:calendar" width={30} height={30} className="text-gray-300/80" />
                                     Completion date:
                                 </p>
@@ -42,9 +42,9 @@ export default function ProjectDetails() {
                             <div className="w-full h-full bg-lime-600 text-black font-semibold flex justify-center items-center rounded-md">
                                 <p className="w-full h-fit flex flex-col justify-center items-center gap-3 py-2 md:py-0">
                                     <span
-                                        className="w-fit h-fit flex justify-center items-center gap-1"
+                                        className="w-full h-fit flex justify-center items-center gap-1"
                                     >
-                                        <Icon icon="codicon:symbol-property" width={30} height={30} className="text-zinc-600" />
+                                        <Icon icon="codicon:symbol-property" width={30} height={30} className="text-red-600" />
                                         Tech stack:
                                     </span>
                                     <span className="ml-6 md:ml-0">{selectedProject.technologies}</span>
@@ -53,8 +53,9 @@ export default function ProjectDetails() {
                             <div className="w-full h-full bg-lime-600 text-black font-semibold flex flex-col justify-center items-center gap-3 py-2 rounded-md">
                                 <p className="w-full h-fit flex justify-center items-center gap-1">
                                     <FittedIcon difficulty={selectedProject.difficulty} />
-                                    Difficulty:</p>
-                                <p className="w-full h-fit flex justify-center items-center">
+                                    Difficulty:
+                                </p>
+                                <p className="w-full h-fit flex justify-center items-center ml-3">
                                     {selectedProject.difficulty}
                                 </p>
                             </div>
