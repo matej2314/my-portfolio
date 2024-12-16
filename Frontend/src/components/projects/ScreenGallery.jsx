@@ -67,11 +67,11 @@ export default function ScreenGallery({ id }) {
     };
 
     const handleSwipeLeft = () => {
-        prevPhoto();
+        nextPhoto();
     };
 
     const handleSwipeRight = () => {
-        nextPhoto();
+        prevPhoto();
     };
 
     const handleDragEnd = (event, info) => {
