@@ -1,10 +1,12 @@
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import { useParams } from "react-router-dom"
 import { DataContext } from '../store/data-context'
 import { useMediaQuery } from 'react-responsive';
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 import { imgUrl } from "../url";
 import LeftSidebar from '../components/LeftSidebar';
+import FittedIcon from '../components/icons/FittedIcon';
 import { pagesClasses } from "./pages-classes";
 import MobileMenu from '../components/mobileElements/MobileMenu';
 import { formDate } from "../utils/formatDate";
@@ -20,7 +22,7 @@ export default function ProjectDetails() {
 
     if (!selectedProject) {
         return <p>Wybierz projekt.</p>
-    }
+    };
 
     return (
         <>
@@ -29,21 +31,41 @@ export default function ProjectDetails() {
                 <div className={pagesClasses.projectsDetailsPage.detailsWrapper}>
                     <div id="projects-details" className={pagesClasses.projectsDetailsPage.div}>
                         <h2 className={pagesClasses.projectsDetailsPage.projectTitle}>{selectedProject.title}</h2>
-                        <div className="w-full h-fit flex flex-col md:flex-row justify-center items-center bg-neutral-600/30 border-2 border-white rounded-md text-base p-3 gap-4">
-                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-7 md:gap-5 rounded-md py-2">
-                                <p className="w-fit h-fit underline underline-offset-1">Completion date:</p>
+                        <div className="w-full h-fit flex flex-col md:flex-row justify-center items-center text-base md:text-lg p-3 gap-4">
+                            <div className="w-full h-full bg-lime-600 text-black font-semibold flex flex-col justify-center items-center gap-3 py-2 rounded-md">
+                                <p className="w-fit h-fit flex justify-center items-center underline underline-offset-1 gap-1">
+                                    <Icon icon="codicon:calendar" width={30} height={30} className="text-gray-300/80" />
+                                    Completion date:
+                                </p>
                                 <p>{formDate(selectedProject.end_date)}</p>
                             </div>
-                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black  rounded-md py-2 gap-4 pl-5 md:gap-5 md:pl-5">
-                                <p className="w-fit h-fit flex justify-self-center justify-end underline underline-offset-1">Tech stack:</p>
-                                <p className="w-full h-fit">{selectedProject.technologies}</p>
+                            <div className="w-full h-full bg-lime-600 text-black font-semibold flex justify-center items-center rounded-md">
+                                <p className="w-full h-fit flex flex-col justify-center items-center gap-3 py-2 md:py-0">
+                                    <span
+                                        className="w-fit h-fit flex justify-center items-center gap-1"
+                                    >
+                                        <Icon icon="codicon:symbol-property" width={30} height={30} className="text-zinc-600" />
+                                        Tech stack:
+                                    </span>
+                                    <span className="ml-6 md:ml-0">{selectedProject.technologies}</span>
+                                </p>
                             </div>
-                            <div className="w-full h-fit flex flex-row justify-center items-center bg-lime-400 text-black gap-8 md:gap-5 rounded-md py-2">
-                                <p className="w-full h-fit flex flex-row justify-end underline underline-offset-1">Difficulty:</p>
-                                <p className="w-full h-fit flex flex-row justify-start">{selectedProject.difficulty}</p>
+                            <div className="w-full h-full bg-lime-600 text-black font-semibold flex flex-col justify-center items-center gap-3 py-2 rounded-md">
+                                <p className="w-full h-fit flex justify-center items-center gap-1">
+                                    <FittedIcon difficulty={selectedProject.difficulty} />
+                                    Difficulty:</p>
+                                <p className="w-full h-fit flex justify-center items-center">
+                                    {selectedProject.difficulty}
+                                </p>
                             </div>
                         </div>
-                        <a className={pagesClasses.projectsDetailsPage.repoLink} href={selectedProject.repo}>Github repository</a>
+                        <div className="w-full h-fit flex flex-row justify-center items-center">
+                            <a className={pagesClasses.projectsDetailsPage.repoLink} href={selectedProject.repo}>
+                                <Icon icon="codicon:github" width={30} height={30} />
+                                Github repository
+                            </a>
+                        </div>
+
                         <img
                             className={pagesClasses.projectsDetailsPage.screenshot}
                             src={`${imgUrl}/${selectedProject.project_screenName}-640.png`}
@@ -65,7 +87,8 @@ export default function ProjectDetails() {
                             </div>}
                         </div>
                         <div className="w-screen h-fit flex flex-col justify-center items-center gap-4">
-                            <h2 className={pagesClasses.projectsDetailsPage.subtitle}>
+                            <h2 className={`${pagesClasses.projectsDetailsPage.subtitle} w-full h-fit flex justify-center items-center gap-3`}>
+                                <Icon icon="solar:gallery-bold" width={33} height={33} />
                                 Gallery:
                             </h2>
                             <ScreenGallery id={selectedProject.id} />

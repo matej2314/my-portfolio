@@ -75,12 +75,13 @@ export default function ScreenGallery({ id }) {
     };
 
     const handleDragEnd = (event, info) => {
-        if (info.offset.x > 100) {
-            handleSwipeRight();
-        } else if (info.offset.x < -100) {
-            handleSwipeLeft();
-        };
-
+        if (isMobile) {
+            if (info.offset.x > 100) {
+                handleSwipeRight();
+            } else if (info.offset.x < -100) {
+                handleSwipeLeft();
+            };
+        }
     };
 
     const imageUrl = `${imgUrl}/${id}/${getImageForScreen(currentPhoto, isMobile, isTablet, isDesktop)}`;
@@ -93,9 +94,6 @@ export default function ScreenGallery({ id }) {
                 <motion.div
                     className="relative w-full md:w-[700px] h-[30rem] flex justify-center items-center overflow-hidden aspect-auto"
                     key={currentIndex}
-                    drag="x"
-                    dragConstraints={{ left: -200, right: 200 }}
-                    onDragEnd={isMobile ? handleDragEnd : null}
                     initial={{ opacity: 0, x: -100 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 100, transition: { delay: 0.2 } }}
@@ -113,7 +111,7 @@ export default function ScreenGallery({ id }) {
                         key={currentIndex}
                         drag="x"
                         dragConstraints={{ left: -200, right: 200 }}
-                        onDragEnd={isMobile ? handleDragEnd : null}
+                        onDragEnd={handleDragEnd}
                         initial={{ opacity: 1, x: -100 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 100, transition: { delay: 0.2 } }}
