@@ -18,4 +18,8 @@ export const projectsClasses = {
         ul: "w-full flex flex-row justify-center items-center text-[1rem] indirect:text-lg py-2 gap-16",
         button: "hover:text-[#b8c785]",
     },
+    screenGallery: {
+        button: "bg-black/50 text-white text-md border-0 p-3 cursor-pointer rounded-[50%] hover:bg-black/80",
+        dot: 'w-2 h-2 mx-1 bg-lime-400 rounded-full cursor-pointer',
+    },
 }

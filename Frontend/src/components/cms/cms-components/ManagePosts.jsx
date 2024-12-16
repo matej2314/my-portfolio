@@ -19,7 +19,6 @@ export default function ManagePosts() {
         setActionType("add");
     }
 
-
     const handleEditPost = (post) => {
         setSelectedPost(() => post);
         setActionType("edit");

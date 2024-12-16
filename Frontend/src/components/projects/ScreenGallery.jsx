@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import useSendRequest from '../../hooks/useSendRequest';
 import { galleryUrl, imgUrl } from "../../url";
+import { projectsClasses } from "./projectsClasses";
 import { useMediaQuery } from 'react-responsive';
-import { useSwipeable } from 'react-swipeable';
+import { getImageForScreen } from "../../utils/GetImageForScreen";
+
 
 export default function ScreenGallery({ id }) {
     const { sendRequest, result, isLoading, error } = useSendRequest();
@@ -34,37 +36,14 @@ export default function ScreenGallery({ id }) {
 
     if (error) {
         return <div>Wystąpił błąd: {error}</div>;
-    }
-
-    if (!result || !result.photos || result.photos.length === 0) {
+    } else if (!result || !result.photos || result.photos.length === 0) {
         return <p>Brak zdjęć do wyświetlenia</p>;
     }
 
     const photos = result.photos;
 
-    const handleDotClick = (index) => {
-        setCurrentIndex(index);
-    };
-
-    const getImageForScreen = (photo) => {
-        if (isMobile) {
-            // Dla małych ekranów, wybieramy wersję -320.png
-            if (photo.includes('-320.png')) return photo;
-            return photo.replace(/-960.png|-640.png/, '-320.png');
-        } else if (isTablet) {
-            // Dla tabletów, wybieramy wersję -640.png
-            if (photo.includes('-640.png')) return photo;
-            return photo.replace(/-960.png|-320.png/, '-640.png');
-        } else if (isDesktop) {
-            // Dla desktopów, wybieramy wersję -960.png
-            if (photo.includes('-960.png')) return photo;
-            return photo.replace(/-320.png|-640.png/, '-960.png');
-        }
-        return photo;
-    };
-
     const filteredPhotos = photos.filter((photo) => {
-        const adjustedImage = getImageForScreen(photo);
+        const adjustedImage = getImageForScreen(photo, isMobile, isTablet, isDesktop);
         return adjustedImage === photo;
     });
 
@@ -83,20 +62,40 @@ export default function ScreenGallery({ id }) {
 
     const currentPhoto = filteredPhotos[currentIndex];
 
-    const imageUrl = `${imgUrl}/${id}/${getImageForScreen(currentPhoto)}`;
+    const handleDotClick = (index) => {
+        setCurrentIndex(index);
+    };
 
-    const swipeHandlers = useSwipeable({
-        onSwipedLeft: () => nextPhoto(),
-        onSwipedRight: () => prevPhoto(),
-        preventDefaultTouchmoveEvent: true,
-    })
+    const handleSwipeLeft = () => {
+        prevPhoto();
+    };
+
+    const handleSwipeRight = () => {
+        nextPhoto();
+    };
+
+    const handleDragEnd = (event, info) => {
+        if (info.offset.x > 100) {
+            handleSwipeRight();
+        } else if (info.offset.x < -100) {
+            handleSwipeLeft();
+        };
+
+    };
+
+    const imageUrl = `${imgUrl}/${id}/${getImageForScreen(currentPhoto, isMobile, isTablet, isDesktop)}`;
 
     return (
-        <div className="relative w-11/12 md:max-w-[700px] md:max-h-[30rem] bg-black flex flex-col pt-2 px-5 justify-center items-center rounded-md overflow-hidden">
+        <div
+            className="relative w-11/12 md:max-w-[700px] md:max-h-[30rem] bg-black flex flex-col pt-2 px-5 justify-center items-center rounded-md overflow-hidden"
+        >
             <AnimatePresence mode="popLayout">
                 <motion.div
                     className="relative w-full md:w-[700px] h-[30rem] flex justify-center items-center overflow-hidden aspect-auto"
                     key={currentIndex}
+                    drag="x"
+                    dragConstraints={{ left: -200, right: 200 }}
+                    onDragEnd={isMobile ? handleDragEnd : null}
                     initial={{ opacity: 0, x: -100 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 100, transition: { delay: 0.2 } }}
@@ -105,14 +104,16 @@ export default function ScreenGallery({ id }) {
                         type: "spring",
                         stiffness: 200,
                         damping: 30,
-                        delay: 0.5, // Opóźnienie, żeby poprzedni obrazek nie znikał za szybko
+                        delay: 0.5,
                         ease: "easeIn",
                         mode: "wait"
                     }}
-                    {...swipeHandlers}
                 >
                     <motion.img
                         key={currentIndex}
+                        drag="x"
+                        dragConstraints={{ left: -200, right: 200 }}
+                        onDragEnd={isMobile ? handleDragEnd : null}
                         initial={{ opacity: 1, x: -100 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 100, transition: { delay: 0.2 } }}
@@ -121,7 +122,7 @@ export default function ScreenGallery({ id }) {
                             type: "spring",
                             stiffness: 150,
                             damping: 35,
-                            delay: 0.3, // Opóźnienie, aby obrazek wjeżdżał po tym, jak poprzedni prawie zniknie
+                            delay: 0.3,
                             ease: "easeIn",
                             mode: "wait"
                         }}
@@ -135,14 +136,14 @@ export default function ScreenGallery({ id }) {
                 <motion.button
                     onClick={() => currentIndex > 0 && prevPhoto()}
                     onTouchStart={() => currentIndex > 0 && prevPhoto()}
-                    className="bg-black/50 text-white text-md border-0 p-3 cursor-pointer rounded-[50%] hover:bg-black/80"
+                    className={projectsClasses.screenGallery.button}
                 >
                     &#10094;
                 </motion.button>
                 <motion.button
                     onClick={() => nextPhoto()}
                     onTouchStart={() => nextPhoto()}
-                    className="bg-black/50 text-white text-md border-0 p-3 cursor-pointer rounded-[50%] hover:bg-black/80"
+                    className={projectsClasses.screenGallery.button}
                 >
                     &#10095;
                 </motion.button>
@@ -153,7 +154,7 @@ export default function ScreenGallery({ id }) {
                     <span
                         key={index}
                         onClick={() => handleDotClick(index)}
-                        className={`w-2 h-2 mx-1 bg-lime-400 rounded-full cursor-pointer ${currentIndex === index ? 'bg-lime-700' : ''}`}
+                        className={`${projectsClasses.screenGallery.dot} ${currentIndex === index ? 'bg-lime-700' : ''}`}
                     />
                 ))}
             </div>
