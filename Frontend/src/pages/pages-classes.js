@@ -22,12 +22,12 @@ export const pagesClasses = {
         div: "w-11/12 h-full flex flex-col items-center px-2 pb-5 overflow-scroll no-scrollbar gap-4",
         projectTitle: "w-full flex flex-row justify-center text-3xl font-bold",
         screenshot: "w-full h-full flex flex-row justify-center border-8 border-slate-200 rounded-sm max-w-[45rem]",
-        subtitle: "text-xl font-bold text-[#b8c785]",
+        subtitle: "text-2xl font-bold text-[#b8c785]",
         description: "w-full flex flex-row justify-center text-xl px-4 whitespace-pre-line leading-relaxed",
         linkWrapper: "w-full flex flex-row justify-center gap-3 font-bold text-xl",
         linkParagraph: "underline underline-offset-2",
         demoLink: "hover:text-[#b8c785]",
-        repoLink: " w-fit h-fit text-xl underline underline-offset-1 text-[#b8c785] hover:text-[#5e6e29] flex justify-center items-center gap-3"
+        repoLink: " w-fit h-fit text-2xl underline underline-offset-1 text-[#b8c785] hover:text-[#5e6e29] flex justify-center items-center gap-3"
     },
     projectsPage: {
         wrapper: 'w-full h-dvh flex flex-col items-center py-5 gap-2 overflow-scroll no-scrollbar px-4',

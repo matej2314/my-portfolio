@@ -85,6 +85,8 @@ export default function ManageProjects() {
                                             description: project.description,
                                             repo: project.repo,
                                             long: project.long_text,
+                                            goal: project.goal,
+                                            technologies: project.technologies,
                                         })
                                     }
                                     className={cmsComponents.actionBtn.actionBtn}

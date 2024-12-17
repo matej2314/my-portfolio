@@ -11,12 +11,14 @@ const editProjectUrl = requestUrl.projects.put;
 export default function EditProjects({ selectedProject, onClose }) {
     const { sendRequest, result, isLoading, error } = useSendRequest();
     const { user } = useContext(AuthContext);
-
+    console.log(selectedProject)
     const projectId = useRef(selectedProject.id || '');
     const projectName = useRef(selectedProject.title || '');
     const projectCat = useRef(selectedProject.category || '');
     const projectUrl = useRef(selectedProject.link || '');
-    const projectScreen = useRef(selectedProject.screen || '');
+    const mainScreens = useRef();
+    const galleryScreens = useRef();
+    const projectGoal = useRef(selectedProject.goal || '');
     const projectDesc = useRef(selectedProject.description || '');
     const projectRepo = useRef(selectedProject.repo || '');
     const technologies = useRef(selectedProject.technologies || '');
@@ -27,30 +29,48 @@ export default function EditProjects({ selectedProject, onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const updatedProject = {
-            projectId: selectedProject.id,
-            projectName: projectName.current.value.trim(),
-            projectCat: projectCat.current.value.trim(),
-            projectURL: projectUrl.current.value.trim(),
-            projectScr: projectScreen.current.value.trim(),
-            projectDesc: projectDesc.current.value.trim(),
-            projectRepo: projectRepo.current.value.trim(),
-            technologies: technologies.current.value.trim(),
-            projectLongTxt: projLongTxt.current.value.trim(),
-            projectDiff: projectDiff.current.value,
-            projectEndDate: projectEndDate.current.value.trim(),
-
-        };
         if (user.role !== 'admin') {
             toast.info('Sorry! You are not an admin!');
             return;
         };
 
+        const formData = new FormData();
+
+        formData.append('projectId', selectedProject.id);
+        formData.append('projectName', projectName.current.value);
+        formData.append('projectCat', projectCat.current.value);
+        formData.append('projectURL', projectUrl.current.value);
+        formData.append('goal', projectGoal.current.value);
+        formData.append('projectDesc', projectDesc.current.value);
+        formData.append('projectRepo', projectRepo.current.value);
+        formData.append('technologies', technologies.current.value);
+        formData.append('projectLongTxt', projLongTxt.current.value);
+        formData.append('projectDiff', projectDiff.current.value);
+        formData.append('projectEndDate', projectEndDate.current.value);
+
+        if (mainScreens.current.files.length > 0) {
+            const mainFiles = mainScreens.current.files;
+            for (let i = 0; i < mainFiles.length; i++) {
+                formData.append('mainImages', mainFiles[i]);
+
+            };
+        } else {
+            formData.append('projectScr', selectedProject.screen)
+        }
+
+        if (galleryScreens.current.files.length > 0) {
+            const galleryFiles = galleryScreens.current.files;
+            for (let i = 0; i < galleryFiles.length; i++) {
+                formData.append('galleryImages', galleryFiles[i]);
+            }
+        }
+
+
         try {
             await sendRequest({
                 url: editProjectUrl,
                 method: "PUT",
-                data: updatedProject,
+                data: formData,
             });
         } catch (error) {
             console.log('Błąd podczas edycji projektu.');
@@ -130,7 +150,7 @@ export default function EditProjects({ selectedProject, onClose }) {
                 </label>
                 <input
                     className={editForms.input.input}
-                    type="url"
+                    type="text"
                     name="project-url"
                     id="project-url"
                     defaultValue={selectedProject.link}
@@ -138,15 +158,42 @@ export default function EditProjects({ selectedProject, onClose }) {
                 />
                 <label
                     className={editForms.label.label}
-                    htmlFor="project-screen">
-                    Screen name:
+                    htmlFor="project-screen"
+                >
+                    Upload new main screens of the project:
                 </label>
                 <input
                     className={editForms.input.input}
-                    type="text"
-                    name="project-screen" id="project-screen"
-                    defaultValue={selectedProject.screen}
-                    ref={projectScreen}
+                    type="file"
+                    name="project-screens"
+                    id="project-screens"
+                    ref={mainScreens}
+                    multiple
+                />
+                <label
+                    className={editForms.label.label}
+                    htmlFor="gallery-screens"
+                >Upload new screens to gallery:
+                </label>
+                <input
+                    type="file"
+                    className={editForms.input.input}
+                    id="gallery-screens"
+                    name="gallery-screens"
+                    ref={galleryScreens}
+                    multiple />
+                <label
+                    className={editForms.label.label}
+                    htmlFor="project-goal"
+                >
+                    Edit main goal of the project:
+                </label>
+                <textarea
+                    className={editForms.input.input}
+                    name="project-goal"
+                    id="project-goal"
+                    defaultValue={selectedProject.goal}
+                    ref={projectGoal}
                 />
                 <label
                     className={editForms.label.label}

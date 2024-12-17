@@ -14,6 +14,7 @@ export default function AddProject({ onClose }) {
         projectCat: null,
         projectUrl: null,
         projectScr: null,
+        projectGoal: null,
         galleryScr: null,
         projectDesc: null,
         projectRepo: null,
@@ -40,6 +41,7 @@ export default function AddProject({ onClose }) {
         formData.append('projectCat', values.current.projectCat.value);
         formData.append('prURL', values.current.projectUrl.value);
         formData.append('description', values.current.projectDesc.value); // Tekstowy opis projektu
+        formData.append('goal', values.current.projectGoal.value);
         formData.append('repo', values.current.projectRepo.value);
         formData.append('technologies', values.current.technologies.value); // Technologie
         formData.append('longText', values.current.projectLongTxt.value); // Długi opis
@@ -110,6 +112,8 @@ export default function AddProject({ onClose }) {
                 <input className={addForms.input.input} type="file" name="project-screens" id="project-screens" ref={(el) => (values.current.projectScr = el)} multiple />
                 <label className={addForms.label.label} htmlFor="gallery-screens">Upload screens to gallery:</label>
                 <input type="file" className={addForms.input.input} id="gallery-screens" name="gallery-screens" ref={(el) => (values.current.galleryScr = el)} multiple />
+                <label className={addForms.label.label} htmlFor="project-goal">Type main goal of the project:</label>
+                <textarea className={addForms.input.input} type="text" name="project-goal" id="project-goal" ref={(el) => (values.current.projectGoal = el)} />
                 <label className={addForms.label.label} htmlFor="project-description">Project short description</label>
                 <textarea className={addForms.input.input} name="project-description" id="project-descritpion" ref={(el) => (values.current.projectDesc = el)} />
                 <label className={addForms.label.label} htmlFor="project-repo">Project repository URL:</label>

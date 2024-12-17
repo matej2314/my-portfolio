@@ -31,15 +31,15 @@ export default function ProjectDetails() {
                 <div className={pagesClasses.projectsDetailsPage.detailsWrapper}>
                     <div id="projects-details" className={pagesClasses.projectsDetailsPage.div}>
                         <h2 className={pagesClasses.projectsDetailsPage.projectTitle}>{selectedProject.title}</h2>
-                        <div className="w-full h-fit flex flex-col md:flex-row justify-center items-center text-base md:text-lg p-3 gap-4">
-                            <div className="w-full h-full bg-lime-600 text-black font-semibold flex flex-col justify-center items-center gap-3 py-2 rounded-md">
+                        <div id="info-wrapper" className="w-full h-fit flex flex-col md:flex-row justify-center items-center text-base md:text-lg p-3 gap-4">
+                            <div id="completion-date" className="w-full h-full bg-lime-600 text-black font-semibold flex flex-col justify-center items-center gap-3 py-2 rounded-md">
                                 <p className="w-full h-fit flex justify-center items-center gap-1">
                                     <Icon icon="codicon:calendar" width={30} height={30} className="text-gray-300/80" />
                                     Completion date:
                                 </p>
                                 <p>{formDate(selectedProject.end_date)}</p>
                             </div>
-                            <div className="w-full h-full bg-lime-600 text-black font-semibold flex justify-center items-center rounded-md">
+                            <div id="tech-stack" className="w-full h-full bg-lime-600 text-black font-semibold flex justify-center items-center rounded-md">
                                 <p className="w-full h-fit flex flex-col justify-center items-center gap-3 py-2 md:py-0">
                                     <span
                                         className="w-full h-fit flex justify-center items-center gap-1"
@@ -50,7 +50,7 @@ export default function ProjectDetails() {
                                     <span className="ml-6 md:ml-0">{selectedProject.technologies}</span>
                                 </p>
                             </div>
-                            <div className="w-full h-full bg-lime-600 text-black font-semibold flex flex-col justify-center items-center gap-3 py-2 rounded-md">
+                            <div id="difficulty" className="w-full h-full bg-lime-600 text-black font-semibold flex flex-col justify-center items-center gap-3 py-2 rounded-md">
                                 <p className="w-full h-fit flex justify-center items-center gap-1">
                                     <FittedIcon difficulty={selectedProject.difficulty} />
                                     Difficulty:
@@ -60,7 +60,7 @@ export default function ProjectDetails() {
                                 </p>
                             </div>
                         </div>
-                        <div className="w-full h-fit flex flex-row justify-center items-center">
+                        <div id="repo-link" className="w-full h-fit flex flex-row justify-center items-center">
                             <a className={pagesClasses.projectsDetailsPage.repoLink} href={selectedProject.repo}>
                                 <Icon icon="codicon:github" width={30} height={30} />
                                 Github repository
@@ -77,8 +77,14 @@ export default function ProjectDetails() {
                                 `}
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             alt="" />
-                        <div className="w-full h-fit flex flex-col justify-center items-center">
-                            <h2 className={pagesClasses.projectsDetailsPage.subtitle}>Description:</h2>
+                        <div id="goal-desc" className="w-full h-fit flexx flex-col justify-center items-center">
+                            <h2 className={`${pagesClasses.projectsDetailsPage.subtitle} w-full flex justify-center items-center`}>Goal:</h2>
+                            <p className={pagesClasses.projectsDetailsPage.description}>
+                                {selectedProject.goal}
+                            </p>
+                        </div>
+                        <div id="longdesc_demo" className="w-full h-fit flex flex-col justify-center items-center">
+                            <h2 className={`${pagesClasses.projectsDetailsPage.subtitle} w-full h-fit flex justify-center items-center`}>Description:</h2>
                             <p className={pagesClasses.projectsDetailsPage.description}>{selectedProject.long_text}</p>
                             {selectedProject.link === 'localhost' ? null : <div className={pagesClasses.projectsDetailsPage.linkWrapper}>
                                 <p className={pagesClasses.projectsDetailsPage.linkParagraph}>
@@ -87,7 +93,7 @@ export default function ProjectDetails() {
                                 <a className={pagesClasses.projectsDetailsPage.demoLink} href={selectedProject.link}>{selectedProject.title}</a>
                             </div>}
                         </div>
-                        <div className="w-screen h-fit flex flex-col justify-center items-center gap-4">
+                        <div id="gallery-wrapper" className="w-screen h-fit flex flex-col justify-center items-center gap-4">
                             <h2 className={`${pagesClasses.projectsDetailsPage.subtitle} w-full h-fit flex justify-center items-center gap-3`}>
                                 <Icon icon="solar:gallery-bold" width={33} height={33} />
                                 Gallery:

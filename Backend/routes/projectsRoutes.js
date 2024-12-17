@@ -40,7 +40,7 @@ router.post('/new', createProjectFolder, upload.fields([
     { name: 'galleryImages', maxCount: 25 },
 ]), async (req, res) => {
     const projectId = req.projectId;
-    const { projectName, projectCat, prURL, description, repo, technologies, longText, projectDiff, endDate } = req.body;
+    const { projectName, projectCat, prURL, goal, description, repo, technologies, longText, projectDiff, endDate } = req.body;
 
     if (!projectName || !projectCat || !prURL || !description || !repo || !technologies || !projectDiff || !endDate) {
         logger.error('Brak wymaganych danych do dodania projektu');
@@ -55,10 +55,10 @@ router.post('/new', createProjectFolder, upload.fields([
     const fileWithoutExtension = path.parse(firstFile.filename).name;
     const screenName = fileWithoutExtension.replace(/-.+$/, '');
 
-    const query = 'INSERT INTO projects (id, project_name, project_category, project_URL, project_screenName, project_description, repo, technologies, long_text, difficulty, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO projects (id, project_name, goal, project_category, project_URL, project_screenName, project_description, repo, technologies, long_text, difficulty, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
     try {
-        await pool.query(query, [projectId, projectName, projectCat, prURL, screenName, description, repo, technologies, longText, projectDiff, endDate]);
+        await pool.query(query, [projectId, projectName, goal, projectCat, prURL, screenName, description, repo, technologies, longText, projectDiff, endDate]);
         logger.info(`Projekt ${projectName} dodany pomyślnie!`);
 
         return res.status(201).json({
@@ -104,15 +104,15 @@ router.put('/update', upload.fields([
     { name: 'mainImages', maxCount: 15 },  
     { name: 'galleryImages', maxCount: 25 },
 ]), async (req, res) => {
-    const { projectId, projectName, projectCat, projectURL, projectScr, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate } = req.body;
+    const { projectId, projectName, projectCat, projectURL, projectScr, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate } = req.body;
 
-    if (!projectId || !projectName || !projectCat || !projectURL || !projectScr || !projectDesc || !projectRepo || !projectLongTxt) {
+    if (!projectId || !projectName || !projectCat || !projectURL || !goal ||  !projectDesc || !projectRepo || !projectLongTxt) {
         logger.error('Brak wymaganych danych do aktualizacji projektu');
         return res.status(400).json({ message: 'Brak wymaganych danych do aktualizacji projektu' });
     }
 
     let screenName;
-    if (req.files && req.files.mainImages) {
+    if (req.files && req.files.mainImages.length > 0) {
         // Przetwarzanie nowego głównego obrazu, jeśli został przesłany
         const firstFile = req.files.mainImages[0];
         const fileWithoutExtension = path.parse(firstFile.filename).name;
@@ -122,11 +122,11 @@ router.put('/update', upload.fields([
         screenName = projectScr;
     }
 
-    const query = 'UPDATE projects SET project_name=?, project_category=?, project_URL=?, project_screenName=?, project_description=?, repo=?, technologies=?, long_text=?, difficulty=?, end_date=? WHERE id=?';
+    const query = 'UPDATE projects SET project_name=?, project_category=?, project_URL=?, project_screenName=?, goal=?, project_description=?, repo=?, technologies=?, long_text=?, difficulty=?, end_date=? WHERE id=?';
 
     try {
         const [result] = await pool.query(query, [
-            projectName, projectCat, projectURL, screenName, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate, projectId
+            projectName, projectCat, projectURL, screenName, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate, projectId
         ]);
 
         // Jeśli nowe zdjęcia zostały przesłane, zaktualizuj je w systemie plików
