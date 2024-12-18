@@ -1,13 +1,12 @@
 const express = require('express');
 const path = require('path');
 const router = express.Router();
-const fs = require('fs');
-const { v4: uuidv4 } = require('uuid');
 const pool = require('../db.js');
 const logger = require('../logger.js');
 const verifyAdmin = require('../controllers/verifyAdmin.js');
 const upload = require('../controllers/multerConfig.js');
 const createProjectFolder = require('../controllers/createProjectFolder.js');
+const deleteFilesInDir = require('../controllers/deleteFilesInDir.js');
 
 router.use(express.json());
 
@@ -100,65 +99,49 @@ router.delete('/delete', async (req, res) => {
 
 });
 
-router.put('/update', upload.fields([
-    { name: 'mainImages', maxCount: 15 },  
-    { name: 'galleryImages', maxCount: 25 },
-]), async (req, res) => {
-    const { projectId, projectName, projectCat, projectURL, projectScr, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate } = req.body;
+router.put('/update', 
+    upload.fields([
+        { name: 'mainImages', maxCount: 15 },  
+        { name: 'galleryImages', maxCount: 25 },
+    ]), 
+    deleteFilesInDir,
+    async (req, res) => {
+        const mainImages = req.files?.mainImages || [];
+        const { projectId, projectName, projectCat, projectURL, projectScr, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate } = req.body;
 
-    if (!projectId || !projectName || !projectCat || !projectURL || !goal ||  !projectDesc || !projectRepo || !projectLongTxt) {
-        logger.error('Brak wymaganych danych do aktualizacji projektu');
-        return res.status(400).json({ message: 'Brak wymaganych danych do aktualizacji projektu' });
-    }
-
-    let screenName;
-    if (req.files && req.files.mainImages.length > 0) {
-        // Przetwarzanie nowego głównego obrazu, jeśli został przesłany
-        const firstFile = req.files.mainImages[0];
-        const fileWithoutExtension = path.parse(firstFile.filename).name;
-        screenName = fileWithoutExtension.replace(/-.+$/, '');
-    } else {
-        // Jeśli nie ma głównego obrazu, użyj poprzedniego screenName
-        screenName = projectScr;
-    }
-
-    const query = 'UPDATE projects SET project_name=?, project_category=?, project_URL=?, project_screenName=?, goal=?, project_description=?, repo=?, technologies=?, long_text=?, difficulty=?, end_date=? WHERE id=?';
-
-    try {
-        const [result] = await pool.query(query, [
-            projectName, projectCat, projectURL, screenName, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate, projectId
-        ]);
-
-        // Jeśli nowe zdjęcia zostały przesłane, zaktualizuj je w systemie plików
-        if (req.files && req.files.mainImages) {
-            // Usuwanie starego głównego obrazu, jeśli został przesłany nowy
-            const oldMainImagePath = path.join(__dirname, '../projects-photos', projectId, req.body.projectScr);
-            if (fs.existsSync(oldMainImagePath)) {
-                fs.unlinkSync(oldMainImagePath); // Usunięcie starego obrazu
-            }
+        if (!projectId || !projectName || !projectCat || !projectURL || !goal || !projectDesc || !projectRepo || !projectLongTxt) {
+            logger.error('Brak wymaganych danych do aktualizacji projektu');
+            return res.status(400).json({ message: 'Brak wymaganych danych do aktualizacji projektu' });
+        }
+       
+        let screenName;
+        if (req.files && mainImages.length > 0) {
+            const firstFile = mainImages[0];
+            const fileWithoutExtension = path.parse(firstFile.filename).name;
+            screenName = fileWithoutExtension.replace(/-.+$/, '');
+        } else {
+            screenName = projectScr;
         }
 
-        // Jeżeli nowe obrazy galerii zostały przesłane, zaktualizuj je
-        if (req.files && req.files.galleryImages) {
-            const galleryPath = path.join(__dirname, '../projects-photos', projectId.toString());
+        const query = 'UPDATE projects SET project_name=?, project_category=?, project_URL=?, project_screenName=?, goal=?, project_description=?, repo=?, technologies=?, long_text=?, difficulty=?, end_date=? WHERE id=?';
 
-            // Usuwanie starych plików galerii, jeśli zostały przesłane nowe zdjęcia
-            const existingFiles = fs.readdirSync(galleryPath);
-            existingFiles.forEach(file => fs.unlinkSync(path.join(galleryPath, file)));
+        try {
+            const [result] = await pool.query(query, [
+                projectName, projectCat, projectURL, screenName, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate, projectId
+            ]);
 
-            // Nowe zdjęcia galerii zostaną zapisane przez multer automatycznie w odpowiednich folderach
-        }
+            logger.info(`Projekt ${projectName} edytowany`);
+            return res.status(200).json({
+                message: `Projekt ${projectName} poprawnie zaktualizowany`,
+                projectId: projectId,
+                projectName: projectName,
+            });
+        } catch (error) {
+            logger.error('Nie udało się zaktualizować projektu', error);
+            return res.status(500).json({ message: 'Nie udało się zaktualizować projektu' });
+        };
+    }
+);
 
-        logger.info(`Projekt ${projectName} edytowany`);
-        return res.status(200).json({
-            message: `Projekt ${projectName} poprawnie zaktualizowany`,
-            projectId: projectId,
-            projectName: projectName,
-        });
-    } catch (error) {
-        logger.error('Nie udało się zaktualizować projektu', error.message);
-        return res.status(500).json({ message: 'Nie udało się zaktualizować projektu' });
-    };
-});
 
 module.exports = router;

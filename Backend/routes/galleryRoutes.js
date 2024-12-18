@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
         return res.status(400).json({ message: 'Brak folderu do wylistowania' });
     };
 
-    const folderPath = path.join(__dirname, `../projects-photos/${folder}`)
+    const folderPath = path.join(__dirname, `../projects-photos/${folder}/gallery`)
 
     if (!fs.existsSync(folderPath)) {
         logger.error('Folder nie istnieje');

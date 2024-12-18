@@ -11,7 +11,7 @@ const editProjectUrl = requestUrl.projects.put;
 export default function EditProjects({ selectedProject, onClose }) {
     const { sendRequest, result, isLoading, error } = useSendRequest();
     const { user } = useContext(AuthContext);
-    console.log(selectedProject)
+
     const projectId = useRef(selectedProject.id || '');
     const projectName = useRef(selectedProject.title || '');
     const projectCat = useRef(selectedProject.category || '');
@@ -72,6 +72,7 @@ export default function EditProjects({ selectedProject, onClose }) {
                 method: "PUT",
                 data: formData,
             });
+            console.log('wysłane dane:', formData)
         } catch (error) {
             console.log('Błąd podczas edycji projektu.');
         };

@@ -84,7 +84,7 @@ export default function ScreenGallery({ id }) {
         }
     };
 
-    const imageUrl = `${imgUrl}/${id}/${getImageForScreen(currentPhoto, isMobile, isTablet, isDesktop)}`;
+    const imageUrl = `${imgUrl}/${id}/gallery/${getImageForScreen(currentPhoto, isMobile, isTablet, isDesktop)}`;
 
     return (
         <div

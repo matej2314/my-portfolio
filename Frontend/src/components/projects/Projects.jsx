@@ -59,11 +59,11 @@ export default function Projects({ selectedCategory }) {
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 0.3, ease: "easeIn", type: "spring", damping: 70, stiffness: 70 }}
-                                            src={`${imgUrl}/${project.project_screenName}.png`}
+                                            src={`${imgUrl}/${project.id}/main/${project.project_screenName}.png`}
                                             srcSet={` 
-                                                    ${imgUrl}/${project.project_screenName}-320.png 320w,
-                                                    ${imgUrl}/${project.project_screenName}-640.png 640w,
-                                                    ${imgUrl}/${project.project_screenName}.png 1100w
+                                                    ${imgUrl}/${project.id}/main/${project.project_screenName}-320.png 320w,
+                                                    ${imgUrl}/${project.id}/main/${project.project_screenName}-640.png 640w,
+                                                    ${imgUrl}/${project.id}/main/${project.project_screenName}.png 1100w
                                                 `}
                                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                             alt={project.title}

@@ -9,7 +9,8 @@ const cors = require('cors');
 const logger = require('./logger.js');
 
 
-app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());  // Upewnij się, że dane 
 app.use(cookieParser());
 
 const allowedOrigins = ["http://185.170.196.107:5050", "https://msliwowski.net", "http://localhost:5173"];

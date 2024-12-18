@@ -69,11 +69,11 @@ export default function ProjectDetails() {
 
                         <img
                             className={pagesClasses.projectsDetailsPage.screenshot}
-                            src={`${imgUrl}/${selectedProject.project_screenName}-640.png`}
+                            src={`${imgUrl}/${selectedProject.id}/main/${selectedProject.project_screenName}-640.png`}
                             srcSet={`
-                                ${imgUrl}/${selectedProject.project_screenName}-320.png 320w,
-                                ${imgUrl}/${selectedProject.project_screenName}-640.png 640w,
-                                ${imgUrl}/${selectedProject.project_screenName}.png 1100w
+                                ${imgUrl}/${selectedProject.id}/main/${selectedProject.project_screenName}-320.png 320w,
+                                ${imgUrl}/${selectedProject.id}/main/${selectedProject.project_screenName}-640.png 640w,
+                                ${imgUrl}/${selectedProject.id}/main/${selectedProject.project_screenName}.png 1100w
                                 `}
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             alt="" />
