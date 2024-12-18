@@ -2,9 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const logger = require('../logger');
 
-const deleteFilesInDir = (req, res, next) => {
-    const mainPhotosPath = req.mainPhotosPath;
-    const galleryPhotosPath = req.galleryPhotosPath;
+// const deleteFilesInDir = (req, res, next) => {
+//     const projectId = req.body.projectId;
+//     const baseUploadPath = path.join(__dirname, `../projects-photos/${projectId}`);
+//     const mainPhotosPath = `${baseUploadPath}/main`;
+//     const galleryPhotosPath = `${baseUploadPath}/gallery`;
+//     req.mainPhotosPath = mainPhotosPath;
+//     req.galleryPhotosPath = galleryPhotosPath;
+//     req.projectId = projectId;
 
     const deleteFiles = (dirPath) => {
         if (!fs.existsSync(dirPath)) {
@@ -32,20 +37,20 @@ const deleteFilesInDir = (req, res, next) => {
         logger.info(`Pliki z folderu ${dirPath} zostały usunięte.`);
     };
 
-    try {
-        if (req.files.mainImages) {
-            deleteFiles(mainPhotosPath);
-        }
+//     try {
+//         if (req.files.mainImages) {
+//             deleteFiles(mainPhotosPath);
+//         }
 
-        if (req.files.galleryImages) {
-            deleteFiles(galleryPhotosPath);
-        }
+//         if (req.files.galleryImages) {
+//             deleteFiles(galleryPhotosPath);
+//         }
 
-        next(); 
-    } catch (error) {
-        logger.error(`Błąd podczas czyszczenia folderów: ${error.message}`);
-        res.status(500).json({ error: 'Błąd podczas czyszczenia folderów.' });
-    }
-};
+//         next(); 
+//     } catch (error) {
+//         logger.error(`Błąd podczas czyszczenia folderów: ${error.message}`);
+//         res.status(500).json({ error: 'Błąd podczas czyszczenia folderów.' });
+//     }
+// };
 
-module.exports = deleteFilesInDir;
+module.exports = deleteFiles;

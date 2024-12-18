@@ -34,7 +34,9 @@ router.get('/collection', async (req, res) => {
     };
 });
 
-router.post('/new', createProjectFolder, upload.fields([
+router.post('/new',
+    createProjectFolder,
+    upload.fields([
     { name: 'mainImages', maxCount: 15 },  
     { name: 'galleryImages', maxCount: 25 },
 ]), async (req, res) => {
@@ -99,21 +101,19 @@ router.delete('/delete', async (req, res) => {
 
 });
 
-router.put('/update', 
-    upload.fields([
-        { name: 'mainImages', maxCount: 15 },  
+router.put('/update', upload.fields([
+        { name: 'mainImages', maxCount: 15 },
         { name: 'galleryImages', maxCount: 25 },
-    ]), 
-    deleteFilesInDir,
+    ]),
     async (req, res) => {
-        const mainImages = req.files?.mainImages || [];
         const { projectId, projectName, projectCat, projectURL, projectScr, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate } = req.body;
+        const mainImages = req.files?.mainImages || [];
 
         if (!projectId || !projectName || !projectCat || !projectURL || !goal || !projectDesc || !projectRepo || !projectLongTxt) {
             logger.error('Brak wymaganych danych do aktualizacji projektu');
             return res.status(400).json({ message: 'Brak wymaganych danych do aktualizacji projektu' });
         }
-       
+
         let screenName;
         if (req.files && mainImages.length > 0) {
             const firstFile = mainImages[0];
@@ -139,9 +139,8 @@ router.put('/update',
         } catch (error) {
             logger.error('Nie udało się zaktualizować projektu', error);
             return res.status(500).json({ message: 'Nie udało się zaktualizować projektu' });
-        };
+        }
     }
 );
-
 
 module.exports = router;
