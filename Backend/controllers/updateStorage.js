@@ -6,7 +6,7 @@ const deleteFiles = require('./deleteFilesInDir');
 
 const updateStorage = multer.diskStorage({
     destination: async (req, file, cb) => {
-        const projectId = req.body.projectId;
+        const projectId = req.projectId;
         const baseUploadPath = path.join(__dirname, '../projects-photos');
         const mainPhotosPath = `${baseUploadPath}/${projectId}/main`;
         const galleryPhotosPath = `${baseUploadPath}/${projectId}/gallery`;

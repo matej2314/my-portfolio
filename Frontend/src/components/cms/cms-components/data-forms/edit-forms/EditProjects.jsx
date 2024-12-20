@@ -36,7 +36,6 @@ export default function EditProjects({ selectedProject, onClose }) {
 
         const formData = new FormData();
 
-        formData.append('projectId', selectedProject.id);
         formData.append('projectName', projectName.current.value);
         formData.append('projectCat', projectCat.current.value);
         formData.append('projectURL', projectUrl.current.value);
@@ -68,7 +67,7 @@ export default function EditProjects({ selectedProject, onClose }) {
 
         try {
             await sendRequest({
-                url: editProjectUrl,
+                url: `${editProjectUrl}/${selectedProject.id}`,
                 method: "PUT",
                 data: formData,
             });
