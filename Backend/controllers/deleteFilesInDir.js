@@ -1,56 +1,54 @@
-const fs = require('fs');
+const fs = require('fs/promises');
 const path = require('path');
 const logger = require('../logger');
 
-// const deleteFilesInDir = (req, res, next) => {
-//     const projectId = req.body.projectId;
-//     const baseUploadPath = path.join(__dirname, `../projects-photos/${projectId}`);
-//     const mainPhotosPath = `${baseUploadPath}/main`;
-//     const galleryPhotosPath = `${baseUploadPath}/gallery`;
-//     req.mainPhotosPath = mainPhotosPath;
-//     req.galleryPhotosPath = galleryPhotosPath;
-//     req.projectId = projectId;
+const deleteFiles = async (dirPath) => {
+    try {
+        // Sprawdzamy, czy folder istnieje
+        await fs.access(dirPath);
+        logger.info(`Folder: ${dirPath} istnieje!`);
+    } catch (error) {
+        logger.error(`Folder ${dirPath} nie istnieje: ${error.message}`);
+        return; // Jeśli folder nie istnieje, kończymy funkcję
+    }
 
-    const deleteFiles = (dirPath) => {
-        if (!fs.existsSync(dirPath)) {
-            logger.error(`Folder ${dirPath} nie istnieje.`);
-            res.status(404).json({ message: 'Folder nie istnieje' });
-            return;
-        }
-
-        const files = fs.readdirSync(dirPath);
-
+    try {
+        // Odczytujemy pliki w folderze
+        const files = await fs.readdir(dirPath);
         if (files.length === 0) {
             logger.info(`Folder ${dirPath} jest pusty.`);
-            return;
+            return; // Jeśli folder jest pusty, kończymy funkcję
         }
+
+        let deleteErrors = 0; // Zmienna do liczenia błędów
+        const maxDeleteErrors = 3; // Limity błędów, po których przerywamy operację
 
         for (const file of files) {
             const filePath = path.join(dirPath, file);
             try {
-                fs.unlinkSync(filePath);
+                // Usuwanie pliku
+                await fs.unlink(filePath);
                 logger.info(`Plik ${filePath} został usunięty.`);
             } catch (error) {
                 logger.error(`Nie udało się usunąć pliku ${filePath}: ${error.message}`);
+                deleteErrors++; // Zliczanie błędów
+
+                // Jeżeli osiągnięto maksymalny limit błędów, przerywamy operację
+                if (deleteErrors >= maxDeleteErrors) {
+                    logger.error(`Przekroczono limit błędów przy usuwaniu plików w ${dirPath}.`);
+                    return; // Kończymy funkcję po przekroczeniu limitu błędów
+                }
             }
-        };
-        logger.info(`Pliki z folderu ${dirPath} zostały usunięte.`);
-    };
+        }
 
-//     try {
-//         if (req.files.mainImages) {
-//             deleteFiles(mainPhotosPath);
-//         }
-
-//         if (req.files.galleryImages) {
-//             deleteFiles(galleryPhotosPath);
-//         }
-
-//         next(); 
-//     } catch (error) {
-//         logger.error(`Błąd podczas czyszczenia folderów: ${error.message}`);
-//         res.status(500).json({ error: 'Błąd podczas czyszczenia folderów.' });
-//     }
-// };
+        if (deleteErrors > 0) {
+            logger.error(`Wystąpiły błędy przy usuwaniu plików w ${dirPath}.`);
+        } else {
+            logger.info(`Wyczyszczono folder ${dirPath} pomyślnie.`);
+        }
+    } catch (error) {
+        logger.error(`Błąd podczas odczytu zawartości folderu ${dirPath}: ${error.message}`);
+    }
+};
 
 module.exports = deleteFiles;

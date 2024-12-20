@@ -72,7 +72,7 @@ export default function EditProjects({ selectedProject, onClose }) {
                 method: "PUT",
                 data: formData,
             });
-            console.log('wysłane dane:', formData)
+
         } catch (error) {
             console.log('Błąd podczas edycji projektu.');
         };
