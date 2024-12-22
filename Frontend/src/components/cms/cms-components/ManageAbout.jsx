@@ -47,7 +47,7 @@ export default function ManageAbout() {
     }
 
     return (
-        <div className={cmsComponents.wrapper.wrapper}>
+        <div className={`${cmsComponents.wrapper.wrapper} mx-8`}>
             <h2 className={cmsComponents.h2.h2}>'About me' text:</h2>
             <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             <button
@@ -62,7 +62,6 @@ export default function ManageAbout() {
                         return <li
                             key={text.id}
                             className={cmsComponents.manageAbout.li}>
-                            <span className={cmsComponents.span.span}>{text.id}</span>
                             <span className={cmsComponents.span.span}>{text.aboutText}</span>
                             <div className={cmsComponents.buttonDiv.buttonDiv}>
                                 <button

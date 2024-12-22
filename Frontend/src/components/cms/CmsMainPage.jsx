@@ -55,7 +55,7 @@ export default function CmsMainPage() {
                             <div className={cmsPages.mainPage.parWrapper}>
                                 <div className={cmsPages.mainPage.paragraph}>
                                     <p className={cmsPages.mainPage.titlePar}>msliwowski.net - admin panel</p>
-                                    <p className="text-2xl">Please select the category.</p>
+                                    <p className="text-2xl">Please, select the category.</p>
                                 </div>
                             </div>
                         )}

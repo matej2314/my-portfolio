@@ -56,7 +56,6 @@ export default function ManageInterests() {
                         return <li
                             className={cmsComponents.li.li}
                         >
-                            <span className={cmsComponents.span.span}>{interest.id}</span>
                             <span className={cmsComponents.span.span}>{interest.intName}</span>
                             <button
                                 className={cmsComponents.actionBtn.actionBtn}

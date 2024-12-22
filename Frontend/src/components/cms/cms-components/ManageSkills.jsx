@@ -38,9 +38,9 @@ export default function ManageSkills() {
     }
 
     return (
-        <div className={cmsComponents.manageSkills.wrapper}>
+        <div className={cmsComponents.wrapper.wrapper}>
             <h2 className={cmsComponents.h2.h2}>Skills:</h2>
-            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
+            <h3 className="text-sm text-zinc-300">( to go back, press "Manage" button )</h3>
             <button
                 onClick={handleAddNewSkill}
                 className={cmsComponents.addNew.addNew}
@@ -51,7 +51,6 @@ export default function ManageSkills() {
                 {!loading && skills && Array.isArray(skills) ? (
                     skills.map((skill) => (
                         <li className={cmsComponents.li.li} key={skill.id}>
-                            <span className={cmsComponents.span.span}>{skill.id}</span>
                             <span className={cmsComponents.span.span}>{skill.title}</span>
                             <span className={cmsComponents.span.span}>{skill.category}</span>
                             <span className={cmsComponents.span.span}>{skill.icon}</span>

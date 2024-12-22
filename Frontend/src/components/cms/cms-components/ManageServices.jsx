@@ -47,7 +47,7 @@ export default function ManageServices() {
     }
 
     return (
-        <div className={cmsComponents.wrapper.wrapper}>
+        <div className={`${cmsComponents.wrapper.wrapper} mx-8`}>
             <h2 className={cmsComponents.h2.h2}>Services:</h2>
             <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             <button
@@ -60,7 +60,6 @@ export default function ManageServices() {
                 {!loading && services && Array.isArray(services) ? (
                     services.map((service) => (
                         <li className={cmsComponents.li.li} key={service.id}>
-                            <span className={cmsComponents.span.span}>{service.id}</span>
                             <span className={cmsComponents.span.span}>{service.title}</span>
                             <span className={cmsComponents.span.span}>{service.description}</span>
                             <div className={cmsComponents.buttonDiv.buttonDiv}>

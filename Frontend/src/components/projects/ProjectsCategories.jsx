@@ -11,7 +11,7 @@ export default function ProjectsCategories({ setProjectCat }) {
 
     const uniqueCategories = [
         ...new Set(projects.map((project) => project.category)),
-        "all",
+        "All",
     ];
 
     return (

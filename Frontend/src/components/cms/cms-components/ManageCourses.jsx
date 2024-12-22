@@ -41,7 +41,7 @@ export default function ManageCourses() {
         <>
             <div className={cmsComponents.wrapper.wrapper}>
                 <h2 className={cmsComponents.h2.h2}>Courses:</h2>
-                <h3 className="text-sm">( to go back, press "Manage" button )</h3>
+                <h3 className="text-sm text-zinc-300">( to go back, press "Manage" button )</h3>
                 <button
                     onClick={handleAddNew}
                     className={cmsComponents.addNew.addNew}
@@ -52,7 +52,6 @@ export default function ManageCourses() {
                     {!loading && courses && Array.isArray(courses) ? (
                         courses.map((course) => {
                             return <li className={cmsComponents.manageCourses.li} key={course.id}>
-                                <span className={cmsComponents.manageCourses.span}>{course.id}</span>
                                 <span className={cmsComponents.manageCourses.span}>{course.title}</span>
                                 <span className={cmsComponents.manageCourses.span}>{course.date}</span>
                                 <span className={cmsComponents.manageCourses.span}>{course.organizer}</span>

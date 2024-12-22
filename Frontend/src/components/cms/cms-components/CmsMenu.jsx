@@ -22,23 +22,24 @@ export default function CmsMenu({ handleSelected, onClose }) {
     return (
 
         <div className={cmsComponents.cmsMenu.wrapper}>
-            <div className='w-full h-full flex flex-row justify-around items-center gap-[23rem]'>
+            <div className='w-fit h-full flex flex-row justify-center items-center'>
                 <button className='w-fit h-full text-lime-500 hover:text-white'><Link to="/">Home</Link></button>
-                <button className={cmsComponents.cmsMenu.h2} onClick={onClose}>Manage:</button>
+
             </div>
             <ul className={cmsComponents.cmsMenu.ul}>
+                <button className='w-fit h-full' onClick={onClose}>Manage:</button>
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('courses')}>Courses</button></li>
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('posts')}>Posts</button></li>
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('projects')}>Projects</button></li>
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('services')}>Services</button></li>
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('skills')}>Skills</button></li>
-                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('about')}>About me</button></li>
+                <li className='hover:text-lime-600 bg-neutral-600/30 p-2 rounded-xl w-full flex'><button className='w-full h-full flex flex-row justify-center items-center' disabled={!isAuthenticated} onClick={() => handleSelected('about')}>About me</button></li>
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('interests')}>Interests</button></li>
             </ul>
             <div className={cmsComponents.cmsMenu.userDiv}>
-                <span className='w-fit h-fit text-white'>User:</span>
+                <span className='w-fit h-fit'>User:</span>
                 {user && user.userName ? (
-                    <p className='w-fit h-fit text-white'>{user.userName}</p>
+                    <p className='w-fit h-fit'>{user.userName}</p>
                 ) : (
                     <p className='w-fit h-fit'>Guest</p>
                 )}
