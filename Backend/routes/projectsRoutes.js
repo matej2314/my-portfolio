@@ -6,7 +6,7 @@ const pool = require('../db.js');
 const logger = require('../logger.js');
 const verifyAdmin = require('../controllers/verifyAdmin.js');
 const saveProject = require('../controllers/createStorage.js');
-const updateProject = require('../controllers/updateStorage.js');
+const deleteFiles = require('../controllers/deleteFilesInDir.js');
 const createProjectFolders = require('../controllers/createProjectFolder.js');
 
 router.use(express.json());
@@ -75,78 +75,78 @@ router.post(
 	}
 );
 
-router.delete('/delete', async (req, res) => {
-    const { projectId, projectName } = req.body;
+router.delete('/delete/:projectId', deleteFiles, async (req, res) => {
+	const { projectName } = req.body;
+	const projectId = req.projectId;
+	const projectFolderPath = req.projectFolderPath;
 
-    if (!projectId || projectId <= 0 || projectName === '') {
-        logger.error('Brak wymaganych danych do usunięcia projektu');
-        return res.status(400).json({ message: 'Brak wymaganych danych do usunięcia projektu' });
-    }
+	if (!projectId || projectId <= 0 || projectName === '') {
+		logger.error('Brak wymaganych danych do usunięcia projektu');
+		return res.status(400).json({ message: 'Brak wymaganych danych do usunięcia projektu' });
+	}
 
-    const query = 'DELETE FROM projects WHERE id=? AND project_name=?';
+	const query = 'DELETE FROM projects WHERE id=? AND project_name=?';
 
-    try {
-        const [result] = await pool.query(query, [projectId, projectName]);
+	try {
+		const [result] = await pool.query(query, [projectId, projectName]);
 
-        if (result.affectedRows == 0) {
-            logger.info('Projekt nie znaleziony');
-            return res.status(404).json({ message: 'Nie znaleziono projektu do usunięcia' });
-        }
+		if (result.affectedRows == 0) {
+			logger.info('Projekt nie znaleziony');
+			return res.status(404).json({ message: 'Nie znaleziono projektu do usunięcia' });
+		}
 
-        const projectFolderPath = path.join(__dirname, '..', 'projects-photos', projectId.toString());
-        const mainFolderPath = `/${projectFolderPath}/main`;
-        const galleryFolderPath = `/${projectFolderPath}/gallery`;
+		try {
+			
+			await fs.rm(projectFolderPath, { recursive: true, force: true });
+			logger.info(`Główny folder projektu ${projectId} usunięty.`);
+		} catch (error) {
+			logger.error(`Nie udało się usunąć głównego folderu projektu ${projectId}: ${error}`);
+		}
 
-        try {
-            // Usuń folder "projectId" jeśli istnieje
-            await fs.rm(projectFolderPath, {recursive: true, force: true});
-            logger.info(`Główny folder projektu ${projectId} usunięty.`);
-        } catch (error) {
-            logger.error(`Nie udało się usunąć głównego folderu projektu ${projectId}: ${error}`);
-        }
-
-        return res.status(200).json({ message: `Projekt ${projectName} usunięty.` });
-    } catch (error) {
-        logger.error('Nie udało się usunąć projektu', error);
-        return res.status(500).json({ message: `Nie udało się usunąć projektu ${projectName}` });
-    }
+		return res.status(200).json({ message: `Projekt ${projectName} usunięty.` });
+	} catch (error) {
+		logger.error('Nie udało się usunąć projektu', error);
+		return res.status(500).json({ message: `Nie udało się usunąć projektu ${projectName}` });
+	}
 });
 
-
 router.put(
-	'/update/:projectId',  
+	'/update/:projectId/:images',
 	(req, res, next) => {
-	  req.projectId = req.params.projectId;
-	  next();
-	},
-	updateProject.fields([
-	  { name: 'mainImages', maxCount: 15 },
-	  { name: 'galleryImages', maxCount: 25 },
+	  const  images = req.params.images;
+		
+    if (images === 'true') {
+      return deleteFiles(req,res,next); 
+    }
+    next();
+  },
+	saveProject.fields([
+		{ name: 'mainImages', maxCount: 15 },
+		{ name: 'galleryImages', maxCount: 25 },
 	]),
 	async (req, res) => {
-	  const projectId = req.projectId;
-	  const { projectName, projectCat, projectURL, projectScr, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate } = req.body;
-  
-	  // Walidacja danych
-	  if (!projectId || !projectName || !projectCat || !projectURL || !goal || !projectDesc || !projectRepo || !projectLongTxt) {
-		logger.error('Brak wymaganych danych do aktualizacji projektu');
-		return res.status(400).json({ message: 'Brak wymaganych danych do aktualizacji projektu' });
-	  }
-  
-	  const mainImages = req.files?.mainImages || [];
-	  let screenName;
-	  if (mainImages.length > 0) {
-		const firstFile = mainImages[0];
-		const fileWithoutExtension = path.parse(firstFile.filename).name;
-		screenName = fileWithoutExtension.replace(/-.+$/, '');
-	  } else if (projectScr) {
-		screenName = projectScr;
-	  } else {
-		logger.error('Brak danych dla `screenName`');
-		return res.status(400).json({ message: 'Brak danych dla `screenName`' });
-	  }
-  
-	  const query = `
+		const projectId = req.params.projectId || req.projectId;
+		const { projectName, projectCat, projectURL, projectScr, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate } = req.body;
+	
+		if (!projectId || !projectName || !projectCat || !projectURL || !goal || !projectDesc || !projectRepo || !projectLongTxt) {
+			logger.error('Brak wymaganych danych do aktualizacji projektu');
+			return res.status(400).json({ message: 'Brak wymaganych danych do aktualizacji projektu' });
+		}
+
+		const mainImages = req.files?.mainImages || [];
+		let screenName;
+		if (mainImages.length > 0) {
+			const firstFile = mainImages[0];
+			const fileWithoutExtension = path.parse(firstFile.filename).name;
+			screenName = fileWithoutExtension.replace(/-.+$/, '');
+		} else if (projectScr) {
+			screenName = projectScr;
+		} else {
+			logger.error('Brak danych dla `screenName`');
+			return res.status(400).json({ message: 'Brak danych dla `screenName`' });
+		}
+
+		const query = `
 		UPDATE projects 
 		SET 
 			project_name = ?, 
@@ -162,26 +162,26 @@ router.put(
 			end_date = ? 
 		WHERE id = ?
 	  `;
-  
-	  try {
-		const [result] = await pool.query(query, [projectName, projectCat, projectURL, screenName, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate, projectId]);
-  
-		if (result.affectedRows === 0) {
-		  logger.warn(`Nie znaleziono projektu o ID ${projectId}`);
-		  return res.status(404).json({ message: 'Projekt o podanym ID nie istnieje' });
+
+		try {
+			const [result] = await pool.query(query, [projectName, projectCat, projectURL, screenName, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate, projectId]);
+
+			if (result.affectedRows === 0) {
+				logger.warn(`Nie znaleziono projektu o ID ${projectId}`);
+				return res.status(404).json({ message: 'Projekt o podanym ID nie istnieje' });
+			}
+
+			logger.info(`Projekt ${projectName} (ID: ${projectId}) został zaktualizowany`);
+			return res.status(200).json({
+				message: `Projekt ${projectName} poprawnie zaktualizowany`,
+				projectId: projectId,
+				projectName: projectName,
+			});
+		} catch (error) {
+			logger.error(`Nie udało się zaktualizować projektu ${projectId}: ${error.message}`);
+			return res.status(500).json({ message: 'Nie udało się zaktualizować projektu', error: error.message });
 		}
-  
-		logger.info(`Projekt ${projectName} (ID: ${projectId}) został zaktualizowany`);
-		return res.status(200).json({
-		  message: `Projekt ${projectName} poprawnie zaktualizowany`,
-		  projectId: projectId,
-		  projectName: projectName,
-		});
-	  } catch (error) {
-		logger.error(`Nie udało się zaktualizować projektu ${projectId}: ${error.message}`);
-		return res.status(500).json({ message: 'Nie udało się zaktualizować projektu', error: error.message });
-	  }
 	}
-  );
+);
 
 module.exports = router;

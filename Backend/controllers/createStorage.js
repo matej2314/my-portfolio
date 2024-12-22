@@ -1,31 +1,29 @@
 const multer = require('multer');
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
 const logger = require('../logger');
-const createProjectFolder = require('./createProjectFolder');
 
 const createStorage = multer.diskStorage({
 	destination: async (req, file, cb) => {
-		projectId = req.projectId;
-		galleryPhotosPath = req.galleryPhotosPath;
-		mainPhotosPath = req.mainPhotosPath;
+		const mainPhotosPath = req.mainPhotosPath;
+		const galleryPhotosPath = req.galleryPhotosPath;
+		
 
 		try {
-			// Decydujemy, gdzie zapisać plik
+			
 			if (file.fieldname === 'mainImages') {
-				cb(null, mainPhotosPath); // Ścieżka folderu
+				cb(null, mainPhotosPath); 
 			} else if (file.fieldname === 'galleryImages') {
-				cb(null, galleryPhotosPath); // Ścieżka folderu
+				cb(null, galleryPhotosPath);
 			} else {
 				cb(new Error('Nieobsługiwany typ pliku.'));
 			}
 		} catch (error) {
-			logger.error(`Nie udało się stworzyć katalogów projektu: ${error.message}`);
+			logger.error(`Nie udało się zapisać zdjęć projektu: ${error.message}`);
 			cb(error);
 		}
 	},
 	filename: (req, file, cb) => {
-		// Zachowujemy oryginalną nazwę pliku
+		
 		cb(null, file.originalname);
 	},
 });

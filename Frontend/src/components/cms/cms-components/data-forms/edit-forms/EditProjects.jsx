@@ -28,7 +28,6 @@ export default function EditProjects({ selectedProject, onClose }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (user.role !== 'admin') {
             toast.info('Sorry! You are not an admin!');
             return;
@@ -54,7 +53,7 @@ export default function EditProjects({ selectedProject, onClose }) {
 
             };
         } else {
-            formData.append('projectScr', selectedProject.screen)
+            formData.append('projectScr', selectedProject.screen);
         }
 
         if (galleryScreens.current.files.length > 0) {
@@ -62,12 +61,16 @@ export default function EditProjects({ selectedProject, onClose }) {
             for (let i = 0; i < galleryFiles.length; i++) {
                 formData.append('galleryImages', galleryFiles[i]);
             }
-        }
+        };
 
+        let images = false;
+        if (mainScreens.current.files.length > 0 || galleryScreens.current.files.length > 0) {
+            images = true;
+        }
 
         try {
             await sendRequest({
-                url: `${editProjectUrl}/${selectedProject.id}`,
+                url: `${editProjectUrl}/${selectedProject.id}/${images}`,
                 method: "PUT",
                 data: formData,
             });

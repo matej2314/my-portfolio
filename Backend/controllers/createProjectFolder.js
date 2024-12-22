@@ -5,18 +5,19 @@ const logger = require('../logger');
 
 const createProjectFolders = (req, res, next) => {
 	if (!req.projectId) {
-		req.projectId = uuidv4(); // Generowanie unikalnego ID projektu
-	}
+		req.projectId = uuidv4();
+	};
+	const projectId = req.projectId;
 
 	const baseUploadPath = path.join(__dirname, '../projects-photos');
-	const mainPhotosPath = `${baseUploadPath}/${req.projectId}/main`;
-	const galleryPhotosPath = `${baseUploadPath}/${req.projectId}/gallery`;
+	const mainPhotosPath = `${baseUploadPath}/${projectId}/main`;
+	const galleryPhotosPath = `${baseUploadPath}/${projectId}/gallery`;
 
 	req.mainPhotosPath = mainPhotosPath;
 	req.galleryPhotosPath = galleryPhotosPath;
 
 	try {
-		// Tworzenie folderów, jeśli nie istnieją
+		
 		if (!fs.existsSync(mainPhotosPath)) {
 			fs.mkdirSync(mainPhotosPath, { recursive: true });
 		}
@@ -24,7 +25,7 @@ const createProjectFolders = (req, res, next) => {
 			fs.mkdirSync(galleryPhotosPath, { recursive: true });
 		}
 
-		logger.info(`Katalogi dla projektu ${req.projectId} utworzone!`);
+		logger.info(`Katalogi dla projektu ${projectId} utworzone!`);
 		next(); 
 	} catch (error) {
 		logger.error(`Błąd podczas tworzenia katalogów projektu: ${error.message}`);

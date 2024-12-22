@@ -50,6 +50,5 @@ export default function useSendRequest() {
             setIsLoading(false);
         }
     };
-
     return { sendRequest, result, isLoading, error };
 }
