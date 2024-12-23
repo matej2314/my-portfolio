@@ -13,21 +13,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
 app.use(cookieParser());
 
-// const allowedOrigins = ["http://185.170.196.107:5050", "https://www.msliwowski.net", "https://msliwowski.net", "http://localhost:5173"];
+const allowedOrigins = ["https://api.msliwowski.net", "https://www.msliwowski.net", "https://msliwowski.net", "http://localhost:5173"];
 
-// app.use(cors({
-//     origin: (origin, callback) => {
-//         if (!origin || allowedOrigins.includes(origin)) {
-//             callback(null, true);
-//         } else {
-//             callback(new Error("Nieautoryzowana domena!"));
-//         }
-//     },
-//     credentials: true,
-// }));
-
-
-app.use(cors());
+app.use(cors({
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Nieautoryzowana domena!"));
+        }
+    },
+    credentials: true,
+}));
 
 app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Origin', req.get('Origin') || '*');

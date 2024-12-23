@@ -1,4 +1,4 @@
-const serverUrl = 'http://185.170.196.107:5051';
+const serverUrl = 'https://api.msliwowski.net';
 // const serverUrl = 'http://127.0.0.1:5051'
 
 export const dataCollectionUrl = `${serverUrl}/data/collection`;
