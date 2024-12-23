@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());  // Upewnij się, że dane 
 app.use(cookieParser());
 
-const allowedOrigins = ["http://185.170.196.107:5050", "https://msliwowski.net", "http://localhost:5173"];
+const allowedOrigins = ["http://185.170.196.107:5050", "https://msliwowski.net","https://www.msliwowski.net", "http://localhost:5173"];
 
 app.use(cors({
     origin: (origin, callback) => {

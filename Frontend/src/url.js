@@ -31,6 +31,7 @@ export const requestUrl = {
 		new: `${serverUrl}/projects/new`,
 		delete: `${serverUrl}/projects/delete`,
 		put: `${serverUrl}/projects/update`,
+		photos: `${serverUrl}/projects/photos`,
 	},
 	services: {
 		new: `${serverUrl}/services/new`,

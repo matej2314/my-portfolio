@@ -1,19 +1,20 @@
 const fs = require('fs/promises');
 const path = require('path');
 const logger = require('../logger');
+const {getProjectFolder, getMainPhotosPath, getGalleryPhotosPath} = require('../utlis/projectPaths');
 
 const deleteFiles = async (req, res, next) => {
 	req.projectId = req.params.projectId;
 	const projectId = req.projectId;
 
-	const projectFolderPath = path.join(__dirname, '..', 'projects-photos', projectId.toString());
-	const mainFolderPath = path.join(projectFolderPath, 'main');
-	const galleryFolderPath = path.join(projectFolderPath, 'gallery');
+	const projectFolderPath = getProjectFolder(projectId);
+	const mainFolderPath = getMainPhotosPath(projectId);
+	const galleryFolderPath = getGalleryPhotosPath(projectId);
 	req.projectFolderPath = projectFolderPath;
 	req.mainPhotosPath = mainFolderPath;
 	req.galleryPhotosPath = galleryFolderPath;
 	
-	const folders = [projectFolderPath, mainFolderPath, galleryFolderPath];
+	const folders = [ mainFolderPath, galleryFolderPath];
 
     try {
 		for (const folder of folders) {

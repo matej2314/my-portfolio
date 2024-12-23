@@ -3,6 +3,7 @@ import { DataContext } from '../../../store/data-context';
 
 import { cmsComponents } from "./cms-componenst-styles";
 import AddProject from './data-forms/add-forms/AddProject';
+import ShowProjectPics from "./ShowProjectPics";
 import EditProjects from './data-forms/edit-forms/EditProjects';
 import DeleteProject from './data-forms/delete-forms/DeleteProject';
 
@@ -15,6 +16,11 @@ export default function ManageProjects() {
 
     const [selectedProject, setSelectedProject] = useState(null);
     const [actionType, setActionType] = useState(null);
+
+    const handleShowPictures = (project) => {
+        setSelectedProject(() => project);
+        setActionType('show');
+    }
 
     const handleEdit = (projectData) => {
         setSelectedProject(() => projectData);
@@ -47,6 +53,10 @@ export default function ManageProjects() {
         return (
             <DeleteProject selectedProject={selectedProject} onClose={handleCloseAction} />
         )
+    };
+
+    if (actionType === 'show' && selectedProject) {
+        return <ShowProjectPics id={selectedProject.id} name={selectedProject.title} />
     }
 
 
@@ -73,6 +83,12 @@ export default function ManageProjects() {
                             <span className={cmsComponents.span.span}>{project.description}</span>
                             <span className={cmsComponents.span.span}>{project.repo}</span>
                             <div className={cmsComponents.buttonDiv.buttonDiv}>
+                                <button
+                                    onClick={() => handleShowPictures(project)}
+                                    className={cmsComponents.actionBtn.actionBtn}
+                                >
+                                    Pictures
+                                </button>
                                 <button
                                     onClick={() =>
                                         handleEdit({

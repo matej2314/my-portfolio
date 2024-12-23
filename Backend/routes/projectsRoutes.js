@@ -8,6 +8,7 @@ const verifyAdmin = require('../controllers/verifyAdmin.js');
 const saveProject = require('../controllers/createStorage.js');
 const deleteFiles = require('../controllers/deleteFilesInDir.js');
 const createProjectFolders = require('../controllers/createProjectFolder.js');
+const { getMainPhotosPath, getGalleryPhotosPath } = require('../utlis/projectPaths.js');
 
 router.use(express.json());
 
@@ -183,5 +184,33 @@ router.put(
 		}
 	}
 );
+
+router.post('/photos', async (req, res) => {
+	const { projectId } = req.body;
+
+	if (!projectId || projectId.toString().length < 0) {
+		return res.status(400).json({ message: 'Prześlij poprawny identyfikator projektu.' });
+	};
+
+	const mainPhotos = getMainPhotosPath(projectId);
+	const galleryPhotos = getGalleryPhotosPath(projectId);
+	
+	try {
+		const mainFiles = await fs.readdir(mainPhotos);
+		const galleryFiles = await fs.readdir(galleryPhotos);
+		const images = {
+			mainFiles,
+			galleryFiles,
+		}
+
+		return res.status(200).json({
+			message: 'Lista plików pobrana poprawnie.',
+			images,
+		});
+	} catch (error) {
+		logger.error(`Nie udało się poprawnie pobrać zdjęć: ${error}`);
+		return res.status(500).json({message: 'Nie udało się poprawnie pobrać zdjęć.'})
+	}
+});
 
 module.exports = router;
