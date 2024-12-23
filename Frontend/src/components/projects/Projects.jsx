@@ -14,7 +14,7 @@ export default function Projects({ selectedCategory }) {
 
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
-    const filteredProjects = selectedCategory === "All"
+    const filteredProjects = selectedCategory === "all"
         ? projects
         : projects.filter(project => project.category === selectedCategory);
 
