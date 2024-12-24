@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
 app.use(cookieParser());
 
-const allowedOrigins = ["https://api.msliwowski.net", "https://www.msliwowski.net", "https://msliwowski.net", "http://localhost:5173"];
+const allowedOrigins = ["https://api.msliwowski.net", "https://msliwowski.net", "http://localhost:5173"];
 
 app.use(cors({
     origin: (origin, callback) => {
