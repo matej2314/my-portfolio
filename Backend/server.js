@@ -52,6 +52,7 @@ const downloadRoutes = require('./routes/downloadRoute.js');
 const emailRoutes = require('./routes/emailRoutes.js');
 const galleryRoutes = require('./routes/galleryRoutes.js');
 const authRoutes = require('./routes/auth.js');
+const analyticsRoutes = require('./routes/analyticsRoutes.js')
 
 app.use('/services', serviceRoutes);
 app.use('/projects', projectsRoutes);
@@ -65,6 +66,7 @@ app.use('/download', downloadRoutes);
 app.use('/gallery', galleryRoutes);
 app.use('/email', emailRoutes);
 app.use('/auth', authRoutes);
+app.use('/', analyticsRoutes);
 
 app.listen(port, () => {
     logger.info(`BACKEND SERVER RUNNING. PORT ${port}`);

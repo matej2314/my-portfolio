@@ -11,6 +11,7 @@ services:
     volumes:
       - /root/main/portfolio/backend/logs:/app/logs
       - /root/main/portfolio/backend/.env:/app/.env
+      - /root/main/portfolio/backend/google:/app/google
     environment:
       - DB_HOST=main_db
   app:

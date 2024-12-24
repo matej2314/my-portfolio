@@ -151,19 +151,19 @@ export default function Menu() {
                         <a
                             href={cvURL}
                             className={compClasses.menu.link}
-                        // onClick={(e) => {
-                        //     e.preventDefault();
-                        //     ReactGA.event('download_cv', {
-                        //         category: 'download cv',
-                        //         action: 'downloaded',
-                        //         label: 'CV downloaded',
-                        //     });
+                            onClick={(e) => {
+                                e.preventDefault();
+                                ReactGA.event('download_cv', {
+                                    category: 'download cv',
+                                    action: 'downloaded',
+                                    label: 'CV downloaded',
+                                });
 
-                        //     setTimeout(() => {
-                        //         window.location.href = cvURL;
+                                setTimeout(() => {
+                                    window.location.href = cvURL;
 
-                        //     }, 500);
-                        // }}
+                                }, 500);
+                            }}
 
                         >
                             <AnimatePresence mode="wait" initial={false}>
