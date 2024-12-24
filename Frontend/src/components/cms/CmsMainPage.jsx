@@ -1,7 +1,8 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../store/auth-context';
 import { cmsPages } from "./cmsPages-styles"
+import useSendRequest from "../../hooks/useSendRequest";
 import CmsMenu from "./cms-components/CmsMenu";
 import ManageCourses from './cms-components/ManageCourses';
 import ManagePosts from './cms-components/ManagePosts';

@@ -83,7 +83,7 @@ router.get('/realtime', async (req, res) => {
         res.status(200).json(response.data);
     } catch (error) {
         logger.error('Błąd pobierania danych w czasie rzeczywistym:', error);
-        res.status(500).json({ message: 'Błąd pobierania danych w czasie rzeczywistym!' });
+        res.status(500).json({ message: `Błąd pobierania danych w czasie rzeczywistym!, ERROR: ${error}` });
     }
 });
 
