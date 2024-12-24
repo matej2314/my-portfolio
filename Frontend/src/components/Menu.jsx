@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from '@iconify/react';
 import { NavLink, useLocation } from "react-router-dom";
+import ReactGA from 'react-ga4';
 
 import { compClasses } from "./components-classes";
 import { cvURL } from '../url';
@@ -147,7 +148,24 @@ export default function Menu() {
                         onMouseEnter={() => setHoveredItem("download")}
                         onMouseLeave={() => setHoveredItem(null)}
                     >
-                        <a href={cvURL} className={compClasses.menu.link}>
+                        <a
+                            href={cvURL}
+                            className={compClasses.menu.link}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                ReactGA.event('download_cv', {
+                                    category: 'download cv',
+                                    action: 'downloaded',
+                                    label: 'CV downloaded',
+                                });
+
+                                setTimeout(() => {
+                                    window.location.href = cvURL;
+
+                                }, 500);
+                            }}
+
+                        >
                             <AnimatePresence mode="wait" initial={false}>
                                 {activeItem === "download" || hoveredItem === "download" ? (
                                     <motion.div

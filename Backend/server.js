@@ -9,8 +9,8 @@ const cors = require('cors');
 const logger = require('./logger.js');
 
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); 
+app.use(express.urlencoded({ limit: '10mb' ,extended: true }));
+app.use(express.json({limit: '10mb'})); 
 app.use(cookieParser());
 
 const allowedOrigins = ["https://api.msliwowski.net", "https://msliwowski.net", "http://localhost:5173"];

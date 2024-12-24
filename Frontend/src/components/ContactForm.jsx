@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { toast } from 'react-toastify';
+import ReactGA from 'react-ga4';
 
 import SocialIcons from "./icons/SocialIcons.jsx";
 import useSendRequest from '../hooks/useSendRequest.jsx';
@@ -18,14 +19,14 @@ export default function ContactForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!userName || !userEmail || !subject || !userMessage) {
+        // Sprawdzanie, czy wszystkie pola formularza są wypełnione
+        if (!name.current.value || !email.current.value || !messageSubject.current.value || !message.current.value) {
             setStatus("Please fill out all fields");
             toast.error('Please fill out all fields');
             return;
         }
 
         try {
-
             const contactObj = {
                 userName: name.current.value,
                 userEmail: email.current.value,
@@ -43,10 +44,19 @@ export default function ContactForm() {
                 setStatus("Message sent successfully");
                 toast.info('Message sent successfully');
 
+
                 name.current.value = "";
                 email.current.value = "";
                 messageSubject.current.value = "";
                 message.current.value = "";
+
+
+                ReactGA.event('submit', {
+                    category: 'Contact Form',
+                    action: 'Form submitted',
+                    label: 'Contact message sent',
+                });
+
             } else {
                 setStatus("Failed to send message. Try again");
                 toast.error('Failed to send message. Try again.');
@@ -54,7 +64,7 @@ export default function ContactForm() {
 
         } catch (error) {
             setStatus("An error occurred. Please try again.");
-            toast.error('An error occured. Please try again.');
+            toast.error('An error occurred. Please try again.');
         }
     };
 

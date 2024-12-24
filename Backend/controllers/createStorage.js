@@ -31,7 +31,7 @@ const createStorage = multer.diskStorage({
 const saveProject = multer({
 	storage: createStorage,
 	limits: {
-		fileSize: 5 * 1024 * 1024, // 5 MB
+		fileSize: 15 * 1024 * 1024, // 5 MB
 	},
 	fileFilter: (req, file, cb) => {
 		const filetypes = /jpeg|jpg|png/;
