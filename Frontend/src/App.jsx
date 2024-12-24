@@ -17,8 +17,6 @@ import CmsIndexPage from './components/cms/CmsIndexPage';
 import CmsMainPage from './components/cms/CmsMainPage';
 import { AuthProvider } from './store/auth-context';
 
-// ReactGA.initialize('G-XB5GM4PJX6');
-
 function App() {
 
   const isMobile = useMediaQuery({ maxWidth: 768 });

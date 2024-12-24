@@ -15,15 +15,14 @@ const jwtClient = new google.auth.JWT(
 
 const analytics = google.analyticsdata('v1beta');
 
-// Funkcja do pobierania danych z Google Analytics
 const getAnalyticsData = async () => {
     try {
-        // Autoryzacja
-        await jwtClient.authorize(); // JWT client authorization
+        
+        await jwtClient.authorize(); 
 
-        // Wywołanie API Google Analytics Data
+        
         const res = await analytics.properties.runReport({
-            property: 'properties/470992576',  // Podaj właściwy propertyId
+            property: 'properties/470992576',
             requestBody: {
                 dateRanges: [
                     {
@@ -33,6 +32,9 @@ const getAnalyticsData = async () => {
                 ],
                 metrics: [
                     { name: "eventCount" },
+                    { name: 'totalUsers' },
+                    { name: 'averageSessionDuration' },
+                    {name: 'pageview'}
                 ],
                 dimensions: [
                     { name: 'eventName' },
@@ -50,6 +52,7 @@ const getAnalyticsData = async () => {
             auth: jwtClient,
         });
 
+    
         return res.data;
     } catch (error) {
         logger.error(`Błąd pobierania danych z GA: ${error}`);
@@ -57,7 +60,28 @@ const getAnalyticsData = async () => {
     }
 };
 
-// Endpoint do zwracania danych z GA
+router.get('/realtime', async (req, res) => {
+    try {
+        await jwtClient.authorize();
+        
+       
+        const response = await analytics.properties.runRealtimeReport({
+            property: 'properties/470992576',
+            requestBody: {
+                metrics: [{ name: 'activeUsers' }],
+                dimensions: [{ name: 'pagePath' }],
+            },
+            auth: jwtClient,
+        });
+
+        res.status(200).json(response.data);
+    } catch (error) {
+        logger.error('Błąd pobierania danych w czasie rzeczywistym:', error);
+        res.status(500).json({ message: 'Błąd pobierania danych w czasie rzeczywistym!' });
+    }
+});
+
+
 router.get('/analytics', async (req, res) => {
     try {
         const data = await getAnalyticsData();
