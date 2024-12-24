@@ -1,5 +1,5 @@
 const serverUrl = 'https://api.msliwowski.net';
-// const serverUrl = 'http://127.0.0.1:5051'
+// const serverUrl = 'http://127.0.0.1:5051';
 
 export const dataCollectionUrl = `${serverUrl}/data/collection`;
 export const registerUrl = `${serverUrl}/auth/register`;
