@@ -5,14 +5,16 @@ import ReactGA from 'react-ga4';
 function TrackPageView() {
     const location = useLocation();
     const startTime = useRef(Date.now());
+    const prevLocation = useRef(location.pathname + location.search);
 
     useEffect(() => {
-
-        ReactGA.send({
-            hitType: 'pageview',
-            page: location.pathname + location.search,
-        });
-
+        if (location.pathname + location.search !== prevLocation.current) {
+            ReactGA.send({
+                hitType: 'pageview',
+                page: location.pathname + location.search,
+            });
+            prevLocation.current = location.pathname + location.search;
+        }
 
         return () => {
             const timeSpent = (Date.now() - startTime.current) / 1000;
