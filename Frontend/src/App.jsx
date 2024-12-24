@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import TrackPageView from './hooks/TrackPageView';
+import TrackPageView from './hooks/TrackPageView';
 
 import MainPage from './pages/MainPage';
 import Contact from './pages/Contact';
@@ -44,7 +44,7 @@ function App() {
 
   return (
     <>
-      {/* <TrackPageView /> */}
+      <TrackPageView />
       <RouterProvider router={router} />
       <ToastContainer
         position="top-center"
