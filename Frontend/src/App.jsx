@@ -44,8 +44,8 @@ function App() {
 
   return (
     <>
-      <TrackPageView />
       <RouterProvider router={router} />
+      <TrackPageView />
       <ToastContainer
         position="top-center"
         autoClose={2200}
