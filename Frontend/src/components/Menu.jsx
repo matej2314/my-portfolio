@@ -157,6 +157,7 @@ export default function Menu() {
                                     category: 'download cv',
                                     action: 'downloaded',
                                     label: 'CV downloaded',
+                                    elementId: 'download-btn'
                                 });
 
                                 setTimeout(() => {

@@ -55,6 +55,7 @@ export default function ContactForm() {
                     category: 'Contact Form',
                     action: 'Form submitted',
                     label: 'Contact message sent',
+                    elementId: 'contact-form'
                 });
 
             } else {

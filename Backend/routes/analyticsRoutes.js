@@ -17,12 +17,11 @@ const analytics = google.analyticsdata('v1beta');
 
 const getAnalyticsData = async () => {
     try {
-        
-        await jwtClient.authorize(); 
+        await jwtClient.authorize();
 
-        
+        // Pobranie danych z GA4
         const res = await analytics.properties.runReport({
-            property: 'properties/470992576',
+            property: 'properties/470992576', // Twój identyfikator właściwości GA4
             requestBody: {
                 dateRanges: [
                     {
@@ -31,19 +30,23 @@ const getAnalyticsData = async () => {
                     },
                 ],
                 metrics: [
-                    { name: "eventCount" },
-                    { name: 'totalUsers' },
-                    { name: 'averageSessionDuration' },
+                    { name: 'eventCount' },  // Liczba wystąpień zdarzeń
+                    { name: 'totalUsers' },  // Całkowita liczba użytkowników
+                    { name: 'averageSessionDuration' }, // Średni czas sesji
+                    { name: 'engagementTime' },
                 ],
                 dimensions: [
-                    { name: 'eventName' },
-                    { name: 'pagePath' },
+                    { name: 'eventName' },    // Nazwa zdarzenia (np. pageview)
+                    { name: 'pagePath' },     // Ścieżka URL (dla pageview)
+                    { name: 'elementId' },    // Identyfikator elementu (dla click)
+                    { name: 'deviceCategory' }, // Kategoria urządzenia
+                    { name: 'operatingSystem' }, // System operacyjny
                 ],
                 dimensionFilter: {
                     filter: {
                         fieldName: 'eventName',
                         inListFilter: {
-                            values: ["submit", "pageview", "time_on_page", "download_cv"],
+                            values: ['pageview', 'submit', 'click', 'time_on_page'],  // Tylko wybrane zdarzenia
                         },
                     },
                 },
@@ -51,7 +54,7 @@ const getAnalyticsData = async () => {
             auth: jwtClient,
         });
 
-    
+        // Zwrócenie wyników
         return res.data;
     } catch (error) {
         logger.error(`Błąd pobierania danych z GA: ${error}`);
@@ -59,39 +62,48 @@ const getAnalyticsData = async () => {
     }
 };
 
-router.get('/realtime', async (req, res) => {
-    try {
-        await jwtClient.authorize();
-        
-        const response = await analytics.properties.runRealtimeReport({
-            property: 'properties/470992576',
-            requestBody: {
-                metrics: [{ name: 'activeUsers' }],
-                dimensions: [{ name: 'eventName' }],
-                dimensionFilter: {
-                    filter: {
-                        fieldName: 'eventName',
-                        inListFilter: {
-                            values: ['pageview', 'time_on_page'],
-                        },
-                    },
-                },
-            },
-            auth: jwtClient,
-        });
-
-        res.status(200).json(response.data);
-    } catch (error) {
-        logger.error('Błąd pobierania danych w czasie rzeczywistym:', error);
-        res.status(500).json({ message: `Błąd pobierania danych w czasie rzeczywistym!, ERROR: ${error}` });
-    }
-});
-
-
 router.get('/analytics', async (req, res) => {
     try {
         const data = await getAnalyticsData();
-        return res.status(200).json(data);
+
+        // Przetwarzanie wyników, rozróżnienie typów danych dla różnych zdarzeń
+        const processedData = data.rows.map(row => {
+            const eventName = row.dimensionValues[0].value; // Nazwa zdarzenia (np. pageview, click, submit)
+            const baseData = {
+                deviceCategory: row.dimensionValues[3]?.value, // Kategoria urządzenia
+                operatingSystem: row.dimensionValues[4]?.value, // System operacyjny
+            };
+
+            let additionalData = {};
+            if (eventName === 'pageview') {
+                additionalData = {
+                    pagePath: row.dimensionValues[1]?.value,  // Ścieżka URL
+                    eventCount: row.metricValues[0]?.value,   // Liczba odwiedzin
+                    totalUsers: row.metricValues[1]?.value,   // Liczba użytkowników
+                    engagementTime: row.metricValues[2]?.value,
+                };
+            } else if (eventName === 'submit') {
+                additionalData = {
+                    eventCount: row.metricValues[0]?.value,   // Liczba submitów
+                    totalUsers: row.metricValues[1]?.value,   // Liczba użytkowników
+                };
+            } else if (eventName === 'click') {
+                additionalData = {
+                    elementId: row.dimensionValues[2]?.value, // Identyfikator klikniętego elementu
+                    eventCount: row.metricValues[0]?.value,   // Liczba kliknięć
+                    totalUsers: row.metricValues[1]?.value,   // Liczba użytkowników
+                };
+            }
+
+            return {
+                eventName,
+                ...baseData,
+                ...additionalData,
+            };
+        });
+
+        // Zwrócenie przetworzonych danych
+        return res.status(200).json(processedData);
     } catch (error) {
         logger.error(`Błąd pobierania danych z GA: ${error}`);
         return res.status(500).json({ message: 'Błąd pobierania danych Google Analytics!' });

@@ -18,7 +18,12 @@ function TrackPageView() {
 
         return () => {
             const timeSpent = (Date.now() - startTime.current) / 1000;
-            ReactGA.event('time_on_page', { timeSpent });
+            ReactGA.event('time_on_page', {
+                category: 'Engagement',
+                action: 'Time spent on page',
+                label: location.pathname,
+                value: timeSpent
+            });
         };
     }, [location]);
 
