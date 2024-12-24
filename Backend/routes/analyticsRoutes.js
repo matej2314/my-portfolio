@@ -4,6 +4,7 @@ const { google } = require('googleapis');
 const logger = require('../logger');
 const credentials = require('../google/myPortfolio-f6f80beac2cd.json');
 
+// Google Analytics API
 const SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
 const jwtClient = new google.auth.JWT(
     credentials.client_email,
@@ -14,54 +15,56 @@ const jwtClient = new google.auth.JWT(
 
 const analytics = google.analyticsdata('v1beta');
 
+// Funkcja do pobierania danych z Google Analytics
 const getAnalyticsData = async () => {
     try {
-        const authClient = await jwtClient.authorize();
+        // Autoryzacja
+        await jwtClient.authorize(); // JWT client authorization
 
-        const response = await analytics.properties.runReport({
-            property: 'properties/470992576',
+        // Wywołanie API Google Analytics Data
+        const res = await analytics.properties.runReport({
+            property: 'properties/470992576',  // Podaj właściwy propertyId
             requestBody: {
-                dateRanges: [{ startDate: '2024-01-01', endDate: '2024-12-31' }],
-                metrics: [{ name: 'eventCount' }],
+                dateRanges: [
+                    {
+                        startDate: '2024-01-01',
+                        endDate: '2024-12-31',
+                    },
+                ],
+                metrics: [
+                    { name: "eventCount" },
+                ],
                 dimensions: [
                     { name: 'eventName' },
-                    { name: 'event_params.key' },
-                    { name: 'event_params.value' },
-                    { name: 'pagePath' }
+                    { name: 'pagePath' },
                 ],
                 dimensionFilter: {
                     filter: {
                         fieldName: 'eventName',
                         inListFilter: {
-                            values: ['submit', 'pageview', 'time_on_page', 'download_cv']
-                        }
-                    }
-                }
+                            values: ["submit", "pageview", "time_on_page", "download_cv"],
+                        },
+                    },
+                },
             },
-            auth: authClient,
+            auth: jwtClient,
         });
 
-        if (!response || !response.data) {
-            throw new Error('Brak danych z Google Analytics');
-        }
-
-        return response.data;
+        return res.data;
     } catch (error) {
-        logger.error(`Błąd pobierania danych Google Analytics: ${error.message}`, {
-            stack: error.stack,
-        });
+        logger.error(`Błąd pobierania danych z GA: ${error}`);
         throw error;
     }
 };
 
+// Endpoint do zwracania danych z GA
 router.get('/analytics', async (req, res) => {
     try {
         const data = await getAnalyticsData();
         return res.status(200).json(data);
     } catch (error) {
-        return res
-            .status(500)
-            .json({ message: `Błąd pobierania danych z GA: ${error}` });
+        logger.error(`Błąd pobierania danych z GA: ${error}`);
+        return res.status(500).json({ message: 'Błąd pobierania danych Google Analytics!' });
     }
 });
 

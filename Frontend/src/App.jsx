@@ -3,6 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TrackPageView from './hooks/TrackPageView';
+import ReactGA from 'react-ga4';
 
 import MainPage from './pages/MainPage';
 import Contact from './pages/Contact';
@@ -15,6 +16,8 @@ import NotFound from './pages/NotFound';
 import CmsIndexPage from './components/cms/CmsIndexPage';
 import CmsMainPage from './components/cms/CmsMainPage';
 import { AuthProvider } from './store/auth-context';
+
+// ReactGA.initialize('G-XB5GM4PJX6');
 
 function App() {
 
