@@ -34,7 +34,6 @@ const getAnalyticsData = async () => {
                     { name: "eventCount" },
                     { name: 'totalUsers' },
                     { name: 'averageSessionDuration' },
-                    {name: 'pageview'}
                 ],
                 dimensions: [
                     { name: 'eventName' },
@@ -64,12 +63,19 @@ router.get('/realtime', async (req, res) => {
     try {
         await jwtClient.authorize();
         
-       
         const response = await analytics.properties.runRealtimeReport({
             property: 'properties/470992576',
             requestBody: {
                 metrics: [{ name: 'activeUsers' }],
-                dimensions: [{ name: 'pagePath' }],
+                dimensions: [{ name: 'eventName' }],
+                dimensionFilter: {
+                    filter: {
+                        fieldName: 'eventName',
+                        inListFilter: {
+                            values: ['pageview', 'time_on_page'],
+                        },
+                    },
+                },
             },
             auth: jwtClient,
         });
