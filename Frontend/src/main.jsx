@@ -6,8 +6,6 @@ import ReactGA from 'react-ga4';
 
 ReactGA.initialize('G-XB5GM4PJX6');
 
-ReactGA.send({ hitType: 'pageview', page: window.location.pathname });
-
 createRoot(document.getElementById('root')).render(
   <DataProvider>
     <App />
