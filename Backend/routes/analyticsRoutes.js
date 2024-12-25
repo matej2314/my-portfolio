@@ -4,7 +4,7 @@ const { google } = require('googleapis');
 const logger = require('../logger');
 const credentials = require('../google/myPortfolio-f6f80beac2cd.json');
 
-// Google Analytics API
+
 const SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
 const jwtClient = new google.auth.JWT(
     credentials.client_email,
@@ -45,7 +45,6 @@ const getAnalyticsData = async () => {
             },
             auth: jwtClient,
         });
-
         return res.data;
     } catch (error) {
         logger.error(`Błąd pobierania danych z GA: ${error}`);
