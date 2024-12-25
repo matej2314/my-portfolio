@@ -40,7 +40,8 @@ const getAnalyticsData = async () => {
                     { name: 'contentId' },    // Identyfikator elementu (dla click)
                     { name: 'deviceCategory' }, // Kategoria urządzenia
                     { name: 'operatingSystem' }, // System operacyjny
-                    {name: 'pageReferrer'},
+                    { name: 'pageReferrer' },
+                    {name: 'date'}
                 ],
             },
             auth: jwtClient,
@@ -58,7 +59,9 @@ router.get('/analytics', async (req, res) => {
 
         const processedData = data.rows.map(row => {
             const eventName = row.dimensionValues[0].value; // Nazwa zdarzenia (np. pageview, click, submit)
+            const eventDate = row.dimensionValues[6]?.value;
             const baseData = {
+                date: eventDate,
                 deviceCategory: row.dimensionValues[3]?.value, // Kategoria urządzenia
                 operatingSystem: row.dimensionValues[4]?.value, // System operacyjny
             };
