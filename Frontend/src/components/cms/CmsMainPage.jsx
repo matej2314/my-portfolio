@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from '../../store/auth-context';
 import { cmsPages } from "./cmsPages-styles"
 import useSendRequest from "../../hooks/useSendRequest";
+import { analyticsUrl } from "../../url";
 import CmsMenu from "./cms-components/CmsMenu";
 import ManageCourses from './cms-components/ManageCourses';
 import ManagePosts from './cms-components/ManagePosts';
@@ -15,7 +16,9 @@ import ManageAbout from './cms-components/ManageAbout';
 
 export default function CmsMainPage() {
     const [selectedButton, setSelectedButton] = useState(null);
+    const [analyticsData, setAnalyticsData] = useState(null);
     const { isAuthenticated } = useContext(AuthContext);
+    const { sendRequest, result, error, isLoading } = useSendRequest();
 
     const handleSelected = (button) => {
         setSelectedButton(button);
@@ -44,8 +47,31 @@ export default function CmsMainPage() {
             default:
                 return null;
         }
-    }
+    };
 
+    useEffect(() => {
+        const getAnalyticsData = async () => {
+            try {
+                const response = await sendRequest({
+                    url: analyticsUrl,
+                    method: 'GET'
+                });
+
+                if (!response) {
+                    console.log('Brak danych z Google');
+                }
+
+                if (response) {
+                    setAnalyticsData(() => response);
+                }
+            } catch (error) {
+                throw new Error(`Błąd pobierania danych analitycznych.`)
+            }
+        };
+        getAnalyticsData();
+    }, [])
+
+    console.log(analyticsData);
     return (
         <>
             {isAuthenticated ? (
@@ -64,7 +90,7 @@ export default function CmsMainPage() {
                 </main>
             ) : (
                 <main className={cmsPages.mainPage.main}>
-                    <CmsMenu handleSelected={handleSelected} onClose={null} />
+                    <CmsMenu handleSelected={handleSelected} onClose={handleCloseComponents} />
                     <div className={cmsPages.mainPage.parWrapper}>
                         <div className={cmsPages.mainPage.paragraph}>
                             <p className={cmsPages.mainPage.titlePar}>msliwowski.net - admin panel</p>

@@ -33,8 +33,7 @@ const getAnalyticsData = async () => {
                     { name: 'eventCount' },  // Liczba wystąpień zdarzeń
                     { name: 'totalUsers' },  // Całkowita liczba użytkowników
                     { name: 'averageSessionDuration' }, // Średni czas sesji
-                    { name: 'userEngagementDuration' },
-                    { name: 'engaged_time_msec'} // czas zaangażowania użytkownika w milisekundach
+                    { name: 'engagementRate' },
                 ],
                 dimensions: [
                     { name: 'eventName' },    // Nazwa zdarzenia (np. pageview)
@@ -43,19 +42,10 @@ const getAnalyticsData = async () => {
                     { name: 'deviceCategory' }, // Kategoria urządzenia
                     { name: 'operatingSystem' }, // System operacyjny
                 ],
-                dimensionFilter: {
-                    filter: {
-                        fieldName: 'eventName',
-                        inListFilter: {
-                            values: ['pageview', 'submit', 'click', 'user_engagement'],  // Tylko wybrane zdarzenia
-                        },
-                    },
-                },
             },
             auth: jwtClient,
         });
 
-        // Zwrócenie wyników
         return res.data;
     } catch (error) {
         logger.error(`Błąd pobierania danych z GA: ${error}`);
@@ -67,7 +57,6 @@ router.get('/analytics', async (req, res) => {
     try {
         const data = await getAnalyticsData();
 
-        // Przetwarzanie wyników, rozróżnienie typów danych dla różnych zdarzeń
         const processedData = data.rows.map(row => {
             const eventName = row.dimensionValues[0].value; // Nazwa zdarzenia (np. pageview, click, submit)
             const baseData = {
@@ -95,7 +84,7 @@ router.get('/analytics', async (req, res) => {
                 };
             } else if (eventName === 'user_engagement') {
                 additionalData = {
-                    engagementTime: row.metricValues[5].value,
+                    engagementRate: row.metricValues[3]?.value,
                 }
             }
 
