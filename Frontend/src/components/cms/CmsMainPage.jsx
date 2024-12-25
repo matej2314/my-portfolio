@@ -1,7 +1,7 @@
-import { useState, useContext, useEffect } from "react"
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../store/auth-context';
-import { cmsPages } from "./cmsPages-styles"
+import { cmsPages } from "./cmsPages-styles";
 import useSendRequest from "../../hooks/useSendRequest";
 import { analyticsUrl } from "../../url";
 import CmsMenu from "./cms-components/CmsMenu";
@@ -13,10 +13,11 @@ import ManageSkills from './cms-components/ManageSkills';
 import ManageInterests from "./cms-components/ManageInterests";
 import ManageAbout from './cms-components/ManageAbout';
 
-
 export default function CmsMainPage() {
     const [selectedButton, setSelectedButton] = useState(null);
-    const [analyticsData, setAnalyticsData] = useState(null);
+    const [analyticsData, setAnalyticsData] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [eventsCounter, setEventsCounter] = useState({});
     const { isAuthenticated } = useContext(AuthContext);
     const { sendRequest, result, error, isLoading } = useSendRequest();
 
@@ -26,24 +27,24 @@ export default function CmsMainPage() {
 
     const handleCloseComponents = () => {
         setSelectedButton(null);
-    }
+    };
 
     const selectedComponent = () => {
         switch (selectedButton) {
             case 'courses':
-                return <ManageCourses />
+                return <ManageCourses />;
             case 'posts':
-                return <ManagePosts />
+                return <ManagePosts />;
             case 'projects':
-                return <ManageProjects />
+                return <ManageProjects />;
             case 'services':
-                return <ManageServices />
+                return <ManageServices />;
             case 'skills':
-                return <ManageSkills />
+                return <ManageSkills />;
             case 'about':
-                return <ManageAbout />
+                return <ManageAbout />;
             case 'interests':
-                return <ManageInterests />
+                return <ManageInterests />;
             default:
                 return null;
         }
@@ -54,24 +55,40 @@ export default function CmsMainPage() {
             try {
                 const response = await sendRequest({
                     url: analyticsUrl,
-                    method: 'GET'
+                    method: 'GET',
                 });
 
                 if (!response) {
                     console.log('Brak danych z Google');
+                    return;
                 }
 
-                if (response) {
-                    setAnalyticsData(() => response);
+                if (Array.isArray(response)) {
+                    setAnalyticsData(response);
+
+                    const counter = response.reduce((acc, item) => {
+                        if (item.eventName) {
+                            acc[item.eventName] = (acc[item.eventName] || 0) + 1;
+                        }
+                        return acc;
+                    }, {});
+
+                    setEventsCounter(counter);
+                    setIsLoaded(() => true);
+                } else {
+                    console.log('Odpowiedź z serwera nie jest tablicą:', response);
                 }
             } catch (error) {
-                throw new Error(`Błąd pobierania danych analitycznych.`)
+                console.error("Błąd pobierania danych analitycznych:", error);
             }
         };
-        getAnalyticsData();
-    }, [])
 
-    console.log(analyticsData);
+        getAnalyticsData();
+    }, []);
+
+    isLoaded ? console.log('AnalyticsData:', analyticsData) : null;
+    isLoaded ? console.log('eventsCounter:', eventsCounter) : null;
+
     return (
         <>
             {isAuthenticated ? (
@@ -101,9 +118,8 @@ export default function CmsMainPage() {
                             </Link></p>
                         </div>
                     </div>
-
                 </main>
             )}
         </>
-    )
+    );
 }

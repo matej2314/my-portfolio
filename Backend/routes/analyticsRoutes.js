@@ -19,7 +19,6 @@ const getAnalyticsData = async () => {
     try {
         await jwtClient.authorize();
 
-        // Pobranie danych z GA4
         const res = await analytics.properties.runReport({
             property: 'properties/470992576', // Twój identyfikator właściwości GA4
             requestBody: {
@@ -65,7 +64,7 @@ router.get('/analytics', async (req, res) => {
             };
 
             let additionalData = {};
-            if (eventName === 'pageview') {
+            if (eventName === 'page_view') {
                 additionalData = {
                     pagePath: row.dimensionValues[1]?.value,  // Ścieżka URL
                     eventCount: row.metricValues[0]?.value,   // Liczba odwiedzin
@@ -86,6 +85,11 @@ router.get('/analytics', async (req, res) => {
                 additionalData = {
                     engagementRate: row.metricValues[3]?.value,
                 }
+            } else if (eventName === 'scroll_portfolio') {
+                additionalData = {
+                    eventCount: row.dimensionValues[0]?.value,
+                    pagePath: row.dimensionValues[1]?.value,
+               }
             }
 
             return {
