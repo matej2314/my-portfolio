@@ -33,12 +33,12 @@ const getAnalyticsData = async () => {
                     { name: 'eventCount' },  // Liczba wystąpień zdarzeń
                     { name: 'totalUsers' },  // Całkowita liczba użytkowników
                     { name: 'averageSessionDuration' }, // Średni czas sesji
-                    { name: 'engagementTime' },
+                    { name: 'userEngagementDuration' },
                 ],
                 dimensions: [
                     { name: 'eventName' },    // Nazwa zdarzenia (np. pageview)
                     { name: 'pagePath' },     // Ścieżka URL (dla pageview)
-                    { name: 'elementId' },    // Identyfikator elementu (dla click)
+                    { name: 'contentId' },    // Identyfikator elementu (dla click)
                     { name: 'deviceCategory' }, // Kategoria urządzenia
                     { name: 'operatingSystem' }, // System operacyjny
                 ],
@@ -106,7 +106,7 @@ router.get('/analytics', async (req, res) => {
         return res.status(200).json(processedData);
     } catch (error) {
         logger.error(`Błąd pobierania danych z GA: ${error}`);
-        return res.status(500).json({ message: 'Błąd pobierania danych Google Analytics!' });
+        return res.status(500).json({ message: `Błąd pobierania danych Google Analytics: ${error}` });
     }
 });
 
