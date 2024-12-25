@@ -40,6 +40,7 @@ const getAnalyticsData = async () => {
                     { name: 'contentId' },    // Identyfikator elementu (dla click)
                     { name: 'deviceCategory' }, // Kategoria urządzenia
                     { name: 'operatingSystem' }, // System operacyjny
+                    {name: 'pageReferrer'},
                 ],
             },
             auth: jwtClient,
@@ -90,6 +91,13 @@ router.get('/analytics', async (req, res) => {
                     eventCount: row.dimensionValues[0]?.value,
                     pagePath: row.dimensionValues[1]?.value,
                }
+            } else if (eventName === 'first_visit') {
+                additionalData = {
+                    eventCount: row.metricValues[0]?.value,  // Liczba zdarzeń first_visit
+                    totalUsers: row.metricValues[1]?.value,  // Liczba użytkowników
+                    pagePath: row.dimensionValues[1]?.value, // Pierwsza ścieżka odwiedzin
+                    pageReferrer: row.dimensionValues[2]?.value || 'direct', // URL strony odsyłającej lub 'direct'
+                };
             }
 
             return {
