@@ -4,10 +4,10 @@ import ReactGA from 'react-ga4';
 
 function TrackPageView() {
     const location = useLocation();
-    const startTime = useRef(Date.now());
     const prevLocation = useRef(location.pathname + location.search);
 
     useEffect(() => {
+        // Wysyłanie zdarzenia pageview przy każdej zmianie lokalizacji
         if (location.pathname + location.search !== prevLocation.current) {
             ReactGA.send({
                 hitType: 'pageview',
@@ -15,16 +15,6 @@ function TrackPageView() {
             });
             prevLocation.current = location.pathname + location.search;
         }
-
-        return () => {
-            const timeSpent = (Date.now() - startTime.current) / 1000;
-            ReactGA.event('time_on_page', {
-                category: 'Engagement',
-                action: 'Time spent on page',
-                label: location.pathname,
-                value: timeSpent
-            });
-        };
     }, [location]);
 
     return null;

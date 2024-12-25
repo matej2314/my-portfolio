@@ -34,6 +34,7 @@ const getAnalyticsData = async () => {
                     { name: 'totalUsers' },  // Całkowita liczba użytkowników
                     { name: 'averageSessionDuration' }, // Średni czas sesji
                     { name: 'userEngagementDuration' },
+                    { name: 'engaged_time_msec'} // czas zaangażowania użytkownika w milisekundach
                 ],
                 dimensions: [
                     { name: 'eventName' },    // Nazwa zdarzenia (np. pageview)
@@ -46,7 +47,7 @@ const getAnalyticsData = async () => {
                     filter: {
                         fieldName: 'eventName',
                         inListFilter: {
-                            values: ['pageview', 'submit', 'click', 'time_on_page'],  // Tylko wybrane zdarzenia
+                            values: ['pageview', 'submit', 'click', 'user_engagement'],  // Tylko wybrane zdarzenia
                         },
                     },
                 },
@@ -80,7 +81,6 @@ router.get('/analytics', async (req, res) => {
                     pagePath: row.dimensionValues[1]?.value,  // Ścieżka URL
                     eventCount: row.metricValues[0]?.value,   // Liczba odwiedzin
                     totalUsers: row.metricValues[1]?.value,   // Liczba użytkowników
-                    engagementTime: row.metricValues[2]?.value,
                 };
             } else if (eventName === 'submit') {
                 additionalData = {
@@ -93,6 +93,10 @@ router.get('/analytics', async (req, res) => {
                     eventCount: row.metricValues[0]?.value,   // Liczba kliknięć
                     totalUsers: row.metricValues[1]?.value,   // Liczba użytkowników
                 };
+            } else if (eventName === 'user_engagement') {
+                additionalData = {
+                    engagementTime: row.metricValues[5].value,
+                }
             }
 
             return {
