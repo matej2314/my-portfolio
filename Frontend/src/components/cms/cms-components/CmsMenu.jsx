@@ -33,7 +33,12 @@ export default function CmsMenu({ handleSelected, onClose }) {
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('projects')}>Projects</button></li>
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('services')}>Services</button></li>
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('skills')}>Skills</button></li>
-                <li className='hover:text-lime-600 bg-neutral-600/30 p-2 rounded-xl shadow-md active:shadow shadow-black/80 w-full flex'><button className='w-full h-full flex flex-row justify-center items-center' disabled={!isAuthenticated} onClick={() => handleSelected('about')}>About me</button></li>
+                <li className='hover:text-lime-600 bg-neutral-600/30 p-2 rounded-xl shadow-md active:shadow shadow-black/80 w-full flex'>
+                    <button className='w-full h-full flex flex-row justify-center items-center' disabled={!isAuthenticated} onClick={() => handleSelected('about')}
+                    >
+                        About me
+                    </button>
+                </li>
                 <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('interests')}>Interests</button></li>
             </ul>
             <div className={cmsComponents.cmsMenu.userDiv}>

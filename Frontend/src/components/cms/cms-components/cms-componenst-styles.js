@@ -69,7 +69,7 @@ export const cmsComponents = {
         span: "w-full flex justify-center items-center",
     },
     wrapper: {
-        wrapper: "w-fit h-fit flex flex-col justify-start items-center text-lg text-white gap-3 bg-neutral-600/30 pt-3 pb-6 px-5 rounded-md shadow-lg shadow-black/80 border-t-2 border-black",
+        wrapper: "w-fit h-fit flex flex-col justify-start items-center text-lg text-white gap-3 bg-zinc-500/60 pt-3 pb-6 px-5 rounded-md shadow-lg shadow-black/80 border-t-2 border-black",
     },
 
 }

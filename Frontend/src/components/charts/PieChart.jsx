@@ -24,8 +24,8 @@ const PieChart = ({ width, height, data, innerRadius = 0, outerRadius = Math.min
                             <text
                                 transform={`translate(${pie.path.centroid(arc)})`}
                                 textAnchor='middle'
-                                fill='white'
-                                fontSize={12}
+                                fill='#e1e1e3'
+                                fontSize={14}
                             >
                                 {arc.data.label}
                             </text>

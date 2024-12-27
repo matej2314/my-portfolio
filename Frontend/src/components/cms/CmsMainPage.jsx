@@ -98,8 +98,8 @@ export default function CmsMainPage() {
         .map(item => item.engagementRate)
         .reduce((acc, item) => acc + parseFloat(item), 0);
     const systems = isLoaded && analyticsData.map((item) => item.operatingSystem);
-    const systemCounts = dataCounter(systems);
-    const deviceCounts = dataCounter(devices);
+    const systemCounts = isLoaded && dataCounter(systems);
+    const deviceCounts = isLoaded && dataCounter(devices);
 
     const systemsPieChartData = preparePieChartData(Object.entries(systemCounts), getSystemColor);
     const devicesPieChartData = preparePieChartData(Object.entries(deviceCounts), getDeviceColor);
@@ -117,33 +117,41 @@ export default function CmsMainPage() {
                     </div>
                     <div className={cmsPages.mainPage.contentWrapper}>
                         {selectedButton ? selectedComponent() : (
-                            <div className="w-[99%] h-full flex flex-col justify-start items-start rounded-md gap-5 px-3 pt-1">
-                                <div id="text-values" className="w-full h-fit flex flex-row justify-between items-start rounded-md gap-5 px-3">
+                            <div className={cmsPages.mainPage.analyticsWrapper}>
+                                <div id="text-values" className={cmsPages.mainPage.text_values}>
                                     <DisplayData data={eventsCounter.first_visit} title={'Unique page views:'} isLoaded={isLoaded} />
                                     <DataList title={'Recent visited pages:'} array={paths} />
                                     <DisplayData data={eventsCounter.download_cv} title={'Number of CV downloads:'} isLoaded={isLoaded} />
-                                    <DisplayData data={displaytime} title={'Overall views time:'} isLoaded={isLoaded} />
+                                    <DisplayData title={'Overall views time:'} data={`${parseFloat(displaytime).toFixed(2)} minutes`} isLoaded={isLoaded} />
                                     <DataList title={'Top 10 users devices (types):'} array={devices} />
                                     <DataList title={'Top 10 users OSs:'} array={systems} />
                                 </div>
-                                <div id="charts" className="w-full h-fit flex flex-row justify-center pb-2">
-                                    <div className="w-full h-full flex flex-col justify-center items-center bg-slate-300 border-2 border-black gap-2 pb-3 rounded-md">
-                                        <h2 className="w-full h-fit flex justify-center bg-slate-400 py-1 rounded-t-md">Top 10 user's OSs - chart:</h2>
+                                <div id="charts" className={cmsPages.mainPage.charts}>
+                                    <div className={cmsPages.mainPage.chartWrapper}>
+                                        <h2
+                                            className={cmsPages.mainPage.chartDivH2}
+                                        >
+                                            Top 10 user's OSs - chart:
+                                        </h2>
                                         <PieChart
-                                            width={200}
-                                            height={200}
+                                            width={300}
+                                            height={300}
                                             data={systemsPieChartData}
-                                            innerRadius={50}
+                                            innerRadius={150}
                                             outerRadius={100}
                                         />
                                     </div>
-                                    <div className="w-full h-fit flex flex-col justify-center items-center bg-slate-300 border-2 border-black gap-2 pb-3 rounded-md">
-                                        <h2 className="w-full h-fit flex justify-center bg-slate-400 py-1 rounded-t-md">User's device type - chart:</h2>
+                                    <div className={cmsPages.mainPage.chartWrapper}>
+                                        <h2
+                                            className={cmsPages.mainPage.chartDivH2}
+                                        >
+                                            User's device type - chart:
+                                        </h2>
                                         <PieChart
-                                            width={200}
-                                            height={200}
+                                            width={300}
+                                            height={300}
                                             data={devicesPieChartData}
-                                            innerRadius={50}
+                                            innerRadius={145}
                                             outerRadius={100}
                                         />
                                     </div>
@@ -158,11 +166,12 @@ export default function CmsMainPage() {
                     <div className={cmsPages.mainPage.parWrapper}>
                         <div className={cmsPages.mainPage.paragraph}>
                             <p className={cmsPages.mainPage.titlePar}>msliwowski.net - admin panel</p>
-                            <p className={cmsPages.mainPage.linkPar}>Aby skorzystać z panelu,<Link to="/login_admin"
-                                className="text-lime-600 hover:text-white"
-                            >
-                                zaloguj się.
-                            </Link></p>
+                            <p className={cmsPages.mainPage.linkPar}>Aby skorzystać z panelu,
+                                <Link to="/login_admin"
+                                    className="text-lime-600 hover:text-white"
+                                >
+                                    zaloguj się.
+                                </Link></p>
                         </div>
                     </div>
                 </main>

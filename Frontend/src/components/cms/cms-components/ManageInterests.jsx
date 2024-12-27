@@ -41,7 +41,7 @@ export default function ManageInterests() {
             <h2
                 className={cmsComponents.h2.h2}
             >
-                Interests in DB:
+                Interests:
             </h2>
             <h3 className="text-sm">( to go back, press "Manage" button )</h3>
             <button
