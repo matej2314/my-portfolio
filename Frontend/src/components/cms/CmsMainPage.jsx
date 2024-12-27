@@ -132,34 +132,38 @@ export default function CmsMainPage() {
                                     )}
                                 </div>
                                 <div id="charts" className={cmsPages.mainPage.charts}>
-                                    <div className={cmsPages.mainPage.chartWrapper}>
-                                        <h2
-                                            className={cmsPages.mainPage.chartDivH2}
-                                        >
-                                            Top 10 user's OSs - chart:
-                                        </h2>
-                                        <PieChart
-                                            width={300}
-                                            height={300}
-                                            data={systemsPieChartData}
-                                            innerRadius={150}
-                                            outerRadius={100}
-                                        />
-                                    </div>
-                                    <div className={cmsPages.mainPage.chartWrapper}>
-                                        <h2
-                                            className={cmsPages.mainPage.chartDivH2}
-                                        >
-                                            User's device type - chart:
-                                        </h2>
-                                        <PieChart
-                                            width={300}
-                                            height={300}
-                                            data={devicesPieChartData}
-                                            innerRadius={145}
-                                            outerRadius={100}
-                                        />
-                                    </div>
+                                    {isLoaded && (
+                                        <>
+                                            <div className={cmsPages.mainPage.chartWrapper}>
+                                                <h2
+                                                    className={cmsPages.mainPage.chartDivH2}
+                                                >
+                                                    Top 10 user's OSs - chart:
+                                                </h2>
+                                                <PieChart
+                                                    width={300}
+                                                    height={300}
+                                                    data={systemsPieChartData}
+                                                    innerRadius={150}
+                                                    outerRadius={100}
+                                                />
+                                            </div>
+                                            <div className={cmsPages.mainPage.chartWrapper}>
+                                                <h2
+                                                    className={cmsPages.mainPage.chartDivH2}
+                                                >
+                                                    User's device type - chart:
+                                                </h2>
+                                                <PieChart
+                                                    width={300}
+                                                    height={300}
+                                                    data={devicesPieChartData}
+                                                    innerRadius={145}
+                                                    outerRadius={100}
+                                                />
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         )}
