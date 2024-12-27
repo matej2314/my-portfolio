@@ -119,12 +119,17 @@ export default function CmsMainPage() {
                         {selectedButton ? selectedComponent() : (
                             <div className={cmsPages.mainPage.analyticsWrapper}>
                                 <div id="text-values" className={cmsPages.mainPage.text_values}>
-                                    <DisplayData data={eventsCounter.first_visit} title={'Unique page views:'} isLoaded={isLoaded} />
-                                    <DataList title={'Recent visited pages:'} array={paths} />
-                                    <DisplayData data={eventsCounter.download_cv} title={'Number of CV downloads:'} isLoaded={isLoaded} />
-                                    <DisplayData title={'Overall views time:'} data={`${parseFloat(displaytime).toFixed(2)} minutes`} isLoaded={isLoaded} />
-                                    <DataList title={'Top 10 users devices (types):'} array={devices} />
-                                    <DataList title={'Top 10 users OSs:'} array={systems} />
+                                    {isLoaded && (
+                                        <>
+                                            <DisplayData data={eventsCounter.first_visit} title={'Unique page views:'} isLoaded={isLoaded} />
+                                            <DataList title={'Recent visited pages:'} array={paths} />
+                                            <DisplayData data={eventsCounter.download_cv} title={'Number of CV downloads:'} isLoaded={isLoaded} />
+                                            <DisplayData title={'Overall views time:'} data={`${parseFloat(displaytime).toFixed(2)} minutes`} isLoaded={isLoaded} />
+                                            <DataList title={'Top 10 users devices (types):'} array={devices} />
+                                            <DataList title={'Top 10 users OSs:'} array={systems} />
+                                        </>
+
+                                    )}
                                 </div>
                                 <div id="charts" className={cmsPages.mainPage.charts}>
                                     <div className={cmsPages.mainPage.chartWrapper}>
