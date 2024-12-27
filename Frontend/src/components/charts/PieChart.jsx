@@ -35,4 +35,6 @@ const PieChart = ({ width, height, data, innerRadius = 0, outerRadius = Math.min
             </g>
         </svg>
     )
-}
+};
+
+export default PieChart;

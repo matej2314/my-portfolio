@@ -12,6 +12,11 @@ import ManageServices from './cms-components/ManageServices';
 import ManageSkills from './cms-components/ManageSkills';
 import ManageInterests from "./cms-components/ManageInterests";
 import ManageAbout from './cms-components/ManageAbout';
+import { getSystemColor, getDeviceColor, preparePieChartData } from "../../utils/charts/PieChart";
+import { dataCounter } from "../../utils/analyticsDataCounter";
+import PieChart from '../charts/PieChart';
+import DataList from './cms-components/analytics-data/DataList';
+import DisplayData from "./cms-components/analytics-data/DisplayData";
 
 export default function CmsMainPage() {
     const [selectedButton, setSelectedButton] = useState(null);
@@ -86,25 +91,67 @@ export default function CmsMainPage() {
         getAnalyticsData();
     }, []);
 
-    isLoaded ? console.log('AnalyticsData:', analyticsData) : null;
-    isLoaded ? console.log('eventsCounter:', eventsCounter) : null;
+
+    const paths = isLoaded && analyticsData.filter((item) => item.pagePath !== undefined).map(item => item.pagePath);
+    const devices = isLoaded && analyticsData.map((item) => item.deviceCategory);
+    const displaytime = isLoaded && analyticsData.filter((item) => item.engagementRate !== undefined)
+        .map(item => item.engagementRate)
+        .reduce((acc, item) => acc + parseFloat(item), 0);
+    const systems = isLoaded && analyticsData.map((item) => item.operatingSystem);
+    const systemCounts = dataCounter(systems);
+    const deviceCounts = dataCounter(devices);
+
+    const systemsPieChartData = preparePieChartData(Object.entries(systemCounts), getSystemColor);
+    const devicesPieChartData = preparePieChartData(Object.entries(deviceCounts), getDeviceColor);
+
+    isLoaded && console.log(analyticsData);
+    isLoaded && console.log(eventsCounter);
+
 
     return (
         <>
             {isAuthenticated ? (
                 <main className={cmsPages.mainPage.main}>
-                    <CmsMenu handleSelected={handleSelected} onClose={handleCloseComponents} />
+                    <div className="w-full h-fit flex justify-center">
+                        <CmsMenu handleSelected={handleSelected} onClose={handleCloseComponents} />
+                    </div>
                     <div className={cmsPages.mainPage.contentWrapper}>
                         {selectedButton ? selectedComponent() : (
-                            <div className={cmsPages.mainPage.parWrapper}>
-                                <div className={cmsPages.mainPage.paragraph}>
-                                    <p className={cmsPages.mainPage.titlePar}>msliwowski.net - admin panel</p>
-                                    <p className="text-2xl">Please, select the category.</p>
+                            <div className="w-[99%] h-full flex flex-col justify-start items-start rounded-md gap-5 px-3 pt-1">
+                                <div id="text-values" className="w-full h-fit flex flex-row justify-between items-start rounded-md gap-5 px-3">
+                                    <DisplayData data={eventsCounter.first_visit} title={'Unique page views:'} isLoaded={isLoaded} />
+                                    <DataList title={'Recent visited pages:'} array={paths} />
+                                    <DisplayData data={eventsCounter.download_cv} title={'Number of CV downloads:'} isLoaded={isLoaded} />
+                                    <DisplayData data={displaytime} title={'Overall views time:'} isLoaded={isLoaded} />
+                                    <DataList title={'Top 10 users devices (types):'} array={devices} />
+                                    <DataList title={'Top 10 users OSs:'} array={systems} />
+                                </div>
+                                <div id="charts" className="w-full h-fit flex flex-row justify-center pb-2">
+                                    <div className="w-full h-full flex flex-col justify-center items-center bg-slate-300 border-2 border-black gap-2 pb-3 rounded-md">
+                                        <h2 className="w-full h-fit flex justify-center bg-slate-400 py-1 rounded-t-md">Top 10 user's OSs - chart:</h2>
+                                        <PieChart
+                                            width={200}
+                                            height={200}
+                                            data={systemsPieChartData}
+                                            innerRadius={50}
+                                            outerRadius={100}
+                                        />
+                                    </div>
+                                    <div className="w-full h-fit flex flex-col justify-center items-center bg-slate-300 border-2 border-black gap-2 pb-3 rounded-md">
+                                        <h2 className="w-full h-fit flex justify-center bg-slate-400 py-1 rounded-t-md">User's device type - chart:</h2>
+                                        <PieChart
+                                            width={200}
+                                            height={200}
+                                            data={devicesPieChartData}
+                                            innerRadius={50}
+                                            outerRadius={100}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         )}
                     </div>
-                </main>
+                </main >
             ) : (
                 <main className={cmsPages.mainPage.main}>
                     <CmsMenu handleSelected={handleSelected} onClose={handleCloseComponents} />
@@ -119,7 +166,8 @@ export default function CmsMainPage() {
                         </div>
                     </div>
                 </main>
-            )}
+            )
+            }
         </>
     );
 }
