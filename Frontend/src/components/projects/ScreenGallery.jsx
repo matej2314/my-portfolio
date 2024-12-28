@@ -57,21 +57,14 @@ export default function ScreenGallery({ id }) {
     };
 
     const handleDragEnd = (event, info) => {
-        const dragThreshold = 100; // Próg przesunięcia
+        const dragThreshold = 50; // Próg przesunięcia
         const transitionDuration = 0.5; // Czas trwania animacji w sekundach
 
         if (info.offset.x > dragThreshold) {
-            // Przesunięcie w prawo
-            setCurrentIndex((prevIndex) => {
-                return (prevIndex - 1 + mappedPhotos.length) % mappedPhotos.length;
-            });
+            nextPhoto();
         } else if (info.offset.x < -dragThreshold) {
-            // Przesunięcie w lewo
-            setCurrentIndex((prevIndex) => {
-                return (prevIndex + 1) % mappedPhotos.length;
-            });
+            prevPhoto();
         }
-
         // Przywrócenie zdjęcia do środka, jeśli próg nie został przekroczony
         setTimeout(() => {
             // Możesz dodać animację powrotu
