@@ -57,17 +57,32 @@ export default function ScreenGallery({ id }) {
     };
 
     const handleDragEnd = (event, info) => {
-        if (info.offset.x > 100) {
-            nextPhoto();
-        } else if (info.offset.x < -100) {
-            prevPhoto();
+        const dragThreshold = 100; // Próg przesunięcia
+        const transitionDuration = 0.5; // Czas trwania animacji w sekundach
+
+        if (info.offset.x > dragThreshold) {
+            // Przesunięcie w prawo
+            setCurrentIndex((prevIndex) => {
+                return (prevIndex - 1 + mappedPhotos.length) % mappedPhotos.length;
+            });
+        } else if (info.offset.x < -dragThreshold) {
+            // Przesunięcie w lewo
+            setCurrentIndex((prevIndex) => {
+                return (prevIndex + 1) % mappedPhotos.length;
+            });
         }
+
+        // Przywrócenie zdjęcia do środka, jeśli próg nie został przekroczony
+        setTimeout(() => {
+            // Możesz dodać animację powrotu
+        }, transitionDuration * 1000);
     };
+
 
     const currentPhoto = mappedPhotos[currentIndex];
 
     return (
-        <div className="relative w-full md:max-w-[700px] md:max-h-[30rem] bg-black flex flex-col pt-2 px-5 justify-center items-center rounded-md overflow-hidden">
+        <div className="relative w- md:max-w-[700px] md:max-h-[30rem] bg-black flex flex-col pt-2 px-5 justify-center items-center rounded-md overflow-hidden">
             <AnimatePresence mode="popLayout">
                 <motion.div
                     className="relative w-full md:w-[700px] h-[30rem] flex justify-center items-center overflow-hidden aspect-auto"
@@ -89,6 +104,7 @@ export default function ScreenGallery({ id }) {
                         key={currentIndex}
                         drag="x"
                         dragConstraints={{ left: -200, right: 200 }}
+                        dragElastic={0.2}
                         onDragEnd={handleDragEnd}
                         src={currentPhoto.src}
                         srcSet={currentPhoto.srcSet}
@@ -98,7 +114,7 @@ export default function ScreenGallery({ id }) {
                     />
                 </motion.div>
             </AnimatePresence>
-            <div className="absolute top-1/2 w-full flex flex-row justify-between -translate-y-1/2">
+            <div className="absolute top-1/2 w-11/12 md:w-full flex flex-row justify-between -translate-y-1/2">
                 <motion.button
                     onClick={prevPhoto}
                     className={projectsClasses.screenGallery.button}
