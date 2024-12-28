@@ -67,7 +67,7 @@ export default function ScreenGallery({ id }) {
     const currentPhoto = mappedPhotos[currentIndex];
 
     return (
-        <div className="relative w-11/12 md:max-w-[700px] md:max-h-[30rem] bg-black flex flex-col pt-2 px-5 justify-center items-center rounded-md overflow-hidden">
+        <div className="relative w-full md:max-w-[700px] md:max-h-[30rem] bg-black flex flex-col pt-2 px-5 justify-center items-center rounded-md overflow-hidden">
             <AnimatePresence mode="popLayout">
                 <motion.div
                     className="relative w-full md:w-[700px] h-[30rem] flex justify-center items-center overflow-hidden aspect-auto"
