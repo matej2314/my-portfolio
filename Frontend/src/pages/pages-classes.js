@@ -30,8 +30,8 @@ export const pagesClasses = {
         repoLink: " w-fit h-fit text-2xl underline underline-offset-1 text-[#b8c785] hover:text-[#5e6e29] flex justify-center items-center gap-3"
     },
     projectsPage: {
-        wrapper: 'w-full h-dvh flex flex-col items-center py-5 gap-2 overflow-scroll no-scrollbar px-6',
-        contentWrapper: 'w-dvw h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 pl-4 overflow-scroll no-scrollbar gap-2 pt-2',
+        wrapper: 'w-screen h-dvh flex flex-col items-center py-5 gap-2 overflow-scroll no-scrollbar px-6',
+        contentWrapper: 'w-screen h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 pl-4 overflow-scroll no-scrollbar gap-2 pt-2',
     },
     notFound: {
         wrapper: 'w-90dvw h-dvh flex flex-col items-center justify-between ml-5 md:ml-0 md:flex-row md:justify-between',

@@ -1,12 +1,12 @@
 export const projectsClasses = {
     projects: {
         wrapper: "w-full h-full flex flex-col justify-start  md:overflow-scroll md:no-scrollbar z-0",
-        ul: "relative w-full h-full md:h-full gap-4 md:gap-8 flex flex-col justify-between xl:grid xl:grid-cols-2 xl:gap-x-5 xl:gap-y-12 pl-2 overflow-scroll no-scrollbar z-0",
+        ul: "relative w-full h-full md:h-full gap-4 md:gap-8 flex flex-col justify-between xl:grid xl:grid-cols-2 xl:gap-x-5 xl:gap-y-12 pl-2 overflow-scroll no-scrollbar z-0 mx-auto",
     },
     project: {
-        li: "w-[90%] md:w-[95%] max-h-72 md:h-80 relative perspective-1000 mx-auto",
+        li: "w-[85%] md:w-[95%] max-h-72 md:h-80 relative perspective-1000 mx-auto",
         projectImage: "w-full max-h-72 md:max-h-80 object-cover rounded-md",
-        cardWrapper: 'relative w-full h-72 md:h-80 transition-transform duration-700 ease-in-out transform-preserve-3d',
+        cardWrapper: 'relative w-full h-72 md:h-80 transition-transform duration-700 ease-in-out transform-preserve-3d mx-auto',
         frontCard: "absolute w-full h-72 md:h-80", 
         contentWrapper: "absolute w-full h-full md:w-full md:h-full bg-black/70 text-white flex flex-col justify-center items-center backface-hidden rotate-y-180",
         h3: "text-sm md:text-lg underline underline-offset-1 -translate-y-1/2 ",
