@@ -31,7 +31,7 @@ export const pagesClasses = {
     },
     projectsPage: {
         wrapper: 'w-screen h-dvh flex flex-col items-center py-5 gap-2 overflow-scroll no-scrollbar px-6',
-        contentWrapper: 'w-screen h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 pl-4 overflow-scroll no-scrollbar gap-2 pt-2',
+        contentWrapper: 'w-screen h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 overflow-scroll no-scrollbar gap-2 pt-2',
     },
     notFound: {
         wrapper: 'w-90dvw h-dvh flex flex-col items-center justify-between ml-5 md:ml-0 md:flex-row md:justify-between',

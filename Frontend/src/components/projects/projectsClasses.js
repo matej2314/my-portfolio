@@ -1,7 +1,7 @@
 export const projectsClasses = {
     projects: {
         wrapper: "w-full h-full flex flex-col justify-start  md:overflow-scroll md:no-scrollbar z-0",
-        ul: "relative w-full h-full md:h-full gap-4 md:gap-8 flex flex-col justify-between xl:grid xl:grid-cols-2 xl:gap-x-5 xl:gap-y-12 pl-2 overflow-scroll no-scrollbar z-0 mx-auto",
+        ul: "relative w-full h-full md:h-full gap-4 md:gap-8 flex flex-col justify-between xl:grid xl:grid-cols-2 xl:gap-x-5 xl:gap-y-12 overflow-scroll no-scrollbar z-0 mx-auto",
     },
     project: {
         li: "w-[85%] md:w-[95%] max-h-72 md:h-80 relative perspective-1000 mx-auto",
