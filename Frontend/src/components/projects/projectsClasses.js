@@ -1,6 +1,6 @@
 export const projectsClasses = {
     projects: {
-        wrapper: "w-[98%] h-full flex flex-col justify-start overflow-scroll overflow-x-hidden md:overflow-scroll md:no-scrollbar z-0",
+        wrapper: "w-full h-full flex flex-col justify-start  md:overflow-scroll md:no-scrollbar z-0",
         ul: "relative w-full h-full md:h-full gap-4 md:gap-8 flex flex-col justify-between xl:grid xl:grid-cols-2 xl:gap-x-5 xl:gap-y-12 pl-2 overflow-scroll no-scrollbar z-0",
     },
     project: {

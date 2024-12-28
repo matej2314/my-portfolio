@@ -18,8 +18,8 @@ export const pagesClasses = {
     },
     projectsDetailsPage: {
         wrapper: "w-full h-dvh bg-black overflow-hidden flex flex-col justify-center items-center flex-nowrap pt-5 md:w-dvw md:h-dvh md:overflow-hidden md:flex md:flex-row md:items-center md:justify-around md:py-5",
-        detailsWrapper: "w-full h-full md:h-content flex flex-col pt-3 justify-between items-center mx-auto bg-neutral-600/30 text-slate-200 overflow-scroll no-scrollbar mr-5",
-        div: "w-11/12 h-full flex flex-col items-center px-2 pb-5 overflow-scroll no-scrollbar gap-4",
+        detailsWrapper: "w-full h-full md:h-content flex flex-col pt-3 justify-between items-center mx-auto bg-neutral-600/30 text-slate-200 overflow-scroll no-scrollbar mx-auto",
+        div: "w-full h-full flex flex-col items-center px-2 pb-5 overflow-scroll no-scrollbar gap-4",
         projectTitle: "w-full flex flex-row justify-center text-3xl font-bold",
         screenshot: "w-full h-full flex flex-row justify-center border-8 border-slate-200 rounded-sm max-w-[45rem]",
         subtitle: "text-2xl font-bold text-[#b8c785]",
@@ -30,8 +30,8 @@ export const pagesClasses = {
         repoLink: " w-fit h-fit text-2xl underline underline-offset-1 text-[#b8c785] hover:text-[#5e6e29] flex justify-center items-center gap-3"
     },
     projectsPage: {
-        wrapper: 'w-full h-dvh flex flex-col items-center py-5 gap-2 overflow-scroll no-scrollbar px-4',
-        contentWrapper: 'w-full h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 pl-4 overflow-scroll no-scrollbar gap-2',
+        wrapper: 'w-full h-dvh flex flex-col items-center py-5 gap-2 overflow-scroll no-scrollbar px-6',
+        contentWrapper: 'w-dvw h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 pl-4 overflow-scroll no-scrollbar gap-2 pt-2',
     },
     notFound: {
         wrapper: 'w-90dvw h-dvh flex flex-col items-center justify-between ml-5 md:ml-0 md:flex-row md:justify-between',

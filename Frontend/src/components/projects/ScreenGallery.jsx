@@ -104,7 +104,6 @@ export default function ScreenGallery({ id }) {
                         key={currentIndex}
                         drag="x"
                         dragConstraints={{ left: -200, right: 200 }}
-                        dragElastic={0.2}
                         onDragEnd={handleDragEnd}
                         src={currentPhoto.src}
                         srcSet={currentPhoto.srcSet}
