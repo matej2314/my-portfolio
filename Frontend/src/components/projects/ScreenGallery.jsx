@@ -4,15 +4,15 @@ import useSendRequest from '../../hooks/useSendRequest';
 import { galleryUrl, imgUrl } from "../../url";
 import { projectsClasses } from "./projectsClasses";
 import { useMediaQuery } from 'react-responsive';
-import { getImageForScreen } from "../../utils/getImageForScreen";
+import { mapPhotos } from '../../utils/mapPhotos';
 
 
 export default function ScreenGallery({ id }) {
     const { sendRequest, result, isLoading, error } = useSendRequest();
     const [currentIndex, setCurrentIndex] = useState(0);
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
-    const isTablet = useMediaQuery({ query: '(min-width: 769px) and (max-width: 1024px)' });
-    const isDesktop = useMediaQuery({ query: '(min-width: 1025px)' });
+    const isMobile = useMediaQuery({ maxWidth: 640 });
+    const isTablet = useMediaQuery({ minWidth: 641, maxWidth: 1024 });
+    const isDesktop = useMediaQuery({ minWidth: 1025 });
 
     useEffect(() => {
         const fetchScreens = async () => {
@@ -33,7 +33,6 @@ export default function ScreenGallery({ id }) {
         fetchScreens();
     }, [id]);
 
-
     if (error) {
         return <div>Wystąpił błąd: {error}</div>;
     } else if (!result || !result.photos || result.photos.length === 0) {
@@ -41,55 +40,34 @@ export default function ScreenGallery({ id }) {
     }
 
     const photos = result.photos;
-
-    const filteredPhotos = photos.filter((photo) => {
-        const adjustedImage = getImageForScreen(photo, isMobile, isTablet, isDesktop);
-        return adjustedImage === photo;
-    });
-
-    if (filteredPhotos.length === 0) {
-        return <p>Brak odpowiednich zdjęć do wyświetlenia dla tej rozdzielczości.</p>;
-    }
+    const mappedPhotos = mapPhotos(photos, id, isMobile, isTablet, isDesktop);
 
     const nextPhoto = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredPhotos.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % mappedPhotos.length);
     };
 
     const prevPhoto = () => {
-        setCurrentIndex((prevIndex) => prevIndex === 0 ? filteredPhotos.length - 1 : prevIndex - 1
+        setCurrentIndex((prevIndex) =>
+            prevIndex === 0 ? mappedPhotos.length - 1 : prevIndex - 1
         );
     };
-
-    const currentPhoto = filteredPhotos[currentIndex];
 
     const handleDotClick = (index) => {
         setCurrentIndex(index);
     };
 
-    const handleSwipeLeft = () => {
-        nextPhoto();
-    };
-
-    const handleSwipeRight = () => {
-        prevPhoto();
-    };
-
     const handleDragEnd = (event, info) => {
-        if (isMobile) {
-            if (info.offset.x > 100) {
-                handleSwipeRight();
-            } else if (info.offset.x < -100) {
-                handleSwipeLeft();
-            };
+        if (info.offset.x > 100) {
+            nextPhoto();
+        } else if (info.offset.x < -100) {
+            prevPhoto();
         }
     };
 
-    const imageUrl = `${imgUrl}/${id}/gallery/${getImageForScreen(currentPhoto, isMobile, isTablet, isDesktop)}`;
+    const currentPhoto = mappedPhotos[currentIndex];
 
     return (
-        <div
-            className="relative w-11/12 md:max-w-[700px] md:max-h-[30rem] bg-black flex flex-col pt-2 px-5 justify-center items-center rounded-md overflow-hidden"
-        >
+        <div className="relative w-11/12 md:max-w-[700px] md:max-h-[30rem] bg-black flex flex-col pt-2 px-5 justify-center items-center rounded-md overflow-hidden">
             <AnimatePresence mode="popLayout">
                 <motion.div
                     className="relative w-full md:w-[700px] h-[30rem] flex justify-center items-center overflow-hidden aspect-auto"
@@ -104,7 +82,7 @@ export default function ScreenGallery({ id }) {
                         damping: 30,
                         delay: 0.5,
                         ease: "easeIn",
-                        mode: "wait"
+                        mode: "wait",
                     }}
                 >
                     <motion.img
@@ -112,43 +90,30 @@ export default function ScreenGallery({ id }) {
                         drag="x"
                         dragConstraints={{ left: -200, right: 200 }}
                         onDragEnd={handleDragEnd}
-                        initial={{ opacity: 1, x: -100 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 100, transition: { delay: 0.2 } }}
-                        transition={{
-                            duration: 0.2,
-                            type: "spring",
-                            stiffness: 150,
-                            damping: 35,
-                            delay: 0.3,
-                            ease: "easeIn",
-                            mode: "wait"
-                        }}
+                        src={currentPhoto.src}
+                        srcSet={currentPhoto.srcSet}
+                        sizes="(max-width: 640px) 320px, (max-width: 1024px) 640px, 960px"
                         className="w-full h-full object-fill"
-                        src={imageUrl}
                         alt={`Gallery image ${currentIndex + 1}`}
                     />
                 </motion.div>
             </AnimatePresence>
             <div className="absolute top-1/2 w-full flex flex-row justify-between -translate-y-1/2">
                 <motion.button
-                    onClick={() => currentIndex > 0 && prevPhoto()}
-                    onTouchStart={() => currentIndex > 0 && prevPhoto()}
+                    onClick={prevPhoto}
                     className={projectsClasses.screenGallery.button}
                 >
                     &#10094;
                 </motion.button>
                 <motion.button
-                    onClick={() => nextPhoto()}
-                    onTouchStart={() => nextPhoto()}
+                    onClick={nextPhoto}
                     className={projectsClasses.screenGallery.button}
                 >
                     &#10095;
                 </motion.button>
             </div>
-
             <div className="flex flex-row justify-center mt-3">
-                {filteredPhotos.map((_, index) => (
+                {mappedPhotos.map((_, index) => (
                     <span
                         key={index}
                         onClick={() => handleDotClick(index)}
@@ -159,3 +124,6 @@ export default function ScreenGallery({ id }) {
         </div>
     );
 }
+
+
+
