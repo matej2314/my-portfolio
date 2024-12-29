@@ -131,38 +131,38 @@ export default function CmsMainPage() {
 
                                     )}
                                 </div>
-                                <div id="barChart" className="w-full h-full flex flex-col justify-center items-center rounded-md px-3 bg-zinc-500/60 pt-2">
-                                    <h2 className={cmsPages.mainPage.chartDivH2}>Recent unique visits:</h2>
-                                    {isLoaded && <BarChart width={600} height={400} data={visitsLineGraphData} />}
+                                <div id="barChart" className="w-full h-full flex flex-col justify-center items-center rounded-md bg-zinc-500/60 py-2">
+                                    <h2 className={`${cmsPages.mainPage.chartDivH2} text-xl`}>Recent unique visits:</h2>
+                                    {isLoaded && <BarChart width={650} height={400} data={visitsLineGraphData} />}
                                 </div>
                                 <div id="charts" className={cmsPages.mainPage.charts}>
                                     {isLoaded && (
                                         <>
                                             <div className={cmsPages.mainPage.chartWrapper}>
                                                 <h2
-                                                    className={cmsPages.mainPage.chartDivH2}
+                                                    className={`${cmsPages.mainPage.chartDivH2} text-xl`}
                                                 >
                                                     Top 10 user's OSs - chart:
                                                 </h2>
                                                 <PieChart
-                                                    width={400}
-                                                    height={400}
+                                                    width={460}
+                                                    height={460}
                                                     data={systemsPieChartData}
-                                                    innerRadius={200}
+                                                    innerRadius={230}
                                                     outerRadius={150}
                                                 />
                                             </div>
                                             <div className={cmsPages.mainPage.chartWrapper}>
                                                 <h2
-                                                    className={cmsPages.mainPage.chartDivH2}
+                                                    className={`${cmsPages.mainPage.chartDivH2} text-xl`}
                                                 >
                                                     User's device type - chart:
                                                 </h2>
                                                 <PieChart
-                                                    width={400}
-                                                    height={400}
+                                                    width={460}
+                                                    height={460}
                                                     data={devicesPieChartData}
-                                                    innerRadius={200}
+                                                    innerRadius={230}
                                                     outerRadius={150}
                                                 />
                                             </div>
