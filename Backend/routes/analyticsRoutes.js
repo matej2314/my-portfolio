@@ -43,6 +43,7 @@ const getAnalyticsData = async () => {
                     { name: 'pageReferrer' },
                     {name: 'date'}
                 ],
+                // limit: 30,
             },
             auth: jwtClient,
         });

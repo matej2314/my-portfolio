@@ -24,7 +24,7 @@ export default function WorkSection() {
           className={sectionsClasses.greybox.greybox}
         >
           <h3 className={sectionsClasses.h3.h3}><span className={sectionsClasses.service.span}>#</span>SEO Copywriter</h3>
-          <p className={sectionsClasses.service.paragraph}>I worked as an SEO Copywriter and Junior SEO Specialist. My responsibilities included creating SEO-friendly content, on-site and off-site optimization, and initial preparation of online campaigns.</p>
+          <p className="w-full h-full flex justify-center items-center mt-2 leading-relaxed text-justify">I worked as an SEO Copywriter and Junior SEO Specialist. My responsibilities included creating SEO-friendly content, on-site and off-site optimization, and initial preparation of online campaigns.</p>
         </motion.div>
       </div>
     </motion.div>

@@ -26,7 +26,7 @@ export const compClasses = {
         mainContainer: 'bg-transparent z-0 w-full h-full mr-5 flex flex-col items-center rounded-md text-gray-300 z-0 gap-3',
     },
     mainRightContainer: {
-        mainContainer: 'bg-neutral-600/30 text-gray-300 w-full h-full rounded-md overflow-scroll no-scrollbar',
+        mainContainer: 'w-full h-full bg-neutral-600/30 text-gray-300 w-full h-full rounded-md overflow-scroll no-scrollbar',
     },
     menu: {
         menu: "w-[84%] h-[102%] bg-neutral-600/30 flex flex-col justify-around items-center rounded-lg",

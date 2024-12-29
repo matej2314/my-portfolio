@@ -4,7 +4,7 @@ export const projectsClasses = {
         ul: "relative w-full h-full md:h-full gap-4 md:gap-8 flex flex-col justify-between xl:grid xl:grid-cols-2 xl:gap-x-5 xl:gap-y-12 overflow-scroll no-scrollbar z-0 mx-auto",
     },
     project: {
-        li: "w-[85%] md:w-[95%] max-h-72 md:h-80 relative perspective-1000 mx-auto",
+        li: "w-[80%] md:w-[95%] max-h-72 md:h-80 relative perspective-1000 mx-auto",
         projectImage: "w-full max-h-72 md:max-h-80 object-cover rounded-md",
         cardWrapper: 'relative w-full h-72 md:h-80 transition-transform duration-700 ease-in-out transform-preserve-3d mx-auto',
         frontCard: "absolute w-full h-72 md:h-80", 

@@ -15,6 +15,8 @@ import ManageAbout from './cms-components/ManageAbout';
 import { getSystemColor, getDeviceColor, preparePieChartData } from "../../utils/charts/PieChart";
 import { dataCounter } from "../../utils/analyticsDataCounter";
 import PieChart from '../charts/PieChart';
+import BarChart from '../charts/BarChart';
+import { formatDataToBar } from "../../utils/charts/lineGraph";
 import DataList from './cms-components/analytics-data/DataList';
 import DisplayData from "./cms-components/analytics-data/DisplayData";
 
@@ -100,12 +102,10 @@ export default function CmsMainPage() {
     const systems = isLoaded && analyticsData.map((item) => item.operatingSystem);
     const systemCounts = isLoaded && dataCounter(systems);
     const deviceCounts = isLoaded && dataCounter(devices);
-
+    const firstVisit = isLoaded && analyticsData.filter(item => item.eventName == 'first_visit');
     const systemsPieChartData = preparePieChartData(Object.entries(systemCounts), getSystemColor);
     const devicesPieChartData = preparePieChartData(Object.entries(deviceCounts), getDeviceColor);
-
-    isLoaded && console.log(analyticsData);
-    isLoaded && console.log(eventsCounter);
+    const visitsLineGraphData = isLoaded && formatDataToBar(firstVisit);
 
 
     return (
@@ -131,6 +131,10 @@ export default function CmsMainPage() {
 
                                     )}
                                 </div>
+                                <div id="barChart" className="w-full h-full flex flex-col justify-center items-center rounded-md px-3 bg-zinc-500/60 pt-2">
+                                    <h2 className={cmsPages.mainPage.chartDivH2}>Recent unique visits:</h2>
+                                    {isLoaded && <BarChart width={600} height={400} data={visitsLineGraphData} />}
+                                </div>
                                 <div id="charts" className={cmsPages.mainPage.charts}>
                                     {isLoaded && (
                                         <>
@@ -141,11 +145,11 @@ export default function CmsMainPage() {
                                                     Top 10 user's OSs - chart:
                                                 </h2>
                                                 <PieChart
-                                                    width={300}
-                                                    height={300}
+                                                    width={400}
+                                                    height={400}
                                                     data={systemsPieChartData}
-                                                    innerRadius={150}
-                                                    outerRadius={100}
+                                                    innerRadius={200}
+                                                    outerRadius={150}
                                                 />
                                             </div>
                                             <div className={cmsPages.mainPage.chartWrapper}>
@@ -155,11 +159,11 @@ export default function CmsMainPage() {
                                                     User's device type - chart:
                                                 </h2>
                                                 <PieChart
-                                                    width={300}
-                                                    height={300}
+                                                    width={400}
+                                                    height={400}
                                                     data={devicesPieChartData}
-                                                    innerRadius={145}
-                                                    outerRadius={100}
+                                                    innerRadius={200}
+                                                    outerRadius={150}
                                                 />
                                             </div>
                                         </>
