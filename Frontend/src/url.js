@@ -33,6 +33,7 @@ export const requestUrl = {
 		delete: `${serverUrl}/projects/delete`,
 		put: `${serverUrl}/projects/update`,
 		photos: `${serverUrl}/projects/photos`,
+		get: `${serverUrl}/projects/collection`,
 	},
 	services: {
 		new: `${serverUrl}/services/new`,

@@ -3,36 +3,13 @@ import { useMediaQuery } from 'react-responsive';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TrackPageView from './hooks/TrackPageView';
-import ReactGA from 'react-ga4';
-
-import MainPage from './pages/MainPage';
-import Contact from './pages/Contact';
-import PortfolioPage from './pages/PortfolioPage';
-import BlogPage from './pages/BlogPage';
-import ProjectsPage from './pages/ProjectsPage';
-import ProjectDetails from './pages/ProjectDetailsPage';
-import PostReadMore from './pages/PostReadMore';
-import NotFound from './pages/NotFound';
-import CmsIndexPage from './components/cms/CmsIndexPage';
-import CmsMainPage from './components/cms/CmsMainPage';
-import { AuthProvider } from './store/auth-context';
+import routes from './routerConfig';
 
 function App() {
 
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
-  const router = createBrowserRouter([
-    { path: '/', element: isMobile ? <PortfolioPage /> : <MainPage /> },
-    { path: 'portfolio', element: <PortfolioPage /> },
-    { path: 'blog', element: <BlogPage /> },
-    { path: 'contact', element: <Contact /> },
-    { path: 'projects', element: <ProjectsPage /> },
-    { path: '/project/details/:id', element: <ProjectDetails /> },
-    { path: '/post/more/:id', element: <PostReadMore /> },
-    { path: 'login_admin', element: <AuthProvider><CmsIndexPage /></AuthProvider> },
-    { path: '/cms', element: <AuthProvider><CmsMainPage /></AuthProvider> },
-    { path: '*', element: <NotFound /> }
-  ], {
+  const router = createBrowserRouter(routes(isMobile), {
     future: {
       v7_startTransition: true,
       v7_relativeSplatPath: true,

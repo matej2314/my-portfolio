@@ -65,11 +65,6 @@ export default function CmsMainPage() {
                     method: 'GET',
                 });
 
-                if (!response) {
-                    console.log('Brak danych z Google');
-                    return;
-                }
-
                 if (Array.isArray(response)) {
                     setAnalyticsData(response);
 
@@ -106,7 +101,6 @@ export default function CmsMainPage() {
     const systemsPieChartData = preparePieChartData(Object.entries(systemCounts), getSystemColor);
     const devicesPieChartData = preparePieChartData(Object.entries(deviceCounts), getDeviceColor);
     const visitsLineGraphData = isLoaded && formatDataToBar(firstVisit);
-
 
     return (
         <>
