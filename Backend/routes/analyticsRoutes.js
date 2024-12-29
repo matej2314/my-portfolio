@@ -41,7 +41,8 @@ const getAnalyticsData = async () => {
                     { name: 'deviceCategory' }, // Kategoria urządzenia
                     { name: 'operatingSystem' }, // System operacyjny
                     { name: 'pageReferrer' },
-                    {name: 'date'}
+                    { name: 'date' },
+                    {name: 'country'}
                 ],
                 // limit: 30,
             },
@@ -65,6 +66,7 @@ router.get('/analytics', async (req, res) => {
                 date: eventDate,
                 deviceCategory: row.dimensionValues[3]?.value, // Kategoria urządzenia
                 operatingSystem: row.dimensionValues[4]?.value, // System operacyjny
+                country: row.dimensionValues[7]?.value,
             };
 
             let additionalData = {};
