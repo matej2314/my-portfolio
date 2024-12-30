@@ -7,9 +7,8 @@ const getIds = async () => {
   const data = await response.json();
   const projects = data.projects;
 
-  // Poprawiona wersja - zwraca obiekt, a nie tablicę
   const dynamicRoutes = projects.map((project) => ({
-    path: `/project/details/${project.id}`,  // Poprawne przypisanie path
+    path: `/project/details/${project.id}`,
     changefreq: 'weekly',
     priority: 0.7,
   }));
