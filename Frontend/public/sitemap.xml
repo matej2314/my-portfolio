@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://msliwowski.net/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+<url><loc>https://msliwowski.net/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+<url><loc>https://msliwowski.net/portfolio</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<url><loc>https://msliwowski.net/blog</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<url><loc>https://msliwowski.net/contact</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+<url><loc>https://msliwowski.net/projects</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<url><loc>https://msliwowski.net/login_admin</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<url><loc>https://msliwowski.net/cms</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+<url><loc>https://msliwowski.net/*</loc><changefreq>yearly</changefreq><priority>0.1</priority></url>
+<url><loc>https://msliwowski.net/project/details/417438eb-d942-41fb-83ce-dea97f8625be</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://msliwowski.net/project/details/7df7a12e-3a96-4161-a550-d7f1d5e38319</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://msliwowski.net/project/details/c5469db4-83d3-4edd-b891-74826efe39e9</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+<url><loc>https://msliwowski.net/project/details/dfad08a3-7d33-49db-9430-ffb2f2ee0191</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+</urlset>
