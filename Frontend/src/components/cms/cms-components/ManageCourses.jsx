@@ -41,7 +41,7 @@ export default function ManageCourses() {
         <>
             <div className={cmsComponents.wrapper.wrapper}>
                 <h2 className={cmsComponents.h2.h2}>Courses:</h2>
-                <h3 className="text-sm text-zinc-300">( to go back, press "Manage" button )</h3>
+                <h3 className="text-sm text-zinc-300">( to go back, press "Menu" button )</h3>
                 <button
                     onClick={handleAddNew}
                     className={cmsComponents.addNew.addNew}

@@ -49,7 +49,7 @@ export default function ManagePosts() {
     return (
         <div className={cmsComponents.wrapper.wrapper}>
             <h2 className={cmsComponents.h2.h2}>Posts:</h2>
-            <h3 className="text-sm">( to go back, press "Manage" button )</h3>
+            <h3 className="text-sm">( to go back, press "Menu" button )</h3>
             <button onClick={handleAddPost} className={cmsComponents.addNew.addNew}>Add new</button>
             <ul className={cmsComponents.managePosts.ul}>
                 {!loading && posts.length > 0 && Array.isArray(posts) ? (

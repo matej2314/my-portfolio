@@ -7,7 +7,7 @@ function TrackPageView() {
     const prevLocation = useRef(location.pathname + location.search);
 
     useEffect(() => {
-        // Wysyłanie zdarzenia pageview przy każdej zmianie lokalizacji
+
         if (location.pathname + location.search !== prevLocation.current) {
             ReactGA.send({
                 hitType: 'pageview',

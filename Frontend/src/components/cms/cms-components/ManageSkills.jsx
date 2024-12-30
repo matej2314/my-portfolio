@@ -40,7 +40,7 @@ export default function ManageSkills() {
     return (
         <div className={cmsComponents.wrapper.wrapper}>
             <h2 className={cmsComponents.h2.h2}>Skills:</h2>
-            <h3 className="text-sm text-zinc-300">( to go back, press "Manage" button )</h3>
+            <h3 className="text-sm text-zinc-300">( to go back, press "Menu" button )</h3>
             <button
                 onClick={handleAddNewSkill}
                 className={cmsComponents.addNew.addNew}

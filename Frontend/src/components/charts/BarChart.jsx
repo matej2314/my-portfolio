@@ -3,24 +3,21 @@ import { Bar } from '@visx/shape';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 
 const BarChart = ({ width, height, data }) => {
-    const margin = { top: 30, right: 0, bottom: 0, left: 25 }; // Zwiększamy lewy margines, aby było miejsce na etykiety osi Y
+    const margin = { top: 30, right: 0, bottom: 0, left: 25 };
     const xMax = width - margin.right - margin.left;
     const yMax = height - margin.top - margin.bottom;
 
     const sortedData = [...data].sort((a, b) => new Date(a.label) - new Date(b.label));
 
-    // Skala X: pasująca do etykiet (dat) na osi poziomej
     const xScale = scaleBand({
-        domain: sortedData.map(d => d.label),  // Pobieranie etykiet (dat) jako domeny
+        domain: sortedData.map(d => d.label),
         range: [0, xMax],
-        padding: 0.3,  // Odstęp między słupkami
+        padding: 0.3,
     });
 
-    // Skala Y: mapująca wartości na wysokość słupków na osi pionowej
     const yScale = scaleLinear({
-        domain: [0, Math.max(...sortedData.map(d => d.value)) * 1.1],  // Skala oparta na największej wartości
-        range: [yMax, 0],  // Przekształcamy wartości na zakres od dołu do góry
-        nice: true,
+        domain: [0, Math.max(...sortedData.map(d => d.value)) * 1.1],
+        range: [yMax, 0],
     });
 
     return (
@@ -28,17 +25,17 @@ const BarChart = ({ width, height, data }) => {
             <g>
                 {/* Renderowanie słupków */}
                 {sortedData.map((d, i) => {
-                    const x = xScale(d.label);  // Ustalamy pozycję słupka na osi X
-                    const y = yScale(d.value);  // Ustalamy pozycję słupka na osi Y
-                    const heightBar = yMax - y;  // Wysokość słupka
+                    const x = xScale(d.label);
+                    const y = yScale(d.value);
+                    const heightBar = yMax - y;
 
                     return (
                         <Bar
                             key={`bar-${i}`}
-                            x={x}  // Pozycja słupka na osi X
-                            y={y}  // Pozycja słupka na osi Y
-                            height={heightBar}  // Wysokość słupka
-                            width={xScale.bandwidth()}  // Szerokość słupka
+                            x={x}
+                            y={y}
+                            height={heightBar}
+                            width={xScale.bandwidth()}
                             fill="#0dbd22"
                         />
                     );
@@ -50,23 +47,23 @@ const BarChart = ({ width, height, data }) => {
                 scale={xScale}
                 top={yMax}
                 tickLabelProps={{
-                    fontSize: 14, // Zmiana rozmiaru czcionki
-                    fill: '#84cc16', // Zmiana koloru czcionki na niebieski
-                    textAnchor: 'middle', // Wyrównanie tekstu
+                    fontSize: 14,
+                    fill: '#84cc16',
+                    textAnchor: 'middle',
                 }}
             />
 
             {/* Oś Y: wyświetlanie wartości na lewej stronie wykresu */}
             <AxisLeft
                 scale={yScale}
-                tickFormat={value => value}  // Zaokrąglenie wartości na osi Y
+                tickFormat={value => value}
                 numTicks={10}
-                top={0}  // Ustawienie osi od samej góry
-                left={margin.left}  // Wyrównanie do lewego marginesu
+                top={0}
+                left={margin.left}
                 tickLabelProps={{
-                    fontSize: 14,  // Rozmiar czcionki
-                    fill: '#fff',  // Kolor czcionki
-                    textAnchor: 'middle',  // Wyrównanie etykiet do środka
+                    fontSize: 14,
+                    fill: '#fff',
+                    textAnchor: 'middle',
                     dx: -5,
                 }}
             />

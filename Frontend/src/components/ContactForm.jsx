@@ -19,7 +19,6 @@ export default function ContactForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Sprawdzanie, czy wszystkie pola formularza są wypełnione
         if (!name.current.value || !email.current.value || !messageSubject.current.value || !message.current.value) {
             setStatus("Please fill out all fields");
             toast.error('Please fill out all fields');

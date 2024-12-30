@@ -6,7 +6,6 @@ import ProjectsCategories from '../components/projects/ProjectsCategories';
 import { projectsClasses } from '../components/projects/projectsClasses';
 import { pagesClasses } from './pages-classes';
 
-
 export default function ProjectsPage() {
     const [selectedCategory, setSelectedCategory] = useState("all");
 

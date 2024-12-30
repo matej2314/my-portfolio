@@ -20,7 +20,7 @@ export default function PortfolioPage() {
             const scrollPercentage = (scrollPosition / (docHeight - windowHeight)) * 100;
 
             if (scrollPercentage >= 50 && !hasScrolled) {
-                ReactGA.event('scroll-portfolio', {
+                ReactGA.event('scroll_portfolio', {
                     category: 'scroll',
                     action: 'scroll_portfolio',
                     label: 'Scrolled 50% down',
