@@ -1,6 +1,24 @@
-const routes = (isMobile) => {
+import { requestUrl } from '../../url.js';
+
+const getProjectsUrl = requestUrl.projects.get;
+
+const getIds = async () => {
+  const response = await fetch(getProjectsUrl);
+  const data = await response.json();
+  const projects = data.projects;
+
+  // Poprawiona wersja - zwraca obiekt, a nie tablicę
+  const dynamicRoutes = projects.map((project) => ({
+    path: `/project/details/${project.id}`,  // Poprawne przypisanie path
+    changefreq: 'weekly',
+    priority: 0.7,
+  }));
+
+  return dynamicRoutes;
+};
+
+const routes = async () => {
     const baseRoutes = [
-      { path: '/', changefreq: 'daily', priority: 1.0 },
       { path: '/portfolio', changefreq: 'weekly', priority: 0.8 },
       { path: '/blog', changefreq: 'weekly', priority: 0.8 },
       { path: '/contact', changefreq: 'monthly', priority: 0.6 },
@@ -10,18 +28,10 @@ const routes = (isMobile) => {
       { path: '*', changefreq: 'yearly', priority: 0.1 }
     ];
   
-    const dynamicRoutes = [
-      { path: '/project/details/417438eb-d942-41fb-83ce-dea97f8625be', changefreq: 'weekly', priority: 0.7 },
-      { path: '/project/details/7df7a12e-3a96-4161-a550-d7f1d5e38319', changefreq: 'weekly', priority: 0.7 },
-      { path: '/project/details/c5469db4-83d3-4edd-b891-74826efe39e9', changefreq: 'weekly', priority: 0.7 },
-      { path: '/project/details/dfad08a3-7d33-49db-9430-ffb2f2ee0191', changefreq: 'weekly', priority: 0.7 },
-      
-    ];
+ const dynamicRoutes = await getIds();
   
     // Użyj PortfolioPage dla mobilnych i MainPage dla desktopowych
-    const homeRoute = isMobile
-      ? { path: '/', changefreq: 'daily', priority: 1.0 }
-      : { path: '/', changefreq: 'daily', priority: 1.0 };
+  const homeRoute = { path: '/', changefreq: 'daily', priority: 1.0 };
   
     return [homeRoute, ...baseRoutes, ...dynamicRoutes];
   };

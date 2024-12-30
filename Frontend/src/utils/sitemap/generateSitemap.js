@@ -2,11 +2,11 @@ import { SitemapStream, streamToPromise } from 'sitemap';
 import { createWriteStream } from 'fs';
 import routes from './sitemapRoutes.js';
 
-const generateSitemap = async (isMobile) => {
+const generateSitemap = async () => {
   const smStream = new SitemapStream({ hostname: 'https://msliwowski.net' });
 
   // Pobierz trasy
-  const siteRoutes = routes(isMobile);
+  const siteRoutes = await routes();
 
   // Dodaj trasy do strumienia
   siteRoutes.forEach((route) => {
@@ -24,4 +24,4 @@ const generateSitemap = async (isMobile) => {
   createWriteStream('./public/sitemap.xml').write(sitemap);
 };
 
-generateSitemap(false); // false oznacza tryb desktopowy
+generateSitemap();
