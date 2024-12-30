@@ -3,7 +3,6 @@ const logger = require('../logger');
 const transporter = require('../controllers/nodemailer');
 const router = express.Router();
 
-
 router.post('/email', async (req, res) => {
     const { userName, userEmail, subject, userMessage } = req.body;
 

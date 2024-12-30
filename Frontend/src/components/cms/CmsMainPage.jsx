@@ -14,10 +14,10 @@ import ManageInterests from "./cms-components/ManageInterests";
 import ManageAbout from './cms-components/ManageAbout';
 import { getSystemColor, getDeviceColor, preparePieChartData } from "../../utils/charts/PieChart";
 import { dataCounter } from "../../utils/analyticsDataCounter";
-import { mapData, filterData, filterAndMap, eventsCounter } from "../../utils/modifyAnalyticsData";
+import { mapData, filterData, filterAndMap, countEvents } from "../../utils/modifyAnalyticsData";
 import PieChart from '../charts/PieChart';
 import BarChart from '../charts/BarChart';
-import { formatDataToBar } from "../../utils/charts/lineGraph";
+import { formatDataToBar } from "../../utils/charts/barChart.js";
 import DataList from './cms-components/analytics-data/DataList';
 import DisplayData from "./cms-components/analytics-data/DisplayData";
 
@@ -27,7 +27,7 @@ export default function CmsMainPage() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [eventsCounter, setEventsCounter] = useState({});
     const { isAuthenticated } = useContext(AuthContext);
-    const { sendRequest, result, error, isLoading } = useSendRequest();
+    const { sendRequest } = useSendRequest();
 
     const handleSelected = (button) => {
         setSelectedButton(button);
@@ -60,7 +60,7 @@ export default function CmsMainPage() {
                 if (Array.isArray(response)) {
                     setAnalyticsData(response);
 
-                    const counter = eventsCounter(response);
+                    const counter = countEvents(response);
 
                     setEventsCounter(counter);
                     setIsLoaded(() => true);
@@ -109,7 +109,6 @@ export default function CmsMainPage() {
                                             <DataList title={'Top 10 users devices (types):'} array={devices} />
                                             <DataList title={'Top 10 users OSs:'} array={systems} />
                                         </>
-
                                     )}
                                 </div>
                                 <div id="barChart" className="w-full h-full flex flex-col justify-center items-center rounded-md bg-zinc-500/60 py-2">

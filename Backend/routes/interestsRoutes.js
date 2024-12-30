@@ -25,7 +25,7 @@ router.get('/collection', async (req, res) => {
     }
 });
 
-router.post('/new', async (req, res) => {
+router.post('/new', verifyAdmin, async (req, res) => {
     const id = uuidv4();
     const interest = req.body.interest;
 
@@ -45,7 +45,7 @@ router.post('/new', async (req, res) => {
     };
 });
 
-router.delete('/delete', async (req, res) => {
+router.delete('/delete', verifyAdmin, async (req, res) => {
     const { id, interestName } = req.body;
 
     if (!id || id.length < 0 || !interestName || interestName.trim().length == 0 || interestName.trim() == '') {

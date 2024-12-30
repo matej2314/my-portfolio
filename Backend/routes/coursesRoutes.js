@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require('uuid');
 router.use(express.json());
 
 
-router.post('/new', async (req, res) => {
+router.post('/new', verifyAdmin, async (req, res) => {
     const id = uuidv4();
     const { courseName, courseDate, organizer, courseCat } = req.body;
 
@@ -55,7 +55,7 @@ router.get('/collection', async (req, res) => {
 });
 
 
-router.delete('/delete', async (req, res) => {
+router.delete('/delete', verifyAdmin, async (req, res) => {
     const { courseId } = req.body;
 
     if (!courseId || courseId < 0) {

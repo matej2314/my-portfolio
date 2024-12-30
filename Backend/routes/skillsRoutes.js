@@ -7,7 +7,7 @@ const verifyAdmin = require('../controllers/verifyAdmin');
 
 router.use(express.json());
 
-router.post('/new', async (req, res) => {
+router.post('/new', verifyAdmin, async (req, res) => {
     const id = uuidv4();
     const skillName = req.body.skillName;
     const skillCat = req.body.skillCat;
@@ -58,7 +58,7 @@ router.get('/collection', async (req, res) => {
     }
 });
 
-router.delete('/delete', async (req, res) => {
+router.delete('/delete', verifyAdmin, async (req, res) => {
     const { skillId } = req.body;
 
     if (!skillId || skillId === 0) {

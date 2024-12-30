@@ -6,18 +6,15 @@ const JWT_SECRET = process.env.JWT_SECRET;
 const logger = require('../logger');
 
 function isValidPassword(password) {
-	// Minimum 8 znaków, przynajmniej jedna mała litera, jedna duża litera, jedna cyfra i jeden ze znaków specjalnych *!#^%$@?
 	const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[*!#^%$@?])[a-zA-Z\d*!#^%$@?]{10,30}$/;
 	return regex.test(password);
-}
+};
 
-// Funkcja walidująca e-mail
 function isValidEmail(email) {
 	const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	return regex.test(email);
 }
 
-// Funkcja walidująca nazwę użytkownika (alfanumeryczna, minimum 5 znaków)
 function isValidUsername(username) {
 	const regex = /^[a-zA-Z0-9]{5,}$/;
 	return regex.test(username);
@@ -66,12 +63,16 @@ exports.registerUser = async (req, res) => {
 
         try {
             await pool.query('INSERT INTO users SET ?', { id: userId, role, name: reg_username, password: hashedPassword, email: reg_email });
+
             const token = jwt.sign({ id: userId, role }, JWT_SECRET, { expiresIn: '1h' });
+
             res.cookie('SESSID', token, {
                 ...jwtCookieOptions,
                 maxAge: 60 * 60 * 1000,
             });
-            return res.status(200).json({status: 200, message: 'Użytkownik zarejestrowany pomyślnie' });
+
+            return res.status(200).json({ status: 200, message: 'Użytkownik zarejestrowany pomyślnie' });
+            
          } catch (error) {
             logger.error('Błąd podczas rejestracji użytkownika:', error.message);
             return res.status(500).json({ message: 'Błąd serwera' });
@@ -87,7 +88,6 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
-    
     if (!email || !password || email.trim() === '' || password.trim() === '') {
         logger.error('Podano nieprawidłowe dane logowania.');
         return res.status(400).json({ message: 'Podaj prawidłowe dane użytkownika.' });
@@ -106,21 +106,19 @@ exports.loginUser = async (req, res) => {
 
         const user = rows[0];
 
-        
         const isPasswordValid = await bcrypt.compare(password, user.password);
+
         if (!isPasswordValid) {
             logger.error('Nieprawidłowe hasło.');
             return res.status(401).json({ message: 'Nieprawidłowy email lub hasło.' });
         }
 
-        
         const token = jwt.sign(
             { id: user.id, role: user.role, userName: user.name }, 
             JWT_SECRET, 
             { expiresIn: '24h' }
         );
 
-        
         res.cookie('SESSID', token, {
             ...jwtCookieOptions,
             maxAge: 86400000,
@@ -128,7 +126,6 @@ exports.loginUser = async (req, res) => {
 
         logger.info(`Użytkownik ${user.email} zalogowany pomyślnie.`);
 
-    
         return res.status(200).json({
             message: 'Użytkownik zalogowany pomyślnie.',
             status: 200,

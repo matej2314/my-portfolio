@@ -26,7 +26,7 @@ router.get('/collection', async (req, res) => {
     };
 });
 
-router.post('/new', async (req, res) => {
+router.post('/new', verifyAdmin, async (req, res) => {
     const id = uuidv4();
     const about = req.body.about;
 
@@ -50,7 +50,7 @@ router.post('/new', async (req, res) => {
     };
 });
 
-router.delete('/delete', async (req, res) => {
+router.delete('/delete', verifyAdmin, async (req, res) => {
     const id = req.body.id;
 
     if (!id || id <= 0) {
@@ -80,7 +80,7 @@ router.delete('/delete', async (req, res) => {
     };
 });
 
-router.put('/update', async (req, res) => {
+router.put('/update', verifyAdmin, async (req, res) => {
     const { id, about } = req.body;
 
     if (!id || !about || id < 0 || about.trim().length == 0 || about.trim() === '') {

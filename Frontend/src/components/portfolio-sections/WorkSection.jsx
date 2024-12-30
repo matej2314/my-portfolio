@@ -2,7 +2,6 @@ import { motion } from "framer-motion"
 
 import { sectionsClasses } from "./portSections-classes"
 
-
 export default function WorkSection() {
   return (<>
     <motion.div

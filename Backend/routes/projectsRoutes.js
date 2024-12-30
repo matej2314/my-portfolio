@@ -37,6 +37,7 @@ router.get('/collection', async (req, res) => {
 
 router.post(
 	'/new',
+	verifyAdmin,
 	createProjectFolders,
 	saveProject.fields([
 		{ name: 'mainImages', maxCount: 15 },
@@ -76,7 +77,10 @@ router.post(
 	}
 );
 
-router.delete('/delete/:projectId', deleteFiles, async (req, res) => {
+router.delete('/delete/:projectId',
+	verifyAdmin,
+	deleteFiles,
+	async (req, res) => {
 	const { projectName } = req.body;
 	const projectId = req.projectId;
 	const projectFolderPath = req.projectFolderPath;
@@ -113,6 +117,7 @@ router.delete('/delete/:projectId', deleteFiles, async (req, res) => {
 
 router.put(
 	'/update/:projectId/:images',
+	verifyAdmin,
 	(req, res, next) => {
 	  const  images = req.params.images;
 		

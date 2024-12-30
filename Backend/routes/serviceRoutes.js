@@ -26,7 +26,7 @@ router.get('/collection', async (req, res) => {
     };
 });
 
-router.post('/new', async (req, res) => {
+router.post('/new',verifyAdmin, async (req, res) => {
     const id = uuidv4();
     const service_name = req.body.serviceName;
     const service_description = req.body.serviceDesc;
@@ -53,7 +53,7 @@ router.post('/new', async (req, res) => {
     };
 });
 
-router.put('/edit', async (req, res) => {
+router.put('/edit', verifyAdmin, async (req, res) => {
     const { serviceId, serviceName, serviceDescription } = req.body;
 
     if (!serviceName || !serviceDescription || serviceName.trim() == '' || serviceDescription.trim() == '') {
@@ -78,7 +78,7 @@ router.put('/edit', async (req, res) => {
     };
 });
 
-router.delete('/', async (req, res) => {
+router.delete('/', verifyAdmin, async (req, res) => {
     const { serviceId } = req.body;
 
     if (!serviceId || serviceId === 0) {

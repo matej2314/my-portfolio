@@ -16,7 +16,7 @@ export const filterAndMap = (array, filterCallback, mapCallback) => {
     return array.filter(filterCallback).map(mapCallback);
 };
 
-export const eventsCounter = (array) => {
+export const countEvents = (array) => {
    return array.reduce((acc, item) => {
         if (item.eventName) {
             acc[item.eventName] = (acc[item.eventName] || 0) + 1;

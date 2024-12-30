@@ -32,7 +32,8 @@ const createProjectFolders = (req, res, next) => {
 		}
 
 		logger.info(`Katalogi dla projektu ${projectId} utworzone!`);
-		next(); 
+		next();
+		
 	} catch (error) {
 		logger.error(`Błąd podczas tworzenia katalogów projektu: ${error.message}`);
 		return res.status(500).json({ error: 'Nie udało się stworzyć katalogów projektu.' });

@@ -7,7 +7,7 @@ const logger = require('../logger.js');
 
 router.use(express.json());
 
-router.post('/new', async (req, res) => {
+router.post('/new', verifyAdmin, async (req, res) => {
     const { postTitle, postLead, postContent, postImage } = req.body;
     const postId = uuidv4();
 
@@ -63,7 +63,7 @@ router.get('/collection', async (req, res) => {
 
 });
 
-router.put('/edit', async (req, res) => {
+router.put('/edit', verifyAdmin, async (req, res) => {
     const { postId, postTitle, postLead, postContent } = req.body;
     let postImage = req.body.postImage;
 
@@ -90,7 +90,7 @@ router.put('/edit', async (req, res) => {
     }
 });
 
-router.delete('/delete', async (req, res) => {
+router.delete('/delete', verifyAdmin, async (req, res) => {
     const { postId } = req.body;
 
     if (!postId || postId < 0) {

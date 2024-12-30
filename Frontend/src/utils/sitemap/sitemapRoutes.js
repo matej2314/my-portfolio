@@ -17,6 +17,9 @@ const getIds = async () => {
 };
 
 const routes = async () => {
+
+  const homeRoute = { path: '/', changefreq: 'daily', priority: 1.0 };
+
     const baseRoutes = [
       { path: '/portfolio', changefreq: 'weekly', priority: 0.8 },
       { path: '/blog', changefreq: 'weekly', priority: 0.8 },
@@ -28,8 +31,6 @@ const routes = async () => {
     ];
   
  const dynamicRoutes = await getIds();
-  
-  const homeRoute = { path: '/', changefreq: 'daily', priority: 1.0 };
   
     return [homeRoute, ...baseRoutes, ...dynamicRoutes];
   };

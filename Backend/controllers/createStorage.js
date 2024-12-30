@@ -7,7 +7,6 @@ const createStorage = multer.diskStorage({
 		const mainPhotosPath = req.mainPhotosPath;
 		const galleryPhotosPath = req.galleryPhotosPath;
 		
-
 		try {
 			
 			if (file.fieldname === 'mainImages') {

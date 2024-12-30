@@ -65,9 +65,9 @@ export default function ScreenGallery({ id }) {
         } else if (info.offset.x < -dragThreshold) {
             prevPhoto();
         }
-        // Przywrócenie zdjęcia do środka, jeśli próg nie został przekroczony
+
         setTimeout(() => {
-            // Możesz dodać animację powrotu
+
         }, transitionDuration * 1000);
     };
 
