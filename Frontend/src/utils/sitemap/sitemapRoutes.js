@@ -29,7 +29,6 @@ const routes = async () => {
   
  const dynamicRoutes = await getIds();
   
-    // Użyj PortfolioPage dla mobilnych i MainPage dla desktopowych
   const homeRoute = { path: '/', changefreq: 'daily', priority: 1.0 };
   
     return [homeRoute, ...baseRoutes, ...dynamicRoutes];

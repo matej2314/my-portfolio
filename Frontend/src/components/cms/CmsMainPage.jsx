@@ -14,6 +14,7 @@ import ManageInterests from "./cms-components/ManageInterests";
 import ManageAbout from './cms-components/ManageAbout';
 import { getSystemColor, getDeviceColor, preparePieChartData } from "../../utils/charts/PieChart";
 import { dataCounter } from "../../utils/analyticsDataCounter";
+import { mapData, filterData, filterAndMap } from "../../utils/modifyAnalyticsData";
 import PieChart from '../charts/PieChart';
 import BarChart from '../charts/BarChart';
 import { formatDataToBar } from "../../utils/charts/lineGraph";
@@ -36,26 +37,17 @@ export default function CmsMainPage() {
         setSelectedButton(null);
     };
 
-    const selectedComponent = () => {
-        switch (selectedButton) {
-            case 'courses':
-                return <ManageCourses />;
-            case 'posts':
-                return <ManagePosts />;
-            case 'projects':
-                return <ManageProjects />;
-            case 'services':
-                return <ManageServices />;
-            case 'skills':
-                return <ManageSkills />;
-            case 'about':
-                return <ManageAbout />;
-            case 'interests':
-                return <ManageInterests />;
-            default:
-                return null;
-        }
+    const componentMap = {
+        courses: <ManageCourses />,
+        posts: <ManagePosts />,
+        projects: <ManageProjects />,
+        services: <ManageServices />,
+        skills: <ManageSkills />,
+        about: <ManageAbout />,
+        interests: <ManageInterests />,
     };
+
+    const selectedComponent = componentMap[selectedButton] || null;
 
     useEffect(() => {
         const getAnalyticsData = async () => {
@@ -88,16 +80,16 @@ export default function CmsMainPage() {
         getAnalyticsData();
     }, []);
 
-
-    const paths = isLoaded && analyticsData.filter((item) => item.pagePath !== undefined).map(item => item.pagePath);
-    const devices = isLoaded && analyticsData.map((item) => item.deviceCategory);
-    const displaytime = isLoaded && analyticsData.filter((item) => item.engagementRate !== undefined)
-        .map(item => item.engagementRate)
+    const paths = isLoaded && filterAndMap(analyticsData, (item) => item.pagePath !== undefined, (item) => item.pagePath);
+    const devices = isLoaded && mapData(analyticsData, (item) => item.deviceCategory);
+    const displaytime = isLoaded && filterAndMap(analyticsData, (item) => item.engagementRate !== undefined, (item) => item.engagementRate)
         .reduce((acc, item) => acc + parseFloat(item), 0);
-    const systems = isLoaded && analyticsData.map((item) => item.operatingSystem);
+    const systems = isLoaded && mapData(analyticsData, (item) => item.operatingSystem);
+    const firstVisit = isLoaded && filterData(analyticsData, (item) => item.eventName == 'first_visit');
+
     const systemCounts = isLoaded && dataCounter(systems);
     const deviceCounts = isLoaded && dataCounter(devices);
-    const firstVisit = isLoaded && analyticsData.filter(item => item.eventName == 'first_visit');
+
     const systemsPieChartData = preparePieChartData(Object.entries(systemCounts), getSystemColor);
     const devicesPieChartData = preparePieChartData(Object.entries(deviceCounts), getDeviceColor);
     const visitsLineGraphData = isLoaded && formatDataToBar(firstVisit);
@@ -110,7 +102,7 @@ export default function CmsMainPage() {
                         <CmsMenu handleSelected={handleSelected} onClose={handleCloseComponents} />
                     </div>
                     <div className={cmsPages.mainPage.contentWrapper}>
-                        {selectedButton ? selectedComponent() : (
+                        {selectedButton ? selectedComponent : (
                             <div className={cmsPages.mainPage.analyticsWrapper}>
                                 <div id="text-values" className={cmsPages.mainPage.text_values}>
                                     {isLoaded && (
@@ -182,8 +174,7 @@ export default function CmsMainPage() {
                         </div>
                     </div>
                 </main>
-            )
-            }
+            )}
         </>
     );
 }
