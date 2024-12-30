@@ -14,7 +14,7 @@ import ManageInterests from "./cms-components/ManageInterests";
 import ManageAbout from './cms-components/ManageAbout';
 import { getSystemColor, getDeviceColor, preparePieChartData } from "../../utils/charts/PieChart";
 import { dataCounter } from "../../utils/analyticsDataCounter";
-import { mapData, filterData, filterAndMap } from "../../utils/modifyAnalyticsData";
+import { mapData, filterData, filterAndMap, eventsCounter } from "../../utils/modifyAnalyticsData";
 import PieChart from '../charts/PieChart';
 import BarChart from '../charts/BarChart';
 import { formatDataToBar } from "../../utils/charts/lineGraph";
@@ -60,12 +60,7 @@ export default function CmsMainPage() {
                 if (Array.isArray(response)) {
                     setAnalyticsData(response);
 
-                    const counter = response.reduce((acc, item) => {
-                        if (item.eventName) {
-                            acc[item.eventName] = (acc[item.eventName] || 0) + 1;
-                        }
-                        return acc;
-                    }, {});
+                    const counter = eventsCounter(response);
 
                     setEventsCounter(counter);
                     setIsLoaded(() => true);
