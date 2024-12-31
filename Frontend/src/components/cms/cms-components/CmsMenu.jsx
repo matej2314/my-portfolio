@@ -9,6 +9,8 @@ export default function CmsMenu({ handleSelected, onClose }) {
     const { user, logout, isAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    const buttonsArr = ['courses', 'posts', 'projects', 'services', 'skills', 'about', 'interests'];
+
     const handleLogOut = async () => {
         try {
             const message = await logout();
@@ -20,36 +22,39 @@ export default function CmsMenu({ handleSelected, onClose }) {
     };
 
     return (
-
         <div className={cmsComponents.cmsMenu.wrapper}>
-            <div className='w-fit h-[1rem] flex flex-row justify-center items-center'>
-                <button className='w-fit h-full text-lime-500 hover:text-white'><Link to="/" className='w-full h-full flex flex-row items-center'>Home</Link></button>
-
-            </div>
-            <ul className={cmsComponents.cmsMenu.ul}>
-                <button className='w-fit h-full' onClick={onClose}>Menu:</button>
-                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('courses')}>Courses</button></li>
-                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('posts')}>Posts</button></li>
-                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('projects')}>Projects</button></li>
-                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('services')}>Services</button></li>
-                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('skills')}>Skills</button></li>
-                <li className='hover:text-lime-600 bg-neutral-600/30 p-2 rounded-xl shadow-md active:shadow shadow-black/80 w-full flex'>
-                    <button className='w-full h-full flex flex-row justify-center items-center' disabled={!isAuthenticated} onClick={() => handleSelected('about')}
-                    >
-                        About me
+            <div
+                className={cmsComponents.cmsMenu.contentWrapper}
+            >
+                <div className={cmsComponents.cmsMenu.homeWrapper}>
+                    <button className="text-lime-500 hover:text-white">
+                        <Link to="/" className="flex items-center">Home</Link>
                     </button>
-                </li>
-                <li className={cmsComponents.cmsMenu.li}><button disabled={!isAuthenticated} onClick={() => handleSelected('interests')}>Interests</button></li>
-            </ul>
-            <div className={cmsComponents.cmsMenu.userDiv}>
-                <span className='w-fit h-fit'>User:</span>
-                {user && user.userName ? (
-                    <p className='w-fit h-fit'>{user.userName}</p>
-                ) : (
-                    <p className='w-fit h-fit'>Guest</p>
-                )}
-                <div className='w-fit h-fit flex justify-center'>
-                    <button onClick={handleLogOut} className={cmsComponents.cmsMenu.logOutBtn} disabled={!isAuthenticated}>Logout</button>
+                </div>
+                <ul className={cmsComponents.cmsMenu.ul}>
+                    <button className="text-lime-500 hover:text-white" onClick={onClose}>Menu:</button>
+                    {buttonsArr.map((item) => (
+                        <li key={item} className={cmsComponents.cmsMenu.li}>
+                            <button disabled={!isAuthenticated} onClick={() => handleSelected(item)}>
+                                {item.charAt(0).toUpperCase() + item.slice(1)}
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+                <div className={cmsComponents.cmsMenu.userDiv}>
+                    <span className="text-sm md:text-base">User:</span>
+                    {user && user.userName ? (
+                        <p className="text-sm md:text-base">{user.userName}</p>
+                    ) : (
+                        <p className="text-sm md:text-base">Guest</p>
+                    )}
+                    <button
+                        onClick={handleLogOut}
+                        className="text-lime-500 hover:text-white ml-0 md:ml-5"
+                        disabled={!isAuthenticated}
+                    >
+                        Logout
+                    </button>
                 </div>
             </div>
         </div>

@@ -1,11 +1,11 @@
 export const cmsComponents = {
     cmsMenu: {
-        wrapper: "w-[99%] h-fit flex flex-row justify-start gap-[13.5rem] items-center text-lime-500 rounded-md border-[1px] border-zinc-400/30 py-4 px-4 shadow-md shadow-black/80",
-        ul: "w-full h-full flex flex-row justify-center items-center gap-5",
-        h2: 'w-full h-full flex flex-row justify-center items-center text-lime-500 hover:text-white',
-        li: 'w-full h-full flex flex-col justify-center items-center hover:text-lime-600 bg-neutral-600/30 p-2 rounded-xl shadow-md active:shadow shadow-black/80',
-        userDiv:'w-fit h-fit flex flex-row justify-end gap-2 pr-2 border-[1px] border-zinc-400/85 text-zinc-300 p-2 rounded-md',
-        logOutBtn: 'w-full h-full text-lime-500 hover:text-white ml-5',
+        wrapper: "w-screen h-fit flex justify-center px-3",
+        contentWrapper: "w-full h-fit flex flex-col md:flex-row justify-between items-center text-lime-500 rounded-md border border-zinc-400/30 py-4 px-2 shadow-md shadow-black/80",
+        homeWrapper: "w-full md:w-auto h-fit flex justify-center mb-4 md:mb-0",
+        ul: "w-full md:w-auto flex flex-wrap justify-center md:justify-start gap-4 md:gap-7",
+        li: "flex flex-col items-center hover:text-lime-600 bg-neutral-600/30 p-2 rounded-xl shadow-md active:shadow shadow-black/80",
+        userDiv:"w-full md:w-auto flex flex-col md:flex-row items-center gap-2 mt-4 md:mt-0 md:pr-2 border border-zinc-400/85 text-zinc-300 p-2 rounded-md",
     },
     loginForm: {
         form: "w-fit h-fit flex flex-col justify-center items-center gap-5 text-white",

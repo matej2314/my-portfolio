@@ -52,8 +52,9 @@ export default function ManageInterests() {
             </button>
             <ul className={cmsComponents.ul.ul}>
                 {!loading && interests && Array.isArray(interests) ? (
-                    interests.map((interest) => {
+                    interests.map((interest, index) => {
                         return <li
+                            key={index}
                             className={cmsComponents.li.li}
                         >
                             <span className={cmsComponents.span.span}>{interest.intName}</span>

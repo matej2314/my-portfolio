@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from '../../store/auth-context';
 import { cmsPages } from "./cmsPages-styles";
 import useSendRequest from "../../hooks/useSendRequest";
+import { useMediaQuery } from 'react-responsive';
 import { analyticsUrl } from "../../url";
 import CmsMenu from "./cms-components/CmsMenu";
 import ManageCourses from './cms-components/ManageCourses';
@@ -28,6 +29,7 @@ export default function CmsMainPage() {
     const [eventsCounter, setEventsCounter] = useState({});
     const { isAuthenticated } = useContext(AuthContext);
     const { sendRequest } = useSendRequest();
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     const handleSelected = (button) => {
         setSelectedButton(button);
@@ -105,46 +107,39 @@ export default function CmsMainPage() {
                                             <DisplayData data={eventsCounter.first_visit} title={'Unique page views:'} isLoaded={isLoaded} />
                                             <DataList title={'Recent visited pages:'} array={paths} />
                                             <DisplayData data={eventsCounter.download_cv} title={'Number of CV downloads:'} isLoaded={isLoaded} />
-                                            <DisplayData title={'Overall views time:'} data={`${parseFloat(displaytime).toFixed(2)} minutes`} isLoaded={isLoaded} />
+                                            <DisplayData title={'Overall views time:'}
+                                                data={`${parseFloat(displaytime).toFixed(2)} minutes`}
+                                                isLoaded={isLoaded}
+                                            />
                                             <DataList title={'Top 10 users devices (types):'} array={devices} />
                                             <DataList title={'Top 10 users OSs:'} array={systems} />
                                         </>
                                     )}
                                 </div>
-                                <div id="barChart" className="w-full h-full flex flex-col justify-center items-center rounded-md bg-zinc-500/60 py-2">
+                                <div id="barChart" className={cmsPages.mainPage.barChart}>
                                     <h2 className={`${cmsPages.mainPage.chartDivH2} text-xl`}>Recent unique visits:</h2>
-                                    {isLoaded && <BarChart width={650} height={400} data={visitsLineGraphData} />}
+                                    {isLoaded && <BarChart data={visitsLineGraphData} />}
                                 </div>
                                 <div id="charts" className={cmsPages.mainPage.charts}>
                                     {isLoaded && (
                                         <>
-                                            <div className={cmsPages.mainPage.chartWrapper}>
-                                                <h2
-                                                    className={`${cmsPages.mainPage.chartDivH2} text-xl`}
-                                                >
+                                            <div className={cmsPages.mainPage.pieChartWrapper}>
+                                                <h2 className={`${cmsPages.mainPage.chartDivH2} text-xl`}>
                                                     Top 10 user's OSs - chart:
                                                 </h2>
-                                                <PieChart
-                                                    width={460}
-                                                    height={460}
-                                                    data={systemsPieChartData}
-                                                    innerRadius={230}
-                                                    outerRadius={150}
-                                                />
+                                                <div className="flex justify-center items-center">
+                                                    <PieChart data={systemsPieChartData} />
+                                                </div>
                                             </div>
-                                            <div className={cmsPages.mainPage.chartWrapper}>
+                                            <div className={cmsPages.mainPage.pieChartWrapper}>
                                                 <h2
                                                     className={`${cmsPages.mainPage.chartDivH2} text-xl`}
                                                 >
                                                     User's device type - chart:
                                                 </h2>
-                                                <PieChart
-                                                    width={460}
-                                                    height={460}
-                                                    data={devicesPieChartData}
-                                                    innerRadius={230}
-                                                    outerRadius={150}
-                                                />
+                                                <div className="flex justify-center items-center">
+                                                    <PieChart data={devicesPieChartData} />
+                                                </div>
                                             </div>
                                         </>
                                     )}

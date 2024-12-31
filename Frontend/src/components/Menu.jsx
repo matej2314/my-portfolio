@@ -162,7 +162,6 @@ export default function Menu() {
 
                                 setTimeout(() => {
                                     window.location.href = cvURL;
-
                                 }, 500);
                             }}
 

@@ -1,9 +1,15 @@
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { Bar } from '@visx/shape';
 import { AxisBottom, AxisLeft } from '@visx/axis';
+import { useMediaQuery } from 'react-responsive';
 
-const BarChart = ({ width, height, data }) => {
-    const margin = { top: 30, right: 0, bottom: 0, left: 25 };
+const BarChart = ({ data }) => {
+    const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+    const margin = { top: 30, right: isMobile ? -15 : 0, bottom: 0, left: isMobile ? 17 : 25 };
+
+    const width = isMobile ? 300 : 650;
+    const height = isMobile ? 250 : 400;
+
     const xMax = width - margin.right - margin.left;
     const yMax = height - margin.top - margin.bottom;
 
@@ -12,18 +18,17 @@ const BarChart = ({ width, height, data }) => {
     const xScale = scaleBand({
         domain: sortedData.map(d => d.label),
         range: [0, xMax],
-        padding: 0.3,
+        padding: isMobile ? 0.5 : 0.3,
     });
 
     const yScale = scaleLinear({
-        domain: [0, Math.max(...sortedData.map(d => d.value)) * 1.1],
+        domain: [0, Math.max(...sortedData.map(d => d.value))],
         range: [yMax, 0],
     });
 
     return (
         <svg width={width} height={height}>
             <g>
-                {/* Renderowanie słupków */}
                 {sortedData.map((d, i) => {
                     const x = xScale(d.label);
                     const y = yScale(d.value);
@@ -41,19 +46,15 @@ const BarChart = ({ width, height, data }) => {
                     );
                 })}
             </g>
-
-            {/* Oś X: wyświetlanie etykiet (dat) na dole wykresu */}
             <AxisBottom
                 scale={xScale}
                 top={yMax}
                 tickLabelProps={{
-                    fontSize: 14,
+                    fontSize: isMobile ? 7 : 14,
                     fill: '#84cc16',
                     textAnchor: 'middle',
                 }}
             />
-
-            {/* Oś Y: wyświetlanie wartości na lewej stronie wykresu */}
             <AxisLeft
                 scale={yScale}
                 tickFormat={value => value}
@@ -61,13 +62,12 @@ const BarChart = ({ width, height, data }) => {
                 top={0}
                 left={margin.left}
                 tickLabelProps={{
-                    fontSize: 14,
+                    fontSize: isMobile ? 10 : 14,
                     fill: '#fff',
                     textAnchor: 'middle',
-                    dx: -5,
+                    dx: -3,
                 }}
             />
-
         </svg>
     );
 };
