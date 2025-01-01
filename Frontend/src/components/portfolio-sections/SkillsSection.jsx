@@ -11,10 +11,11 @@ export default function SkillsSection() {
 
     const dataCtx = useContext(DataContext);
     const loading = dataCtx.isLoading;
-    const skills = dataCtx.fetchedData.data.skills;
+    const skills = dataCtx.fetchedData.data.skills || [];
 
     function handleCategoryClick(category) {
         setSelectedCategory(category);
+        window.location.href = "#skills-section";
     }
 
     return (

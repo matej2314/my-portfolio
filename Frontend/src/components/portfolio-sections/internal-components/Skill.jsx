@@ -4,7 +4,6 @@ import { sectionsClasses } from "../portSections-classes";
 
 export default function Skill({ skills, loading, selectedCategory }) {
 
-
     const filteredSkills = Array.isArray(skills) && selectedCategory
         ? skills.filter(skill => skill.category === selectedCategory)
         : skills;
