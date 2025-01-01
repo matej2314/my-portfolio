@@ -60,7 +60,7 @@ export const deleteForms = {
         error: "text-red-600",
     },
     buttonWrapper: {
-        buttonWrapper: 'w-1/5 h-fit flex flex-row justify-around items-center',
+        buttonWrapper: 'w-full justify-around md:w-1/5 h-fit flex flex-row md:justify-around items-center',
     },
     wrapper: {
         wrapper: 'w-1/2 h-fit flex flex-col justify-start items-center gap-2 text-white bg-neutral-600/30 p-5 rounded-md',
