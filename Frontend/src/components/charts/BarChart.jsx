@@ -18,7 +18,7 @@ const BarChart = ({ data }) => {
     const xScale = scaleBand({
         domain: sortedData.map(d => d.label),
         range: [0, xMax],
-        padding: isMobile ? 0.5 : 0.3,
+        padding: isMobile ? 0.5 : 0.4,
     });
 
     const yScale = scaleLinear({
@@ -50,7 +50,7 @@ const BarChart = ({ data }) => {
                 scale={xScale}
                 top={yMax}
                 tickLabelProps={{
-                    fontSize: isMobile ? 7 : 14,
+                    fontSize: isMobile ? 6 : 13,
                     fill: '#84cc16',
                     textAnchor: 'middle',
                 }}

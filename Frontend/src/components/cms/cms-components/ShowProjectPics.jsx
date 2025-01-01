@@ -29,24 +29,24 @@ export default function ShowProjectPics({ id, name }) {
 
     return (
         <div
-            className="w-[35rem] h-fit flex flex-col justify-start items-center text-lg text-white gap-3 bg-neutral-600/30 pt-3 pb-6 rounded-md shadow-lg shadow-black/80 border-t-2 border-black"
+            className={cmsComponents.showProjectPics.wrapper}
         >
             <h2>Pictures for project {name}:</h2>
             <div>
                 <h2
-                    className='w-full h-fit flex justify-center items-center mb-4'
+                    className={cmsComponents.showProjectPics.h2}
                 >Main files:
                 </h2>
                 <ul
-                    className="w-[34rem] h-fit flex flex-col justify-center items-center text-md text-white border-2 border-zinc-400/85 gap-4 rounded-md"
+                    className={cmsComponents.showProjectPics.ul}
                 >
                     {picturesList?.mainFiles && Array.isArray(picturesList.mainFiles) && !isLoading ? (
                         picturesList.mainFiles.map((picture, index) => (
                             <li
-                                className="w-full h-full flex flex-row items-center justify-center text-zinc-300 text-md gap-4 border-b-2 border-black p-2"
+                                className={cmsComponents.showProjectPics.li}
                                 key={index}
                             >
-                                <span className='w-full h-full flex justify-center items-center'>
+                                <span className={cmsComponents.showProjectPics.span}>
                                     {picture}
                                 </span>
                                 <button
@@ -66,17 +66,17 @@ export default function ShowProjectPics({ id, name }) {
                 </ul>
             </div>
             <div>
-                <h2 className='w-full h-fit flex justify-center items-center mb-4'>Gallery files:</h2>
+                <h2 className={cmsComponents.showProjectPics.h2}>Gallery files:</h2>
                 <ul
-                    className="w-[34rem] h-fit flex flex-col justify-center items-center text-md text-white border-2 border-zinc-400/85 gap-4 rounded-md"
+                    className={cmsComponents.showProjectPics.h2}
                 >
                     {picturesList?.galleryFiles && Array.isArray(picturesList.galleryFiles) && !isLoading ? (
                         picturesList.galleryFiles.map((picture, index) => (
                             <li
-                                className="w-full h-full flex flex-row items-center justify-center text-zinc-300 gap-4 border-b-2 border-black p-2"
+                                className={cmsComponents.showProjectPics.li}
                                 key={index}
                             >
-                                <span className='w-full h-full flex justify-center items-center'>
+                                <span className={cmsComponents.showProjectPics.span}>
                                     {picture}
                                 </span>
                                 <button
