@@ -6,7 +6,6 @@ import TrackPageView from './hooks/TrackPageView';
 import routes from './routerConfig';
 
 function App() {
-
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const router = createBrowserRouter(routes(isMobile), {

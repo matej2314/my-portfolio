@@ -31,10 +31,23 @@ export default function PortfolioPage() {
 
         window.addEventListener('scroll', handleScroll);
 
+        const canonicalUrl = "https://msliwowski.net/portfolio";
+        const existingCanonical = document.querySelector("link[rel='canonical']");
+        if (!existingCanonical) {
+            const link = document.createElement("link");
+            link.rel = "canonical";
+            link.href = canonicalUrl;
+            document.head.appendChild(link);
+        } else {
+            existingCanonical.href = canonicalUrl;
+        }
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            const link = document.querySelector("link[rel='canonical']");
+            if (link) link.remove();
         };
-    }, []);
+    }, [hasScrolled]);
 
     return (
         <div className={pagesClasses.portfolioPage.portfolioWrapper}>

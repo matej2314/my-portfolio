@@ -15,7 +15,8 @@ export default function SkillsSection() {
 
     function handleCategoryClick(category) {
         setSelectedCategory(category);
-        window.location.href = "#skills-section";
+        const sectionElement = document.getElementById("skills-section");
+        sectionElement.scrollIntoView({ behavior: "smooth" });
     }
 
     return (
