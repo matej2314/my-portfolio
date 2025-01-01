@@ -38,7 +38,7 @@ export default function ManageSkills() {
     }
 
     return (
-        <div className={cmsComponents.wrapper.wrapper}>
+        <div className={`${cmsComponents.wrapper.wrapper} w-[52rem]`}>
             <h2 className={cmsComponents.h2.h2}>Skills:</h2>
             <h3 className="text-sm text-zinc-300">( to go back, press "Menu" button )</h3>
             <button

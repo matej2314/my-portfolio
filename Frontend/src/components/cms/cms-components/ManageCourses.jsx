@@ -51,9 +51,10 @@ export default function ManageCourses() {
                 <ul className={cmsComponents.ul.ul}>
                     {!loading && courses && Array.isArray(courses) ? (
                         courses.map((course) => {
+
                             return <li className={cmsComponents.manageCourses.li} key={course.id}>
                                 <span className={cmsComponents.manageCourses.span}>{course.title}</span>
-                                <span className={cmsComponents.manageCourses.span}>{course.date}</span>
+                                <span className={cmsComponents.manageCourses.span}>{course.date.split('T')[0]}</span>
                                 <span className={cmsComponents.manageCourses.span}>{course.organizer}</span>
                                 <span className={cmsComponents.manageCourses.span}>{course.category}</span>
                                 <div className={cmsComponents.buttonDiv.buttonDiv}>

@@ -8,7 +8,7 @@ export const cmsComponents = {
         userDiv:"w-full md:w-auto flex flex-col md:flex-row items-center gap-2 mt-4 md:mt-0 md:pr-2 border border-zinc-400/85 text-zinc-300 p-2 rounded-md",
     },
     loginForm: {
-        form: "w-fit h-fit flex flex-col justify-center items-center gap-5 text-white",
+        form: "md:w-fit h-fit flex flex-col justify-center items-center gap-5 text-white",
         button: "text-xl border-2 border-black p-2 rounded-lg hover:bg-neutral-700"
     },
     registerForm: {

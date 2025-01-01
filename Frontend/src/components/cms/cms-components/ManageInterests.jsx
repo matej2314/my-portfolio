@@ -37,7 +37,7 @@ export default function ManageInterests() {
     }
 
     return (
-        <div className={cmsComponents.wrapper.wrapper}>
+        <div className={`${cmsComponents.wrapper.wrapper} md:w-1/4`}>
             <h2
                 className={cmsComponents.h2.h2}
             >

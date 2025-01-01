@@ -42,7 +42,6 @@ export default function RegisterForm({ onClose }) {
                 className={cmsComponents.registerForm.form}
                 onSubmit={handleSubmit}
             >
-                <h2 className={cmsComponents.h2.h2}>Register</h2>
                 {message && <p className={cmsComponents.message.positive}>{message}</p>}
                 {error && <p className={cmsComponents.message.error}>{error}</p>}
 

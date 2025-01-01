@@ -30,7 +30,6 @@ export default function LoginForm() {
     return (
         <div>
             <form onSubmit={handleSubmit} className={cmsComponents.loginForm.form}>
-                <h2 className={cmsComponents.h2.h2}>Login</h2>
                 {isLoading && <p>Sending data...</p>}
                 {error && <p className={cmsComponents.message.error}>{error}</p>}
                 {!isLoading && user && <p className={cmsComponents.message.positive}>Witamy ponownie, {user.userName}!</p>}
