@@ -1,6 +1,7 @@
+import { forwardRef } from 'react';
 import { editForms } from '../data-forms-classes.js';
 
-export default function EditProjectForm({
+const EditProjectForm = forwardRef(({
     selectedProject,
     onSubmit,
     error,
@@ -17,7 +18,7 @@ export default function EditProjectForm({
     projLongTxt,
     projectDiff,
     projectEndDate
-}) {
+}, ref) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (onSubmit) {
@@ -230,4 +231,6 @@ export default function EditProjectForm({
             </form>
         </div>
     );
-}
+});
+
+export default EditProjectForm;
