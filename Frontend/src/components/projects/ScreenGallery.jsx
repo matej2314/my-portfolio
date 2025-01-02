@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from 'framer-motion';
 import useSendRequest from '../../hooks/useSendRequest';
-import { galleryUrl, imgUrl } from "../../url";
+import { galleryUrl } from "../../url";
 import { projectsClasses } from "./projectsClasses";
 import { useMediaQuery } from 'react-responsive';
 import { mapPhotos } from '../../utils/mapPhotos';
-
 
 export default function ScreenGallery({ id }) {
     const { sendRequest, result, isLoading, error } = useSendRequest();
@@ -57,8 +56,8 @@ export default function ScreenGallery({ id }) {
     };
 
     const handleDragEnd = (event, info) => {
-        const dragThreshold = 50; // Próg przesunięcia
-        const transitionDuration = 0.5; // Czas trwania animacji w sekundach
+        const dragThreshold = 50;
+        const transitionDuration = 0.5;
 
         if (info.offset.x > dragThreshold) {
             nextPhoto();

@@ -5,6 +5,7 @@ import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 import { addForms } from "../data-forms-classes";
+import { handleToastAndClose } from "../../../../../utils/handleToastAndClose";
 
 const addPostUrl = requestUrl.posts.new;
 
@@ -45,18 +46,9 @@ export default function AddPost({ onClose }) {
     }
 
     useEffect(() => {
-        if (result || error) {
-            const message = result?.message || error;
-            const type = result ? "info" : "error";
+        const cleanupFn = handleToastAndClose(error, result, onClose, toast);
 
-            toast[type](message);
-
-            const timer = setTimeout(() => {
-                onClose();
-            }, 1500);
-
-            return () => clearTimeout(timer);
-        }
+        return cleanupFn;
     }, [result, error, onClose]);
 
     return (

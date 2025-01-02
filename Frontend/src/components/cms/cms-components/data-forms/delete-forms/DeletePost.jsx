@@ -5,6 +5,7 @@ import { AuthContext } from "../../../../../store/auth-context.jsx";
 import useSendRequest from '../../../../../hooks/useSendRequest.jsx';
 import { requestUrl } from "../../../../../url";
 import { deleteForms } from "../data-forms-classes.js";
+import { handleToastAndClose } from "../../../../../utils/handleToastAndClose.js";
 
 const deletePostUrl = requestUrl.posts.delete;
 
@@ -32,21 +33,10 @@ export default function DeletePost({ selectedPost, onClose }) {
     };
 
     useEffect(() => {
-        if (result || error) {
-            const message = result?.message || error;
-            const type = result ? "info" : "error";
+        const cleanupFn = handleToastAndClose(error, result, onClose, toast);
 
-            toast[type](message);
-
-            const timer = setTimeout(() => {
-                onClose();
-            }, 1500);
-
-            return () => clearTimeout(timer);
-        }
+        return cleanupFn;
     }, [result, error, onClose]);
-
-
 
     return (
         <div className={deleteForms.wrapper.wrapper}>

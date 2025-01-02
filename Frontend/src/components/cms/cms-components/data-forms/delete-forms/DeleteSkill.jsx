@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 
 import { AuthContext } from "../../../../../store/auth-context";
 import useSendRequest from "../../../../../hooks/useSendRequest";
+import { handleToastAndClose } from "../../../../../utils/handleToastAndClose";
 import { requestUrl } from "../../../../../url";
 import { deleteForms } from "../data-forms-classes";
 
@@ -34,20 +35,10 @@ export default function DeleteSkill({ skillData, onClose }) {
     };
 
     useEffect(() => {
-        if (result || error) {
-            const message = result?.message || error;
-            const type = result ? "info" : "error";
+        const cleanupFn = handleToastAndClose(error, result, onClose, toast);
 
-            toast[type](message);
-
-            const timer = setTimeout(() => {
-                onClose();
-            }, 1500);
-
-            return () => clearTimeout(timer);
-        }
+        return cleanupFn;
     }, [result, error, onClose]);
-
 
     return (
         <div className={deleteForms.wrapper.wrapper}>

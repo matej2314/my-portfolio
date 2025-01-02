@@ -5,6 +5,7 @@ import { AuthContext } from '../../../../../store/auth-context';
 import useSendRequest from '../../../../../hooks/useSendRequest';
 import { requestUrl } from '../../../../../url';
 import { editForms } from "../data-forms-classes";
+import { handleToastAndClose } from "../../../../../utils/handleToastAndClose";
 
 const editPostUrl = requestUrl.posts.put;
 
@@ -45,21 +46,10 @@ export default function EditPosts({ selectedPost, onClose }) {
     };
 
     useEffect(() => {
-        if (result || error) {
-            const message = result?.message || error;
-            const type = result ? "info" : "error";
+        const cleanupFn = handleToastAndClose(error, result, onClose, toast);
 
-            toast[type](message);
-
-            const timer = setTimeout(() => {
-                onClose();
-            }, 1500);
-
-            return () => clearTimeout(timer);
-        }
+        return cleanupFn;
     }, [result, error, onClose]);
-
-
 
     return (
         <div>
