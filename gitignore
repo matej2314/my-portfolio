@@ -1,6 +1,7 @@
 Backend/node_modules/
 Frontend/.env
 Backend/.env
+Backend/emaildata.js
 
 **/.env
 **/node_modules/

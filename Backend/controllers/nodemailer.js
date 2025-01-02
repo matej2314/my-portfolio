@@ -1,13 +1,15 @@
 const nodemailer = require('nodemailer');
+const emailData = require('../emailData.js');
 
 const transporter = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
     port: process.env.MAIL_PORT,
     secure: true,
     auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-    }
+        user: emailData.login,
+        pass: emailData.pass,
+    },
+    
 });
 
 module.exports = transporter;
