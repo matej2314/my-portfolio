@@ -12,7 +12,7 @@ services:
       - /root/main/portfolio/backend/logs:/app/logs
       - /root/main/portfolio/backend/.env:/app/.env
       - /root/main/portfolio/backend/google:/app/google
-      /root/main/portfolio/backend/emaildata.js:/app/emaildata.js
+      - /root/main/portfolio/backend/emaildata.js:/app/emaildata.js
     environment:
       - DB_HOST=main_db
   app:
