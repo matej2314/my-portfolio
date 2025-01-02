@@ -4,7 +4,7 @@ import { AuthContext } from "../../../../../store/auth-context";
 import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 import { handleToastAndClose } from "../../../../../utils/handleToastAndClose";
-import EditProjectForm from "./EditProjectsForm";
+import EditProjectForm from "./EditProjectForm";
 
 const editProjectUrl = requestUrl.projects.put;
 
