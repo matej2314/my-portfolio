@@ -41,8 +41,6 @@ export default function AddCourse({ onClose }) {
         } catch (error) {
             console.log('Błąd podczas dodawania nowego kursu');
         }
-
-
     };
 
     useEffect(() => {
