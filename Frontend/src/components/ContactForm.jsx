@@ -37,6 +37,7 @@ export default function ContactForm() {
             await sendRequest({
                 url: mailUrl,
                 data: contactObj,
+                method: 'POST'
             });
 
             if (!error) {
