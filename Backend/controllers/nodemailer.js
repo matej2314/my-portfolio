@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-const emailData = require('../emailData.js');
+const emailData = require('../emaildata.js');
 
 const transporter = nodemailer.createTransport({
     host: process.env.MAIL_HOST,
