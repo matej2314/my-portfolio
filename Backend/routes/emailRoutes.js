@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('../logger');
 const transporter = require('../controllers/nodemailer');
 const router = express.Router();
+const emailData = require('../emaildata.js');
 
 router.post('/', async (req, res) => {
     const { userName, userEmail, subject, userMessage } = req.body;
@@ -24,7 +25,7 @@ router.post('/', async (req, res) => {
         `;
 
         const info = await transporter.sendMail({
-            from: process.env.MAIL_USER,
+            from: emailData.login,
             to: process.env.DEL_MAIL,
             subject: `Nowa wiadomość od ${userName}: ${subject}`,
             text: emailText

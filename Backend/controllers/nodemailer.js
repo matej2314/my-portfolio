@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
         user: emailData.login,
         pass: emailData.pass,
     },
-    
+
 });
 
 module.exports = transporter;
