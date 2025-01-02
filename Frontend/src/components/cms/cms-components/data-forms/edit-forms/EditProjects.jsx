@@ -5,6 +5,7 @@ import useSendRequest from "../../../../../hooks/useSendRequest";
 import { requestUrl } from "../../../../../url";
 import { handleToastAndClose } from "../../../../../utils/handleToastAndClose";
 import EditProjectForm from "./EditProjectForm";
+import { editForms } from "../data-forms-classes";
 
 const editProjectUrl = requestUrl.projects.put;
 
@@ -71,9 +72,9 @@ export default function EditProjects({ selectedProject, onClose }) {
     }, [result, error, onClose]);
 
     return (
-        <div className="wrapper">
-            <h2 className="text-2xl">Edit selected project</h2>
-            <h3 className="text-sm">(to go back, press "Manage" button)</h3>
+        <div className={editForms.editProjects.wrapper}>
+            <h2 className="w-full h-fit flex justify-center text-slate-100 text-2xl">Edit selected project</h2>
+            <h3 className="w-full flex justify-center text-slate-100 text-sm">(to go back, press "Manage" button)</h3>
             {error && <p>{error}</p>}
             <EditProjectForm
                 selectedProject={selectedProject}
