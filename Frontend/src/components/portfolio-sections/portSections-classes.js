@@ -68,7 +68,7 @@ export const sectionsClasses = {
         ul: "w-full h-full flex flex-col text-base justify-center gap-4 md:w-full md:h-fit md:items-center md:gap-4 mb-4 pl-4 md:mb-4 md:grid md:grid-cols-4",
     },
     course: {
-        course: "w-full h-full md:w-full md:h-full flex md:flex-col justify-stretch md:justify-center pb-2 items-center border-r-2 border-[#6f963b] border-opacity-40 whitespace-break-spaces",
+        course: "w-full h-full md:w-full md:h-full flex md:flex-col justify-center md:justify-center pb-2 items-center border-r-2 border-[#6f963b] border-opacity-40 whitespace-break-spaces",
     },
     interestsSection: {
         ul: "w-full grid grid-cols-2 gap-y-4 gap-x-6 md:grid-cols-3 md:gap-y-6 pb-4 text-center",
