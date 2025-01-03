@@ -1,5 +1,7 @@
 # Project: My Portfolio + CMS (fullstack)
 
+![main-page-portfolio](https://api.msliwowski.net/images/dfad08a3-7d33-49db-9430-ffb2f2ee0191/mainpage.png)
+
 Link to the page of the project: https://msliwowski.net
 
 ## Idea of the project
