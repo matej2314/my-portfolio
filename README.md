@@ -43,7 +43,7 @@ It's a fullstack project, but every user after getting to my page will see front
 
   Or:
 
-  1.Clone repository.
+  1.Clone repository. 
   2.Run Dockerfile in selected part of the project and run it.
 
 
