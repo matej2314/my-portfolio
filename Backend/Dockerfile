@@ -6,7 +6,7 @@ COPY package*.json  .
 
 COPY . .
 
-RUN rm -rf node_modules && npm install 
+# RUN rm -rf node_modules && npm install 
 
 EXPOSE 5051
 
