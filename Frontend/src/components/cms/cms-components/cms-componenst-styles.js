@@ -18,7 +18,7 @@ export const cmsComponents = {
         button: "text-xl border-2 border-black p-2 rounded-lg hover:bg-neutral-700",
     },
     h2: {
-        h2: "text-2xl"
+        h2: "text-2xl text-zinc-300"
     },
     input: {
       input: "text-black pl-2",
