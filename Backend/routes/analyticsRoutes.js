@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { google } = require('googleapis');
-const logger = require('../logger');
+const logger = require('../configs/logger.js');
 const credentials = require('../google/myPortfolio-f6f80beac2cd.json');
 
 

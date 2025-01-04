@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const logger = require('../logger');
+const logger = require('../configs/logger.js');
 const {getMainPhotosPath, getGalleryPhotosPath, getProjectFolder} = require('../utlis/projectPaths');
 
 const createProjectFolders = (req, res, next) => {

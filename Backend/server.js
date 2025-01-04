@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 const port = process.env.SERV_PORT || 5051;
 const cors = require('cors');
-const logger = require('./logger.js');
+const logger = require('./configs/logger.js');
 
 
 app.use(express.urlencoded({ limit: '10mb' ,extended: true }));

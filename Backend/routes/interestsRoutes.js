@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
-const pool = require('../db.js');
-const logger = require('../logger.js');
+const pool = require('../database/db.js');
+const logger = require('../configs/logger.js');
 const verifyAdmin = require('../controllers/verifyAdmin.js');
 
 router.get('/collection', async (req, res) => {

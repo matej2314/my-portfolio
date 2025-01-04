@@ -1,6 +1,6 @@
 const multer = require('multer');
 const path = require('path');
-const logger = require('../logger');
+const logger = require('../configs/logger.js');
 
 const createStorage = multer.diskStorage({
 	destination: async (req, file, cb) => {

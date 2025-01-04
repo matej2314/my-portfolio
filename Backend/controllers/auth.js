@@ -1,9 +1,9 @@
-const pool = require('../db');
+const pool = require('../database/db.js');
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
-const logger = require('../logger');
+const logger = require('../configs/logger.js');
 
 function isValidPassword(password) {
 	const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[*!#^%$@?])[a-zA-Z\d*!#^%$@?]{10,30}$/;

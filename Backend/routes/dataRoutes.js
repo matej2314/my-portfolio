@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db.js');
-const logger = require('../logger.js');
+const pool = require('../database/db.js');
+const logger = require('../configs/logger.js');
 
 router.use(express.json());
 

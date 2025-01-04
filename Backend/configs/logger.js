@@ -7,7 +7,7 @@ const logFormat = printf(({ level, message, timestamp }) => {
     return `${timestamp} [${level.toUpperCase()}] : ${message}`;
 });
 
-const logDir = path.join(__dirname, './logs');
+const logDir = path.join(__dirname, '../logs');
 
 const logger = createLogger({
     format: combine(timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), logFormat),

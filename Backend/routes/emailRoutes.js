@@ -1,6 +1,6 @@
 const express = require('express');
-const logger = require('../logger');
-const transporter = require('../controllers/nodemailer');
+const logger = require('../configs/logger.js');
+const transporter = require('../configs/nodemailer');
 const router = express.Router();
 const emailData = require('../emaildata.js');
 

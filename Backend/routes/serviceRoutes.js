@@ -1,7 +1,7 @@
 const express = require('express');
-const pool = require('../db.js');
+const pool = require('../database/db.js');
 const router = express.Router();
-const logger = require('../logger.js');
+const logger = require('../configs/logger.js');
 const { v4: uuidv4 } = require('uuid');
 const verifyAdmin = require('../controllers/verifyAdmin.js');
 

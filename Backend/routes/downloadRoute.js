@@ -1,8 +1,8 @@
 const path = require('path');
 const express = require('express');
-const pool = require('../db'); 
+const pool = require('../database/db.js'); 
 const router = express.Router();
-const logger = require('../logger');
+const logger = require('../configs/logger.js');
 
 router.get('/', (req, res) => {
 
