@@ -1,14 +1,14 @@
-import MainPage from './pages/MainPage';
-import Contact from './pages/Contact';
-import PortfolioPage from './pages/PortfolioPage';
-import BlogPage from './pages/BlogPage';
-import ProjectsPage from './pages/ProjectsPage';
-import ProjectDetails from './pages/ProjectDetailsPage';
-import PostReadMore from './pages/PostReadMore';
-import NotFound from './pages/NotFound';
-import CmsIndexPage from './components/cms/CmsIndexPage';
-import CmsMainPage from './components/cms/CmsMainPage';
-import { AuthProvider } from './store/auth-context';
+import MainPage from '../pages/MainPage';
+import Contact from '../pages/Contact';
+import PortfolioPage from '../pages/PortfolioPage';
+import BlogPage from '../pages/BlogPage';
+import ProjectsPage from '../pages/ProjectsPage';
+import ProjectDetails from '../pages/ProjectDetailsPage';
+import PostReadMore from '../pages/PostReadMore';
+import NotFound from '../pages/NotFound';
+import CmsIndexPage from '../components/cms/CmsIndexPage';
+import CmsMainPage from '../components/cms/CmsMainPage';
+import { AuthProvider } from '../store/auth-context';
 
 const routes = (isMobile) => {
   return [
