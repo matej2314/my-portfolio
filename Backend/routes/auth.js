@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/auth');
-const verifyJWT = require('../controllers/verifyJWT');
+const verifyJWT = require('../middlewares/verifyJWT');
 
 router.post('/register', authController.registerUser);
 router.post('/login', authController.loginUser);

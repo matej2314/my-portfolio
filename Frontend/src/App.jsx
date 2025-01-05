@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import TrackPageView from './hooks/TrackPageView';
-import routes from './routerConfig';
+import routes from './configs/routerConfig';
 
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 768 });

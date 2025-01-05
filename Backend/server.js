@@ -8,7 +8,6 @@ const port = process.env.SERV_PORT || 5051;
 const cors = require('cors');
 const logger = require('./configs/logger.js');
 
-
 app.use(express.urlencoded({ limit: '10mb' ,extended: true }));
 app.use(express.json({limit: '10mb'})); 
 app.use(cookieParser());
@@ -68,7 +67,13 @@ app.use('/email', emailRoutes);
 app.use('/auth', authRoutes);
 app.use('/', analyticsRoutes);
 
-app.listen(port, () => {
-    logger.info(`BACKEND SERVER RUNNING. PORT ${port}`);
-    console.log(`SERVER RUNNING ON PORT ${port}`);
-});
+try {
+    app.listen(port, () => {
+        logger.info(`BACKEND SERVER RUNNING. PORT ${port}`);
+        console.log(`SERVER RUNNING ON PORT ${port}`);
+    });
+} catch (error) {
+    logger.error('Nie udało się uruchomić serwera.');
+    console.log('Nie udało się uruchomić serwera.');
+}
+

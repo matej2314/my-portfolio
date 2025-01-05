@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-
-import { langs } from '../../langs.js';
+import { langs } from '../../utils/langs.js';
 import { sectionsClasses } from './portSections-classes.js';
 
 export default function LanguagesSection() {

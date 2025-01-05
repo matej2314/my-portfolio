@@ -4,27 +4,9 @@ const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
 const logger = require('../configs/logger.js');
-
-function isValidPassword(password) {
-	const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[*!#^%$@?])[a-zA-Z\d*!#^%$@?]{10,30}$/;
-	return regex.test(password);
-};
-
-function isValidEmail(email) {
-	const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	return regex.test(email);
-}
-
-function isValidUsername(username) {
-	const regex = /^[a-zA-Z0-9]{5,}$/;
-	return regex.test(username);
-}
-
-const jwtCookieOptions = {
-	httpOnly: true,
-    secure: false,
-    sameSite: "lax",
-};
+const queries = require('../database/authQueries.js');
+const { isValidPassword, isValidEmail, isValidUsername } = require('../utils/validation.js');
+const jwtCookieOptions = require('../configs/jwtCookieOptions.js');
 
 exports.registerUser = async (req, res) => {
     try {
@@ -52,7 +34,7 @@ exports.registerUser = async (req, res) => {
         };
 
         if (role === 'admin') {
-            const [rows] = await pool.query('SELECT * FROM users WHERE role = "admin" LIMIT 1');
+            const [rows] = await pool.query(queries.registerAdminCheck);
             
             if (rows.length > 0) {
                 return res.status(400).json({ message: 'Konto administratora już istnieje!' })
@@ -62,7 +44,7 @@ exports.registerUser = async (req, res) => {
         const userId = uuidv4();
 
         try {
-            await pool.query('INSERT INTO users SET ?', { id: userId, role, name: reg_username, password: hashedPassword, email: reg_email });
+            await pool.query(queries.register, { id: userId, role, name: reg_username, password: hashedPassword, email: reg_email });
 
             const token = jwt.sign({ id: userId, role }, JWT_SECRET, { expiresIn: '1h' });
 
@@ -93,11 +75,9 @@ exports.loginUser = async (req, res) => {
         return res.status(400).json({ message: 'Podaj prawidłowe dane użytkownika.' });
     }
 
-    const query = 'SELECT * FROM users WHERE email = ?';
-
     try {
         
-        const [rows] = await pool.query(query, [email]);
+        const [rows] = await pool.query(queries.login, [email]);
 
         if (rows.length === 0) {
             logger.error('Nieprawidłowy adres e-mail.');

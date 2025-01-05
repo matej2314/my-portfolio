@@ -1,39 +1,16 @@
 const express = require('express');
-const path = require('path');
 const router = express.Router();
-const fs = require('fs/promises');
 const pool = require('../database/db.js');
 const logger = require('../configs/logger.js');
-const verifyAdmin = require('../controllers/verifyAdmin.js');
-const saveProject = require('../controllers/createStorage.js');
-const deleteFiles = require('../controllers/deleteFilesInDir.js');
-const createProjectFolders = require('../controllers/createProjectFolder.js');
-const { getMainPhotosPath, getGalleryPhotosPath } = require('../utlis/projectPaths.js');
+const verifyAdmin = require('../middlewares/verifyAdmin.js');
+const saveProject = require('../middlewares/createStorage.js');
+const deleteFiles = require('../middlewares/deleteFilesInDir.js');
+const createProjectFolders = require('../middlewares/createProjectFolder.js');
+const projectsQueries = require('../database/projectsQueries.js');
+const projectsController = require('../controllers/projectsController.js')
+const extractScreenName = require('../utils/extractName.js');
 
-router.use(express.json());
-
-router.get('/collection', async (req, res) => {
-	const query = 'SELECT * FROM projects ORDER BY id';
-
-	try {
-		const [rows] = await pool.query(query);
-
-		if (rows.length <= 0) {
-			logger.error('Brak projektów do pobrania');
-			return res.status(404).json({ message: 'Brak projektów w bazie danych' });
-		}
-
-		return res.status(200).json({
-			message: 'Projekty pobrano poprawnie',
-			projects: rows,
-		});
-	} catch (error) {
-		logger.error('Nie udało się pobrać projektów', error.message);
-		return res.status(500).json({
-			message: 'Nie udało się pobrać projektów',
-		});
-	}
-});
+router.get('/collection', projectsController.getAllProjects );
 
 router.post(
 	'/new',
@@ -57,13 +34,11 @@ router.post(
 		}
 
 		const firstFile = req.files.mainImages[0];
-		const fileWithoutExtension = path.parse(firstFile.filename).name;
-		const screenName = fileWithoutExtension.replace(/-.+$/, '');
-
-		const query = 'INSERT INTO projects (id, project_name, goal, project_category, project_URL, project_screenName, project_description, repo, technologies, long_text, difficulty, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		const screenName = extractScreenName(firstFile);
 
 		try {
-			await pool.query(query, [projectId, projectName, goal, projectCat, prURL, screenName, description, repo, technologies, longText, projectDiff, endDate]);
+			await pool.query(projectsQueries.addNewProject,
+				[projectId, projectName, goal, projectCat, prURL, screenName, description, repo, technologies, longText, projectDiff, endDate]);
 			logger.info(`Projekt ${projectName} dodany pomyślnie!`);
 
 			return res.status(201).json({
@@ -76,44 +51,6 @@ router.post(
 		}
 	}
 );
-
-router.delete('/delete/:projectId',
-	verifyAdmin,
-	deleteFiles,
-	async (req, res) => {
-	const { projectName } = req.body;
-	const projectId = req.projectId;
-	const projectFolderPath = req.projectFolderPath;
-
-	if (!projectId || projectId <= 0 || projectName === '') {
-		logger.error('Brak wymaganych danych do usunięcia projektu');
-		return res.status(400).json({ message: 'Brak wymaganych danych do usunięcia projektu' });
-	}
-
-	const query = 'DELETE FROM projects WHERE id=? AND project_name=?';
-
-	try {
-		const [result] = await pool.query(query, [projectId, projectName]);
-
-		if (result.affectedRows == 0) {
-			logger.info('Projekt nie znaleziony');
-			return res.status(404).json({ message: 'Nie znaleziono projektu do usunięcia' });
-		}
-
-		try {
-			
-			await fs.rm(projectFolderPath, { recursive: true, force: true });
-			logger.info(`Główny folder projektu ${projectId} usunięty.`);
-		} catch (error) {
-			logger.error(`Nie udało się usunąć głównego folderu projektu ${projectId}: ${error}`);
-		}
-
-		return res.status(200).json({ message: `Projekt ${projectName} usunięty.` });
-	} catch (error) {
-		logger.error('Nie udało się usunąć projektu', error);
-		return res.status(500).json({ message: `Nie udało się usunąć projektu ${projectName}` });
-	}
-});
 
 router.put(
 	'/update/:projectId/:images',
@@ -132,7 +69,8 @@ router.put(
 	]),
 	async (req, res) => {
 		const projectId = req.params.projectId || req.projectId;
-		const { projectName, projectCat, projectURL, projectScr, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate } = req.body;
+		const { projectName, projectCat, projectURL, projectScr, goal, projectDesc,
+			projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate } = req.body;
 	
 		if (!projectId || !projectName || !projectCat || !projectURL || !goal || !projectDesc || !projectRepo || !projectLongTxt) {
 			logger.error('Brak wymaganych danych do aktualizacji projektu');
@@ -143,8 +81,7 @@ router.put(
 		let screenName;
 		if (mainImages.length > 0) {
 			const firstFile = mainImages[0];
-			const fileWithoutExtension = path.parse(firstFile.filename).name;
-			screenName = fileWithoutExtension.replace(/-.+$/, '');
+			screenName = extractScreenName(firstFile);
 		} else if (projectScr) {
 			screenName = projectScr;
 		} else {
@@ -152,25 +89,10 @@ router.put(
 			return res.status(400).json({ message: 'Brak danych dla `screenName`' });
 		}
 
-		const query = `
-		UPDATE projects 
-		SET 
-			project_name = ?, 
-			project_category = ?, 
-			project_URL = ?, 
-			project_screenName = ?, 
-			goal = ?, 
-			project_description = ?, 
-			repo = ?, 
-			technologies = ?, 
-			long_text = ?, 
-			difficulty = ?, 
-			end_date = ? 
-		WHERE id = ?
-	  `;
-
 		try {
-			const [result] = await pool.query(query, [projectName, projectCat, projectURL, screenName, goal, projectDesc, projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate, projectId]);
+			const [result] = await pool.query(projectsQueries.updateProject,
+				[projectName, projectCat, projectURL, screenName, goal, projectDesc, projectRepo, technologies,
+					projectLongTxt, projectDiff, projectEndDate, projectId]);
 
 			if (result.affectedRows === 0) {
 				logger.warn(`Nie znaleziono projektu o ID ${projectId}`);
@@ -190,32 +112,11 @@ router.put(
 	}
 );
 
-router.post('/photos', async (req, res) => {
-	const { projectId } = req.body;
+router.delete('/delete/:projectId',
+	verifyAdmin,
+	deleteFiles,
+	projectsController.deleteProject);
 
-	if (!projectId || projectId.toString().length < 0) {
-		return res.status(400).json({ message: 'Prześlij poprawny identyfikator projektu.' });
-	};
-
-	const mainPhotos = getMainPhotosPath(projectId);
-	const galleryPhotos = getGalleryPhotosPath(projectId);
-	
-	try {
-		const mainFiles = await fs.readdir(mainPhotos);
-		const galleryFiles = await fs.readdir(galleryPhotos);
-		const images = {
-			mainFiles,
-			galleryFiles,
-		}
-
-		return res.status(200).json({
-			message: 'Lista plików pobrana poprawnie.',
-			images,
-		});
-	} catch (error) {
-		logger.error(`Nie udało się poprawnie pobrać zdjęć: ${error}`);
-		return res.status(500).json({message: 'Nie udało się poprawnie pobrać zdjęć.'})
-	}
-});
+router.post('/photos', projectsController.photosList);
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const fs = require('fs/promises');
 const path = require('path');
 const logger = require('../configs/logger.js');
-const {getProjectFolder, getMainPhotosPath, getGalleryPhotosPath} = require('../utlis/projectPaths');
+const {getProjectFolder, getMainPhotosPath, getGalleryPhotosPath} = require('../utils/projectPaths.js');
 
 const deleteFiles = async (req, res, next) => {
 	req.projectId = req.params.projectId;
