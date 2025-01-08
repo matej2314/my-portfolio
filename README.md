@@ -47,4 +47,4 @@ It's a fullstack project, but every user after getting to my page will see front
 
   1. Clone repository. 
   2. Build image based on the Dockerfile from selected part of the project.
-  3. Build container based on builded image.
+  3. Build container based on builded image. 
