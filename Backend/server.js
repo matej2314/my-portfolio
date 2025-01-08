@@ -12,7 +12,7 @@ app.use(express.urlencoded({ limit: '10mb' ,extended: true }));
 app.use(express.json({limit: '10mb'})); 
 app.use(cookieParser());
 
-const allowedOrigins = ["https://api.msliwowski.net", "https://msliwowski.net", "http://localhost:5173", "http://185.170.196.107:5050/"];
+const allowedOrigins = ["https://api.msliwowski.net", "https://msliwowski.net", "http://localhost:5173", "http://185.170.196.107:5050"];
 
 app.use(cors({
     origin: (origin, callback) => {
