@@ -17,6 +17,12 @@ exports.registerUser = async (req, res) => {
             return res.status(400).json({ message: 'Proszę podać wszystkie dane!' });
         };
 
+        const [checkEmail] = await pool.query(queries.registerEmailCheck, [reg_email]);
+
+        if (checkEmail.length > 0) {
+            return res.status(400).json({ message: 'Użytkownik o podanym adresie e-mail już istnieje.' });
+        }
+
         if (!isValidUsername(reg_username)) {
             return res.status(400).json({ message: 'Podaj prawidłowe dane użytkownika.' });
         };
