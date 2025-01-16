@@ -93,7 +93,7 @@ export default function CmsMainPage() {
 
     return (
         <>
-            {isAuthenticated ? (
+            {isAuthenticated && isLoaded ? (
                 <main className={cmsPages.mainPage.main}>
                     <div className="w-full h-fit flex justify-center">
                         <CmsMenu handleSelected={handleSelected} onClose={handleCloseComponents} />
