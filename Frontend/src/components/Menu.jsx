@@ -115,36 +115,6 @@ export default function Menu() {
                         </NavLink>
                     </li>
                     <li
-                        onMouseEnter={() => setHoveredItem("blog")}
-                        onMouseLeave={() => setHoveredItem(null)}
-                    >
-                        <NavLink to="/blog" className={compClasses.menu.link}>
-                            <AnimatePresence mode="wait" initial={false}>
-                                {activeItem === "blog" || hoveredItem === "blog" ? (
-                                    <motion.div
-                                        key="blog-icon"
-                                        initial={initialDiv}
-                                        animate={animate}
-                                        exit={initialDiv}
-                                        transition={transitionConfig}
-                                    >
-                                        <Icon icon="material-symbols:article" color={iconColor} width={iconSize} height={iconSize} />
-                                    </motion.div>
-                                ) : (
-                                    <motion.span
-                                        key="blog-text"
-                                        initial={initialSpan}
-                                        animate={animate}
-                                        exit={initialSpan}
-                                        transition={transitionConfig}
-                                    >
-                                        Blog
-                                    </motion.span>
-                                )}
-                            </AnimatePresence>
-                        </NavLink>
-                    </li>
-                    <li
                         onMouseEnter={() => setHoveredItem("download")}
                         onMouseLeave={() => setHoveredItem(null)}
                     >
@@ -190,6 +160,36 @@ export default function Menu() {
                                 )}
                             </AnimatePresence>
                         </a>
+                    </li>
+                    <li
+                        onMouseEnter={() => setHoveredItem("blog")}
+                        onMouseLeave={() => setHoveredItem(null)}
+                    >
+                        <NavLink to="/blog" className={compClasses.menu.link}>
+                            <AnimatePresence mode="wait" initial={false}>
+                                {activeItem === "blog" || hoveredItem === "blog" ? (
+                                    <motion.div
+                                        key="blog-icon"
+                                        initial={initialDiv}
+                                        animate={animate}
+                                        exit={initialDiv}
+                                        transition={transitionConfig}
+                                    >
+                                        <Icon icon="material-symbols:article" color={iconColor} width={iconSize} height={iconSize} />
+                                    </motion.div>
+                                ) : (
+                                    <motion.span
+                                        key="blog-text"
+                                        initial={initialSpan}
+                                        animate={animate}
+                                        exit={initialSpan}
+                                        transition={transitionConfig}
+                                    >
+                                        Blog
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </NavLink>
                     </li>
                 </ul>
             </nav>
