@@ -2,22 +2,29 @@ const pool = require('../database/db.js');
 const logger = require('../configs/logger.js');
 const { v4: uuidv4 } = require('uuid');
 const servicesQueries = require('../database/servicesQueries.js');
+const { StatusCodes } = require('http-status-codes');
+const statusCode = StatusCodes;
 
 exports.getAllServices = async (req, res) => {
-    
+
     try {
         const [rows] = await pool.query(servicesQueries.getAllServices);
 
         if (rows.length <= 0) {
             logger.error('Brak usług w bazie danych');
-            return res.status(404).json({ message: 'Brak usług w bazie' });
+            return res.status(statusCode.NOT_FOUND).json({ message: 'Brak usług w bazie' });
         };
 
-        return res.status(200).json({ message: 'Usługi pobrane poprawnie', services: rows });
+        return res.status(statusCode.OK).json({
+            message: 'Usługi pobrane poprawnie',
+            services: rows
+        });
     } catch (error) {
         logger.error('Nie udało się pobrać listy usług', error.message);
 
-        return res.status(500).json({ message: 'Nie udało się pobrać listy usług' });
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            message: 'Nie udało się pobrać listy usług'
+        });
     };
 };
 
@@ -27,13 +34,15 @@ exports.addNewService = async (req, res) => {
     const service_description = req.body.serviceDesc;
 
     if (!service_name || !service_description) {
-        return res.status(400).json({ message: 'Brak wymaganych danych do dodania nowej usługi' });
+        return res.status(statusCode.BAD_REQUEST).json({
+            message: 'Brak wymaganych danych do dodania nowej usługi'
+        });
     }
 
     try {
         await pool.query(servicesQueries.addNewService, [id, service_name, service_description]);
         logger.info(`Usługa ${service_name} dodana pomyślnie`);
-        return res.status(200).json({
+        return res.status(statusCode.OK).json({
             message: `Usługa ${service_name} dodana!`,
             serviceId: id,
             serviceName: service_name,
@@ -41,7 +50,9 @@ exports.addNewService = async (req, res) => {
 
     } catch (error) {
         logger.error(`Nie udało się dodać usługi ${service_name}`);
-        return res.status(500).json({ message: 'Nie udało się dodać nowej usługi' });
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            message: 'Nie udało się dodać nowej usługi'
+        });
     };
 };
 
@@ -49,13 +60,13 @@ exports.editService = async (req, res) => {
     const { serviceId, serviceName, serviceDescription } = req.body;
 
     if (!serviceName || !serviceDescription || serviceName.trim() == '' || serviceDescription.trim() == '') {
-        return res.status(400).json({ message: 'Brak danych do edycji usługi' });
+        return res.status(statusCode.BAD_REQUEST).json({ message: 'Brak danych do edycji usługi' });
     };
 
     try {
         const [result] = await pool.query(servicesQueries.editService, [serviceName, serviceDescription, serviceId]);
         logger.info(`Usługa ${serviceName} edytowana.`);
-        return res.status(200).json({
+        return res.status(statusCode.OK).json({
             message: `Usługa ${serviceName} edytowana poprawnie.`,
             name: serviceName,
             id: serviceId
@@ -64,7 +75,9 @@ exports.editService = async (req, res) => {
 
     } catch (error) {
         logger.error('Nie udało się zaktualizować usługi', error.message);
-        return res.status(500).json({ message: 'Nie udało się zaktualizować usługi' });
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            message: 'Nie udało się zaktualizować usługi'
+        });
     };
 };
 
@@ -72,7 +85,9 @@ exports.deleteService = async (req, res) => {
     const { serviceId } = req.body;
 
     if (!serviceId || serviceId === 0) {
-        return res.status(400).json({ message: 'Brak wymaganych danych' });
+        return res.status(statusCode.BAD_REQUEST).json({
+            message: 'Brak wymaganych danych'
+        });
     }
 
     try {
@@ -80,16 +95,18 @@ exports.deleteService = async (req, res) => {
 
         if (result.affectedRows === 0) {
             logger.info('Usługa nie znaleziona');
-            return res.status(404).json({ message: 'Usługa nie znaleziona' });
+            return res.status(statusCode.NOT_FOUND).json({ message: 'Usługa nie znaleziona' });
         };
 
-        return res.status(200).json({
+        return res.status(statusCode.OK).json({
             message: `Usługa usunięta poprawnie`,
             serviceId,
         });
 
     } catch (error) {
         logger.error('Nie udało się usunąć usługi', error.message);
-        return res.status(500).json({ message: 'Nie udało się usunąć usługi' });
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            message: 'Nie udało się usunąć usługi'
+        });
     };
 };

@@ -2,10 +2,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from '@iconify/react';
 import { NavLink, useLocation } from "react-router-dom";
-import ReactGA from 'react-ga4';
 
+import SelectCvVersionBtns from "./portfolio-sections/internal-components/SelectCvVersionBtns";
 import { compClasses } from "./components-classes";
-import { cvURL } from '../url';
 
 export default function Menu() {
     const [hoveredItem, setHoveredItem] = useState(null);
@@ -21,7 +20,7 @@ export default function Menu() {
     const activeItem = location.pathname.replace("/", "");
 
     return (
-        <menu className={compClasses.menu.menu}>
+        <menu className={`${compClasses.menu.menu} z-20`}>
             <nav>
                 <ul className={compClasses.menu.ul}>
                     <li
@@ -119,22 +118,7 @@ export default function Menu() {
                         onMouseLeave={() => setHoveredItem(null)}
                     >
                         <a
-                            href={cvURL}
                             className={compClasses.menu.link}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                ReactGA.event('download_cv', {
-                                    category: 'download cv',
-                                    action: 'downloaded',
-                                    label: 'CV downloaded',
-                                    elementId: 'download-btn'
-                                });
-
-                                setTimeout(() => {
-                                    window.location.href = cvURL;
-                                }, 500);
-                            }}
-
                         >
                             <AnimatePresence mode="wait" initial={false}>
                                 {activeItem === "download" || hoveredItem === "download" ? (
@@ -157,6 +141,24 @@ export default function Menu() {
                                     >
                                         Download CV
                                     </motion.span>
+                                )}
+                                {hoveredItem === 'download' && (
+                                    <motion.div
+                                        key='context-menu'
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -20 }}
+                                        transition={{
+                                            duration: 0.2,
+                                            ease: 'easeInOut',
+                                            damping: 28
+                                        }}
+                                        className="w-fit h-fit bg-neutral-900/85 absolute left-[12rem] bottom-[15rem] flex justify-center items-center p-3 z-10 rounded-tr-md rounded-br-md"
+                                    >
+                                        <div className="w-full h-full flex justify-center items-center gap-3  text-gray-600">
+                                            <SelectCvVersionBtns />
+                                        </div>
+                                    </motion.div>
                                 )}
                             </AnimatePresence>
                         </a>

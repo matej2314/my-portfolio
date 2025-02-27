@@ -4,6 +4,8 @@ const { google } = require('googleapis');
 const logger = require('../configs/logger.js');
 const credentials = require('../google/myPortfolio-f6f80beac2cd.json');
 const { getAnalyticsData } = require('../utils/analytics/getAnalyticsData.js');
+const { StatusCodes } = require('http-status-codes');
+const statusCode = StatusCodes;
 
 const SCOPES = ['https://www.googleapis.com/auth/analytics.readonly'];
 const jwtClient = new google.auth.JWT(
@@ -55,7 +57,7 @@ router.get('/analytics', async (req, res) => {
                 additionalData = {
                     eventCount: row.dimensionValues[0]?.value,
                     pagePath: row.dimensionValues[1]?.value,
-               }
+                }
             } else if (eventName === 'first_visit') {
                 additionalData = {
                     eventCount: row.metricValues[0]?.value,  // Liczba zdarzeń first_visit
@@ -72,10 +74,12 @@ router.get('/analytics', async (req, res) => {
             };
         });
 
-        return res.status(200).json(processedData);
+        return res.status(statusCode.OK).json(processedData);
     } catch (error) {
         logger.error(`Błąd pobierania danych z GA: ${error}`);
-        return res.status(500).json({ message: `Błąd pobierania danych Google Analytics: ${error}` });
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+            message: `Błąd pobierania danych Google Analytics: ${error}`
+        });
     }
 });
 

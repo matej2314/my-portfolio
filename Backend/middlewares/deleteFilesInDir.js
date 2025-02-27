@@ -1,7 +1,9 @@
 const fs = require('fs/promises');
 const path = require('path');
 const logger = require('../configs/logger.js');
-const {getProjectFolder, getMainPhotosPath, getGalleryPhotosPath} = require('../utils/projectPaths.js');
+const { getProjectFolder, getMainPhotosPath, getGalleryPhotosPath } = require('../utils/projectPaths.js');
+const { StatusCodes } = require('http-status-codes');
+const statusCode = StatusCodes;
 
 const deleteFiles = async (req, res, next) => {
 	req.projectId = req.params.projectId;
@@ -13,8 +15,8 @@ const deleteFiles = async (req, res, next) => {
 	req.projectFolderPath = projectFolderPath;
 	req.mainPhotosPath = mainFolderPath;
 	req.galleryPhotosPath = galleryFolderPath;
-	
-	const folders = [ mainFolderPath, galleryFolderPath];
+
+	const folders = [mainFolderPath, galleryFolderPath];
 
 	try {
 		for (const folder of folders) {
@@ -24,9 +26,11 @@ const deleteFiles = async (req, res, next) => {
 
 	} catch (error) {
 		logger.error(`Folder nie istnieje: ${error.message}`);
-		return res.status(404).json({ error: 'Jeden z wymaganych folderów nie istnieje.' });
+		return res.status(statusCode.NOT_FOUND).json({
+			error: 'Jeden z wymaganych folderów nie istnieje.'
+		});
 	}
-	
+
 	try {
 		for (const folder of folders) {
 			const files = await fs.readdir(folder);
@@ -42,10 +46,12 @@ const deleteFiles = async (req, res, next) => {
 		}
 		logger.info(`Wszystkie pliki zostały pomyślnie usunięte.`);
 		next();
-		
+
 	} catch (error) {
 		logger.error(`Błąd podczas operacji na plikach: ${error.message}`);
-		return res.status(500).json({ error: 'Wystąpił błąd podczas operacji na plikach.' });
+		return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
+			error: 'Wystąpił błąd podczas operacji na plikach.'
+		});
 	}
 }
 
