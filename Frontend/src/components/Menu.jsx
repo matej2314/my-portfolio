@@ -153,7 +153,7 @@ export default function Menu() {
                                             ease: 'easeInOut',
                                             damping: 28
                                         }}
-                                        className="w-fit h-fit bg-neutral-900/85 absolute left-[12rem] bottom-[15rem] flex justify-center items-center p-3 z-10 rounded-tr-md rounded-br-md"
+                                        className="w-fit h-fit bg-neutral-900/85 absolute left-[12rem] bottom-[14.5rem] flex justify-center items-center p-3 z-10 rounded-tr-md rounded-br-md"
                                     >
                                         <div className="w-full h-full flex justify-center items-center gap-3  text-gray-600">
                                             <SelectCvVersionBtns />
