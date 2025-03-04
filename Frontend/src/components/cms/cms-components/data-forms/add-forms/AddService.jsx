@@ -36,7 +36,7 @@ export default function AddService({ onClose }) {
             });
 
         } catch (error) {
-            console.log('Dodawanie usługi nie powiodło się');
+            console.log('Failed to add new service.');
         }
     };
 

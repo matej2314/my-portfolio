@@ -10,16 +10,16 @@ exports.getAllAbout = async (req, res) => {
         const [rows] = await pool.query(queries.getAllDescs);
 
         if (rows.length <= 0) {
-            return res.status(statusCode.NOT_FOUND).json({ message: 'Brak opisów.' });
+            return res.status(statusCode.NOT_FOUND).json({ message: 'No descriptions.' });
         };
 
         return res.status(statusCode.OK).json({
-            message: 'Opis pobrany poprawnie.',
+            message: 'Description fetched correctly',
             aboutme: rows,
         })
     } catch (error) {
-        logger.error('Nie udało się pobrać opisów omnie', error.message);
-        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Błąd serwera' });
+        logger.error('Failed to fetch descriptions.', error.message);
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Internal server error.' });
     };
 };
 
@@ -28,19 +28,19 @@ exports.addNewAbout = async (req, res) => {
     const about = req.body.about;
 
     if (!about || about.trim().length < 0 || about.trim() === '') {
-        return res.status(statusCode.BAD_REQUEST).json({ message: 'Brak danych o opisie' });
+        return res.status(statusCode.BAD_REQUEST).json({ message: 'No description data' });
     };
 
     try {
         await pool.query(queries.addNewDesc, [id, about]);
-        logger.info('Opis dodany pomyślnie!');
+        logger.info('Description added correctly!');
         return res.status(statusCode.CREATED).json({
-            message: 'Opis dodany pomyślnie!',
+            message: 'Description added correctly.',
             id,
         })
     } catch (error) {
-        logger.error('Nie udało się dodać opisu.', error.message);
-        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Nie udało się dodać opisu.' });
+        logger.error('Failed to add description.', error.message);
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Failed to add description' });
 
     };
 };
@@ -49,21 +49,21 @@ exports.updateAbout = async (req, res) => {
     const { id, about } = req.body;
 
     if (!id || !about || id < 0 || about.trim().length == 0 || about.trim() === '') {
-        logger.error('Podaj prawidłowe dane do usunięcia opisu');
-        return res.status(statusCode.BAD_REQUEST).json({ message: 'Podaj prawidłowe dane do usunięcia opisu' });
+        logger.error('Enter the correct data.');
+        return res.status(statusCode.BAD_REQUEST).json({ message: 'Enter the correct data.' });
     };
 
     try {
         const [result] = await pool.query(queries.updateDesc, [about]);
-        logger.info('Opis zaktualizowany pomyślnie.');
+        logger.info('Description updated correctly.');
         return res.status(statusCode.OK).json({
-            message: 'Opis zaktualizowany pomyślnie',
+            message: 'Description updated correctly.',
             id,
             about,
         });
     } catch (error) {
-        logger.error('Nie udało się zaktualizować opisu');
-        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Nie udało się zaktualizować opisu' });
+        logger.error('Failed to update description');
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Failed to update description.' });
     };
 };
 
@@ -71,8 +71,8 @@ exports.deleteAbout = async (req, res) => {
     const id = req.body.id;
 
     if (!id || id <= 0) {
-        logger.error('Podaj prawidłowe id opisu');
-        return res.status(statusCode.BAD_REQUEST).json({ message: 'Podaj prawidłowe dane do usunięcia opisu' });
+        logger.error('Enter correct description ID.');
+        return res.status(statusCode.BAD_REQUEST).json({ message: 'Enter correct data.' });
     };
 
     try {
@@ -80,17 +80,17 @@ exports.deleteAbout = async (req, res) => {
 
 
         if (result.affectedRows == 0) {
-            logger.error('Opis nie znaleziony');
-            return res.status(statusCode.NOT_FOUND).json({ message: 'Opis nie znaleziony' });
+            logger.error('Description not found.');
+            return res.status(statusCode.NOT_FOUND).json({ message: 'Description not found.' });
         };
 
         return res.status(statusCode.OK).json({
-            message: 'Opis usunięty poprawnie',
+            message: 'Description deleted correctly.',
             id,
         });
 
     } catch (error) {
-        logger.error('Nie udało się usunąć opisu:', error.message);
-        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Nie udało się usunąć opisu' });
+        logger.error('Failed to delete description:', error.message);
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Failed to delete description.' });
     };
 };

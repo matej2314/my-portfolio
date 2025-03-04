@@ -28,7 +28,7 @@ export default function DeletePost({ selectedPost, onClose }) {
                 data: { postId: postId }
             });
         } catch (error) {
-            console.log('Nie udało się usunąć posta');
+            console.log('Failed to delete blog post.');
         }
     };
 

@@ -41,7 +41,7 @@ export default function EditPosts({ selectedPost, onClose }) {
                 data: updatedPost
             })
         } catch (error) {
-            console.log('Nie udało się edytować posta')
+            console.log('Failed to edit blog post.')
         }
     };
 

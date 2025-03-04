@@ -62,7 +62,7 @@ export default function EditProjects({ selectedProject, onClose }) {
                 data: formData,
             });
         } catch (error) {
-            console.log("Błąd podczas edycji projektu.");
+            console.log("Error during edit project.");
         }
     };
 

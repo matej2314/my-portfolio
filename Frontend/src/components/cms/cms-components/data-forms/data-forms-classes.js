@@ -1,11 +1,8 @@
-import AddInterest from "./add-forms/AddInterest";
-import EditServices from "./edit-forms/EditServices";
-
 export const addForms = {
     addAbout: {
         wrapper: "w-full h-full flex flex-col justify-start items-center bg-neutral-600/30 text-white pt-2 gap-6",
         form: "w-11/12 h-fit flex flex-col items-center justify-start text-white gap-4 py-4 border-2 border-white rounded-md",
-        textarea: "w-11/12 h-[10rem] text-black bg-slate-300 pl-2",
+        textarea: "w-11/12 h-[10rem] text-black bg-slate-300 pl-2 rounded-md",
     },
     addCourse: {
         wrapper: "w-full h-full flex flex-col items-center justify-start text-white bg-neutral-600/30",
@@ -30,13 +27,13 @@ export const addForms = {
     },
     AddInterest: {
         wrapper: "w-full h-full flex flex-col items-center justify-start text-white bg-neutral-600/30 pt-3 gap-4",
-        form:"w-1/4 h-fit flex flex-col items-center justify-center gap-3 border-2 border-white p-4 rounded-md",
+        form: "w-1/4 h-fit flex flex-col items-center justify-center gap-3 border-2 border-white p-4 rounded-md",
     },
     btnSave: {
         btnSave: "w-fit h-fit flex flex-row justify-center border-2 border-black p-3 rounded-xl text-md bg-neutral-700 hover:bg-neutral-800/50",
     },
     input: {
-        input: "w-full h-fit flex justify-center items-center text-black bg-slate-300 pl-2",
+        input: "w-full h-fit flex justify-center items-center text-black bg-slate-300 pl-2 rounded-md",
     },
     label: {
         label: "w-full h-fit flex flex-row justify-center text-sm",
@@ -96,7 +93,7 @@ export const editForms = {
         label: "w-full h-fit flex flex-row justify-center items-center text-white",
     },
     input: {
-        input: "w-full h-fit flex flex-row justify-center items-center text-black bg-slate-300 pl-2", 
+        input: "w-full h-fit flex flex-row justify-center items-center text-black bg-slate-300 pl-2 rounded-md",
     },
     submitBtn: {
         submitBtn: "w-fit h-fit flex flex-row justify-center border-2 border-black p-3 text-white rounded-xl text-md bg-neutral-700 hover:bg-neutral-800/50",

@@ -54,7 +54,7 @@ export default function AddProject({ onClose }) {
             });
 
         } catch (error) {
-            console.log('Nie udało się dodać projektu', error);
+            console.log('Failed to add new project.', error);
         }
 
     };

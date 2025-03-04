@@ -11,19 +11,19 @@ exports.getAllServices = async (req, res) => {
         const [rows] = await pool.query(servicesQueries.getAllServices);
 
         if (rows.length <= 0) {
-            logger.error('Brak usług w bazie danych');
-            return res.status(statusCode.NOT_FOUND).json({ message: 'Brak usług w bazie' });
+            logger.error('No services found.');
+            return res.status(statusCode.NOT_FOUND).json({ message: 'No services found.' });
         };
 
         return res.status(statusCode.OK).json({
-            message: 'Usługi pobrane poprawnie',
+            message: 'Services fetched correctly.',
             services: rows
         });
     } catch (error) {
-        logger.error('Nie udało się pobrać listy usług', error.message);
+        logger.error('Failed to fetch services list:', error.message);
 
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'Nie udało się pobrać listy usług'
+            message: 'Failed to fetch services list.'
         });
     };
 };
@@ -35,23 +35,23 @@ exports.addNewService = async (req, res) => {
 
     if (!service_name || !service_description) {
         return res.status(statusCode.BAD_REQUEST).json({
-            message: 'Brak wymaganych danych do dodania nowej usługi'
+            message: 'No required data found.'
         });
     }
 
     try {
         await pool.query(servicesQueries.addNewService, [id, service_name, service_description]);
-        logger.info(`Usługa ${service_name} dodana pomyślnie`);
+        logger.info(`Service ${service_name} added correctly`);
         return res.status(statusCode.OK).json({
-            message: `Usługa ${service_name} dodana!`,
+            message: `Service ${service_name} added!`,
             serviceId: id,
             serviceName: service_name,
         });
 
     } catch (error) {
-        logger.error(`Nie udało się dodać usługi ${service_name}`);
+        logger.error(`Failed add service: ${service_name}`);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'Nie udało się dodać nowej usługi'
+            message: 'Failed add service.'
         });
     };
 };
@@ -60,23 +60,23 @@ exports.editService = async (req, res) => {
     const { serviceId, serviceName, serviceDescription } = req.body;
 
     if (!serviceName || !serviceDescription || serviceName.trim() == '' || serviceDescription.trim() == '') {
-        return res.status(statusCode.BAD_REQUEST).json({ message: 'Brak danych do edycji usługi' });
+        return res.status(statusCode.BAD_REQUEST).json({ message: 'Enter correct service details.' });
     };
 
     try {
         const [result] = await pool.query(servicesQueries.editService, [serviceName, serviceDescription, serviceId]);
-        logger.info(`Usługa ${serviceName} edytowana.`);
+        logger.info(`Service ${serviceName} edited correctly.`);
         return res.status(statusCode.OK).json({
-            message: `Usługa ${serviceName} edytowana poprawnie.`,
+            message: `Service ${serviceName} edited correctly.`,
             name: serviceName,
             id: serviceId
 
         });
 
     } catch (error) {
-        logger.error('Nie udało się zaktualizować usługi', error.message);
+        logger.error('Failed to update service.', error.message);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'Nie udało się zaktualizować usługi'
+            message: 'Failed to update service.'
         });
     };
 };
@@ -86,7 +86,7 @@ exports.deleteService = async (req, res) => {
 
     if (!serviceId || serviceId === 0) {
         return res.status(statusCode.BAD_REQUEST).json({
-            message: 'Brak wymaganych danych'
+            message: 'Enter required service details.'
         });
     }
 
@@ -94,19 +94,19 @@ exports.deleteService = async (req, res) => {
         const [result] = await pool.query(servicesQueries.deleteService, [serviceId]);
 
         if (result.affectedRows === 0) {
-            logger.info('Usługa nie znaleziona');
-            return res.status(statusCode.NOT_FOUND).json({ message: 'Usługa nie znaleziona' });
+            logger.info('Service not found');
+            return res.status(statusCode.NOT_FOUND).json({ message: 'Service not found.' });
         };
 
         return res.status(statusCode.OK).json({
-            message: `Usługa usunięta poprawnie`,
+            message: `Service deleted correctly.`,
             serviceId,
         });
 
     } catch (error) {
-        logger.error('Nie udało się usunąć usługi', error.message);
+        logger.error('Failed to delete service', error.message);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'Nie udało się usunąć usługi'
+            message: 'Failed to delete service'
         });
     };
 };

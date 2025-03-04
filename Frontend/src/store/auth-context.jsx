@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
             };
 
         } catch (error) {
-            console.log('Nie udało się wylogować użytkownika');
+            console.log('Failed to log out user.');
         }
     }
 

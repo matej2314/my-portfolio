@@ -10,16 +10,16 @@ exports.getAllInterests = async (req, res) => {
         const [rows] = await pool.query(interestsQueries.getAllInterests);
 
         if (rows.length <= 0) {
-            return res.status(statusCode.NOT_FOUND).json({ message: 'Brak zainteresowań w bazie danych.' });
+            return res.status(statusCode.NOT_FOUND).json({ message: 'Interests not found.' });
         };
 
         return res.status(statusCode.OK).json({
-            message: 'Zainteresowania pobrane poprawnie',
+            message: 'Interests fetched correctly.',
             interests: rows,
         });
     } catch (error) {
-        logger.error('Nie udało się pobrać zainteresowań', error.message);
-        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Nie udało się pobrać zainteresowań.' })
+        logger.error('Interest download error:', error.message);
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Interest download error.' })
     };
 };
 
@@ -28,16 +28,16 @@ exports.addNewInterest = async (req, res) => {
     const interest = req.body.interest;
 
     if (!interest || interest.trim() === '' || interest.trim().length == 0) {
-        return res.status(statusCode.BAD_REQUEST).json({ message: 'Podaj zainteresowanie do dodania!' });
+        return res.status(statusCode.BAD_REQUEST).json({ message: 'Enter the correct interest data.' });
     };
 
     try {
         await pool.query(interestsQueries.addNewInterest, [id, interest]);
-        logger.info(`Zainteresowanie ${interest} dodane poprawnie`);
-        return res.status(statusCode.CREATED).json({ message: `Zainteresowanie ${interest} dodane poprawnie` });
+        logger.info(`Interest ${interest} added correctly.`);
+        return res.status(statusCode.CREATED).json({ message: `Interest ${interest} added correctly.` });
     } catch (error) {
-        logger.error('Nie udało się dodać nowego zainteresowania');
-        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Nie udało się dodać nowego zainteresowania' });
+        logger.error('Failed to add new interest.');
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Failed to add new interest.' });
     };
 };
 
@@ -45,26 +45,26 @@ exports.deleteInterest = async (req, res) => {
     const { id, interestName } = req.body;
 
     if (!id || id.length < 0 || !interestName || interestName.trim().length == 0 || interestName.trim() == '') {
-        return res.status(statusCode.BAD_REQUEST).json({ message: 'Podaj wszystkie dane do usunięcia zainteresowania' });
+        return res.status(statusCode.BAD_REQUEST).json({ message: 'Enter correct data.' });
     };
 
     try {
         [result] = await pool.query(interestsQueries.deleteInterest, [id, interestName]);
 
         if (result.affectedRows === 0) {
-            logger.error('Zainteresowanie nie znalezione');
+            logger.error('Interest not found.');
             return res.status(statusCode.NOT_FOUND).json({
-                message: 'Zainteresowanie nie znalezione'
+                message: 'Interest not found.'
             });
         };
-        logger.info(`Zainteresowanie ${interestName} usunięte.`)
+        logger.info(`Interest ${interestName} deleted correctly.`)
         return res.status(statusCode.OK).json({
-            message: `Zainteresowanie ${interestName} usunięte.`
+            message: `Interest ${interestName} deleted correctly.`
         });
     } catch (error) {
-        logger.error('Nie udało się usunąć zainteresowania', error.message);
+        logger.error('Failed to delete interest.', error.message);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'Nie udało się usunąć zainteresowania'
+            message: 'Failed to delete interest.'
         });
     };
 };

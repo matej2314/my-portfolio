@@ -9,7 +9,7 @@ const verifyJWT = (requiredRole) => {
 
         if (!token) {
             return res.status(statusCode.UNAUTHORIZED).json({
-                message: 'Zaloguj się, aby zobaczyć zasoby.'
+                message: 'Log in to view resources.'
             });
         }
 
@@ -21,14 +21,14 @@ const verifyJWT = (requiredRole) => {
 
             if (requiredRole && decoded.role !== requiredRole) {
                 return res.status(statusCode.FORBIDDEN).json({
-                    message: 'Brak uprawnień'
+                    message: 'Permissions denied.'
                 });
             };
 
             next();
         } catch (error) {
             return res.status(statusCode.UNAUTHORIZED).json({
-                message: 'Zaloguj się, aby zobaczyć zasoby.'
+                message: 'Log in to view resources.'
             });
         };
     };

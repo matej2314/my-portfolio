@@ -8,7 +8,7 @@ const verifyAdmin = (req, res, next) => {
 
     if (!token) {
         return res.status(statusCode.UNAUTHORIZED).json({
-            message: 'Błąd uwierzytelniania'
+            message: 'Authentication error.'
         });
     };
 
@@ -16,16 +16,16 @@ const verifyAdmin = (req, res, next) => {
         const decoded = jwt.verify(token, JWT_SECRET);
         if (decoded.role !== 'admin') {
             return res.status(statusCode.FORBIDDEN).json({
-                message: 'Dostęp zabroniony'
+                message: 'Access denied.'
             });
         }
 
         req.userId = decoded.id;
         next();
     } catch (error) {
-        logger.error('Błąd uwierzytelniania', error.message);
+        logger.error('Authentication error', error.message);
         return res.status(statusCode.FORBIDDEN).json({
-            message: 'Błąd uwierzytelniania'
+            message: 'Authentication error.'
         });
     }
 };

@@ -8,12 +8,12 @@ exports.sendEmail = async (req, res) => {
     const { userName, userEmail, subject, userMessage } = req.body;
 
     if (!userName || !userEmail || !subject || !userMessage) {
-        logger.warn('Niekompletne dane wejściowe w formularzu kontaktowym');
-        return res.status(statusCode.BAD_REQUEST).json({ message: 'Wszystkie pola są wymagane' });
+        logger.warn('Incomplete input in contact form.');
+        return res.status(statusCode.BAD_REQUEST).json({ message: 'Each field is required.' });
     }
 
     try {
-        logger.info(`Próba wysłania wiadomości od użytkownika: ${userName} (${userEmail})`);
+        logger.info(`Trying to send message: ${userName} (${userEmail})`);
 
         const emailText = `
             Wiadomość od użytkownika: ${userName}
@@ -30,10 +30,10 @@ exports.sendEmail = async (req, res) => {
             text: emailText
         });
 
-        logger.info(`E-mail wysłany pomyślnie: ${info.messageId}`);
-        res.status(statusCode.OK).json({ message: 'Wiadomość dostarczona', info });
+        logger.info(`Email sent correctly:: ${info.messageId}`);
+        res.status(statusCode.OK).json({ message: 'Message delivered.', info });
     } catch (error) {
-        logger.error('Nie udało się wysłać wiadomości', error);
-        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Nie udało się wysłać wiadomości', error });
+        logger.error('Failed to send message:', error);
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Failed to send message.', error });
     };
 };

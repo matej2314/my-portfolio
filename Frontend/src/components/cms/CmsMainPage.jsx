@@ -67,10 +67,10 @@ export default function CmsMainPage() {
                     setEventsCounter(counter);
                     setIsLoaded(() => true);
                 } else {
-                    console.log('Odpowiedź z serwera nie jest tablicą:', response);
+                    console.log(`Response isn't array`, response);
                 }
             } catch (error) {
-                console.error("Błąd pobierania danych analitycznych:", error);
+                console.error("Failed to fetch analytics data:", error);
             }
         };
 

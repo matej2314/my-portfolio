@@ -28,7 +28,7 @@ export default function DeleteAbout({ descData, onClose }) {
             });
 
         } catch (error) {
-            console.log('Nie udało się usunąć opisu');
+            console.log('Failed to delete description.');
         }
     };
 

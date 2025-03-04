@@ -6,23 +6,23 @@ const createStorage = multer.diskStorage({
 	destination: async (req, file, cb) => {
 		const mainPhotosPath = req.mainPhotosPath;
 		const galleryPhotosPath = req.galleryPhotosPath;
-		
+
 		try {
-			
+
 			if (file.fieldname === 'mainImages') {
-				cb(null, mainPhotosPath); 
+				cb(null, mainPhotosPath);
 			} else if (file.fieldname === 'galleryImages') {
 				cb(null, galleryPhotosPath);
 			} else {
-				cb(new Error('Nieobsługiwany typ pliku.'));
+				cb(new Error('Unsupported file type.'));
 			}
 		} catch (error) {
-			logger.error(`Nie udało się zapisać zdjęć projektu: ${error.message}`);
+			logger.error(`Failed to save project pictures: ${error.message}`);
 			cb(error);
 		}
 	},
 	filename: (req, file, cb) => {
-		
+
 		cb(null, file.originalname);
 	},
 });
@@ -41,7 +41,7 @@ const saveProject = multer({
 			return cb(null, true);
 		}
 
-		cb(new Error('Nieobsługiwany format pliku.'));
+		cb(new Error('Unsupported file type.'));
 	},
 });
 

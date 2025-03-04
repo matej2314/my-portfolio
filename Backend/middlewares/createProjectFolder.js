@@ -33,13 +33,13 @@ const createProjectFolders = (req, res, next) => {
 			fs.mkdirSync(galleryPhotosPath, { recursive: true });
 		}
 
-		logger.info(`Katalogi dla projektu ${projectId} utworzone!`);
+		logger.info(`Directories for the project ${projectId} created!`);
 		next();
 
 	} catch (error) {
-		logger.error(`Błąd podczas tworzenia katalogów projektu: ${error.message}`);
+		logger.error(`Failed to create project directories: ${error.message}`);
 		return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-			error: 'Nie udało się stworzyć katalogów projektu.'
+			error: 'Failed to create project directories.'
 		});
 	}
 };

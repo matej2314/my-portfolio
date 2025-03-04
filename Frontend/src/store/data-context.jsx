@@ -19,7 +19,7 @@ const DataProvider = ({ children }) => {
             const response = await fetch(dataCollectionUrl);
 
             if (!response.ok) {
-                throw new Error('Błąd pobierania danych');
+                throw new Error('Failed to fetch data.');
             }
 
             const data = await response.json();

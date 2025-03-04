@@ -10,7 +10,7 @@ exports.addNewPost = async (req, res) => {
     const postId = uuidv4();
 
     if (!postTitle || !postContent) {
-        return res.status(statusCode.BAD_REQUEST).json({ message: 'Prześlij poprawne dane!' });
+        return res.status(statusCode.BAD_REQUEST).json({ message: 'Enter the correct data!' });
     }
 
     let query;
@@ -26,16 +26,16 @@ exports.addNewPost = async (req, res) => {
 
     try {
         await pool.query(query, values);
-        logger.info('Post dodany pomyślnie!');
+        logger.info('Post added correctly!');
         return res.status(statusCode.CREATED).json({
-            message: `Post ${postTitle} zapisany`,
+            message: `Post ${postTitle} saved correctly.`,
             postId,
         })
     } catch (error) {
-        logger.info('Błąd podczas zapisywania posta', error.message);
+        logger.info('Adding new post error:', error.message);
 
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: `Błąd serwera: ${error.message}`
+            message: `Internal server error: ${error.message}`
         });
     };
 };
@@ -45,19 +45,19 @@ exports.getAllPosts = async (req, res) => {
         const [rows] = await pool.query(postsQueries.getAllPosts);
 
         if (rows.length === 0) {
-            logger.error('Brak postów do pobrania');
+            logger.error('No posts found.');
             return res.status(statusCode.NOT_FOUND).json({
-                message: 'Brak postów'
+                message: 'No posts found.'
             });
         };
 
         return res.status(statusCode.OK).json({ posts: rows });
 
     } catch (error) {
-        logger.error('Błąd podczas pobierania postów:', error.message);
+        logger.error('Posts fetching error:', error.message);
 
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'Błąd serwera'
+            message: 'Internal server error.'
         });
     };
 };
@@ -67,9 +67,9 @@ exports.editPost = async (req, res) => {
     let postImage = req.body.postImage;
 
     if (!postId || !postTitle || !postLead || postLead.trim() === '' || postTitle.trim() === '' || postContent.trim() === '') {
-        logger.error('Brak wymaganych danych do edycji posta');
+        logger.error('No required post details.');
         return res.status(statusCode.BAD_REQUEST).json({
-            message: 'Brak wymaganych danych do edycji posta!'
+            message: 'Enter required post details!'
         });
     }
 
@@ -77,15 +77,15 @@ exports.editPost = async (req, res) => {
 
     try {
         const [result] = await pool.query(postsQueries.editPost, [postTitle, postLead, postContent, postImage, postId]);
-        logger.info('Post edytowany!');
+        logger.info('Post edited correctly!');
         return res.status(statusCode.OK).json({
-            message: `Post ${postTitle} poprawnie zaktualizowany`,
+            message: `Post ${postTitle} correctly updated.`,
             postId
         });
     } catch (error) {
-        logger.error('Nie udało się edytować posta', error.message);
+        logger.error('Editing blog post error:', error.message);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: `Nie udało się edytować posta ${postTitle}`
+            message: `Failed to edit blog post: ${postTitle}`
         });
     };
 };
@@ -94,9 +94,9 @@ exports.deletePost = async (req, res) => {
     const { postId } = req.body;
 
     if (!postId || postId < 0) {
-        logger.error('Podaj dane wymagane do usunięcia postu!');
+        logger.error('Enter the correct blog post details!');
         return res.status(statusCode.BAD_REQUEST).json({
-            message: 'Podaj dane wymagane do usunięcia postu!'
+            message: 'Enter the correct blog post details!'
         });
     };
 
@@ -104,16 +104,16 @@ exports.deletePost = async (req, res) => {
         const [result] = await pool.query(postsQueries.deletePost, [postId]);
 
         if (result.affectedRows === 0) {
-            logger.info('Post nie znaleziony');
-            return res.status(statusCode.NOT_FOUND).json({ message: 'Post o podanym ID nie istnieje' });
+            logger.info('Blog post not found');
+            return res.status(statusCode.NOT_FOUND).json({ message: 'Blog post not found.' });
         }
 
         return res.status(statusCode.OK).json({
-            message: `Post usunięty poprawnie`,
+            message: `Blog post deleted correctly.`,
             postId
         })
     } catch (error) {
-        logger.error('Nie udało się usunąć posta', error.message);
-        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Nie udało się usunąć posta' });
+        logger.error('Failed to delete blog post', error.message);
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Failed to delete blog post.' });
     };
 };

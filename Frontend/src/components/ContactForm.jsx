@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { toast } from 'react-toastify';
+import { Icon } from '@iconify/react';
 import ReactGA from 'react-ga4';
 
 import SocialIcons from "./icons/SocialIcons.jsx";
@@ -77,40 +78,74 @@ export default function ContactForm() {
                 <SocialIcons mailSize={34} iconsSize={34} />
 
                 <label className={compClasses.contactForm.firstLabel} htmlFor="user-name">Type your name:</label>
-                <input
-                    className={compClasses.contactForm.input}
-                    type="text"
-                    name="Name"
-                    id="user-name"
-                    ref={name}
-                />
+                <div className="relative w-full">
+                    <input
+                        className={compClasses.contactForm.input}
+                        type="text"
+                        name="Name"
+                        id="user-name"
+                        placeholder="Name"
+                        onInput={(e) => e.target.nextSibling.style.display = e.target.value ? 'none' : 'block'}
+                        ref={name}
+                    />
+                    <Icon
+                        icon='mdi:user'
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl cursor-pointer"
+                    />
+                </div>
+
 
                 <label className={compClasses.contactForm.otherLabels} htmlFor="user-email">Type your email:</label>
-                <input
-                    className={compClasses.contactForm.input}
-                    type="email"
-                    name="email"
-                    id="user-email"
-                    ref={email}
-                />
+                <div className="relative w-full">
+                    <input
+                        className={compClasses.contactForm.input}
+                        type="email"
+                        name="email"
+                        id="user-email"
+                        placeholder="E-mail"
+                        ref={email}
+                        onInput={(e) => e.target.nextSibling.style.display = e.target.value ? 'none' : 'block'}
+                    />
+                    <Icon
+                        icon='ix:e-mail'
+                        className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl cursor-pointer'
+                    />
+                </div>
+
 
                 <label className={compClasses.contactForm.otherLabels} htmlFor="mess-subject">Subject:</label>
-                <input
-                    className={compClasses.contactForm.input}
-                    type="text"
-                    name="mess-subject"
-                    id="mess-subject"
-                    ref={messageSubject}
-                />
+                <div className="relative w-full">
+                    <input
+                        className={compClasses.contactForm.input}
+                        type="text"
+                        name="mess-subject"
+                        id="mess-subject"
+                        placeholder="Subject"
+                        ref={messageSubject}
+                        onInput={(e) => e.target.nextSibling.style.display = e.target.value ? 'none' : 'block'}
+                    />
+                    <Icon
+                        icon='ic:round-topic'
+                        className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl cursor-pointer'
+                    />
+                </div>
+
 
                 <label className={compClasses.contactForm.otherLabels} htmlFor="user-message">Your message:</label>
-                <textarea
-                    className={compClasses.contactForm.textarea}
-                    name="user-message"
-                    id="user-message"
-                    ref={message}
-                />
-
+                <div className="relative w-full">
+                    <textarea
+                        className={compClasses.contactForm.textarea}
+                        name="user-message"
+                        id="user-message"
+                        placeholder="Message"
+                        onInput={(e) => e.target.nextSibling.style.display = e.target.value ? 'none' : 'block'}
+                        ref={message}
+                    />
+                    <Icon
+                        icon='ic:baseline-message'
+                        className={`absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl cursor-pointer`}
+                    />
+                </div>
                 <button className={compClasses.contactForm.submitButton} type="submit">Send message</button>
             </form>
         </div>

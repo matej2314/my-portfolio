@@ -76,9 +76,9 @@ router.get('/analytics', async (req, res) => {
 
         return res.status(statusCode.OK).json(processedData);
     } catch (error) {
-        logger.error(`Błąd pobierania danych z GA: ${error}`);
+        logger.error(`Failed to fetch GA data: ${error}`);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: `Błąd pobierania danych Google Analytics: ${error}`
+            message: `Google Analytics data fetch error: ${error}`
         });
     }
 });

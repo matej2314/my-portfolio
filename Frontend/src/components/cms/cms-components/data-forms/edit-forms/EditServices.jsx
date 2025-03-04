@@ -39,7 +39,7 @@ export default function EditServices({ selectedService, onClose }) {
                 data: updatedService
             });
         } catch (error) {
-            console.log('Nie udało się edytować usługi.');
+            console.log('Failed to editting service.');
         }
     };
 

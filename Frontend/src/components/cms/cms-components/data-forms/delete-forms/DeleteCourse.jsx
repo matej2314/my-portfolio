@@ -28,7 +28,7 @@ export default function DeleteCourse({ courseData, onClose }) {
                 data: { courseId: courseId }
             });
         } catch (error) {
-            console.log('Błąd wysyłania w deleteCourse');
+            console.log('An error occured in deleteCourse.');
         }
 
     };

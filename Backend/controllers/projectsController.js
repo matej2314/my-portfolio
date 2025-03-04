@@ -12,20 +12,20 @@ exports.getAllProjects = async (req, res) => {
         const [rows] = await pool.query(projectsQueries.getAllProjects);
 
         if (rows.length <= 0) {
-            logger.error('Brak projektów do pobrania');
+            logger.error('Projects not found.');
             return res.status(statusCode.NOT_FOUND).json({
-                message: 'Brak projektów w bazie danych'
+                message: 'Projects not found.'
             });
         }
 
         return res.status(statusCode.OK).json({
-            message: 'Projekty pobrano poprawnie',
+            message: 'Projects fetched correctly.',
             projects: rows,
         });
     } catch (error) {
-        logger.error('Nie udało się pobrać projektów', error.message);
+        logger.error('Failed to fetch projects:', error.message);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'Nie udało się pobrać projektów',
+            message: 'Failed to fetch projects.',
         });
     };
 };
@@ -36,9 +36,9 @@ exports.deleteProject = async (req, res) => {
     const projectFolderPath = req.projectFolderPath;
 
     if (!projectId || projectId <= 0 || projectName === '') {
-        logger.error('Brak wymaganych danych do usunięcia projektu');
+        logger.error('No required data');
         return res.status(statusCode.BAD_REQUEST).json({
-            message: 'Brak wymaganych danych do usunięcia projektu'
+            message: 'No required data.'
         });
     }
 
@@ -46,25 +46,25 @@ exports.deleteProject = async (req, res) => {
         const [result] = await pool.query(projectsQueries.deleteProject, [projectId, projectName]);
 
         if (result.affectedRows == 0) {
-            logger.info('Projekt nie znaleziony');
+            logger.info('Project not found');
             return res.status(statusCode.NOT_FOUND).json({
-                message: 'Nie znaleziono projektu do usunięcia'
+                message: 'Project not found.'
             });
         }
 
         try {
 
             await fs.rm(projectFolderPath, { recursive: true, force: true });
-            logger.info(`Główny folder projektu ${projectId} usunięty.`);
+            logger.info(`Main project directory ${projectId} deleted.`);
         } catch (error) {
-            logger.error(`Nie udało się usunąć głównego folderu projektu ${projectId}: ${error}`);
+            logger.error(`Failed to delete main project directory: ${projectId}: ${error}`);
         }
 
-        return res.status(statusCode.OK).json({ message: `Projekt ${projectName} usunięty.` });
+        return res.status(statusCode.OK).json({ message: `Project ${projectName} deleted correctly.` });
     } catch (error) {
-        logger.error('Nie udało się usunąć projektu', error);
+        logger.error('Failed to delete project', error);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: `Nie udało się usunąć projektu ${projectName}`
+            message: `Failed to delete project: ${projectName}`
         });
     };
 };
@@ -74,7 +74,7 @@ exports.photosList = async (req, res) => {
 
     if (!projectId || projectId.toString().length < 0) {
         return res.status(statusCode.BAD_REQUEST).json({
-            message: 'Prześlij poprawny identyfikator projektu.'
+            message: 'Enter the correct project ID.'
         });
     };
 
@@ -90,13 +90,13 @@ exports.photosList = async (req, res) => {
         }
 
         return res.status(statusCode.OK).json({
-            message: 'Lista plików pobrana poprawnie.',
+            message: 'File list fetched correctly.',
             images,
         });
     } catch (error) {
-        logger.error(`Nie udało się poprawnie pobrać zdjęć: ${error}`);
+        logger.error(`Failed to fetch pictures: ${error}`);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'Nie udało się poprawnie pobrać zdjęć.'
+            message: 'Failed to fetch pictures.'
         })
     };
 };

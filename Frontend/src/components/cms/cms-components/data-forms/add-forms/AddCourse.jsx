@@ -39,7 +39,7 @@ export default function AddCourse({ onClose }) {
             });
 
         } catch (error) {
-            console.log('Błąd podczas dodawania nowego kursu');
+            console.log('An error occured! Failed to adding new course.');
         }
     };
 

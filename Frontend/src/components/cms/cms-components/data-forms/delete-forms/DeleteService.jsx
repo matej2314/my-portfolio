@@ -28,7 +28,7 @@ export default function DeleteService({ serviceData, onClose }) {
                 data: { serviceId: serviceId }
             });
         } catch (error) {
-            console.log('Nie udało się usunąć usługi');
+            console.log('Failed to delete service.');
         }
     };
 

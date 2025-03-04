@@ -41,7 +41,7 @@ export default function AddPost({ onClose }) {
             });
 
         } catch (error) {
-            console.log('Nie udało się dodać nowego posta');
+            console.log('Failed to add new blog post.');
         }
     }
 

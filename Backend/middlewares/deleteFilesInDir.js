@@ -21,13 +21,13 @@ const deleteFiles = async (req, res, next) => {
 	try {
 		for (const folder of folders) {
 			await fs.access(folder);
-			logger.info(`Folder: ${folder} istnieje!`);
+			logger.info(`Directory: ${folder} already exists!`);
 		}
 
 	} catch (error) {
-		logger.error(`Folder nie istnieje: ${error.message}`);
+		logger.error(`Directory doesn't exist: ${error.message}`);
 		return res.status(statusCode.NOT_FOUND).json({
-			error: 'Jeden z wymaganych folderów nie istnieje.'
+			error: `One of required directory doesn't exist`
 		});
 	}
 
@@ -38,19 +38,19 @@ const deleteFiles = async (req, res, next) => {
 				const filePath = path.join(folder, file);
 				try {
 					await fs.unlink(filePath);
-					logger.info(`Plik ${filePath} został usunięty.`);
+					logger.info(`File ${filePath} deleted correctly.`);
 				} catch (error) {
-					logger.error(`Nie udało się usunąć pliku ${filePath}: ${error.message}`);
+					logger.error(`Failed to delete file: ${filePath}: ${error.message}`);
 				}
 			}
 		}
-		logger.info(`Wszystkie pliki zostały pomyślnie usunięte.`);
+		logger.info(`All files have benn correctly deleted.`);
 		next();
 
 	} catch (error) {
-		logger.error(`Błąd podczas operacji na plikach: ${error.message}`);
+		logger.error(`Error during file operations: ${error.message}`);
 		return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-			error: 'Wystąpił błąd podczas operacji na plikach.'
+			error: 'An error occured.'
 		});
 	}
 }

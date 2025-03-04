@@ -19,13 +19,13 @@ exports.getAllData = async (req, res) => {
         };
 
         if (Object.values(allData).every(arr => arr.length === 0)) {
-            return res.status(statusCode.NO_CONTENT).json({ message: 'Brak danych' });
+            return res.status(statusCode.NO_CONTENT).json({ message: 'No data available.' });
         }
 
-        logger.info('Wszystkie dane pobrane');
+        logger.info('Data fetched correctly.');
         return res.status(statusCode.OK).json({ data: allData });
     } catch (error) {
-        logger.error('Błąd pobierania danych', error.stack);
-        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Błąd serwera' });
+        logger.error('Fetch error:', error.stack);
+        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Internal server error' });
     };
 };

@@ -40,7 +40,7 @@ export default function AddSkill({ onClose }) {
             });
 
         } catch (error) {
-            console.log('Nie udało się dodać nowego skilla');
+            console.log('Failed to add new skill.');
         }
     };
 

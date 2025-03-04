@@ -11,25 +11,25 @@ exports.addNewSkill = async (req, res) => {
     const { skillName, skillCat, iconColor } = req.body;
 
     if (!skillName || skillName === '' || skillCat === '' || !skillCat || !skillIcon) {
-        logger.error('Brak danych do dodania skilla');
+        logger.error('Enter skill details.');
 
         return res.status(statusCode.BAD_REQUEST).json({
-            message: 'Brak danych do dodania nowego skilla'
+            message: 'Enter skill details'
         });
     };
 
     try {
         await pool.query(skillsQueries.addNewSkill, [id, skillName, skillCat, skillIcon, iconColor]);
-        logger.info(`Umiejętność ${skillName} dodana pomyślnie`);
+        logger.info(`Skill ${skillName} added correctly.`);
         return res.status(statusCode.CREATED).json({
-            message: `Umiejętność ${skillName} dodana pomyślnie`,
+            message: `Skill ${skillName} added correctly.`,
             skillId: id,
             skillName,
         });
     } catch (error) {
-        logger.error('Nie udało się dodać nowej umiejętności', error.message);
+        logger.error('Failed to add new skill.', error.message);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'Nie udało się dodać nowej umiejętności'
+            message: 'Failed to add new skill.'
         });
     };
 };
@@ -39,20 +39,20 @@ exports.getAllSkills = async (req, res) => {
         const [rows] = await pool.query(skillsQueries.getAllSkills);
 
         if (rows.length === 0) {
-            logger.info('Brak umiejętności w bazie danych');
+            logger.info('No skill found.');
             return res.status(statusCode.NOT_FOUND).json({
-                message: 'Brak umiejętności w bazie danych'
+                message: 'No skill found.'
             });
         };
 
         return res.status(statusCode.OK).json({
-            message: 'Umiejętności pobrane poprawnie',
+            message: 'Skills fetched correctly.',
             skills: rows,
         })
     } catch (error) {
-        logger.error('Nie udało się pobrać umiejętności', error.message);
+        logger.error('Failed to fetch skills.', error.message);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'Nie udało się pobrać umiejętności'
+            message: 'Failed to fetch skills.'
         });
     };
 };
@@ -61,9 +61,9 @@ exports.deleteSkill = async (req, res) => {
     const { skillId } = req.body;
 
     if (!skillId || skillId === 0) {
-        logger.error('Brak danych do usunięcia skilla');
+        logger.error('Enter correct skill details.');
         return res.status(statusCode.BAD_REQUEST).json({
-            message: 'Brak danych do usunięcia skilla'
+            message: 'Enter correct skill details.'
         });
     };
 
@@ -71,20 +71,20 @@ exports.deleteSkill = async (req, res) => {
         const [result] = await pool.query(skillsQueries.deleteSkill, [skillId]);
 
         if (result.affectedRows === 0) {
-            logger.info('Umiejętność nie znaleziona');
+            logger.info('Skill not found.');
             return res.status(statusCode.NOT_FOUND).json({
-                message: 'Umiejętność nie znaleziona'
+                message: 'Skill not found.'
             })
         }
 
         return res.status(statusCode.OK).json({
-            message: 'Umiejętność usunięta poprawnie',
+            message: 'Skill deleted correctly.',
             skillId: skillId,
         })
     } catch (error) {
-        logger.error('Nie udało się usunąć umiejętności');
+        logger.error('Failed to delete skill.');
         return res.status(statusCode.OK).json({
-            message: 'Nie udało się usunąć umiejętności'
+            message: 'Failed to delete skill.'
         });
     };
 };

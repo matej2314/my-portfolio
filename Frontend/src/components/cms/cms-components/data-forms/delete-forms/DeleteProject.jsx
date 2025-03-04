@@ -32,7 +32,7 @@ export default function DeleteProject({ selectedProject, onClose }) {
 				},
 			});
 		} catch (error) {
-			console.log('Nie udało się usunąć projektu');
+			console.log('Failed to delete project.');
 		}
 	};
 

@@ -29,7 +29,7 @@ export default function AddAbout({ onClose }) {
                 data: { about: about.current.value }
             });
         } catch (error) {
-            console.log('Nie udało się dodać nowego opisu')
+            console.log('Failed to add new description.')
         }
     };
 

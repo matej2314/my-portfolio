@@ -6,9 +6,9 @@ export const compClasses = {
         h2: "text-xl indirect:text-5xl indirect:mb-4",
         h3: "indirect:text-2xl text-lg text-lime-500",
         firstLabel: "py-1 indirect:text-lg indirect:mb-2 indirect:mt-3",
-        otherLabels:"py-1 indirect:text-lg indirect:my-2",
-        input: "w-full text-stone-950 p-1 indirect:p-3 md:p-2",
-        textarea: "w-full text-sm indirect:text-lg indirect:py-2 text-stone-950 p-3 indirect:resize-none",
+        otherLabels: "py-1 indirect:text-lg indirect:my-2",
+        input: "w-full text-stone-950 p-1 indirect:p-3 md:p-2 rounded-md",
+        textarea: "w-full text-sm indirect:text-lg indirect:py-2 text-stone-950 p-3 indirect:resize-none rounded-md",
         submitButton: "w-fit h-fit mt-4 p-2 indirect:p-3 bg-[#61751b] rounded-md indirect:mt-2 md:mt-4 hover:bg-[#374528]"
     },
     footer: {
