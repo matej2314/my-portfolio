@@ -90,7 +90,7 @@ export default function ContactForm() {
                     />
                     <Icon
                         icon='mdi:user'
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl cursor-pointer"
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl pointer-events-none"
                     />
                 </div>
 
@@ -108,7 +108,7 @@ export default function ContactForm() {
                     />
                     <Icon
                         icon='ix:e-mail'
-                        className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl cursor-pointer'
+                        className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl pointer-events-none'
                     />
                 </div>
 
@@ -126,7 +126,7 @@ export default function ContactForm() {
                     />
                     <Icon
                         icon='ic:round-topic'
-                        className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl cursor-pointer'
+                        className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl pointer-events-none'
                     />
                 </div>
 
@@ -143,7 +143,7 @@ export default function ContactForm() {
                     />
                     <Icon
                         icon='ic:baseline-message'
-                        className={`absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl cursor-pointer`}
+                        className={`absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl pointer-events-none`}
                     />
                 </div>
                 <button className={compClasses.contactForm.submitButton} type="submit">Send message</button>
