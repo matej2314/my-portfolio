@@ -19,13 +19,13 @@ exports.getAllData = async (req, res) => {
         };
 
         if (Object.values(allData).every(arr => arr.length === 0)) {
-            return res.status(statusCode.NO_CONTENT).json({ message: 'No data available.' });
+            return res.status(204).json({ message: 'No data available.' });
         }
 
         logger.info('Data fetched correctly.');
-        return res.status(statusCode.OK).json({ data: allData });
+        return res.status(200).json({ data: allData });
     } catch (error) {
         logger.error('Fetch error:', error.stack);
-        return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error' });
     };
 };
