@@ -1,6 +1,7 @@
 const dotenv = require('dotenv').config({ path: './.env' })
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 const port = process.env.SERV_PORT || 5051;
@@ -32,6 +33,8 @@ app.options('*', (req, res) => {
     res.header('Access-Control-Allow-Credentials', 'true');
     res.status(200).end();
 });
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'CMS')));
 app.use('/images', express.static(path.join(__dirname, 'projects-photos')));
