@@ -25,13 +25,13 @@ app.use(cookieParser());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
-// app.options('*', (req, res) => {
-//     res.header('Access-Control-Allow-Origin', req.get('Origin'));
-//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization',);
-//     res.header('Access-Control-Allow-Credentials', 'true');
-//     res.status(200).end();
-// });
+app.options('*', (req, res) => {
+    res.header('Access-Control-Allow-Origin', req.get('Origin'));
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization',);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.status(200).end();
+});
 
 app.use(express.static(path.join(__dirname, 'CMS')));
 app.use('/images', express.static(path.join(__dirname, 'projects-photos')));
