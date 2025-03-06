@@ -8,7 +8,7 @@ const deleteFiles = require('../middlewares/deleteFilesInDir.js');
 const createProjectFolders = require('../middlewares/createProjectFolder.js');
 const projectsQueries = require('../database/projectsQueries.js');
 const projectsController = require('../controllers/projectsController.js')
-const extractScreenName = require('../utils/extractName.js');
+const { extractScreenName } = require('../utils/extractName.js');
 const { StatusCodes } = require('http-status-codes');
 const statusCode = StatusCodes;
 
