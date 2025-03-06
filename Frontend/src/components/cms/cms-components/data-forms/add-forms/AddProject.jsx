@@ -49,7 +49,6 @@ export default function AddProject({ onClose }) {
 
         try {
             await sendRequest({
-                method: 'POST',
                 url: addProjectUrl,
                 data: formData,
             });
