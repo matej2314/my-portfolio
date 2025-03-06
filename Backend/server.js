@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config({path: './.env'})
+const dotenv = require('dotenv').config({ path: './.env' })
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -8,8 +8,8 @@ const port = process.env.SERV_PORT || 5051;
 const cors = require('cors');
 const logger = require('./configs/logger.js');
 
-app.use(express.urlencoded({ limit: '10mb' ,extended: true }));
-app.use(express.json({limit: '10mb'})); 
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
+app.use(express.json({ limit: '10mb' }));
 app.use(cookieParser());
 
 const allowedOrigins = ["https://api.msliwowski.net", "https://msliwowski.net", "http://localhost:5173", "http://185.170.196.107:5050"];
@@ -26,7 +26,7 @@ app.use(cors({
 }));
 
 app.options('*', (req, res) => {
-    res.header('Access-Control-Allow-Origin', req.get('Origin') || '*');
+    res.header('Access-Control-Allow-Origin', req.get('Origin'));
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type',);
     res.header('Access-Control-Allow-Credentials', 'true');
@@ -36,7 +36,7 @@ app.options('*', (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'CMS')));
-app.use('/images',express.static(path.join(__dirname, 'projects-photos')));
+app.use('/images', express.static(path.join(__dirname, 'projects-photos')));
 app.use('/blog-photos', express.static(path.join(__dirname, 'blog')));
 
 const serviceRoutes = require('./routes/serviceRoutes.js');
