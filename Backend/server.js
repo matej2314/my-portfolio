@@ -6,10 +6,10 @@ const app = express();
 const port = process.env.SERV_PORT || 5051;
 const cors = require('cors');
 const logger = require('./configs/logger.js');
-
+app.use(express.json({ limit: '10mb' }));
 app.use(cookieParser());
 app.use(express.urlencoded({ limit: '30mb', extended: true }));
-app.use(express.json({ limit: '10mb' }));
+
 
 
 const allowedOrigins = ["https://api.msliwowski.net", "https://msliwowski.net", "http://localhost:5173", "http://185.170.196.107:5050"];
