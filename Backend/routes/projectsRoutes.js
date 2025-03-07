@@ -36,15 +36,15 @@ router.post(
 			endDate } = req.body;
 
 		if (!projectName || !projectCat || !prURL || !description || !repo || !technologies || !projectDiff || !endDate) {
-			logger.error('Brak wymaganych danych do dodania projektu');
+			logger.error('Required data not found.');
 			return res.status(statusCode.BAD_REQUEST).json({
-				message: 'Brak wymaganych danych do dodania projektu'
+				message: 'Required data not found.'
 			});
 		}
 
 		if (!req.files.mainImages) {
 			return res.status(statusCode.BAD_REQUEST).json({
-				message: 'Brak głównego obrazu (mainImages)'
+				message: 'Main image not found.'
 			});
 		}
 
@@ -65,16 +65,16 @@ router.post(
 					longText,
 					projectDiff,
 					endDate]);
-			logger.info(`Projekt ${projectName} dodany pomyślnie!`);
+			logger.info(`Project ${projectName} added correctly!`);
 
 			return res.status(statusCode.CREATED).json({
-				message: `Projekt ${projectName} dodany pomyślnie!`,
+				message: `Project ${projectName} added correctly!`,
 				projectId: projectId,
 			});
 		} catch (error) {
-			logger.error('Nie udało się dodać projektu', error);
+			logger.error('Failed to add project:', error);
 			return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-				message: `Nie udało się dodać projektu ${projectName}`
+				message: `Failed to add project ${projectName}`
 			});
 		}
 	}
@@ -101,9 +101,9 @@ router.put(
 			projectRepo, technologies, projectLongTxt, projectDiff, projectEndDate } = req.body;
 
 		if (!projectId || !projectName || !projectCat || !projectURL || !goal || !projectDesc || !projectRepo || !projectLongTxt) {
-			logger.error('Brak wymaganych danych do aktualizacji projektu');
+			logger.error('Required data not found.');
 			return res.status(statusCode.BAD_REQUEST).json({
-				message: 'Brak wymaganych danych do aktualizacji projektu'
+				message: 'Required data not found.'
 			});
 		}
 
@@ -115,9 +115,9 @@ router.put(
 		} else if (projectScr) {
 			screenName = projectScr;
 		} else {
-			logger.error('Brak danych dla `screenName`');
+			logger.error('No data for `screenName`');
 			return res.status(statusCode.BAD_REQUEST).json({
-				message: 'Brak danych dla `screenName`'
+				message: 'No data for `screenName`'
 			});
 		}
 
@@ -127,20 +127,20 @@ router.put(
 					projectLongTxt, projectDiff, projectEndDate, projectId]);
 
 			if (result.affectedRows === 0) {
-				logger.warn(`Nie znaleziono projektu o ID ${projectId}`);
-				return res.status(statusCode.NOT_FOUND).json({ message: 'Projekt o podanym ID nie istnieje' });
+				logger.warn(`Project with ID ${projectId} not found`);
+				return res.status(statusCode.NOT_FOUND).json({ message: 'Project with entered ID does not exist.' });
 			}
 
-			logger.info(`Projekt ${projectName} (ID: ${projectId}) został zaktualizowany`);
+			logger.info(`Project ${projectName} (ID: ${projectId}) updated correctly.`);
 			return res.status(statusCode.OK).json({
-				message: `Projekt ${projectName} poprawnie zaktualizowany`,
+				message: `Project ${projectName} updated correctly.`,
 				projectId: projectId,
 				projectName: projectName,
 			});
 		} catch (error) {
-			logger.error(`Nie udało się zaktualizować projektu ${projectId}: ${error.message}`);
+			logger.error(`Failed to update the project ${projectId}: ${error.message}`);
 			return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-				message: 'Nie udało się zaktualizować projektu',
+				message: 'Failed to update the project.',
 				error: error.message
 			});
 		}

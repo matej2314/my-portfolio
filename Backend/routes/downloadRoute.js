@@ -27,7 +27,7 @@ router.get('/:version?', (req, res) => {
     res.download(filePath, (error) => {
         if (error) {
             logger.error('Nie udało się pobrać CV');
-            return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'Nie udało się pobrać CV' });
+            return res.status(statusCode.INTERNAL_SERVER_ERROR).json({ message: 'An error occured!' });
         }
     });
 });

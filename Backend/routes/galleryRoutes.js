@@ -19,22 +19,22 @@ router.post('/', (req, res) => {
     const folderPath = path.join(__dirname, `../projects-photos/${folder}/gallery`)
 
     if (!fs.existsSync(folderPath)) {
-        logger.error('Folder nie istnieje');
+        logger.error('Directory not foun.');
         return res.status(statusCode.NOT_FOUND).json({
-            message: 'Podany folder nie istnieje.'
+            message: 'Directory not found.'
         })
     };
 
     try {
         const files = fs.readdirSync(folderPath);
         return res.status(statusCode.OK).json({
-            message: 'Lista plików pobrana poprawnie',
+            message: 'File list fetched correctly.',
             photos: files,
         });
     } catch (error) {
-        logger.error('Błąd odczytu plików:', error.message);
+        logger.error('Failed to read file:', error.message);
         return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'Błąd odczytu plików'
+            message: 'Reading file error.'
         })
     }
 });
