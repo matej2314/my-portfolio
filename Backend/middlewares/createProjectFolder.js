@@ -37,7 +37,7 @@ const createProjectFolders = (req, res, next) => {
 		next();
 
 	} catch (error) {
-		logger.error(`Failed to create project directories: ${error.message}`);
+		logger.error(`Failed to create project directories: ${error}`);
 		return res.status(statusCode.INTERNAL_SERVER_ERROR).json({
 			error: 'Failed to create project directories.'
 		});

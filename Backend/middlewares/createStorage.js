@@ -17,7 +17,7 @@ const createStorage = multer.diskStorage({
 				cb(new Error('Unsupported file type.'));
 			}
 		} catch (error) {
-			logger.error(`Failed to save project pictures: ${error.message}`);
+			logger.error(`Failed to save project pictures: ${error}`);
 			cb(error);
 		}
 	},
