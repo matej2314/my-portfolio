@@ -3,7 +3,6 @@ export const compClasses = {
     contactForm: {
         formDiv: "w-full text-gray-100 flex flex-col items-center rounded-md pt-0 pb-2 indirect:pb-16 md:pt-0 z-10",
         contactForm: "w-full h-fit px-4 pt-2 gap-4 indirect:px-3 md:w-1/3 md:gap-2 flex flex-col items-center justify-between font-black ",
-        h2: "text-xl indirect:text-5xl indirect:mb-4",
         h3: "indirect:text-2xl text-lg text-lime-500",
         firstLabel: "py-1 indirect:text-lg indirect:mb-2 indirect:mt-3",
         otherLabels: "py-1 indirect:text-lg indirect:my-2",
@@ -23,7 +22,7 @@ export const compClasses = {
         span: "font-bold font-sans tracking-wider",
     },
     mainLeftContainer: {
-        mainContainer: 'bg-transparent z-0 w-full h-full mr-5 flex flex-col items-center rounded-md text-gray-300 z-0 gap-3',
+        mainContainer: 'bg-transparent z-0 w-full h-full mr-5 flex flex-col items-center rounded-md text-gray-300 z-0 gap-3 md:gap-3 md:rounded-md',
     },
     mainRightContainer: {
         mainContainer: 'w-full h-full bg-neutral-600/30 text-gray-300 w-full h-full rounded-md overflow-scroll no-scrollbar',

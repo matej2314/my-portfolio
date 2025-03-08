@@ -73,7 +73,6 @@ export default function ContactForm() {
     return (
         <div id="contact-form-div" className={compClasses.contactForm.formDiv}>
             <form id="contact-form" className={compClasses.contactForm.contactForm} onSubmit={handleSubmit}>
-                <h2 className={compClasses.contactForm.h2}>Contact</h2>
                 <h3 className={compClasses.contactForm.h3}>{status}</h3>
                 <SocialIcons mailSize={34} iconsSize={34} />
 

@@ -35,6 +35,8 @@ export default function PortfolioHeader() {
                         initial={{ opacity: 0, y: -40 }}
                         animate={{ opacity: 1, y: 0 }}
                         whileHover={{ scale: 1.2 }}
+                        onDragStart={{ scale: 1.2 }}
+                        onDragEnd={{ scale: 1 }}
                         exit={{ opacity: 1, y: 0 }}
                         transition={{ type: "spring", duration: 1.6, damping: 10 }}
                         id="portfolio-photo"

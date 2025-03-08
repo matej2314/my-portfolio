@@ -14,7 +14,7 @@ export const pagesClasses = {
     },
     portfolioPage: {
         portfolioWrapper: "w-dvw h-dvh flex flex-col items-center py-5 gap-2 md:flex-row md:flex-nowrap md:py-5",
-        portfolioContentWrapper: "relative bg-neutral-600/30 text-gray-300 w-11/12 h-full md:h-content rounded-md flex flex-col items-center justify-center md:flex-col md:justify-around md:mr-5 overflow-scroll no-scrollbar",
+        portfolioContentWrapper: "relative bg-neutral-600/30 text-gray-300 w-11/12 h-full md:h-content gap-3 rounded-md flex flex-col items-center justify-center md:flex-col md:justify-around md:mr-5 overflow-scroll no-scrollbar",
     },
     projectsDetailsPage: {
         wrapper: "w-full h-dvh bg-black overflow-hidden flex flex-col justify-center items-center flex-nowrap pt-5 md:w-dvw md:h-dvh md:overflow-hidden md:flex md:flex-row md:items-center md:justify-around md:py-5",
@@ -30,7 +30,7 @@ export const pagesClasses = {
         repoLink: " w-fit h-fit text-2xl underline underline-offset-1 text-[#b8c785] hover:text-[#5e6e29] flex justify-center items-center gap-3"
     },
     projectsPage: {
-        wrapper: 'w-screen h-dvh flex flex-col items-center py-5 gap-2 overflow-scroll no-scrollbar px-6',
+        wrapper: 'w-screen h-screen flex flex-col items-center pt-5 gap-2 overflow-scroll no-scrollbar px-6',
         contentWrapper: 'w-screen h-[101vh] flex flex-col justify-between bg-neutral-600/30 text-slate-300 overflow-scroll no-scrollbar gap-2 pt-2',
     },
     notFound: {
