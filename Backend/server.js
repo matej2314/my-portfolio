@@ -32,7 +32,6 @@ app.options('*', (req, res) => {
     res.status(200).end();
 });
 
-app.use(express.static(path.join(__dirname, 'CMS')));
 app.use('/images', express.static(path.join(__dirname, 'projects-photos')));
 app.use('/blog-photos', express.static(path.join(__dirname, 'blog')));
 
