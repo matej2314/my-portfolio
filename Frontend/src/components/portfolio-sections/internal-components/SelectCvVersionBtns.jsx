@@ -31,7 +31,7 @@ export default function SelectCvVersionBtns() {
             <button
                 onClick={() => setSendEvent(true)}
                 type="button"
-                className="w-fit h-fit flex justify-center items-center bg-green-500 hover:text-gray-500 rounded-md p-2">
+                className="w-fit h-fit flex text-nowrap justify-center items-center bg-green-500 hover:text-gray-500 rounded-md p-2">
                 <a
                     href={engUrl}
                 >
@@ -41,7 +41,7 @@ export default function SelectCvVersionBtns() {
             <button
                 onClick={() => setSendEvent(true)}
                 type="button"
-                className="w-fit h-fit flex justify-center items-center bg-green-500 hover:text-gray-500 rounded-md p-2">
+                className="w-fit h-fit flex justify-center text-nowrap items-center bg-green-500 hover:text-gray-500 rounded-md p-2">
                 <a
                     href={plUrl}
                 >
