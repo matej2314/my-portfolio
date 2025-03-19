@@ -15,6 +15,7 @@ services:
       - /root/main/portfolio/backend/emaildata.js:/app/emaildata.js
     environment:
       - DB_HOST=main_db
+      - BACKEND_ORIGIN=https://api.msliwowski.net
   app:
     build:
       context: ./Frontend
@@ -24,6 +25,8 @@ services:
       - main_network
     ports:
       - "5050:80"
+    environment:
+      - FRONTEND_ORIGIN=https://msliwowski.net
     
 
 networks:
