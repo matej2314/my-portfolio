@@ -37,6 +37,7 @@ It's a fullstack project, but every user after getting to my page will see front
 
      - Docker,
      - Jenkins.
+     - NGINX
 
 ## Installation
 
