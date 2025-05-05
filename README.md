@@ -6,11 +6,11 @@ Link to the page of the project: https://msliwowski.net
 
 ## Idea of the project
 
-After a half year of learning JS, I decided to start use React.js as a frontend framework. The first project created with React is this Portfolio. It's my personal website which show my projects, skills and courses I took.
+After six months of learning JavaScript, I decided to start using React.js as a frontend framework. The first project I created with React is this Portfolio. It's my personal website where I showcase my projects, skills, and the courses I’ve completed.
 
 ## Functionality
 
-It's a fullstack project, but every user after getting to my page will see frontend app which only shows data and allow to contact with me. To make easier editing data, I created simple CMS. This middle app allows to change every single part of data displayed on main page. Also I made simple API server which deliver all data and is responsible for communication with the database.
+This is a full-stack project, but every user visiting my site will first see the frontend application, which displays data and allows users to contact me. To make editing the data easier, I built a simple CMS. This intermediate app allows changes to every part of the data displayed on the main page. I also developed a basic API server that delivers all the data and handles communication with the database.
 
 ## Tech stack/libraries
 
